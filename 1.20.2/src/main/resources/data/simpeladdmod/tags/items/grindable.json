@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values":[
+    "minecraft:raw_gold",
+    "minecraft:raw_iron",
+    "minecraft:ancient_debris",
+    "minecraft:obsidian",
+    "minecraft:logs",
+    "simpeladdmod:netherite_shard_raw"
+
+]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "zzz",
+    "zzz",
+    "zzz"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+
+      "item": "simpeladdmod:netherite_shard"
+    }
+
+  },
+  "result":
+  {
+    "item": "minecraft:netherite_scrap",
+    "count": 1
+  }
+}

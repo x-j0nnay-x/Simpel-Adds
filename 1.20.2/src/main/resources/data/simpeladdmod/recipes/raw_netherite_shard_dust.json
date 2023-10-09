@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":
+  [
+    "x",
+    "z"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "simpeladdmod:netherite_shard_raw"
+    },
+    "x":
+    {
+      "item": "simpeladdmod:grinderhead"
+    }
+
+  },
+  "result":
+  {
+    "item": "simpeladdmod:netherite_shard_dust",
+    "count":2
+  }
+}

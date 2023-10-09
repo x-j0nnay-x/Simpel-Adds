@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "zzz",
+    "zxz",
+    "zzz"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:cobblestone"
+    },
+    "x":
+    {
+      "item": "simpeladdmod:grinderhead"
+    }
+
+  },
+  "result":
+  {
+    "item": "minecraft:gravel",
+    "count":8
+  }
+}
