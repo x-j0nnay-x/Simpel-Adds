@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "minecraft:andesite"
+    },
+    "base": {
+        "item": "minecraft:iron_ingot"
+    },
+    "result": {
+        "item": "minecraft:shaper_armor_trim_smithing_template"
+    },
+    "template": {
+        "item": "simpeladdmod:blankupgrade"
+    }
+}

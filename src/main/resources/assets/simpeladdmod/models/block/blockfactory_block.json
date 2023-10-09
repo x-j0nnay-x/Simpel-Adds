@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "simpeladdmod:block/blockfactorytop",
+    "up": "simpeladdmod:block/blockfactorytop",
+    "north": "simpeladdmod:block/blockfactory_off",
+    "east": "simpeladdmod:block/blockfactoryside",
+    "south": "simpeladdmod:block/blockfactoryside",
+    "west": "simpeladdmod:block/blockfactoryside",
+    "particle": "simpeladdmod:block/blockfactorytop"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+
+  "ingredient": {
+    "item": "simpeladdmod:obsidiandust"
+  },
+
+  "result": "simpeladdmod:obsidianingot",
+  "experience": 0.8,
+  "cookingtime": 50
+
+
+}
