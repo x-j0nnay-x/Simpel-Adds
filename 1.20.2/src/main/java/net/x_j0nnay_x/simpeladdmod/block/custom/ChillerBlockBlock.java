@@ -2,7 +2,6 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
 import net.minecraft.world.level.block.*;
-import net.minecraftforge.network.NetworkInstance;
 
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.storage.loot.LootParams;

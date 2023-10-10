@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "x",
+    "z"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:deepslate_iron_ore"
+    },
+    "x":
+    {
+      "item": "simpeladdmod:grinderhead"
+    }
+
+  },
+  "result":
+  {
+    "item": "minecraft:raw_iron",
+    "count":3
+  }
+}

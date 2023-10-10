@@ -1,11 +1,13 @@
 
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-//import net.minecraftforge.network.NetworkHooks;
-
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.network.NetworkInitialization;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -39,7 +41,6 @@ import java.util.List;
 import java.util.Collections;
 
 import io.netty.buffer.Unpooled;
-import net.minecraftforge.client.ConfigScreenHandler;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryBlockOnBlockRightClickedProcedure;
 import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryBlockUpdateTickProcedure;
@@ -118,6 +119,7 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 				}
 			}, pos);
 		}*/
+
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();

@@ -19,7 +19,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
-//import net.x_j0nnay_x.simpeladdmod.network.ChillerBlockGUISlotMessage;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 import net.x_j0nnay_x.simpeladdmod.until.ModMenus;
 
@@ -90,7 +89,7 @@ public class ChillerBlockGUIMenu extends AbstractContainerMenu implements Suppli
 			@Override
 			public void setChanged() {
 				super.setChanged();
-				//slotChanged(0, 0, 0);
+
 			}
 		}));
 		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, WATTER_SLOT, 52, 53) {
@@ -99,7 +98,7 @@ public class ChillerBlockGUIMenu extends AbstractContainerMenu implements Suppli
 			@Override
 			public void setChanged() {
 				super.setChanged();
-				//slotChanged(1, 0, 0);
+
 			}
 
 			@Override
@@ -259,12 +258,7 @@ public class ChillerBlockGUIMenu extends AbstractContainerMenu implements Suppli
 		}
 	}
 
-/*	private void slotChanged(int slotid, int ctype, int meta) {
-		if (this.world != null && this.world.isClientSide()) {
-			simpeladdmod.PACKET_HANDLER.sendToServer(new ChillerBlockGUISlotMessage(slotid, x, y, z, ctype, meta));
-			ChillerBlockGUISlotMessage.handleSlotAction(entity, slotid, ctype, meta, x, y, z);
-		}
-	}*/
+
 
 	public Map<Integer, Slot> get() {
 		return customSlots;

@@ -38,16 +38,18 @@ public class ModItems {
     public static final RegistryObject<Item> SANDWICH_MEET_LOVE = ITEMS.register("sandwich_meet_love", () -> new Item(new Item.Properties().food(ModFoods.SANDWICH_MEET_LOVE)));
     public static final RegistryObject<Item> SANDWICH_MEET_LOVE_VEG = ITEMS.register("sandwich_meet_love_veg", () -> new Item(new Item.Properties().food(ModFoods.SANDWICH_MEET_LOVE_VEG   )));
 
-
+//upgrades
     public static final RegistryObject<Item> BLANKUPGRADE  = ITEMS.register("blankupgrade", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BLANKUPGRADE_RAW   = ITEMS.register("blankupgrade_raw", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> OBSIDIANUPGRADE_SMITHING   = ITEMS.register("obsidian_upgrade_smithing", () -> new Item(new Item.Properties()));
 
-
+//dusts
+    public static final RegistryObject<Item> COPPERDUST = ITEMS.register("copperdust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> IRONDUST = ITEMS.register("irondust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GOLDDUST = ITEMS.register("golddust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NETHERITEDUST = ITEMS.register("netheritedust", () -> new Item(new Item.Properties()));
 
+//obsidian tear
     public static final RegistryObject<Item> OBSIDAININGOT  = ITEMS.register("obsidianingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> OBSIDAINDUST  = ITEMS.register("obsidiandust", () -> new Item(new Item.Properties()));
 
@@ -63,7 +65,7 @@ public class ModItems {
     public static final RegistryObject<Item> OBSIDIANBOOTS = ITEMS.register("obsidianboots", () -> new ArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
-
+//obsidirite tear
     public static final RegistryObject<Item> OBSIDIRITESWORD = ITEMS.register("obsidiritesword", () -> new SwordItem(ModToolTiers.OBSIDIRITET, 5, 1, new Item.Properties()));
     public static final RegistryObject<Item> OBSIDIRITEPICKAXE = ITEMS.register("obsidiritepickaxe", () -> new PickaxeItem(ModToolTiers.OBSIDIRITET, 2, 2, new Item.Properties()));
     public static final RegistryObject<Item> OBSIDIRITEAXE = ITEMS.register("obsidiriteaxe", () -> new AxeItem(ModToolTiers.OBSIDIRITET, 6, 3, new Item.Properties()));

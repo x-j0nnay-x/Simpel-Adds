@@ -22,7 +22,7 @@ import net.minecraft.core.BlockPos;
 
 
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-//import net.x_j0nnay_x.simpeladdmod.network.BlockfactorySlotMessage;
+
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 import net.x_j0nnay_x.simpeladdmod.until.ModMenus;
 
@@ -134,7 +134,7 @@ public class BlockfactoryMenu extends AbstractContainerMenu implements Supplier<
 			@Override
 			public void setChanged() {
 				super.setChanged();
-			//	slotChanged(5, 0, 0);
+
 			}
 
 			@Override
@@ -148,7 +148,7 @@ public class BlockfactoryMenu extends AbstractContainerMenu implements Supplier<
 			@Override
 			public void setChanged() {
 				super.setChanged();
-			//	slotChanged(6, 0, 0);
+
 			}
 
 			@Override
@@ -300,14 +300,6 @@ public class BlockfactoryMenu extends AbstractContainerMenu implements Supplier<
 		}
 	}
 
-
-
-/*	private void slotChanged(int slotid, int ctype, int meta) {
-		if (this.world != null && this.world.isClientSide()) {
-			simpeladdmod.PACKET_HANDLER.sendToServer(new BlockfactorySlotMessage(slotid, x, y, z, ctype, meta));
-			BlockfactorySlotMessage.handleSlotAction(entity, slotid, ctype, meta, x, y, z);
-		}
-	}*/
 
 	public Map<Integer, Slot> get() {
 		return customSlots;

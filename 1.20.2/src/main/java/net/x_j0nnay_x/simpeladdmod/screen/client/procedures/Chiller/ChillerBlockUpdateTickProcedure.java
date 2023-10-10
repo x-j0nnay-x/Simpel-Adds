@@ -33,6 +33,8 @@ public class ChillerBlockUpdateTickProcedure {
 			if (world instanceof Level _level)
 				_level.sendBlockUpdated(_bp, _bs, _bs, 3);
 		}
+		// checks snow level to fill
+
 		if (!world.isClientSide()) {
 			BlockPos _bp = BlockPos.containing(x, y, z);
 			BlockEntity _blockEntity = world.getBlockEntity(_bp);
@@ -49,9 +51,6 @@ public class ChillerBlockUpdateTickProcedure {
 			if (world instanceof Level _level)
 				_level.sendBlockUpdated(_bp, _bs, _bs, 3);
 		}
-
-		//checks to see if it can fill snow level
-
 		if (new Object() {
 			public int getAmount(LevelAccessor world, BlockPos pos, int slotid) {
 				AtomicInteger _retval = new AtomicInteger(0);
@@ -300,8 +299,7 @@ public class ChillerBlockUpdateTickProcedure {
 				}
 			}
 		}
-
-		//checks to see if it can fill water level
+		//checks water level to fill
 
 		if (new Object() {
 			public int getAmount(LevelAccessor world, BlockPos pos, int slotid) {
@@ -371,7 +369,7 @@ public class ChillerBlockUpdateTickProcedure {
 			}
 		}
 
-		//run step
+		// sets water uses
 
 		if (new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
@@ -421,6 +419,9 @@ public class ChillerBlockUpdateTickProcedure {
 					_level.sendBlockUpdated(_bp, _bs, _bs, 3);
 			}
 		}
+
+		//Run
+
 		if ((new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
 				BlockEntity blockEntity = world.getBlockEntity(pos);

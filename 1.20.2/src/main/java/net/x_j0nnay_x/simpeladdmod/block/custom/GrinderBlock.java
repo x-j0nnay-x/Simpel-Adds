@@ -3,11 +3,11 @@ package net.x_j0nnay_x.simpeladdmod.block.custom;
 
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
-import net.minecraftforge.network.NetworkInstance;
-import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
+
+
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -103,8 +103,7 @@ public class GrinderBlock extends Block implements EntityBlock {
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, entity, hand, hit);
 	/*	if (entity instanceof ServerPlayer player) {
-
-			   NetworkHooks.openScreen(player, new MenuProvider() {
+			NetworkHooks.openScreen(player, new MenuProvider() {
 				@Override
 				public Component getDisplayName() {
 					return Component.literal("Grinder");

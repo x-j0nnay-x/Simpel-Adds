@@ -40,6 +40,7 @@ public class ModCreativeTab {
 
                         pOutput.accept(ModItems.GOLDDUST.get());
                         pOutput.accept(ModItems.IRONDUST.get());
+                        pOutput.accept(ModItems.COPPERDUST.get());
                         pOutput.accept(ModItems.NETHERITEDUST.get());
                         pOutput.accept(ModItems.NEHTERITE_SHARD_DUST.get());
 

@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
 
     public static class Blocks {
-       // public static final TagKey<Block> METAL_DETECTOR_VALUABLES = tag("metal_detector_valuables");
+       
         public static final TagKey<Block> OBSIDIAN = tag("obsidain_tool_level");
 
         public static final TagKey<Block> OBSIDIANRITE = tag("obsidainrite_tool_level");

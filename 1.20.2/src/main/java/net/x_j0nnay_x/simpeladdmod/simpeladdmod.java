@@ -23,7 +23,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.SimpleChannel;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
@@ -78,13 +77,8 @@ public class simpeladdmod {
     public void onServerStarting(ServerStartingEvent event) {
 
     }
-    private static final String PROTOCOL_VERSION = "1";
-   // public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MOD_ID, MOD_ID), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
-    private static int messageID = 0;
-   // public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {
-   //     PACKET_HANDLER.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
-   //     messageID++;
-   // }
+
+
     private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
 
     public static void queueServerWork(int tick, Runnable action) {

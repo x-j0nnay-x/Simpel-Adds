@@ -57,7 +57,7 @@ public class BlockFactoryBlockUpdateTickProcedure {
 				_level.sendBlockUpdated(_bp, _bs, _bs, 3);
 		}
 
-		//checks to see if it should fill tanks
+		//Fill Tanks if needed
 
 		if (new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
@@ -178,7 +178,7 @@ public class BlockFactoryBlockUpdateTickProcedure {
 			}
 		}
 
-		//Run process
+		// run
 
 		if (new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
