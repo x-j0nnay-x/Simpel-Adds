@@ -30,6 +30,7 @@ import java.util.stream.IntStream;
 
 import io.netty.buffer.Unpooled;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.ChillerBlockGUIMenu;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 
@@ -114,7 +115,7 @@ public class ChillerBlockBlockEntity extends RandomizableContainerBlockEntity im
 	public boolean canPlaceItem(int index, ItemStack stack) {
 		if (index == ChillerBlockGUIMenu.WATTER_SLOT && stack.is(Items.WATER_BUCKET))
 			return true;
-		if (index == ChillerBlockGUIMenu.CHILL_SLOT && stack.is(Items.SNOWBALL) || stack.is(Items.SNOW_BLOCK) || stack.is(Items.ICE) || stack.is(Items.PACKED_ICE) || stack.is(Items.BLUE_ICE))
+		if (index == ChillerBlockGUIMenu.CHILL_SLOT && stack.is(ModTags.Items.CHILLING))
 			return true;
 		return false;
 	}
