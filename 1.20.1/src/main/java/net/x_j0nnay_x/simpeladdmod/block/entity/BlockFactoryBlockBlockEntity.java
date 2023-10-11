@@ -31,12 +31,15 @@ import java.util.stream.IntStream;
 import io.netty.buffer.Unpooled;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
+import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.BlockfactoryMenu;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 
 public class BlockFactoryBlockBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 	private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
 	private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+
+
 
 	public BlockFactoryBlockBlockEntity(BlockPos position, BlockState state) {
 		super(ModBlockEntities.BLOCK_FACTORY_BLOCK.get(), position, state);
@@ -113,15 +116,21 @@ public class BlockFactoryBlockBlockEntity extends RandomizableContainerBlockEnti
 
 	@Override
 	public boolean canPlaceItem(int index, ItemStack stack) {
-		if (index == 1)
+		if (index == BlockfactoryMenu.Cobbel_Slot)
 			return false;
-		if (index == 2)
+		if (index == BlockfactoryMenu.Graval_Slot)
 			return false;
-		if (index == 3)
+		if (index == BlockfactoryMenu.Sand_slot)
 			return false;
-		if (index == 4)
+		if (index == BlockfactoryMenu.Obsidian_slot)
 			return false;
-		return true;
+		if (index == BlockfactoryMenu.GRINDER_SLOT && stack.is(ModItems.GRINDERHEAD.get()))
+			return true;
+		if (index == BlockfactoryMenu.Lava_Slot && stack.is(Items.LAVA_BUCKET))
+			return true;
+		if (index == BlockfactoryMenu.Water_Slot && stack.is(Items.WATER_BUCKET))
+			return true;
+		return false;
 	}
 
 	@Override

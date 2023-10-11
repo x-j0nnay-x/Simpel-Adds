@@ -25,7 +25,6 @@ public class ModTags {
 
     public static class Items {
 
-        public static final TagKey<Item> GRINDER = tag("grinder_head");
         public static final TagKey<Item> CANGRIND = tag("grindable");
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(simpeladdmod.MOD_ID, name));

@@ -1,6 +1,8 @@
 package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
+import net.x_j0nnay_x.simpeladdmod.item.ModItems;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 
 
@@ -110,7 +112,11 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
 
 	@Override
 	public boolean canPlaceItem(int index, ItemStack stack) {
+		if (index == GrinderGuiMenu.GRINDER_SLOT && stack.is(ModItems.GRINDERHEAD.get()))
 		return true;
+		if (index == GrinderGuiMenu.INPUT_SLOT && stack.is(ModTags.Items.CANGRIND))
+			return true;
+		return false;
 	}
 
 	@Override

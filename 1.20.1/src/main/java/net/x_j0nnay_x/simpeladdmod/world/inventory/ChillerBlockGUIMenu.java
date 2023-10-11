@@ -39,7 +39,7 @@ public class ChillerBlockGUIMenu extends AbstractContainerMenu implements Suppli
 	private Supplier<Boolean> boundItemMatcher = null;
 	private Entity boundEntity = null;
 	private BlockEntity boundBlockEntity = null;
-	public static int ICE_SLOT = 0;
+	public static int CHILL_SLOT = 0;
 	public static int WATTER_SLOT = 1;
 	public static int OUTPUT_SLOT = 2;
 
@@ -83,7 +83,7 @@ public class ChillerBlockGUIMenu extends AbstractContainerMenu implements Suppli
 					});
 			}
 		}
-		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, ICE_SLOT, 16, 53) {
+		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, CHILL_SLOT, 16, 53) {
 			private final int slot = 0;
 
 			@Override

@@ -1,19 +1,17 @@
 package net.x_j0nnay_x.simpeladdmod.screen.client.gui;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Grinder.GrinderProgressProcedure;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.Component;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.GuiGraphics;
-
 import java.util.HashMap;
-
-import com.mojang.blaze3d.systems.RenderSystem;
 
 public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 	private final static HashMap<String, Object> guistate = GrinderGuiMenu.guistate;
@@ -32,7 +30,7 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 		this.imageHeight = 166;
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("simpeladdmod:textures/screens/grinder_gui.png");
+	private static final ResourceLocation texture = new ResourceLocation("simpeladdmod:textures/screens/grinder_gui_new.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {

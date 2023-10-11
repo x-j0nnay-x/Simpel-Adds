@@ -112,7 +112,11 @@ public class ChillerBlockBlockEntity extends RandomizableContainerBlockEntity im
 
 	@Override
 	public boolean canPlaceItem(int index, ItemStack stack) {
-		return true;
+		if (index == ChillerBlockGUIMenu.WATTER_SLOT && stack.is(Items.WATER_BUCKET))
+			return true;
+		if (index == ChillerBlockGUIMenu.CHILL_SLOT && stack.is(Items.SNOWBALL) || stack.is(Items.SNOW_BLOCK) || stack.is(Items.ICE) || stack.is(Items.PACKED_ICE) || stack.is(Items.BLUE_ICE))
+			return true;
+		return false;
 	}
 
 	@Override
@@ -122,10 +126,10 @@ public class ChillerBlockBlockEntity extends RandomizableContainerBlockEntity im
 
 	@Override
 	public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-		return (direction == Direction.EAST  && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
-				direction == Direction.WEST && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
-				direction == Direction.SOUTH && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
-				direction == Direction.NORTH && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
+		return (direction == Direction.EAST  && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
+				direction == Direction.WEST && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
+				direction == Direction.SOUTH && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
+				direction == Direction.NORTH && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
 				direction == Direction.UP && (index == ChillerBlockGUIMenu.WATTER_SLOT));
 	}
 	@Override
