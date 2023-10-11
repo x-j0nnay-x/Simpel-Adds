@@ -1,0 +1,10 @@
+{
+  "values":
+  [
+    "#forge:dusts/iron",
+    "#forge:dusts/gold",
+    "#forge:dusts/copper",
+    "#forge:dusts/netherite_scrap",
+    "#forge:dusts/obsidian"
+  ]
+}
