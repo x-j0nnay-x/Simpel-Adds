@@ -1,13 +1,20 @@
 
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import net.minecraft.network.protocol.game.ClientboundOpenScreenPacket;
 import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.event.ScreenshotEvent;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.loading.ForgeLoadingOverlay;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.network.NetworkInitialization;
+import net.minecraftforge.network.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -106,7 +113,8 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 	@Override
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, entity, hand, hit);
-	/*	if (entity instanceof ServerPlayer player) {
+		if (entity instanceof ServerPlayer player) {
+
 			NetworkHooks.openScreen(player, new MenuProvider() {
 				@Override
 				public Component getDisplayName() {
@@ -118,7 +126,7 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 					return new BlockfactoryMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
 				}
 			}, pos);
-		}*/
+		}
 
 		int x = pos.getX();
 		int y = pos.getY();
