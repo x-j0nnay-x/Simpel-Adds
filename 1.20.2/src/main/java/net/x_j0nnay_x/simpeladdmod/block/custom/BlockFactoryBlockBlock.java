@@ -113,7 +113,7 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 	@Override
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, entity, hand, hit);
-		if (entity instanceof ServerPlayer player) {
+	/*	if (entity instanceof ServerPlayer player) {
 
 			NetworkHooks.openScreen(player, new MenuProvider() {
 				@Override
@@ -126,7 +126,7 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 					return new BlockfactoryMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
 				}
 			}, pos);
-		}
+		} */
 
 		int x = pos.getX();
 		int y = pos.getY();

@@ -30,13 +30,16 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 		this.imageHeight = 166;
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("simpeladdmod:textures/screens/grinder_gui_new.png");
+	private static final ResourceLocation texture = new ResourceLocation("simpeladdmod:textures/screens/grinder_gui.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
+		if (mouseX > leftPos + 28 && mouseX < leftPos + 52 && mouseY > topPos + 40 && mouseY < topPos + 64)
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpeladdmod.grinder_gui.Grindables"), mouseX, mouseY-16);
+
 	}
 
 	@Override
@@ -91,6 +94,7 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 
 	@Override
 	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+		guiGraphics.drawString(this.font, Component.translatable("gui.simpeladdmod.grinder_gui.label"), 15, 9, -12829636, false);
 	}
 
 	@Override

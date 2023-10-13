@@ -88,6 +88,7 @@ public class GrinderGuiMenu extends AbstractContainerMenu implements Supplier<Ma
 		}
 		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, INPUT_SLOT, 34, 44) {
 			private final int slot = 0;
+
 		}));
 		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, GRINDER_SLOT, 79, 17) {
 			private final int slot = 1;

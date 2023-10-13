@@ -15,16 +15,17 @@ import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 
 public class ModBlockEntities {
-	public static final DeferredRegister<BlockEntityType<?>> ENTITYREG = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, simpeladdmod.MOD_ID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, simpeladdmod.MOD_ID);
 	public static final RegistryObject<BlockEntityType<?>> GRINDER = register("grinder", ModBlocks.GRINDER_BLOCK, GrinderBlockEntity::new);
 	public static final RegistryObject<BlockEntityType<?>> BLOCK_FACTORY_BLOCK = register("block_factory_block", ModBlocks.BLOCK_FACTORY_BLOCK, BlockFactoryBlockBlockEntity::new);
 	public static final RegistryObject<BlockEntityType<?>> CHILLER_BLOCK = register("chiller_block", ModBlocks.CHILLER_BLOCK, ChillerBlockBlockEntity::new);
 
+
 	private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block, BlockEntityType.BlockEntitySupplier<?> supplier) {
-		return ENTITYREG.register(registryname, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
+		return BLOCK_ENTITY.register(registryname, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
 	}
 
 	public static void register(IEventBus eventBus) {
-		ENTITYREG.register(eventBus);
+		BLOCK_ENTITY.register(eventBus);
 	}
 }
