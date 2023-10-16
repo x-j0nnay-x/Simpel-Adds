@@ -26,7 +26,7 @@ import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber
-public class ChillerBlockOnBlockRightClickedProcedure {
+public class ChillerOnRightClickedProcedure {
 	@SubscribeEvent
 	public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
 		if (event.getHand() != event.getEntity().getUsedItemHand())

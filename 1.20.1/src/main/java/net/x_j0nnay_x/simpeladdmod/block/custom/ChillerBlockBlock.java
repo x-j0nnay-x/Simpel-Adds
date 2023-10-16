@@ -38,8 +38,9 @@ import java.util.Collections;
 
 import io.netty.buffer.Unpooled;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Chiller.ChillerBlockOnBlockRightClickedProcedure;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Chiller.ChillerBlockUpdateTickProcedure;
+
+import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Chiller.ChillerOnRightClickedProcedure;
+import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Chiller.ChillerTickProcedure;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.ChillerBlockGUIMenu;
 
 public class ChillerBlockBlock extends Block implements EntityBlock {
@@ -93,7 +94,7 @@ public class ChillerBlockBlock extends Block implements EntityBlock {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		ChillerBlockUpdateTickProcedure.execute(world, x, y, z);
+		ChillerTickProcedure.execute(world, x, y, z);
 		world.scheduleTick(pos, this, 1);
 	}
 
@@ -120,7 +121,7 @@ public class ChillerBlockBlock extends Block implements EntityBlock {
 		double hitY = hit.getLocation().y;
 		double hitZ = hit.getLocation().z;
 		Direction direction = hit.getDirection();
-		ChillerBlockOnBlockRightClickedProcedure.execute(world, x, y, z, blockstate, entity);
+		ChillerOnRightClickedProcedure.execute(world, x, y, z, blockstate, entity);
 		return InteractionResult.SUCCESS;
 	}
 

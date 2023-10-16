@@ -3,6 +3,7 @@ package net.x_j0nnay_x.simpeladdmod.block.custom;
 
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Grinder.GrinderTickingProcedure;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 
@@ -39,7 +40,6 @@ import java.util.List;
 import java.util.Collections;
 
 import io.netty.buffer.Unpooled;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Grinder.GrinderUpdateTickProcedure;
 
 public class GrinderBlock extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -94,7 +94,7 @@ public class GrinderBlock extends Block implements EntityBlock {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		GrinderUpdateTickProcedure.execute(world, x, y, z);
+		GrinderTickingProcedure.execute(world, x, y, z);
 		world.scheduleTick(pos, this, 1);
 
 	}
