@@ -22,9 +22,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.network.NetworkEvent;
+
 import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
