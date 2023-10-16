@@ -20,7 +20,7 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class BlockFactoryBlockUpdateTickProcedure {
+public class BlockFactoryTickProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
 		double LavaLevel = 0;
 		double WaterLevel = 0;
@@ -176,7 +176,24 @@ public class BlockFactoryBlockUpdateTickProcedure {
 					});
 				}
 			}
+			//if has no lava will set working to false
+		}if (new Object() {
+			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
+				BlockEntity blockEntity = world.getBlockEntity(pos);
+				if (blockEntity != null)
+					return blockEntity.getPersistentData().getDouble(tag);
+				return -1;
+			}
+		}.getValue(world, BlockPos.containing(x, y, z), "LavaUses") == 0) {
+			if (!world.isClientSide()) {
+				BlockPos _bp = BlockPos.containing(x, y, z);
+				BlockEntity _blockEntity = world.getBlockEntity(_bp);
+				BlockState _bs = world.getBlockState(_bp);
+				if (_bs.getBlock().getStateDefinition().getProperty("working") instanceof BooleanProperty _booleanProp)
+					world.setBlock(_bp, _bs.setValue(_booleanProp, false), 3);
+			}
 		}
+
 
 		// run
 
@@ -275,6 +292,11 @@ public class BlockFactoryBlockUpdateTickProcedure {
 						}.getValue(world, BlockPos.containing(x, y, z), "Craft") + 1));
 					if (world instanceof Level _level)
 						_level.sendBlockUpdated(_bp, _bs, _bs, 3);
+					if (!world.isClientSide()) {
+						if (_bs.getBlock().getStateDefinition().getProperty("working") instanceof BooleanProperty _booleanProp)
+							world.setBlock(_bp, _bs.setValue(_booleanProp, true), 3);
+
+					}
 				}
 				if (new Object() {
 					public int getAmount(LevelAccessor world, BlockPos pos, int slotid) {
@@ -285,14 +307,7 @@ public class BlockFactoryBlockUpdateTickProcedure {
 						return _retval.get();
 					}
 				}.getAmount(world, BlockPos.containing(x, y, z), 1) <= 63) {
-					if (!world.isClientSide()) {
-						BlockPos _bp = BlockPos.containing(x, y, z);
-						BlockEntity _blockEntity = world.getBlockEntity(_bp);
-						BlockState _bs = world.getBlockState(_bp);
-						if (_bs.getBlock().getStateDefinition().getProperty("working") instanceof BooleanProperty _booleanProp)
-							world.setBlock(_bp, _bs.setValue(_booleanProp, true), 3);
 
-					}
 					if (new Object() {
 						public double getValue(LevelAccessor world, BlockPos pos, String tag) {
 							BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -336,6 +351,8 @@ public class BlockFactoryBlockUpdateTickProcedure {
 								_blockEntity.getPersistentData().putDouble("Craft", 0);
 							if (world instanceof Level _level)
 								_level.sendBlockUpdated(_bp, _bs, _bs, 3);
+							if (_bs.getBlock().getStateDefinition().getProperty("working") instanceof BooleanProperty _booleanProp)
+								world.setBlock(_bp, _bs.setValue(_booleanProp, false), 3);
 						}
 					}
 				} else if (new Object() {
@@ -758,5 +775,6 @@ public class BlockFactoryBlockUpdateTickProcedure {
 				}
 			}
 		}
+
 	}
 }

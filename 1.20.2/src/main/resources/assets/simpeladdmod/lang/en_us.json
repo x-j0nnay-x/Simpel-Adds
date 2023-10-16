@@ -60,9 +60,12 @@
   "block.simpeladdmod.blockfactory_block": "Block Factory",
   "block.simpeladdmod.chiller_block": "Chilling Block",
 
-  "creativetab.simpel_tab": "Simpel add Tab"
+  "creativetab.simpel_tab": "Simpel add Tab",
 
-
-
-
+  "gui.simpeladdmod.grinder_gui.Grindables": "Any Item with the Tag Grindable",
+  "gui.simpeladdmod.chiller_block_gui.Chilling": "Any Item With The Tage Chilling",
+  "gui.simpeladdmod.grinder_gui.label": "Grinder",
+  "gui.simpeladdmod.blockfactory.label1": "Block",
+  "gui.simpeladdmod.blockfactory.label2": "Factory",
+  "gui.simpeladdmod.chiller_block_gui.label": "Chiller"
 }

@@ -1,23 +1,12 @@
 
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
-import net.minecraft.network.protocol.game.ClientboundOpenScreenPacket;
-import net.minecraft.world.inventory.FurnaceMenu;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.event.ScreenshotEvent;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.loading.ForgeLoadingOverlay;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.network.*;
+
+
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,8 +38,8 @@ import java.util.Collections;
 
 import io.netty.buffer.Unpooled;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryBlockOnBlockRightClickedProcedure;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryBlockUpdateTickProcedure;
+import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryOnRightClickedProcedure;
+import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryTickProcedure;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.BlockfactoryMenu;
 
 public class BlockFactoryBlockBlock extends Block implements EntityBlock {
@@ -106,15 +95,14 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		BlockFactoryBlockUpdateTickProcedure.execute(world, x, y, z);
+		BlockFactoryTickProcedure.execute(world, x, y, z);
 		world.scheduleTick(pos, this, 1);
 	}
 
 	@Override
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, entity, hand, hit);
-	/*	if (entity instanceof ServerPlayer player) {
-
+		/*if (entity instanceof ServerPlayer player) {
 			NetworkHooks.openScreen(player, new MenuProvider() {
 				@Override
 				public Component getDisplayName() {
@@ -126,7 +114,7 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 					return new BlockfactoryMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
 				}
 			}, pos);
-		} */
+		}*/
 
 		int x = pos.getX();
 		int y = pos.getY();
@@ -135,7 +123,7 @@ public class BlockFactoryBlockBlock extends Block implements EntityBlock {
 		double hitY = hit.getLocation().y;
 		double hitZ = hit.getLocation().z;
 		Direction direction = hit.getDirection();
-		BlockFactoryBlockOnBlockRightClickedProcedure.execute(world, x, y, z, blockstate, entity);
+		BlockFactoryOnRightClickedProcedure.execute(world, x, y, z, blockstate, entity);
 		return InteractionResult.SUCCESS;
 		
 	}

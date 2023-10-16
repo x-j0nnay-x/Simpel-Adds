@@ -1,19 +1,17 @@
 package net.x_j0nnay_x.simpeladdmod.screen.client.gui;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Grinder.GrinderProgressProcedure;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.Component;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.GuiGraphics;
-
 import java.util.HashMap;
-
-import com.mojang.blaze3d.systems.RenderSystem;
 
 public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 	private final static HashMap<String, Object> guistate = GrinderGuiMenu.guistate;
@@ -36,9 +34,12 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
+		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
+		if (mouseX > leftPos + 28 && mouseX < leftPos + 52 && mouseY > topPos + 40 && mouseY < topPos + 64)
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpeladdmod.grinder_gui.Grindables"), mouseX, mouseY-16);
+
 	}
 
 	@Override
@@ -93,6 +94,7 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 
 	@Override
 	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+		guiGraphics.drawString(this.font, Component.translatable("gui.simpeladdmod.grinder_gui.label"), 15, 9, -12829636, false);
 	}
 
 	@Override

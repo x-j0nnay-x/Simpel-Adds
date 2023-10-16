@@ -30,6 +30,7 @@ import java.util.stream.IntStream;
 
 import io.netty.buffer.Unpooled;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.ChillerBlockGUIMenu;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 
@@ -112,7 +113,11 @@ public class ChillerBlockBlockEntity extends RandomizableContainerBlockEntity im
 
 	@Override
 	public boolean canPlaceItem(int index, ItemStack stack) {
-		return true;
+		if (index == ChillerBlockGUIMenu.WATTER_SLOT && stack.is(Items.WATER_BUCKET))
+			return true;
+		if (index == ChillerBlockGUIMenu.CHILL_SLOT && stack.is(ModTags.Items.CHILLING))
+			return true;
+		return false;
 	}
 
 	@Override
@@ -122,10 +127,10 @@ public class ChillerBlockBlockEntity extends RandomizableContainerBlockEntity im
 
 	@Override
 	public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-		return (direction == Direction.EAST  && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
-				direction == Direction.WEST && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
-				direction == Direction.SOUTH && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
-				direction == Direction.NORTH && (index == ChillerBlockGUIMenu.ICE_SLOT) ||
+		return (direction == Direction.EAST  && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
+				direction == Direction.WEST && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
+				direction == Direction.SOUTH && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
+				direction == Direction.NORTH && (index == ChillerBlockGUIMenu.CHILL_SLOT) ||
 				direction == Direction.UP && (index == ChillerBlockGUIMenu.WATTER_SLOT));
 	}
 	@Override
