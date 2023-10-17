@@ -45,6 +45,9 @@ import net.x_j0nnay_x.simpeladdmod.world.inventory.ChillerBlockGUIMenu;
 
 public class ChillerBlockBlock extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	public  static  int PROGRESS = 0;
+	public static int SNOW = 0;
+	public static int WATER = 0;
 
 	public ChillerBlockBlock() {
 		super(BlockBehaviour.Properties.copy(Blocks.STONE));
@@ -94,15 +97,16 @@ public class ChillerBlockBlock extends Block implements EntityBlock {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		ChillerTickProcedure.execute(world, x, y, z);
+		ChillerTickProcedure.ChillerRun(world, x, y, z);
+		ChillerTickProcedure.ValueSet(world, x, y, z);
 		world.scheduleTick(pos, this, 1);
 	}
 
 	@Override
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, entity, hand, hit);
-	/*	if (entity instanceof ServerPlayer player) {
-			NetworkHooks.openScreen(player, new MenuProvider() {
+		if (entity instanceof ServerPlayer player) {
+			entity.openMenu(new MenuProvider() {
 				@Override
 				public Component getDisplayName() {
 					return Component.literal("Chiller Block");
@@ -112,8 +116,8 @@ public class ChillerBlockBlock extends Block implements EntityBlock {
 				public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
 					return new ChillerBlockGUIMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
 				}
-			}, pos);
-		}*/
+			});
+		}
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();

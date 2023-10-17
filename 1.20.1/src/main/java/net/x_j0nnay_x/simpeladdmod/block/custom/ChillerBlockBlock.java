@@ -45,6 +45,9 @@ import net.x_j0nnay_x.simpeladdmod.world.inventory.ChillerBlockGUIMenu;
 
 public class ChillerBlockBlock extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	public  static  int PROGRESS = 0;
+	public static int SNOW = 0;
+	public static int WATER = 0;
 
 	public ChillerBlockBlock() {
 		super(BlockBehaviour.Properties.copy(Blocks.STONE));
@@ -94,7 +97,8 @@ public class ChillerBlockBlock extends Block implements EntityBlock {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		ChillerTickProcedure.execute(world, x, y, z);
+		ChillerTickProcedure.ChillerRun(world, x, y, z);
+		ChillerTickProcedure.ValueSet(world, x, y, z);
 		world.scheduleTick(pos, this, 1);
 	}
 

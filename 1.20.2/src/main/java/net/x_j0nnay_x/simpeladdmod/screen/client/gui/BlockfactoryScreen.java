@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.screen.client.gui;
 
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -12,7 +13,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import java.util.HashMap;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.*;
+import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.BlockfactoryMenu;
 
 public class BlockfactoryScreen extends AbstractContainerScreen<BlockfactoryMenu> {
@@ -33,74 +34,33 @@ public class BlockfactoryScreen extends AbstractContainerScreen<BlockfactoryMenu
 	}
 
 	private static final ResourceLocation texture = new ResourceLocation("simpeladdmod:textures/screens/blockfactory.png");
+	private static final ResourceLocation progress = new ResourceLocation("simpeladdmod:textures/screens/sprites/blockfactory_prog.png");
+	private static final ResourceLocation lavaLevel = new ResourceLocation("simpeladdmod:textures/screens/sprites/blockfactory_lava_level.png");
+	private static final ResourceLocation waterLevel = new ResourceLocation("simpeladdmod:textures/screens/sprites/blockfactory_water_level.png");
 
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics, mouseX, mouseY,partialTicks);
+		this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+		int prog = Mth.ceil(BlockFactoryBlock.progress * 0.4f);
+		int lava = Mth.ceil(BlockFactoryBlock.lavaLev * 10.16f);
+		int water = Mth.ceil(BlockFactoryBlock.waterLev * 10.16f);
+
+
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		guiGraphics.blit(texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
+		guiGraphics.blit(progress, this.leftPos + 82, this.topPos + 59, 0, 0, 10, prog, 10, 12);
+		guiGraphics.blit(lavaLevel, this.leftPos + 152, this.topPos+ 72 - lava, 0, 0, 13, lava, 13, 61);
+		guiGraphics.blit(waterLevel, this.leftPos + 12, this.topPos+ 72 - water, 0, 0, 13, water, 13, 61);
 
-
-		if (BlockFactoryLavaLevelProcedure.level1(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_lava_1.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryLavaLevelProcedure.level2(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_lava_2.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryLavaLevelProcedure.level3(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_lava_3.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryLavaLevelProcedure.level4(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_lava_4.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryLavaLevelProcedure.level5(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_lava_5.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryLavaLevelProcedure.level6(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_lava_6.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryWaterLevelProcedure.level1(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_water_1.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryWaterLevelProcedure.level2(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_water_2.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryWaterLevelProcedure.level3(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_water_3.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryWaterLevelProcedure.level4(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_water_4.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryWaterLevelProcedure.level5(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_water_5.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryWaterLevelProcedure.level6(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/cobble_gen_water_6.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryProgress.progress1(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/blockfactory_progress_1.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryProgress.progress2(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/blockfactory_progress_2.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryProgress.progress3(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/blockfactory_progress_3.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryProgress.progress4(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/blockfactory_progress_4.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (BlockFactoryProgress.progress5(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/blockfactory_extras/blockfactory_progress_5.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
 		RenderSystem.disableBlend();
 	}
 

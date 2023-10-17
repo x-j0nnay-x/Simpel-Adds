@@ -13,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 
-import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlockBlock;
+import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.ChillerBlockBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
 
@@ -32,7 +32,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
             () -> new GrinderBlock());
     public static final RegistryObject<Block> BLOCK_FACTORY_BLOCK = registerBlock("blockfactory_block",
-            () -> new BlockFactoryBlockBlock());
+            () -> new BlockFactoryBlock());
     public static final RegistryObject<Block> CHILLER_BLOCK = registerBlock("chiller_block",
             () -> new ChillerBlockBlock());
 

@@ -5,10 +5,11 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Grinder.GrinderProgressProcedure;
+import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
 import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 
 import java.util.HashMap;
@@ -31,6 +32,7 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 	}
 
 	private static final ResourceLocation texture = new ResourceLocation("simpeladdmod:textures/screens/grinder_gui.png");
+	private static final ResourceLocation progArrow = new ResourceLocation("simpeladdmod:textures/screens/sprites/grinder_prog.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
@@ -44,38 +46,14 @@ public class GrinderGuiScreen extends AbstractContainerScreen<GrinderGuiMenu> {
 
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
+		int progress = Mth.ceil(GrinderBlock.PROGRESS * 5.7);
+
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
 		guiGraphics.blit(texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
-		if (GrinderProgressProcedure.progress1(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_1.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress2(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_2.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress3(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_3.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress4(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_4.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress5(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_5.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress6(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_6.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress7(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_7.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress8(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_8.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		if (GrinderProgressProcedure.progress9(world, x, y, z)) {
-			guiGraphics.blit(new ResourceLocation("simpeladdmod:textures/screens/grinder_extras/grinder_gui_arrow_9.png"), this.leftPos + 0, this.topPos + 0, 0, 0, 176, 166, 176, 166);
-		}
-		RenderSystem.disableBlend();
+		guiGraphics.blit(progArrow, this.leftPos + 60, this.topPos + 44, 0, 0, progress, 16, 57, 16);
+        RenderSystem.disableBlend();
 	}
 
 	@Override

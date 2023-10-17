@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
+import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,7 +31,16 @@ public class GrinderTickingProcedure {
     public static int TRIPPLE = 3;
     public static int FIBER = 8;
     public static int FIVE = 5;
-    public static void execute(LevelAccessor world, double x, double y, double z) {
+
+    public static void ProgrSet(LevelAccessor world, double x, double y, double z) {
+        if (!world.isClientSide()) {
+            BlockPos _bp = BlockPos.containing(x, y, z);
+            BlockEntity _blockEntity = world.getBlockEntity(_bp);
+            BlockState _bs = world.getBlockState(_bp);
+            GrinderBlock.PROGRESS = (int) _blockEntity.getPersistentData().getDouble("Grindtime");
+        }
+    }
+    public static void RunGrind(LevelAccessor world, double x, double y, double z) {
 
 //checks grinder and uses left
         if ((new Object() {

@@ -11,12 +11,24 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
+import net.x_j0nnay_x.simpeladdmod.block.custom.ChillerBlockBlock;
+
 
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ChillerTickProcedure {
-	public static void execute(LevelAccessor world, double x, double y, double z) {
+	public static void ValueSet(LevelAccessor world, double x, double y, double z) {
+		if (!world.isClientSide()) {
+			BlockPos _bp = BlockPos.containing(x, y, z);
+			BlockEntity _blockEntity = world.getBlockEntity(_bp);
+			BlockState _bs = world.getBlockState(_bp);
+			ChillerBlockBlock.PROGRESS = (int) _blockEntity.getPersistentData().getDouble("Craft");
+			ChillerBlockBlock.SNOW = (int) _blockEntity.getPersistentData().getDouble("SnowLevel");
+			ChillerBlockBlock.WATER = (int) _blockEntity.getPersistentData().getDouble("WaterLevel");
+		}
+	}
+	public static void ChillerRun(LevelAccessor world, double x, double y, double z) {
 		if (!world.isClientSide()) {
 			BlockPos _bp = BlockPos.containing(x, y, z);
 			BlockEntity _blockEntity = world.getBlockEntity(_bp);
@@ -369,7 +381,7 @@ public class ChillerTickProcedure {
 			}
 		}
 
-		// sets water uses
+// sets water uses
 
 		if (new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {
@@ -420,7 +432,7 @@ public class ChillerTickProcedure {
 			}
 		}
 
-		//Run
+//Run
 
 		if ((new Object() {
 			public double getValue(LevelAccessor world, BlockPos pos, String tag) {

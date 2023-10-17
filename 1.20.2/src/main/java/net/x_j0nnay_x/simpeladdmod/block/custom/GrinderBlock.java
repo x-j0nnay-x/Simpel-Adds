@@ -8,9 +8,9 @@ import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 
 
+
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,10 +39,12 @@ import java.util.List;
 import java.util.Collections;
 
 import io.netty.buffer.Unpooled;
+import org.jetbrains.annotations.Nullable;
 
 public class GrinderBlock extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty WORKING = BooleanProperty.create("working");
+	public static int PROGRESS = 0;
 
 	public GrinderBlock() {
 		super(BlockBehaviour.Properties.copy(Blocks.STONE));
@@ -93,7 +95,8 @@ public class GrinderBlock extends Block implements EntityBlock {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		GrinderTickingProcedure.execute(world, x, y, z);
+		GrinderTickingProcedure.RunGrind(world, x, y, z);
+		GrinderTickingProcedure.ProgrSet(world, x, y, z);
 		world.scheduleTick(pos, this, 1);
 
 	}
@@ -101,19 +104,20 @@ public class GrinderBlock extends Block implements EntityBlock {
 	@Override
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, entity, hand, hit);
-	/*	if (entity instanceof ServerPlayer player) {
-			NetworkHooks.openScreen(player, new MenuProvider() {
+		if (entity instanceof ServerPlayer player) {
+			entity.openMenu(new MenuProvider() {
 				@Override
 				public Component getDisplayName() {
 					return Component.literal("Grinder");
 				}
 
+				@Nullable
 				@Override
 				public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
 					return new GrinderGuiMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
 				}
-			}, pos);
-		}*/
+			});
+		}
 		return InteractionResult.SUCCESS;
 	}
 

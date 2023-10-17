@@ -3,11 +3,7 @@ package net.x_j0nnay_x.simpeladdmod.block.custom;
 
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.Grinder.GrinderTickingProcedure;
-import net.x_j0nnay_x.simpeladdmod.world.inventory.GrinderGuiMenu;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 
-import net.minecraftforge.network.NetworkHooks;
 
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -35,17 +31,25 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
+
+
 import java.util.List;
 import java.util.Collections;
 
 import io.netty.buffer.Unpooled;
+import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryOnRightClickedProcedure;
+import net.x_j0nnay_x.simpeladdmod.screen.client.procedures.BlockFactory.BlockFactoryTickProcedure;
+import net.x_j0nnay_x.simpeladdmod.world.inventory.BlockfactoryMenu;
 
-public class GrinderBlock extends Block implements EntityBlock {
+public class BlockFactoryBlock extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty WORKING = BooleanProperty.create("working");
-	public static int PROGRESS = 0;
+	public static  int waterLev = 0;
+	public static int lavaLev = 0;
+	public static int progress= 0 ;
 
-	public GrinderBlock() {
+	public BlockFactoryBlock() {
 		super(BlockBehaviour.Properties.copy(Blocks.STONE));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WORKING, false));
 	}
@@ -58,7 +62,7 @@ public class GrinderBlock extends Block implements EntityBlock {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
-		builder.add(WORKING);
+		builder.add(WORKING);;
 	}
 
 	@Override
@@ -94,29 +98,38 @@ public class GrinderBlock extends Block implements EntityBlock {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		GrinderTickingProcedure.RunGrind(world, x, y, z);
-		GrinderTickingProcedure.ProgrSet(world, x, y, z);
+		BlockFactoryTickProcedure.ProgUpdate(world, x, y, z);
+		BlockFactoryTickProcedure.execute(world, x, y, z);
 		world.scheduleTick(pos, this, 1);
-
 	}
 
 	@Override
 	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
 		super.use(blockstate, world, pos, entity, hand, hit);
 		if (entity instanceof ServerPlayer player) {
-			NetworkHooks.openScreen(player, new MenuProvider() {
+			entity.openMenu(new MenuProvider() {
 				@Override
 				public Component getDisplayName() {
-					return Component.literal("Grinder");
+					return Component.literal("Block Factory Block");
 				}
 
 				@Override
 				public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-					return new GrinderGuiMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
+					return new BlockfactoryMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
 				}
-			}, pos);
+			});
 		}
+
+		int x = pos.getX();
+		int y = pos.getY();
+		int z = pos.getZ();
+		double hitX = hit.getLocation().x;
+		double hitY = hit.getLocation().y;
+		double hitZ = hit.getLocation().z;
+		Direction direction = hit.getDirection();
+		BlockFactoryOnRightClickedProcedure.execute(world, x, y, z, blockstate, entity);
 		return InteractionResult.SUCCESS;
+		
 	}
 
 	@Override
@@ -127,7 +140,7 @@ public class GrinderBlock extends Block implements EntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new GrinderBlockEntity(pos, state);
+		return new BlockFactoryBlockEntity(pos, state);
 	}
 
 	@Override
@@ -141,7 +154,7 @@ public class GrinderBlock extends Block implements EntityBlock {
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof GrinderBlockEntity be) {
+			if (blockEntity instanceof BlockFactoryBlockEntity be) {
 				Containers.dropContents(world, pos, be);
 				world.updateNeighbourForOutputSignal(pos, this);
 			}
@@ -157,7 +170,7 @@ public class GrinderBlock extends Block implements EntityBlock {
 	@Override
 	public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
 		BlockEntity tileentity = world.getBlockEntity(pos);
-		if (tileentity instanceof GrinderBlockEntity be)
+		if (tileentity instanceof BlockFactoryBlockEntity be)
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
 		else
 			return 0;

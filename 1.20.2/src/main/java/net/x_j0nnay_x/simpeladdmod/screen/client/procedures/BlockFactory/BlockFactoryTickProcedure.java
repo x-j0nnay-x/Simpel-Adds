@@ -15,12 +15,24 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.core.BlockPos;
 
 
+import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BlockFactoryTickProcedure {
+	public static void ProgUpdate(LevelAccessor world, double x, double y, double z) {
+		if (!world.isClientSide()) {
+			BlockPos _bp = BlockPos.containing(x, y, z);
+			BlockEntity _blockEntity = world.getBlockEntity(_bp);
+			BlockState _bs = world.getBlockState(_bp);
+			BlockFactoryBlock.progress = (int) _blockEntity.getPersistentData().getDouble("Craft");
+			BlockFactoryBlock.lavaLev = (int) _blockEntity.getPersistentData().getDouble("LavaLevel");
+			BlockFactoryBlock.waterLev = (int) _blockEntity.getPersistentData().getDouble("WaterLevel");
+		}
+
+	}
 	public static void execute(LevelAccessor world, double x, double y, double z) {
 		double LavaLevel = 0;
 		double WaterLevel = 0;
