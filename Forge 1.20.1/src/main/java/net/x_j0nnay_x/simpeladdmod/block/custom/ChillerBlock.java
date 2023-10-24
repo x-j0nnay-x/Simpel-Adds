@@ -3,9 +3,11 @@ package net.x_j0nnay_x.simpeladdmod.block.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -19,6 +21,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class ChillerBlock extends BaseEntityBlock  {
@@ -55,19 +58,19 @@ public class ChillerBlock extends BaseEntityBlock  {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()){
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof ChillerBlockEntity){
-                ((ChillerBlockEntity) blockEntity).drops();
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof ChillerBlockEntity be) {
+                Containers.dropContents(world, pos, be);
+                world.updateNeighbourForOutputSignal(pos, this);
             }
+            super.onRemove(state, world, pos, newState, isMoving);
         }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-
         if (!pLevel.isClientSide()){
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof ChillerBlockEntity){

@@ -2,64 +2,37 @@ package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
-
-import net.x_j0nnay_x.simpeladdmod.block.custom.ChillerBlock;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Map;
-
-
-public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3){
-        @Override
-        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return switch (slot){
-                case 0 -> stack.is(ModTags.Items.CHILLING);
-                case 1 -> stack.getItem() == Items.WATER_BUCKET;
-                case 2 -> false;
-                default ->  super.isItemValid(slot, stack);
-
-            };
-        }
-    };
-    private final Map<Direction, LazyOptional<WrappedHandler>> directionWrappedHandlerMap =
-            Map.of(Direction.DOWN, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 2, (i, s) -> false)),
-                    Direction.UP, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 1,
-                            (index, stack) -> itemHandler.isItemValid(WATERSLOT, stack))),
-                    Direction.NORTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 0,
-                            (index, stack) -> itemHandler.isItemValid(CHILLINGSLOT, stack))),
-                    Direction.SOUTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 0,
-                            (index, stack) -> itemHandler.isItemValid(CHILLINGSLOT, stack))),
-                    Direction.EAST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 0,
-                            (index, stack) -> itemHandler.isItemValid(CHILLINGSLOT, stack))),
-                    Direction.WEST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 0,
-                            (index, stack) -> itemHandler.isItemValid(CHILLINGSLOT, stack))));
+import java.util.stream.IntStream;
 
 
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+public class ChillerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+     private final ItemStackHandler itemHandler = new ItemStackHandler(3);
+    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
     public static int CHILLINGSLOT = 0;
     public static int WATERSLOT = 1;
     public static int OUTPUTSLOT = 2;
@@ -93,7 +66,7 @@ public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
                     case 3 -> ChillerBlockEntity.this.waterLevel = pValue;
                     case 4 -> ChillerBlockEntity.this.waterUese = pValue;
 
-            }
+                }
             }
 
             @Override
@@ -102,68 +75,36 @@ public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
             }
         };
     }
-    public void drops(){
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for(int i = 0; i < itemHandler.getSlots(); i++){
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if(side == null) {
-                return lazyItemHandler.cast();
-            }
-
-            if(directionWrappedHandlerMap.containsKey(side)) {
-                Direction localDir = this.getBlockState().getValue(ChillerBlock.FACING);
-
-                if(side == Direction.UP || side == Direction.DOWN) {
-                    return directionWrappedHandlerMap.get(side).cast();
-                }
-
-                return switch (localDir) {
-                    default -> directionWrappedHandlerMap.get(side.getOpposite()).cast();
-                    case EAST -> directionWrappedHandlerMap.get(side.getClockWise()).cast();
-                    case SOUTH -> directionWrappedHandlerMap.get(side).cast();
-                    case WEST -> directionWrappedHandlerMap.get(side.getCounterClockWise()).cast();
-                };
-            }
-        }
-        return super.getCapability(cap, side);
-    }
-
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
+    protected Component getDefaultName() {
+        return Component.translatable("block.simpeladdmod.chiller_block");
     }
 
     @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
+    protected NonNullList<ItemStack> getItems() {
+        return this.stacks;
     }
-
-
-    @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new ChillerMenu(pContainerId,pPlayerInventory, this, this.data);
+    protected void setItems( NonNullList<ItemStack> stacks) {
+        this.stacks = stacks;
     }
 
+    @Override
+    protected AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
+        return new ChillerMenu(pContainerId, pInventory, this, this.data);
+    }
 
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
+        super.saveAdditional(pTag);
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("chiller_progress", progress);
         pTag.putInt("chiller_snow", snowLevel);
         pTag.putInt("chiller_water", waterLevel);
-        super.saveAdditional(pTag);
+        if (!this.trySaveLootTable(pTag)) {
+            ContainerHelper.saveAllItems(pTag, this.stacks);
+        }
     }
 
     @Override
@@ -173,7 +114,59 @@ public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
         progress = pTag.getInt("chiller_progress");
         snowLevel = pTag.getInt("chiller_snow");
         waterLevel = pTag.getInt("chiller_water");
+        if (!this.tryLoadLootTable(pTag))
+            this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(pTag, this.stacks);
     }
+    @Override
+    public int[] getSlotsForFace(Direction pSide) {
+        return IntStream.range(0, this.getContainerSize()).toArray();
+    }
+    @Override
+    public boolean canPlaceItem(int index, ItemStack stack) {
+        if (index == WATERSLOT && stack.is(Items.WATER_BUCKET))
+            return true;
+        if (index == CHILLINGSLOT && stack.is(ModTags.Items.CHILLING))
+            return true;
+        return false;
+    }
+    @Override
+    public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
+        return (direction == Direction.EAST  && (index == CHILLINGSLOT) ||
+                direction == Direction.WEST && (index == CHILLINGSLOT) ||
+                direction == Direction.SOUTH && (index == CHILLINGSLOT) ||
+                direction == Direction.NORTH && (index == CHILLINGSLOT) ||
+                direction == Direction.UP && (index == WATERSLOT));
+    }
+    @Override
+    public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {
+        // Only allow the down direction and only for the result slot.
+        return (direction == Direction.DOWN && (slotIndex == OUTPUTSLOT ||
+                slotIndex == WATERSLOT && itemStack.is(Items.BUCKET)) );
+    }
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        return this.saveWithFullMetadata();
+    }
+
+    @Override
+    public int getContainerSize() {
+        return stacks.size();
+    }
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
+        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
+            return handlers[facing.ordinal()].cast();
+        return super.getCapability(capability, facing);
+    }
+
+
+    //process
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
         if(canFillWater()){
             fillWater();
@@ -207,32 +200,32 @@ public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
     public void  fillSnow(){
         if (canFillSnow()){
             if (snowLevel < 20) {
-                if (this.itemHandler.getStackInSlot(CHILLINGSLOT).is(Items.SNOWBALL)) {
-                    this.itemHandler.extractItem(CHILLINGSLOT, 1, false);
+                if (this.stacks.get(CHILLINGSLOT).is(Items.SNOWBALL)) {
+                    this.removeItem(CHILLINGSLOT, 1);
                     snowLevel += 1;
                 }
             }
-                if(snowLevel <= 16){
-                    if(this.itemHandler.getStackInSlot(CHILLINGSLOT).is(Items.SNOW_BLOCK)){
-                        this.itemHandler.extractItem(CHILLINGSLOT, 1, false);
-                        snowLevel += 4;
-                    }
+            if(snowLevel <= 16){
+                if(this.stacks.get(CHILLINGSLOT).is(Items.SNOW_BLOCK)){
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 4;
                 }
-                if (snowLevel <= 12){
-                    if(this.itemHandler.getStackInSlot(CHILLINGSLOT).is(Items.ICE)){
-                        this.itemHandler.extractItem(CHILLINGSLOT, 1 ,false);
-                        snowLevel += 8;
-                    }
+            }
+            if (snowLevel <= 12){
+                if(this.stacks.get(CHILLINGSLOT).is(Items.ICE)){
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 8;
                 }
-                if (snowLevel <= 8){
-                    if(this.itemHandler.getStackInSlot(CHILLINGSLOT).is(Items.PACKED_ICE)){
-                        this.itemHandler.extractItem(CHILLINGSLOT, 1, false);
-                        snowLevel += 12;
-                    }
+            }
+            if (snowLevel <= 8){
+                if(this.stacks.get(CHILLINGSLOT).is(Items.PACKED_ICE)){
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 12;
                 }
+            }
             if (snowLevel <= 1){
-                if(this.itemHandler.getStackInSlot(CHILLINGSLOT).is(Items.BLUE_ICE)){
-                    this.itemHandler.extractItem(CHILLINGSLOT, 1, false);
+                if(this.stacks.get(CHILLINGSLOT).is(Items.BLUE_ICE)){
+                    this.removeItem(CHILLINGSLOT, 1);
                     snowLevel += 19;
                 }
             }
@@ -240,11 +233,11 @@ public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
     }
     private void  fillWater(){
         if(canFillWater()){
-        if(this.itemHandler.getStackInSlot(WATERSLOT).is(Items.WATER_BUCKET)){
-            this.itemHandler.extractItem(WATERSLOT, 1, false);
-            this.itemHandler.setStackInSlot(WATERSLOT, new ItemStack(Items.BUCKET));
-            this.waterLevel += 1;
-        }}
+            if(this.stacks.get(WATERSLOT).is(Items.WATER_BUCKET)){
+                this.removeItem(WATERSLOT, 1);
+                this.stacks.set(WATERSLOT, new ItemStack(Items.BUCKET));
+                this.waterLevel += 1;
+            }}
     }
     private boolean canFillWater() {
         return this.waterLevel < 6;
@@ -271,11 +264,11 @@ public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
     }
     private void craftItem() {
         ItemStack result = new ItemStack(Items.ICE, 1);
-        this.itemHandler.setStackInSlot(OUTPUTSLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(OUTPUTSLOT).getCount() + result.getCount()));
+        this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
+                this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
     }
     private boolean hasSpace(){
-        return this.itemHandler.getStackInSlot(OUTPUTSLOT).getCount() < 64;
+        return this.stacks.get(OUTPUTSLOT).getCount() < 64;
     }
     private boolean hasSnow() {
         return this.snowLevel >0;
@@ -284,9 +277,4 @@ public class ChillerBlockEntity extends BlockEntity implements MenuProvider {
         return this.waterLevel >0 || this.waterUese > 0;
     }
 
-
-    @Override
-    public Component getDisplayName() {
-        return Component.translatable("block.simpeladdmod.chiller_block");
-    }
 }

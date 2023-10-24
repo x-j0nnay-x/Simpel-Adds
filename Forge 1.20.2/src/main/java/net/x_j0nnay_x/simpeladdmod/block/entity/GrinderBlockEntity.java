@@ -260,8 +260,8 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
             inventory.setItem(i, this.itemHandler.getStackInSlot(i));
         }
 
-    //    return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
-        return null;
+       return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
+
     }
 
 

@@ -2,11 +2,11 @@ package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -15,52 +15,29 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 
-
-public class BlockFactoryBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(7){
-        @Override
-        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return switch (slot){
-                case 0 -> stack.getItem() == ModItems.GRINDERHEAD.get();
-                case 1, 2, 3, 4 -> false;
-                case 5 -> stack.getItem() == Items.WATER_BUCKET;
-                case 6 -> stack.getItem() == Items.LAVA_BUCKET;
-                default ->  super.isItemValid(slot, stack);
-
-            };
-        }
-    };
-    private final Map<Direction, LazyOptional<WrappedHandler>> directionWrappedHandlerMap =
-            Map.of(
-                    Direction.DOWN, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 5 || i == 6,
-                            (index, stack) -> itemHandler.isItemValid(LAVASLOT, stack) || itemHandler.isItemValid(WATERSLOT, stack))),
-                    Direction.UP, LazyOptional.of(() -> new WrappedHandler(itemHandler, (i) -> i == 0,
-                            (index, stack) -> itemHandler.isItemValid(0, stack))),
-                    Direction.NORTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 5 || index == 6,
-                            (index, stack) -> itemHandler.isItemValid(LAVASLOT, stack) || itemHandler.isItemValid(WATERSLOT, stack))),
-                    Direction.SOUTH, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 5 || index == 6,
-                            (index, stack) -> itemHandler.isItemValid(LAVASLOT, stack) || itemHandler.isItemValid(WATERSLOT, stack))),
-                    Direction.EAST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 5 || index == 6,
-                            (index, stack) -> itemHandler.isItemValid(LAVASLOT, stack) || itemHandler.isItemValid(WATERSLOT, stack))),
-                    Direction.WEST, LazyOptional.of(() -> new WrappedHandler(itemHandler, (index) -> index == 5 || index == 6,
-                            (index, stack) -> itemHandler.isItemValid(LAVASLOT, stack) || itemHandler.isItemValid(WATERSLOT, stack))));
-
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(7);
+    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
+    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
 
     public static int WATERSLOT = 5;
     public static int LAVASLOT = 6;
@@ -113,81 +90,124 @@ public class BlockFactoryBlockEntity extends BlockEntity implements MenuProvider
             }
         };
     }
-    public void drops(){
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for(int i = 0; i < itemHandler.getSlots(); i++){
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-       if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) {
-                return lazyItemHandler.cast();
-            }
-
-            if(directionWrappedHandlerMap.containsKey(side)) {
-                Direction localDir = this.getBlockState().getValue(BlockFactoryBlock.FACING);
-
-                if(side == Direction.UP || side == Direction.DOWN) {
-                    return directionWrappedHandlerMap.get(side).cast();
-                }
-
-                return switch (localDir) {
-                    default -> directionWrappedHandlerMap.get(side.getOpposite()).cast();
-                    case EAST -> directionWrappedHandlerMap.get(side.getClockWise()).cast();
-                    case SOUTH -> directionWrappedHandlerMap.get(side).cast();
-                    case WEST -> directionWrappedHandlerMap.get(side.getCounterClockWise()).cast();
-                };
-            }
-        }
-        return super.getCapability(cap, side);
-
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-    }
-
-    @Override
-    public Component getDisplayName() {
+    protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.blockfactory_block");
     }
 
-
-    @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new BlockFactoryMenu(pContainerId,pPlayerInventory, this, this.data);
+    protected AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
+        return  new BlockFactoryMenu(pContainerId,pInventory, this, this.data);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
-        pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("factory_progress", progress);
-        pTag.putInt("factory_lava", lavaLevel);
-        pTag.putInt("factory_water", waterLevel);
-        super.saveAdditional(pTag);
+    public int[] getSlotsForFace(Direction pSide) {
+        return IntStream.range(0, this.getContainerSize()).toArray();
+    }
+    @Override
+    public int getMaxStackSize() {
+        return 64;
+    }
+    @Override
+    public boolean canPlaceItem(int index, ItemStack stack) {
+        if (index == COBBLESLOT)
+            return false;
+        if (index == GRAVALSLOT)
+            return false;
+        if (index == SANDSLOT)
+            return false;
+        if (index == OBSIDIANSLOT)
+            return false;
+        if (index == GRINDERSLOT && stack.is(ModItems.GRINDERHEAD.get()))
+            return true;
+        if (index == LAVASLOT && stack.is(Items.LAVA_BUCKET))
+            return true;
+        if (index == WATERSLOT && stack.is(Items.WATER_BUCKET))
+            return true;
+        return false;
+    }
+    @Override
+    public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
+        return (direction == Direction.EAST  && (index == LAVASLOT ) && stack.is(Items.LAVA_BUCKET) ||
+                direction == Direction.WEST && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET)||
+                direction == Direction.SOUTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
+                direction == Direction.NORTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
+                direction == Direction.EAST  && (index == WATERSLOT ) && stack.is(Items.WATER_BUCKET) ||
+                direction == Direction.WEST && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET)||
+                direction == Direction.SOUTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
+                direction == Direction.NORTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
+                direction == Direction.UP && (index == GRINDERSLOT));
+    }
+    @Override
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+        return (direction == Direction.DOWN && (
+                        index == WATERSLOT && stack.is(Items.BUCKET)||
+                        index == LAVASLOT && stack.is(Items.BUCKET)));
     }
 
     @Override
-    public void load(CompoundTag pTag) {
-        super.load(pTag);
-        itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        progress = pTag.getInt("factory_progress");
-        lavaLevel = pTag.getInt("factory_lava");
-        waterLevel = pTag.getInt("factory_water");
+    public int getContainerSize() {
+        return stacks.size();
     }
+
+    @Override
+    public boolean isEmpty() {
+        for (ItemStack itemstack : this.stacks)
+            if (!itemstack.isEmpty())
+                return false;
+        return true;
+    }
+
+    @Override
+    protected NonNullList<ItemStack> getItems() {
+        return this.stacks;
+    }
+
+    @Override
+    protected void setItems( NonNullList<ItemStack> stacks) {
+        this.stacks = stacks;
+    }
+    @Override
+    public void load(CompoundTag compound) {
+        super.load(compound);
+        itemHandler.deserializeNBT(compound.getCompound("inventory"));
+        progress = compound.getInt("grinder_progress");
+        grindsleft = compound.getInt("grinder_grinds_left");
+        if (!this.tryLoadLootTable(compound))
+            this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(compound, this.stacks);
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
+        compound.put("inventory", itemHandler.serializeNBT());
+        compound.putInt("grinder_progress", progress);
+        compound.putInt("grinder_grinds_left", grindsleft);
+        if (!this.trySaveLootTable(compound)) {
+            ContainerHelper.saveAllItems(compound, this.stacks);
+        }
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        return this.saveWithFullMetadata();
+    }
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
+        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
+            return handlers[facing.ordinal()].cast();
+        return super.getCapability(capability, facing);
+    }
+
+
+    //processing
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
         if (canFillWater()){
             fillWater();
@@ -262,8 +282,8 @@ public class BlockFactoryBlockEntity extends BlockEntity implements MenuProvider
         }
     }
     private void resetGrinds() {
-        if(itemHandler.getStackInSlot(GRINDERSLOT).is(ModItems.GRINDERHEAD.get())){
-            itemHandler.getStackInSlot(GRINDERSLOT).setDamageValue(itemHandler.getStackInSlot(GRINDERSLOT).getDamageValue() +1);
+        if(stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD.get())){
+            stacks.get(GRINDERSLOT).setDamageValue(stacks.get(GRINDERSLOT).getDamageValue() +1);
             grindsleft = maxGrinds;
         }else {
             grindsleft = 0;
@@ -276,7 +296,7 @@ public class BlockFactoryBlockEntity extends BlockEntity implements MenuProvider
         return false;
     }
     private boolean isWorking() {
-        if(this.progress >0 && hasLiquid() && !isFull()){
+        if(hasLiquid() && !isFull()){
             return true;
         }
         return false;
@@ -294,38 +314,38 @@ public class BlockFactoryBlockEntity extends BlockEntity implements MenuProvider
     }
     private void makeCobble() {
         ItemStack result = new ItemStack(Items.COBBLESTONE, 1);
-        this.itemHandler.setStackInSlot(COBBLESLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(COBBLESLOT).getCount() + result.getCount()));
+        this.stacks.set(COBBLESLOT, new ItemStack(result.getItem(),
+                this.stacks.get(COBBLESLOT).getCount() + result.getCount()));
     }
     private void makeGraval() {
         ItemStack result = new ItemStack(Items.GRAVEL, 1);
-        this.itemHandler.setStackInSlot(GRAVALSLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(GRAVALSLOT).getCount() + result.getCount()));
+        this.stacks.set(GRAVALSLOT, new ItemStack(result.getItem(),
+                this.stacks.get(GRAVALSLOT).getCount() + result.getCount()));
     }
     private void makeSand() {
         ItemStack result = new ItemStack(Items.SAND, 1);
-        this.itemHandler.setStackInSlot(SANDSLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(SANDSLOT).getCount() + result.getCount()));
+        this.stacks.set(SANDSLOT, new ItemStack(result.getItem(),
+                this.stacks.get(SANDSLOT).getCount() + result.getCount()));
     }
     private void makeObsidain() {
         ItemStack result = new ItemStack(Items.OBSIDIAN, 1);
-        this.itemHandler.setStackInSlot(OBSIDIANSLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(OBSIDIANSLOT).getCount() + result.getCount()));
+        this.stacks.set(OBSIDIANSLOT, new ItemStack(result.getItem(),
+                this.stacks.get(OBSIDIANSLOT).getCount() + result.getCount()));
     }
     private boolean hasLiquid() {
         return waterLevel > 0 && lavaLevel > 0 || lavaUses > 0;
     }
     private boolean CobbleSpace(){
-        return this.itemHandler.getStackInSlot(COBBLESLOT).isEmpty() || this.itemHandler.getStackInSlot(COBBLESLOT).getCount() < 64;
+        return this.stacks.get(COBBLESLOT).isEmpty() || this.stacks.get(COBBLESLOT).getCount() < 64;
     }
     private boolean GravalSpace(){
-        return this.itemHandler.getStackInSlot(GRAVALSLOT).isEmpty() || this.itemHandler.getStackInSlot(GRAVALSLOT).getCount() < 64;
+        return this.stacks.get(GRAVALSLOT).isEmpty() || this.stacks.get(GRAVALSLOT).getCount() < 64;
     }
     private boolean SandSpace(){
-        return this.itemHandler.getStackInSlot(SANDSLOT).isEmpty() || this.itemHandler.getStackInSlot(SANDSLOT).getCount() < 64;
+        return this.stacks.get(SANDSLOT).isEmpty() || this.stacks.get(SANDSLOT).getCount() < 64;
     }
     private boolean ObslidanSpace(){
-        return this.itemHandler.getStackInSlot(OBSIDIANSLOT).isEmpty() || this.itemHandler.getStackInSlot(OBSIDIANSLOT).getCount() < 64;
+        return this.stacks.get(OBSIDIANSLOT).isEmpty() || this.stacks.get(OBSIDIANSLOT).getCount() < 64;
     }
     private boolean canFillWater() {
         return waterLevel < 6;
@@ -334,20 +354,17 @@ public class BlockFactoryBlockEntity extends BlockEntity implements MenuProvider
         return  lavaLevel < 6;
     }
     private void  fillWater(){
-        if(this.itemHandler.getStackInSlot(WATERSLOT).is(Items.WATER_BUCKET)){
-            this.itemHandler.extractItem(WATERSLOT, 1, false);
-            this.itemHandler.setStackInSlot(WATERSLOT, new ItemStack(Items.BUCKET));
+        if(this.stacks.get(WATERSLOT).is(Items.WATER_BUCKET)){
+            this.removeItem(WATERSLOT, 1);
+            this.stacks.set(WATERSLOT, new ItemStack(Items.BUCKET));
             waterLevel += 1;
         }
     }
     private void  fillLava(){
-        if(this.itemHandler.getStackInSlot(LAVASLOT).is(Items.LAVA_BUCKET)){
-            this.itemHandler.extractItem(LAVASLOT, 1, false);
-            this.itemHandler.setStackInSlot(LAVASLOT, new ItemStack(Items.BUCKET));
+        if(this.stacks.get(LAVASLOT).is(Items.LAVA_BUCKET)){
+            this.removeItem(LAVASLOT, 1);
+            this.stacks.set(LAVASLOT, new ItemStack(Items.BUCKET));
             lavaLevel += 1;
         }
     }
-
-
-
 }

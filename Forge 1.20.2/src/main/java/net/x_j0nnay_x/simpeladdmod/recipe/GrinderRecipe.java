@@ -94,21 +94,6 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
             return new GrinderRecipe(inputs, output, pRecipeId);
         }
 
-
-        @Override
-        public Codec<GrinderRecipe> codec() {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
-
-            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
-
-            for(int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new GrinderRecipe(inputs, output, pRecipeId);
-        }
-
         @Override
         public @Nullable GrinderRecipe fromNetwork(FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
@@ -118,8 +103,14 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack output = pBuffer.readItem();
-            return new GrinderRecipe(inputs, output, pRecipeId);
+            return new GrinderRecipe(inputs, output, ID);
         }
+
+        @Override
+        public Codec<GrinderRecipe> codec() {
+            return null;
+        }
+
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, GrinderRecipe pRecipe) {
