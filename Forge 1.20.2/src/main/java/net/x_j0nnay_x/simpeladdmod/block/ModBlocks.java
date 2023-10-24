@@ -14,8 +14,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 
 import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
-import net.x_j0nnay_x.simpeladdmod.block.custom.ChillerBlockBlock;
+import net.x_j0nnay_x.simpeladdmod.block.custom.ChillerBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
+
 
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
@@ -29,13 +30,14 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
                     .requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
-    public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
-            () -> new GrinderBlock());
-    public static final RegistryObject<Block> BLOCK_FACTORY_BLOCK = registerBlock("blockfactory_block",
-            () -> new BlockFactoryBlock());
-    public static final RegistryObject<Block> CHILLER_BLOCK = registerBlock("chiller_block",
-            () -> new ChillerBlockBlock());
 
+    public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
+            () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+
+    public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
+            () -> new BlockFactoryBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    public static final RegistryObject<Block> CHILLER = registerBlock("chiller_block",
+            () -> new ChillerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     private static  <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

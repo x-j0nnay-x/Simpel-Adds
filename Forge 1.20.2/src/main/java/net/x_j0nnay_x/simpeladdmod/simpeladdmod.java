@@ -2,45 +2,32 @@ package net.x_j0nnay_x.simpeladdmod;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.VersionChecker;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import net.minecraftforge.network.NetworkRegistry;
-
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-
+import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.*;
-import net.x_j0nnay_x.simpeladdmod.world.ModMenus;
 import org.slf4j.Logger;
-
 import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
-// The value here should match an entry in the META-INF/mods.toml file
+
 @Mod(simpeladdmod.MOD_ID)
 public class simpeladdmod {
     public static final String MOD_ID = "simpeladdmod";
@@ -59,7 +46,7 @@ public class simpeladdmod {
         simpeladdmodFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
-        ModMenus.register(modEventBus);
+        ModMenuType.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
@@ -91,7 +78,9 @@ public class simpeladdmod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            MenuScreens.register(ModMenuType.GRINDER_MENU.get(), GrinderScreen::new);
+            MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);
+            MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
         }
 
     }

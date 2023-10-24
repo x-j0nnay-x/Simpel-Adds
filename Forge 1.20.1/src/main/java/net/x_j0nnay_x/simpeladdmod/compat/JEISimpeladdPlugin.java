@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
-import net.x_j0nnay_x.simpeladdmod.screen.client.gui.GrinderGuiScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 import java.util.List;
@@ -49,7 +49,7 @@ public class JEISimpeladdPlugin implements IModPlugin {
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(GrinderGuiScreen.class, 58, 42, 55,23,
+        registration.addRecipeClickArea(GrinderScreen.class, 58, 42, 55,23,
                 GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE);
     }
 }

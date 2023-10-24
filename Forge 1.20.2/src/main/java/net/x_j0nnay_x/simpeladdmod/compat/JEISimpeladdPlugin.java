@@ -8,8 +8,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
-import net.x_j0nnay_x.simpeladdmod.screen.client.gui.GrinderGuiScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 import java.util.List;
@@ -30,13 +29,13 @@ public class JEISimpeladdPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
-    //    List<GrinderRecipe> grinderrecipes = recipeManager.getAllRecipesFor(GrinderRecipe.Type.INSTANCE);
-    //    registration.addRecipes(GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE, grinderrecipes);
+      //  List<GrinderRecipe> grinderrecipes = recipeManager.getAllRecipesFor(GrinderRecipe.Type.INSTANCE);
+     //   registration.addRecipes(GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE, grinderrecipes);
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(GrinderGuiScreen.class, 58, 42, 55,23,
+        registration.addRecipeClickArea(GrinderScreen.class, 58, 42, 55,23,
                 GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE);
     }
 }

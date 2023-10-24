@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladdmod;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -18,8 +19,13 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 
 
 import net.x_j0nnay_x.simpeladdmod.recipe.ModRecipes;
+import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
+
 import net.x_j0nnay_x.simpeladdmod.until.*;
-import net.x_j0nnay_x.simpeladdmod.world.ModMenus;
+
 import org.slf4j.Logger;
 
 import java.util.AbstractMap;
@@ -43,7 +49,7 @@ public class simpeladdmod {
         simpeladdmodFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
-        ModMenus.register(modEventBus);
+        ModMenuType.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
@@ -75,6 +81,9 @@ public class simpeladdmod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            MenuScreens.register(ModMenuType.GRINDER_MENU.get(), GrinderScreen::new);
+            MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);
+            MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
 
         }
 

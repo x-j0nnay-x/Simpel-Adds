@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladdmod.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -55,15 +56,14 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         return output.copy();
     }
 
-   // @Override
+    @Override
     public ResourceLocation getId() {
         return id;
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return null;
-                //Serializer.INSTANCE;
+        return Serializer.INSTANCE;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         public static final String ID = "grinder";
     }
 
-  /*  public static class Serializer implements RecipeSerializer<GrinderRecipe> {
+    public static class Serializer implements RecipeSerializer<GrinderRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(simpeladdmod.MOD_ID, "grinder");
 
@@ -94,8 +94,23 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
             return new GrinderRecipe(inputs, output, pRecipeId);
         }
 
+
         @Override
-        public @Nullable GrinderRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
+        public Codec<GrinderRecipe> codec() {
+            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
+
+            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
+            NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
+
+            for(int i = 0; i < inputs.size(); i++) {
+                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
+            }
+
+            return new GrinderRecipe(inputs, output, pRecipeId);
+        }
+
+        @Override
+        public @Nullable GrinderRecipe fromNetwork(FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
 
             for(int i = 0; i < inputs.size(); i++) {
@@ -116,5 +131,5 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
 
             pBuffer.writeItemStack(pRecipe.getResultItem(null), false);
         }
-    }*/
+    }
 }
