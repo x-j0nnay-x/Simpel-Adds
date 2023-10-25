@@ -56,10 +56,10 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         return output.copy();
     }
 
-    @Override
-    public ResourceLocation getId() {
-        return id;
-    }
+ //   @Override
+ //   public ResourceLocation getId() {
+   //     return id;
+ //   }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
@@ -80,7 +80,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(simpeladdmod.MOD_ID, "grinder");
 
-        @Override
+   /*     @Override
         public GrinderRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
 
@@ -95,6 +95,23 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         }
 
         @Override
+        public @Nullable GrinderRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
+
+            for(int i = 0; i < inputs.size(); i++) {
+                inputs.set(i, Ingredient.fromNetwork(pBuffer));
+            }
+
+            ItemStack output = pBuffer.readItem();
+            return new GrinderRecipe(inputs, output, pRecipeId);
+        }*/
+
+        @Override
+        public Codec<GrinderRecipe> codec() {
+            return null;
+        }
+
+        @Override
         public @Nullable GrinderRecipe fromNetwork(FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
 
@@ -105,12 +122,6 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
             ItemStack output = pBuffer.readItem();
             return new GrinderRecipe(inputs, output, ID);
         }
-
-        @Override
-        public Codec<GrinderRecipe> codec() {
-            return null;
-        }
-
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, GrinderRecipe pRecipe) {

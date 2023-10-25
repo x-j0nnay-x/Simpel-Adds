@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -23,11 +24,10 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
-
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockFactoryBlock extends BaseEntityBlock  {
@@ -65,24 +65,26 @@ public class BlockFactoryBlock extends BaseEntityBlock  {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()){
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof BlockFactoryBlockEntity){
-                ((BlockFactoryBlockEntity) blockEntity).drops();
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof BlockFactoryBlockEntity be) {
+                Containers.dropContents(world, pos, be);
+                world.updateNeighbourForOutputSignal(pos, this);
             }
+            super.onRemove(state, world, pos, newState, isMoving);
         }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+
         super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
         if (pPlayer instanceof ServerPlayer player) {
-            pPlayer.openMenu(new MenuProvider() {
+            player.openMenu(new MenuProvider() {
                 @Override
                 public Component getDisplayName() {
-                    return Component.translatable("block.simpeladdmod.blockfactory_block");
+                    return Component.translatable("block.simpeladdmod.grinder_block");
                 }
 
                 @Nullable
@@ -91,11 +93,8 @@ public class BlockFactoryBlock extends BaseEntityBlock  {
                     return new BlockFactoryMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pPos));
                 }
             });
-        }else {
-            throw  new IllegalStateException("Block Factory Container Provider is missing");
         }
         return InteractionResult.SUCCESS;
-
     }
 
     @Nullable

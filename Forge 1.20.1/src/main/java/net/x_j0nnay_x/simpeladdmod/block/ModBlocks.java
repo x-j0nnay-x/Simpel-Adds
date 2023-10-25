@@ -11,16 +11,11 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-
 import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.ChillerBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
-
-
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
-
 import java.util.function.Supplier;
 
 public class ModBlocks {

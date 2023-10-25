@@ -7,7 +7,6 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -21,7 +20,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class ChillerBlock extends BaseEntityBlock  {
@@ -71,8 +69,10 @@ public class ChillerBlock extends BaseEntityBlock  {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+
         if (!pLevel.isClientSide()){
             BlockEntity entity = pLevel.getBlockEntity(pPos);
+
             if(entity instanceof ChillerBlockEntity){
                 NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ChillerBlockEntity)entity, pPos);
             }else {

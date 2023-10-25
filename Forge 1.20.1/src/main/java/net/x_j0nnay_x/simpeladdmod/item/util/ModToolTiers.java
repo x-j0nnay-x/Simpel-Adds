@@ -10,7 +10,6 @@ import net.minecraftforge.common.TierSortingRegistry;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
-
 import java.util.List;
 
 public class ModToolTiers {

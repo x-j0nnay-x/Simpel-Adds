@@ -21,7 +21,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockFactoryBlock extends BaseEntityBlock  {

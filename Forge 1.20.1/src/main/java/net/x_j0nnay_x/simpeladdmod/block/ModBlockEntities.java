@@ -1,18 +1,13 @@
 package net.x_j0nnay_x.simpeladdmod.block;
 
-
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
-
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
-
-
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 

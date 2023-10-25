@@ -5,15 +5,11 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 public class BlockFactoryScreen extends AbstractContainerScreen<BlockFactoryMenu> {
     private static final ResourceLocation texture = new ResourceLocation(simpeladdmod.MOD_ID, "textures/screens/blockfactory_gui.png");
-   // private static final ResourceLocation progArrow = new ResourceLocation(simpeladdmod.MOD_ID,"textures/screens/sprites/grinder_prog.png");
     public BlockFactoryScreen(BlockFactoryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

@@ -13,11 +13,8 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
-import net.x_j0nnay_x.simpeladdmod.until.ModTags;
-import org.jetbrains.annotations.NotNull;
 
 public class BlockFactoryMenu extends AbstractContainerMenu {
     public  final BlockFactoryBlockEntity blockEntity;

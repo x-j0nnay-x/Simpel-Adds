@@ -13,8 +13,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
-
-import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 

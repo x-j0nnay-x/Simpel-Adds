@@ -30,8 +30,8 @@ public class JEISimpeladdPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
-        List<GrinderRecipe> grinderrecipes = recipeManager.getAllRecipesFor(GrinderRecipe.Type.INSTANCE);
-        registration.addRecipes(GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE, grinderrecipes);
+    //    List<GrinderRecipe> grinderrecipes = recipeManager.getAllRecipesFor(GrinderRecipe.Type.INSTANCE);
+     //   registration.addRecipes(GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE, grinderrecipes);
     }
 
     @Override

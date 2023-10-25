@@ -14,7 +14,6 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
-
 import java.util.List;
 
 @JeiPlugin
