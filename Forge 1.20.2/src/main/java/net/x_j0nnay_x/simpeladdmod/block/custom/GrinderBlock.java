@@ -13,6 +13,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -65,29 +66,35 @@ public class GrinderBlock extends BaseEntityBlock  {
     }
 
 @Override
-public  InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+    BlockEntity be = pLevel.getBlockEntity(pPos);
+    if (!(be instanceof GrinderBlockEntity blockEntity))
+        return InteractionResult.PASS;
 
-   // super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-    if (pPlayer instanceof ServerPlayer player) {
-        player.openMenu(new MenuProvider() {
-            @Override
-            public Component getDisplayName() {
-                return Component.translatable("block.simpeladdmod.grinder_block");
-            }
+    if (pLevel.isClientSide())
+        return InteractionResult.SUCCESS;
+
+    // open screen
+    if(pPlayer instanceof ServerPlayer sPlayer) {
+        sPlayer.openMenu(blockEntity, pPos);
+    }
+
+    return InteractionResult.CONSUME;
+}
 
 
-            @Override
-            public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                return new GrinderMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pPos));
-            }
-        });
+
+/*
+    if (!pLevel.isClientSide) {
+      pPlayer.openMenu(this.getMenuProvider(pState, pLevel, pPos));
     }
     return InteractionResult.SUCCESS;
-}
+    }*/
+
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return new GrinderBlockEntity(pPos, pState);
     }
     @Override
@@ -96,11 +103,15 @@ public  InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Pl
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity == null ? false : blockEntity.triggerEvent(eventID, eventParam);
     }
-
+    @Override
+    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+        BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+        return tileEntity instanceof MenuProvider menuProvider ? menuProvider : null;
+    }
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> pBlockEntityType) {
         if(pLevel.isClientSide()){
             return null;
         }

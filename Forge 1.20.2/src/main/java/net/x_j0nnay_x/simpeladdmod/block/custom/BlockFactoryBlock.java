@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -77,24 +78,20 @@ public class BlockFactoryBlock extends BaseEntityBlock  {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+        BlockEntity be = pLevel.getBlockEntity(pPos);
+        if (!(be instanceof BlockFactoryBlockEntity blockEntity))
+            return InteractionResult.PASS;
 
-        super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-        if (pPlayer instanceof ServerPlayer player) {
-            player.openMenu(new MenuProvider() {
-                @Override
-                public Component getDisplayName() {
-                    return Component.translatable("block.simpeladdmod.grinder_block");
-                }
+        if (pLevel.isClientSide())
+            return InteractionResult.SUCCESS;
 
-                @Nullable
-                @Override
-                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                    return new BlockFactoryMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pPos));
-                }
-            });
+        // open screen
+        if(pPlayer instanceof ServerPlayer sPlayer) {
+            sPlayer.openMenu(blockEntity, pPos);
         }
-        return InteractionResult.SUCCESS;
+
+        return InteractionResult.CONSUME;
     }
 
     @Nullable

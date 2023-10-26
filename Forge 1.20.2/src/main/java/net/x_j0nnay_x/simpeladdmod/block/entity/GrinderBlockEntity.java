@@ -1,10 +1,13 @@
 package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 
+import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.ContainerHelper;
@@ -85,8 +88,8 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
     }
 
     @Override
-    protected AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory) {
-        return  new GrinderMenu(pContainerId,pInventory, this, this.data);
+    public AbstractContainerMenu createMenu(int id, Inventory inventory) {
+        return new GrinderMenu(id, inventory, this, this.data);
     }
 
     @Override
@@ -236,9 +239,10 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
         this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));*/
        ItemStack result = new ItemStack(ModItems.NEHTERITE_SHARD_DUST.get(), 2);
-       this.itemHandler.extractItem(INPUTSLOT, 1, false);
-       this.itemHandler.setStackInSlot(OUTPUTSLOT, new ItemStack(result.getItem(),
-               this.itemHandler.getStackInSlot(OUTPUTSLOT).getCount() + result.getCount()));
+       this.removeItem(INPUTSLOT, 1);
+       this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
+               this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
+
 
     }
     private boolean hasRecipe() {
@@ -248,10 +252,14 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
             return false;
         }
         ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+         return canInsertOutputAmount(result.getCount()) && canInsertOutputItem(result.getItem());
+         
+      */
 
-        return canInsertOutputAmount(result.getCount()) && canInsertOutputItem(result.getItem());*/
-        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUTSLOT).getItem() == ModItems.NEHTERITE_SHARD_RAW.get();
-        ItemStack result = new ItemStack(ModItems.NEHTERITE_SHARD_DUST.get());
+         boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUTSLOT).getItem() == ModItems.NEHTERITE_SHARD_RAW.get();
+         ItemStack result = new ItemStack(ModItems.NEHTERITE_SHARD_DUST.get());
+
+
         return hasCraftingItem && canInsertOutputAmount(result.getCount()) && canInsertOutputItem(result.getItem());
 }
  /*   private Optional<GrinderRecipe> getCurrentRecipe() {

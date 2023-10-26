@@ -168,27 +168,32 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     protected void setItems( NonNullList<ItemStack> stacks) {
         this.stacks = stacks;
     }
-    @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
-        itemHandler.deserializeNBT(compound.getCompound("inventory"));
-        progress = compound.getInt("grinder_progress");
-        grindsleft = compound.getInt("grinder_grinds_left");
-        if (!this.tryLoadLootTable(compound))
-            this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.stacks);
-    }
 
-    @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        compound.put("inventory", itemHandler.serializeNBT());
-        compound.putInt("grinder_progress", progress);
-        compound.putInt("grinder_grinds_left", grindsleft);
-        if (!this.trySaveLootTable(compound)) {
-            ContainerHelper.saveAllItems(compound, this.stacks);
+        @Override
+        public void load(CompoundTag compound) {
+            super.load(compound);
+            itemHandler.deserializeNBT(compound.getCompound("inventory"));
+            progress = compound.getInt("blockfactroy_progress");
+            grindsleft = compound.getInt("blockfactroy_grinds_left");
+            waterLevel = compound.getInt("blockfactroy_water_level");
+            lavaLevel = compound.getInt("blockfactroy_lava_level");
+            if (!this.tryLoadLootTable(compound))
+                this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+            ContainerHelper.loadAllItems(compound, this.stacks);
         }
-    }
+
+        @Override
+        public void saveAdditional(CompoundTag compound){
+            super.saveAdditional(compound);
+            compound.put("inventory", itemHandler.serializeNBT());
+            compound.putInt("blockfactroy_progress", progress);
+            compound.putInt("blockfactroy_grinds_left", grindsleft);
+            compound.putInt("blockfactroy_water_level", waterLevel);
+            compound.putInt("blockfactroy_lava_level", lavaLevel);
+            if (!this.trySaveLootTable(compound)) {
+                ContainerHelper.saveAllItems(compound, this.stacks);
+            }
+        }
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -296,7 +301,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         return false;
     }
     private boolean isWorking() {
-        if(hasLiquid() && !isFull()){
+        if(hasLiquid() && !isFull() && itemHandler.getStackInSlot(GRINDERSLOT).is(ModItems.GRINDERHEAD.get())){
             return true;
         }
         return false;
