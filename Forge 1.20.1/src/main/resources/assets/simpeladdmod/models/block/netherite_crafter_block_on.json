@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "simpeladdmod:block/netherite_crafter_top",
+    "up": "simpeladdmod:block/netherite_crafter_top",
+    "north": "simpeladdmod:block/netherite_crafter_on",
+    "east": "simpeladdmod:block/netherite_crafter_side",
+    "south": "simpeladdmod:block/netherite_crafter_side",
+    "west": "simpeladdmod:block/netherite_crafter_side",
+    "particle": "simpeladdmod:block/netherite_crafter_top"
+  },
+  "render_type": "solid"
+}

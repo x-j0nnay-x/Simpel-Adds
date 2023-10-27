@@ -42,7 +42,7 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
     public static int OUTPUTSLOT = 2;
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 20;
+    private int maxProgress = 60;
     private int grindsleft = 0 ;
     private int maxGrinds = 3;
     public GrinderBlockEntity(BlockPos pPos, BlockState pBlockState) {

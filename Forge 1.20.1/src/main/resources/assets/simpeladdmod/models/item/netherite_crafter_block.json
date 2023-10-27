@@ -1,5 +1,5 @@
 {
-  "parent": "simpeladdmod:block/grinder_block",
+  "parent": "simpeladdmod:block/netherite_crafter_block",
   "display": {
     "thirdperson": {
       "rotation": [

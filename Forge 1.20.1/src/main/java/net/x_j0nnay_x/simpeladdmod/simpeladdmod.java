@@ -18,6 +18,7 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.recipe.ModRecipes;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerScreen;
+import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.*;
@@ -76,7 +77,7 @@ public class simpeladdmod {
             MenuScreens.register(ModMenuType.GRINDER_MENU.get(), GrinderScreen::new);
             MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);
             MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
-
+            MenuScreens.register(ModMenuType.Netherite_Menu.get(), NetheriteCrafterScreen::new);
         }
 
     }

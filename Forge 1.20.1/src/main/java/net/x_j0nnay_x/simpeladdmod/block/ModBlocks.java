@@ -14,6 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.ChillerBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
+import net.x_j0nnay_x.simpeladdmod.block.custom.NetheriteCrafterBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 import java.util.function.Supplier;
@@ -33,6 +34,8 @@ public class ModBlocks {
             () -> new BlockFactoryBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> CHILLER = registerBlock("chiller_block",
             () -> new ChillerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    public static final RegistryObject<Block> NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
+            () -> new NetheriteCrafterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     private static  <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

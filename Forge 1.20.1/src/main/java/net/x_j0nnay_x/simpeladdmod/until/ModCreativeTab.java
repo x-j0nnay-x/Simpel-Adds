@@ -82,6 +82,7 @@ public class ModCreativeTab {
                         pOutput.accept(ModBlocks.GRINDER_BLOCK.get());
                         pOutput.accept(ModBlocks.BLOCK_FACTORY.get());
                         pOutput.accept(ModBlocks.CHILLER.get());
+                        pOutput.accept(ModBlocks.NETHERITE_CRAFTER.get());
 
 
                     })

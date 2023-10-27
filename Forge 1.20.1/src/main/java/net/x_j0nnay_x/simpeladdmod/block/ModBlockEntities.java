@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.block.entity.NetheriteCrafterBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 
@@ -23,6 +24,9 @@ public class ModBlockEntities {
 			BlockEntityType.Builder.of(BlockFactoryBlockEntity::new, ModBlocks.BLOCK_FACTORY.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ChillerBlockEntity>> CHILLER = BLOCK_ENTITY.register("chiller", () ->
 			BlockEntityType.Builder.of(ChillerBlockEntity::new, ModBlocks.CHILLER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<NetheriteCrafterBlockEntity>> NETHERITE_CRAFTER = BLOCK_ENTITY.register("netherite_crafter", () ->
+			BlockEntityType.Builder.of(NetheriteCrafterBlockEntity::new, ModBlocks.NETHERITE_CRAFTER.get()).build(null));
+
 
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITY.register(eventBus);
