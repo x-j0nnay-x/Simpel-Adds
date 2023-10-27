@@ -69,7 +69,7 @@ public class NetheriteCrafterBlockEntity extends RandomizableContainerBlockEntit
     }
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.simpeladdmod.netherite_crafting_block");
+        return Component.translatable("block.simpeladdmod.netherite_crafter_block");
     }
 
     @Override

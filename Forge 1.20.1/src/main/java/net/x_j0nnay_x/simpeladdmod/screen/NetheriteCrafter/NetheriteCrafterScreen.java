@@ -12,6 +12,7 @@ public class NetheriteCrafterScreen extends AbstractContainerScreen<NetheriteCra
     private static final ResourceLocation texture = new ResourceLocation(simpeladdmod.MOD_ID, "textures/screens/netheritecrafter_gui.png");
     public NetheriteCrafterScreen(NetheriteCrafterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+        this.title.contains(Component.translatable("gui.simpeladdmod.netherite_crafter_gui"));
     }
 
     @Override
@@ -25,6 +26,7 @@ public class NetheriteCrafterScreen extends AbstractContainerScreen<NetheriteCra
     @Override
     public void init() {
         super.init();
+
     }
 
     @Override

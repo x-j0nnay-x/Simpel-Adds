@@ -44,6 +44,7 @@ public class JEISimpeladdPlugin implements IModPlugin {
         registration.addItemStackInfo(new ItemStack(Items.BLUE_ICE), Component.translatable("simpeladdmod.jei.chilling.blueice"));
 
 
+
     }
 
     @Override

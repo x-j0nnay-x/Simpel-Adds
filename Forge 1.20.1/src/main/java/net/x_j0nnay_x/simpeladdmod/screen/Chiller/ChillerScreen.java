@@ -26,6 +26,7 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
     @Override
     public void init() {
         super.init();
+
     }
 
     @Override
