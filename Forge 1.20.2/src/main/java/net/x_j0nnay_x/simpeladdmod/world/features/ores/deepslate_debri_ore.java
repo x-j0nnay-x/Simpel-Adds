@@ -1,14 +1,11 @@
 package net.x_j0nnay_x.simpeladdmod.world.features.ores;
 
-
-
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.resources.ResourceKey;
-
 import java.util.Set;
 
 public class deepslate_debri_ore extends OreFeature {

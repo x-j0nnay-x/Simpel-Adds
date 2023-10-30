@@ -30,7 +30,6 @@ public class grinderHead extends Item {
         ret.setDamageValue(itemstack.getDamageValue() + 1);
         return ret;
 
-        //  return new ItemStack(this);
     }
 
     @Override

@@ -13,11 +13,8 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
-import net.x_j0nnay_x.simpeladdmod.until.ModTags;
-import org.jetbrains.annotations.NotNull;
 
 public class BlockFactoryMenu extends AbstractContainerMenu {
     public  final BlockFactoryBlockEntity blockEntity;
@@ -103,14 +100,6 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
         int waterLevel = this.data.get(3);
        int tankSize = 61;
         return waterLevel != 0  ? waterLevel * tankSize / 6 : 0;
-    }
-    public int GetWaterPos(){
-        int Water = Mth.ceil(this.data.get(3)* 10.06);
-        return Water;
-    }
-    public int GetLavaPos(){
-        int Lava = Mth.ceil(this.data.get(2)* 10.06);
-        return Lava;
     }
     public int getScalledlava(){
         int lavaLevel = this.data.get(2);

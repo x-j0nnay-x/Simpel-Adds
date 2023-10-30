@@ -6,11 +6,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.fml.common.Mod;
-
 import net.minecraft.world.level.levelgen.feature.Feature;
-
 import net.x_j0nnay_x.simpeladdmod.world.features.ores.deepslate_debri_ore;
-
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 @Mod.EventBusSubscriber

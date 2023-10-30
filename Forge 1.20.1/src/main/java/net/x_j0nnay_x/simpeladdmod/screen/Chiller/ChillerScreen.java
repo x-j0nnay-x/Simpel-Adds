@@ -54,12 +54,12 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
     }
     private void renderwater(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasWater()) {
-            guiGraphics.blit(texture, x + 73, y + 69 - menu.GetWaterPos() , 177, 0, 16, menu.getScalledwater());
+            guiGraphics.blit(texture, x + 73, y + 69 - menu.getScalledwater() , 177, 0, 16, menu.getScalledwater());
         }
     }
     private void renderSnow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasSnow()) {
-            guiGraphics.blit(texture, x + 38, y + 69 - menu.GetSnowPos(), 195, 1, 7, menu.getScalledsnow());
+            guiGraphics.blit(texture, x + 38, y + 69 - menu.getScalledsnow(), 195, 1, 7, menu.getScalledsnow());
         }
     }
 

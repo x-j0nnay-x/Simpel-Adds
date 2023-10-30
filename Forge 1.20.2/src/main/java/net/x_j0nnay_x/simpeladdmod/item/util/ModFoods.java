@@ -1,7 +1,5 @@
 package net.x_j0nnay_x.simpeladdmod.item.util;
 
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
 public class ModFoods {
@@ -21,11 +19,4 @@ public class ModFoods {
     public static final FoodProperties SANDWISH_VEG = new FoodProperties.Builder().nutrition(8)
             .saturationMod(8.2f).alwaysEat().meat().build();
 
-
-    //bread n=5 s=6
-    //checken n=6 s=7.2
-    //mutton n=6 s=9.6
-    //stake n=8 s=12.8
-    //pork n=8 s=12.8
-    //veg n=3 s=0.6
 }

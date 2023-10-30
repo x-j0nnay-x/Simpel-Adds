@@ -50,12 +50,12 @@ public class BlockFactoryScreen extends AbstractContainerScreen<BlockFactoryMenu
     }
     private void renderwater(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasWater()) {
-            guiGraphics.blit(texture, x + 12, y + 72 - menu.GetWaterPos(), 191, 0, 13, menu.getScalledwater());
+            guiGraphics.blit(texture, x + 12, y + 72 - menu.getScalledwater(), 191, 0, 13, menu.getScalledwater());
         }
     }
     private void renderlava(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasLava()) {
-            guiGraphics.blit(texture, x + 152, y + 72 - menu.GetLavaPos(), 177, 0, 13, menu.getScalledlava());
+            guiGraphics.blit(texture, x + 152, y + 72 - menu.getScalledlava(), 177, 0, 13, menu.getScalledlava());
         }
     }
     @Override

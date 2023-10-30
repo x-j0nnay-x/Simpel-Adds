@@ -10,7 +10,6 @@ import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
     private static final ResourceLocation texture = new ResourceLocation(simpeladdmod.MOD_ID, "textures/screens/grinder_gui.png");
-   // private static final ResourceLocation progArrow = new ResourceLocation(simpeladdmod.MOD_ID,"textures/screens/sprites/grinder_prog.png");
     public GrinderScreen(GrinderMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

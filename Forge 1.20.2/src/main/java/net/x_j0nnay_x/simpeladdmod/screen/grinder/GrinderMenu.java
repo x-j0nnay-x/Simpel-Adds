@@ -20,7 +20,7 @@ public class GrinderMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
-   public GrinderMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
+    public GrinderMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
     }
     public GrinderMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){

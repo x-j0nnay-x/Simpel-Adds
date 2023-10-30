@@ -77,14 +77,7 @@ public class ChillerMenu extends AbstractContainerMenu {
         int tankSize = 59;
         return waterLevel != 0  ? waterLevel * tankSize / 6 : 0;
     }
-    public int GetWaterPos(){
-        int Water = Mth.ceil(this.data.get(3)* 9.7);
-        return Water;
-    }
-    public int GetSnowPos(){
-        int snow = Mth.ceil(this.data.get(2)* 2.9);
-        return snow;
-    }
+
     public int getScalledsnow(){
         int snowLev = this.data.get(2);
         int tankSize = 58;

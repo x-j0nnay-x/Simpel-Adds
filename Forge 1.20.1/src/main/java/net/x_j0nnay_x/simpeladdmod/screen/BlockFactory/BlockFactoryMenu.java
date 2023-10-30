@@ -101,14 +101,6 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
        int tankSize = 61;
         return waterLevel != 0  ? waterLevel * tankSize / 6 : 0;
     }
-    public int GetWaterPos(){
-        int Water = Mth.ceil(this.data.get(3)* 10.06);
-        return Water;
-    }
-    public int GetLavaPos(){
-        int Lava = Mth.ceil(this.data.get(2)* 10.06);
-        return Lava;
-    }
     public int getScalledlava(){
         int lavaLevel = this.data.get(2);
         int tankSize = 61;

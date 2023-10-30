@@ -5,11 +5,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MinecartItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
-
 import java.util.function.Supplier;
 
 public enum ModArmmorTier implements ArmorMaterial {
@@ -18,7 +16,6 @@ public enum ModArmmorTier implements ArmorMaterial {
 
     OBSIDIRITEA("obsidirite", 30, new int[]{ 3, 8, 6, 3 }, 24,
             SoundEvents.ARMOR_EQUIP_GOLD, 2.7f, 0.07f, () -> Ingredient.of(Items.NETHERITE_INGOT.getDefaultInstance()));
-                   // ModItems.OBSIDAINRITEINGOT.get()));
 
 
     public final String name;

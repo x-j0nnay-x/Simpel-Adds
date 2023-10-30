@@ -6,12 +6,10 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
     private static final ResourceLocation texture = new ResourceLocation(simpeladdmod.MOD_ID, "textures/screens/chiller_gui.png");
-   // private static final ResourceLocation progArrow = new ResourceLocation(simpeladdmod.MOD_ID,"textures/screens/sprites/grinder_prog.png");
     public ChillerScreen(ChillerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
@@ -28,6 +26,7 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
     @Override
     public void init() {
         super.init();
+
     }
 
     @Override
@@ -55,12 +54,12 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
     }
     private void renderwater(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasWater()) {
-            guiGraphics.blit(texture, x + 73, y + 69 - menu.GetWaterPos() , 177, 0, 16, menu.getScalledwater());
+            guiGraphics.blit(texture, x + 73, y + 69 - menu.getScalledwater() , 177, 0, 16, menu.getScalledwater());
         }
     }
     private void renderSnow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasSnow()) {
-            guiGraphics.blit(texture, x + 38, y + 69 - menu.GetSnowPos(), 195, 1, 7, menu.getScalledsnow());
+            guiGraphics.blit(texture, x + 38, y + 69 - menu.getScalledsnow(), 195, 1, 7, menu.getScalledsnow());
         }
     }
 

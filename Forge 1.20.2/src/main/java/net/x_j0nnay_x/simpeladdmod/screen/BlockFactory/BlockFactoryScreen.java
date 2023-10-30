@@ -5,15 +5,11 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 public class BlockFactoryScreen extends AbstractContainerScreen<BlockFactoryMenu> {
     private static final ResourceLocation texture = new ResourceLocation(simpeladdmod.MOD_ID, "textures/screens/blockfactory_gui.png");
-   // private static final ResourceLocation progArrow = new ResourceLocation(simpeladdmod.MOD_ID,"textures/screens/sprites/grinder_prog.png");
     public BlockFactoryScreen(BlockFactoryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
@@ -54,12 +50,12 @@ public class BlockFactoryScreen extends AbstractContainerScreen<BlockFactoryMenu
     }
     private void renderwater(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasWater()) {
-            guiGraphics.blit(texture, x + 12, y + 72 - menu.GetWaterPos(), 191, 0, 13, menu.getScalledwater());
+            guiGraphics.blit(texture, x + 12, y + 72 - menu.getScalledwater(), 191, 0, 13, menu.getScalledwater());
         }
     }
     private void renderlava(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasLava()) {
-            guiGraphics.blit(texture, x + 152, y + 72 - menu.GetLavaPos(), 177, 0, 13, menu.getScalledlava());
+            guiGraphics.blit(texture, x + 152, y + 72 - menu.getScalledlava(), 177, 0, 13, menu.getScalledlava());
         }
     }
     @Override

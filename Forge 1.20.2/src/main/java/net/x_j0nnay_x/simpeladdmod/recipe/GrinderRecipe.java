@@ -1,20 +1,14 @@
 package net.x_j0nnay_x.simpeladdmod.recipe;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
@@ -22,12 +16,12 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
 
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
-    private final ResourceLocation id;
+ //   private final ResourceLocation id;
 
-    public GrinderRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
+    public GrinderRecipe(NonNullList<Ingredient> inputItems, ItemStack output) {
         this.inputItems = inputItems;
         this.output = output;
-        this.id = id;
+       // this.id = id;
     }
 
     @Override
@@ -59,10 +53,10 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         return output.copy();
     }
 
- //   @Override
- //   public ResourceLocation getId() {
-   //     return id;
- //   }
+
+ /*   public ResourceLocation getId() {
+        return id;
+    }*/
 
     @Override
     public RecipeSerializer<?> getSerializer() {
@@ -79,21 +73,19 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         public static final String ID = "grinder";
     }
 
-
     public static class Serializer implements RecipeSerializer<GrinderRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(simpeladdmod.MOD_ID, "grinder");
 
-    /*    @Override
+ /*       @Override
         public GrinderRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
 
             for(int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromValues(ingredients.get(i));
+                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
             return new GrinderRecipe(inputs, output, pRecipeId);
@@ -101,9 +93,8 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
 
 
         @Override
-        public @NotNull Codec<GrinderRecipe> codec() {
-
-            return codec();
+        public Codec<GrinderRecipe> codec() {
+            return null;
         }
 
         @Override
@@ -115,7 +106,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
             }
 
             ItemStack output = pBuffer.readItem();
-            return new GrinderRecipe(inputs, output, ID);
+            return new GrinderRecipe(inputs, output);
         }
 
         @Override
@@ -129,5 +120,4 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
             pBuffer.writeItemStack(pRecipe.getResultItem(null), false);
         }
     }
-
 }

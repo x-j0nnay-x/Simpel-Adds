@@ -19,14 +19,14 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.block.entity.NetheriteCrafterBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class GrinderBlock extends BaseEntityBlock  {
+public class NetheriteCrafterBlock extends BaseEntityBlock  {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
-    public GrinderBlock(Properties pProperties) {
+    public NetheriteCrafterBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
@@ -53,31 +53,43 @@ public class GrinderBlock extends BaseEntityBlock  {
         super.onPlace(blockstate, world, pos, oldState, moving);
     }
     @Override
-    public  RenderShape getRenderShape(BlockState pState) {
+    public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof NetheriteCrafterBlockEntity be) {
+                Containers.dropContents(world, pos, be);
+                world.updateNeighbourForOutputSignal(pos, this);
+            }
+            super.onRemove(state, world, pos, newState, isMoving);
+        }
     }
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
-        if (!(be instanceof GrinderBlockEntity blockEntity))
+        if (!(be instanceof NetheriteCrafterBlockEntity blockEntity))
             return InteractionResult.PASS;
 
         if (pLevel.isClientSide())
             return InteractionResult.SUCCESS;
 
-    // open screen
+        // open screen
         if(pPlayer instanceof ServerPlayer sPlayer) {
             sPlayer.openMenu(blockEntity, pPos);
-    }
+        }
 
-    return InteractionResult.CONSUME;
-}
+        return InteractionResult.CONSUME;
+    }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new GrinderBlockEntity(pPos, pState);
+        return new NetheriteCrafterBlockEntity(pPos, pState);
     }
     @Override
     public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
@@ -93,18 +105,8 @@ public class GrinderBlock extends BaseEntityBlock  {
         if(pLevel.isClientSide()){
             return null;
         }
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.GRINDER.get(),
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.NETHERITE_CRAFTER.get(),
                 ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1)));
     }
-    @Override
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof GrinderBlockEntity be) {
-                Containers.dropContents(world, pos, be);
-                world.updateNeighbourForOutputSignal(pos, this);
-            }
-            super.onRemove(state, world, pos, newState, isMoving);
-        }
-    }
+
 }

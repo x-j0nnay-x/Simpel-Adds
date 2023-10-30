@@ -5,7 +5,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 public class ModRecipes {
