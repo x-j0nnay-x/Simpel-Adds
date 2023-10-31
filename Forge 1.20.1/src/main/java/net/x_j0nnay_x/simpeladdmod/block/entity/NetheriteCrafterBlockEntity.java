@@ -223,6 +223,7 @@ public class NetheriteCrafterBlockEntity extends RandomizableContainerBlockEntit
         return progress >= maxProgress;
     }
     private void craftItem() {
+
         ItemStack result = new ItemStack(Items.NETHERITE_INGOT, 1);
         this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
