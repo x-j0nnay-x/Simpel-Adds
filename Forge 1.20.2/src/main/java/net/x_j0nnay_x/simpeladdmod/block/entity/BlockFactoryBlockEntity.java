@@ -282,8 +282,12 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     }
     private void resetGrinds() {
         if(stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD.get())){
-            stacks.get(GRINDERSLOT).setDamageValue(stacks.get(GRINDERSLOT).getDamageValue() +1);
-            grindsleft = maxGrinds;
+            if(stacks.get(GRINDERSLOT).getDamageValue() >= stacks.get(GRINDERSLOT).getMaxDamage()){
+                stacks.set(GRINDERSLOT, ItemStack.EMPTY);
+            }else{
+                stacks.get(GRINDERSLOT).setDamageValue(stacks.get(GRINDERSLOT).getDamageValue() + 1);
+                grindsleft = maxGrinds;
+            }
         }else {
             grindsleft = 0;
         }

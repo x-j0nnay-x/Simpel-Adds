@@ -11,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
+import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
@@ -26,6 +27,8 @@ public class ModMenuType {
             registerMenuType("chillermenu", ChillerMenu::new);
     public static final  RegistryObject<MenuType<NetheriteCrafterMenu>> Netherite_Menu =
             registerMenuType("netheritemenu", NetheriteCrafterMenu::new);
+    public static final  RegistryObject<MenuType<StoneSifterMenu>> STONESIFTER_MENU =
+            registerMenuType("stonesiftermenu", StoneSifterMenu::new);
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }
