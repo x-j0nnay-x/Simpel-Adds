@@ -292,6 +292,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
             grindsleft = 0;
         }
     }
+   
     private boolean isFull(){
         if (!CobbleSpace() && !GravalSpace() && !SandSpace() && !ObslidanSpace()){
             return true;
@@ -300,6 +301,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     }
     private boolean isWorking() {
         if(hasLiquid() && !isFull()){
+
             return true;
         }
         return false;
