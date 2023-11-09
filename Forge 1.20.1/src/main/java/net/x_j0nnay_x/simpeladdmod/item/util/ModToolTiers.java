@@ -13,11 +13,13 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 
 public class ModToolTiers {
+    /*
     public static final ForgeTier OBSIDIANTIER = new ForgeTier(
             3,
             1900,
@@ -36,7 +38,9 @@ public class ModToolTiers {
             ModTags.Blocks.OBSIDIANTOOL,
             () -> Ingredient.of(Items.NETHERITE_INGOT)
     );
-/*
+
+     */
+
     public static final Tier OBSIDIANTIER = TierSortingRegistry.registerTier(new ForgeTier
                     (3, 1900, 4.08f, 4.4f, 14, ModTags.Blocks.OBSIDIANTOOL, () -> Ingredient.of(ModItems.OBSIDAININGOT.get())),
             new ResourceLocation(simpeladdmod.MOD_ID, "obsidiantear"), List.of(Tiers.DIAMOND), List.of());
@@ -45,7 +49,7 @@ public class ModToolTiers {
                     (4, 2900, 5.25f, 3.5f, 22, ModTags.Blocks.OBSIDIANTOOL, () -> Ingredient.of(Items.NETHERITE_INGOT)),
             new ResourceLocation(simpeladdmod.MOD_ID, "obsidiritetear"), List.of(Tiers.NETHERITE), List.of());
 
- */
+
 
 
 
