@@ -7,10 +7,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 public class StoneSifterScreen extends AbstractContainerScreen<StoneSifterMenu> {
-    private static final ResourceLocation texture = new ResourceLocation(simpeladdmod.MOD_ID, "textures/screens/cobbleshifter_gui.png");
+    private static final ResourceLocation texture = new ResourceLocation(Simpeladd.MOD_ID, "textures/screens/cobbleshifter_gui.png");
     public StoneSifterScreen(StoneSifterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

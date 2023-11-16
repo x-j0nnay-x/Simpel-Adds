@@ -1,59 +1,69 @@
 package net.x_j0nnay_x.simpeladdmod.item.util;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.Item;
+
+
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.ForgeTier;
-import net.minecraftforge.common.TierSortingRegistry;
-import net.minecraftforge.common.data.BlockTagsProvider;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
-import net.x_j0nnay_x.simpeladdmod.until.ModTags;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.function.Supplier;
 
 
-public class ModToolTiers {
-    /*
-    public static final ForgeTier OBSIDIANTIER = new ForgeTier(
-            3,
-            1900,
-            4.08f,
-            7,
-            14,
-            ModTags.Blocks.OBSIDIANTOOL,
-            () -> Ingredient.of(ModItems.OBSIDAININGOT::get)
-    );
-    public static final ForgeTier OBSIDIRITETTIER = new ForgeTier(
-            4,
-            2900,
-            5.25f,
-            8,
-            20,
-            ModTags.Blocks.OBSIDIANTOOL,
-            () -> Ingredient.of(Items.NETHERITE_INGOT)
-    );
-
-     */
-
-    public static final Tier OBSIDIANTIER = TierSortingRegistry.registerTier(new ForgeTier
-                    (3, 1900, 4.08f, 4.4f, 14, ModTags.Blocks.OBSIDIANTOOL, () -> Ingredient.of(ModItems.OBSIDAININGOT.get())),
-            new ResourceLocation(simpeladdmod.MOD_ID, "obsidiantear"), List.of(Tiers.DIAMOND), List.of());
-
-    public static final Tier OBSIDIRITETTIER = TierSortingRegistry.registerTier(new ForgeTier
-                    (4, 2900, 5.25f, 3.5f, 22, ModTags.Blocks.OBSIDIANTOOL, () -> Ingredient.of(Items.NETHERITE_INGOT)),
-            new ResourceLocation(simpeladdmod.MOD_ID, "obsidiritetear"), List.of(Tiers.NETHERITE), List.of());
+public enum ModToolTiers implements Tier {
 
 
+    OBSIDIANTIER(3, 1900, 8.9f, 3.5f, 14,
+            () -> Ingredient.of(ModItems.OBSIDAININGOT.get())),
+    OBSIDIRITETTIER(4, 2900, 11.1f, 4.5f, 22,
+            () -> Ingredient.of(Items.NETHERITE_INGOT));
+
+    private final int miningLevel;
+    private final int itemDurability;
+    private final float miningSpeed;
+    private final float attackDamage;
+    private final int enchantability;
+    private final Supplier<Ingredient> repairIngredient;
+
+
+    ModToolTiers(int miningLevel, int itemDurability, float miningSpeed, float attckDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
+        this.miningLevel = miningLevel;
+        this.itemDurability = itemDurability;
+        this.miningSpeed = miningSpeed;
+        this.attackDamage = attckDamage;
+        this.enchantability = enchantability;
+        this.repairIngredient = repairIngredient;
+    }
+
+    @Override
+    public int getUses() {
+        return this.itemDurability;
+    }
+
+    @Override
+    public float getSpeed() {
+        return this.miningSpeed;
+    }
+
+    @Override
+    public float getAttackDamageBonus() {
+        return this.attackDamage;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.miningLevel;
+    }
+
+    @Override
+    public int getEnchantmentValue() {
+        return this.enchantability;
+    }
 
 
 
-
-//ModTags.Blocks.OBSIDIANTOOL
-
+    @Override
+    public Ingredient getRepairIngredient() {
+        return this.repairIngredient.get();
+    }
 }

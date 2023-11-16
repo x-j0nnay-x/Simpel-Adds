@@ -12,15 +12,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 
 
 public class GrinderCategory implements IRecipeCategory<GrinderRecipe> {
-    public static final ResourceLocation UID = new ResourceLocation(simpeladdmod.MOD_ID, "grinder");
-    public static final ResourceLocation TEXTURE = new ResourceLocation(simpeladdmod.MOD_ID,
+    public static final ResourceLocation UID = new ResourceLocation(Simpeladd.MOD_ID, "grinder");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(Simpeladd.MOD_ID,
             "textures/screens/sprites/jei/grinder.png");
     public static final RecipeType<GrinderRecipe> GRINDER_RECIPE_RECIPE_TYPE =
             new RecipeType<>(UID, GrinderRecipe.class);

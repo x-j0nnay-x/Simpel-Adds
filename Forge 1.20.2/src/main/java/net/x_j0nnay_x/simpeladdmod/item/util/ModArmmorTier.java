@@ -7,7 +7,7 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import java.util.function.Supplier;
 
 public enum ModArmmorTier implements ArmorMaterial {
@@ -63,7 +63,7 @@ public enum ModArmmorTier implements ArmorMaterial {
     }
 
     public String getName() {
-        return simpeladdmod.MOD_ID + ":" + this.name;
+        return Simpeladd.MOD_ID + ":" + this.name;
     }
 
     public float getToughness() {

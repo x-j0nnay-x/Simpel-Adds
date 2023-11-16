@@ -13,11 +13,11 @@ import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 public class ModMenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.MENU_TYPES, simpeladdmod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.MENU_TYPES, Simpeladd.MOD_ID);
 
     public static final  RegistryObject<MenuType<GrinderMenu>> GRINDER_MENU =
             registerMenuType("grindermenu", GrinderMenu::new);
@@ -34,5 +34,8 @@ public class ModMenuType {
     }
     public static void  register(IEventBus eventBus){
         MENUS.register(eventBus);
+    }
+    public static void registerModMenus(){
+        Simpeladd.LOGGER.info("Registering Mod Menus for " + Simpeladd.MOD_ID);
     }
 }

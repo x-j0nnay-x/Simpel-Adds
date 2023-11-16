@@ -1,17 +1,18 @@
 package net.x_j0nnay_x.simpeladdmod.item;
 
 import net.minecraft.world.item.*;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.item.custom.grinderHead;
 import net.x_j0nnay_x.simpeladdmod.item.util.*;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
+
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, simpeladdmod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, Simpeladd.MOD_ID);
 
     public static final RegistryObject<Item> SIMPEL_ELITRA_HALF = ITEMS.register("simpel_elitra_half", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SIMPEL_ELITRA_PART1 = ITEMS.register("simpel_elitra_part1", () -> new Item(new Item.Properties()));
@@ -50,11 +51,11 @@ public class ModItems {
     public static final RegistryObject<Item> OBSIDAININGOT  = ITEMS.register("obsidianingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> OBSIDAINDUST  = ITEMS.register("obsidiandust", () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<SwordItem> OBSIDIANSWORD = ITEMS.register("obsidiansword", () -> new SwordItem(ModToolTiers.OBSIDIANTIER, 4, 3f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<PickaxeItem> OBSIDIANPICKAXE = ITEMS.register("obsidianpickaxe", () -> new PickaxeItem(ModToolTiers.OBSIDIANTIER, 2, 2f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<AxeItem> OBSIDAINAXE = ITEMS.register("obsidianaxe", () -> new AxeItem(ModToolTiers.OBSIDIANTIER, 6, 3f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<ShovelItem> OBSIDIANSPADE = ITEMS.register("obsidianspade", () -> new ShovelItem(ModToolTiers.OBSIDIANTIER, 3, 3f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<HoeItem> OBSIDIANHOE = ITEMS.register("obsidianhoe", () -> new HoeItem(ModToolTiers.OBSIDIANTIER, -2, 0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<SwordItem> OBSIDIANSWORD = ITEMS.register("obsidiansword", () -> new SwordItem(ModToolTiers.OBSIDIANTIER, 3, -2.4f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<PickaxeItem> OBSIDIANPICKAXE = ITEMS.register("obsidianpickaxe", () -> new PickaxeItem(ModToolTiers.OBSIDIANTIER, 1, -2.8f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<AxeItem> OBSIDAINAXE = ITEMS.register("obsidianaxe", () -> new AxeItem(ModToolTiers.OBSIDIANTIER, 5, 3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<ShovelItem> OBSIDIANSPADE = ITEMS.register("obsidianspade", () -> new ShovelItem(ModToolTiers.OBSIDIANTIER, 1.5f, -3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<HoeItem> OBSIDIANHOE = ITEMS.register("obsidianhoe", () -> new HoeItem(ModToolTiers.OBSIDIANTIER, 0, -3.0f, new Item.Properties().fireResistant()));
 
     public static final RegistryObject<Item> OBSIDIANHELMET = ITEMS.register("obsidianhelmit", () -> new ArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
     public static final RegistryObject<Item> OBSIDIANCHEST = ITEMS.register("obsidianchest", () -> new ArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
@@ -63,11 +64,12 @@ public class ModItems {
 
 
 //obsidirite tear
-    public static final RegistryObject<SwordItem> OBSIDIRITESWORD = ITEMS.register("obsidiritesword", () -> new SwordItem(ModToolTiers.OBSIDIRITETTIER, 5, 1f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<PickaxeItem> OBSIDIRITEPICKAXE = ITEMS.register("obsidiritepickaxe", () -> new PickaxeItem(ModToolTiers.OBSIDIRITETTIER, 2, 2f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<AxeItem> OBSIDIRITEAXE = ITEMS.register("obsidiriteaxe", () -> new AxeItem(ModToolTiers.OBSIDIRITETTIER, 6, 3f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<ShovelItem> OBSIDIRITESPADE = ITEMS.register("obsidiritespade", () -> new ShovelItem(ModToolTiers.OBSIDIRITETTIER, 3, 3f, new Item.Properties().fireResistant()));
-    public static final RegistryObject<HoeItem> OBSIDIRITEHOE = ITEMS.register("obsidiritehoe", () -> new HoeItem(ModToolTiers.OBSIDIRITETTIER, -3, 0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<SwordItem> OBSIDIRITESWORD = ITEMS.register("obsidiritesword", () -> new SwordItem(ModToolTiers.OBSIDIRITETTIER, 3, -2.4f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<PickaxeItem> OBSIDIRITEPICKAXE = ITEMS.register("obsidiritepickaxe", () -> new PickaxeItem(ModToolTiers.OBSIDIRITETTIER, 1, -2.8f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<AxeItem> OBSIDIRITEAXE = ITEMS.register("obsidiriteaxe", () -> new AxeItem(ModToolTiers.OBSIDIRITETTIER, 5, 3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<ShovelItem> OBSIDIRITESPADE = ITEMS.register("obsidiritespade", () -> new ShovelItem(ModToolTiers.OBSIDIRITETTIER, 1.5f, -3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<HoeItem> OBSIDIRITEHOE = ITEMS.register("obsidiritehoe", () -> new HoeItem(ModToolTiers.OBSIDIRITETTIER, 0, -3.0f, new Item.Properties().fireResistant()));
+
 
     public static final RegistryObject<Item> OBSIDIRITEHELMET = ITEMS.register("obsidiritehelmit", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
     public static final RegistryObject<Item> OBSIDIRITECHEST = ITEMS.register("obsidiritechest", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
@@ -79,5 +81,8 @@ public class ModItems {
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
+    }
+    public static void registerModItems(){
+        Simpeladd.LOGGER.info("Registering Mod Items for " + Simpeladd.MOD_ID);
     }
 }

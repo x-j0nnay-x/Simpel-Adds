@@ -11,16 +11,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
-import java.util.List;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 @JeiPlugin
 public class JEISimpeladdPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(simpeladdmod.MOD_ID, "jei_plugin");
+        return new ResourceLocation(Simpeladd.MOD_ID, "jei_plugin");
     }
 
     @Override

@@ -9,11 +9,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 public class ModCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, simpeladdmod.MOD_ID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Simpeladd.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> SIMPEL_TAB = CREATIVE_MODE_TABS.register("simpel_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.GRINDERHEAD.get()))
@@ -91,5 +91,8 @@ public class ModCreativeTab {
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
+    }
+    public static void registerCreativeTab(){
+        Simpeladd.LOGGER.info("Registering Creative Tab For " + Simpeladd.MOD_ID);
     }
 }

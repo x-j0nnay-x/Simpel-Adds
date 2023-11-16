@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+
+  "ingredient": {
+    "item": "simpeladdmod:flesh"
+  },
+
+  "result": "minecraft:leather",
+  "experience": 0.8,
+  "cookingtime": 50
+
+
+}

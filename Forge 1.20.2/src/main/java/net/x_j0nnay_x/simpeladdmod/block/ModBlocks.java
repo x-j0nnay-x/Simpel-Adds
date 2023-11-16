@@ -11,14 +11,15 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.custom.*;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
+
 import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, simpeladdmod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCKS, Simpeladd.MOD_ID);
 
     public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
@@ -44,7 +45,9 @@ public class ModBlocks {
     private static  <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block){
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
-
+    public static void registerModBlocks(){
+        Simpeladd.LOGGER.info("Registering Mod Blocks for " + Simpeladd.MOD_ID);
+    }
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }

@@ -6,10 +6,10 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.x_j0nnay_x.simpeladdmod.simpeladdmod;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
-    private static final ResourceLocation texture = new ResourceLocation(simpeladdmod.MOD_ID, "textures/screens/grinder_gui.png");
+    private static final ResourceLocation texture = new ResourceLocation(Simpeladd.MOD_ID, "textures/screens/grinder_gui.png");
     public GrinderScreen(GrinderMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

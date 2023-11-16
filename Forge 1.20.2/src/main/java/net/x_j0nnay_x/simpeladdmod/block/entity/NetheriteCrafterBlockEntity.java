@@ -24,6 +24,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
+import net.x_j0nnay_x.simpeladdmod.block.custom.NetheriteCrafterBlock;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -166,7 +167,7 @@ public class NetheriteCrafterBlockEntity extends RandomizableContainerBlockEntit
 
     //process
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
-        pState = pState.setValue(BlockFactoryBlock.WORKING, Boolean.valueOf(isWorking()));
+        pState = pState.setValue(NetheriteCrafterBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
             if(hasRecipe()) {
                 if (hasSpace() && blazeUse > 0) {
