@@ -41,8 +41,10 @@ public class ModItems {
     public static final RegistryObject<Item> BLANKUPGRADE  = ITEMS.register("blankupgrade", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BLANKUPGRADE_RAW   = ITEMS.register("blankupgrade_raw", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> OBSIDIANUPGRADE_SMITHING   = ITEMS.register("obsidian_upgrade_smithing", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> UNOBTANIUMUPGRADE_SMITHING   = ITEMS.register("unobtanium_upgrade_smithing", () -> new Item(new Item.Properties()));
 
-//dusts
+
+    //dusts
     public static final RegistryObject<Item> COPPERDUST = ITEMS.register("copperdust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> IRONDUST = ITEMS.register("irondust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GOLDDUST = ITEMS.register("golddust", () -> new Item(new Item.Properties()));
@@ -77,6 +79,34 @@ public class ModItems {
     public static final RegistryObject<Item> OBSIDIRITELEGS = ITEMS.register("obsidiritelegs", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> OBSIDIRITEBOOTS = ITEMS.register("obsidiriteboots", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.BOOTS, new Item.Properties()));
 
+    //unobtain stuffs
+    public static final RegistryObject<Item> UNOBTIANIUMDUST = ITEMS.register("unobtaniumdust", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> UNOBTIANIUMSCRAP = ITEMS.register("unobtanium_scrap", () -> new Item(new Item.Properties()));
+
+    //netherite boosted
+    public static final RegistryObject<SwordItem> UNOBTIANNETHERITESWORD = ITEMS.register("unobtainnetheritesword", () -> new SwordItem(ModToolTiers.UNOBTAINNETHERITETIER, 3, -2.4f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<PickaxeItem> UNOBTIANNETHERITEPICKAXE = ITEMS.register("unobtainnetheritepickaxe", () -> new PickaxeItem(ModToolTiers.UNOBTAINNETHERITETIER, 1, -2.8f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<AxeItem> UNOBTIANNETHERITEAXE = ITEMS.register("unobtainnetheriteaxe", () -> new AxeItem(ModToolTiers.UNOBTAINNETHERITETIER, 5, 3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<ShovelItem> UNOBTIANNETHERITESPADE = ITEMS.register("unobtainnetheritespade", () -> new ShovelItem(ModToolTiers.UNOBTAINNETHERITETIER, 1.5f, -3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<HoeItem> UNOBTIANNETHERITEHOE = ITEMS.register("unobtainnetheritehoe", () -> new HoeItem(ModToolTiers.UNOBTAINNETHERITETIER, 0, -3.0f, new Item.Properties().fireResistant()));
+
+
+    public static final RegistryObject<Item> UNOBTIANNETHERITEHELMET = ITEMS.register("unobtainnetheritehelmit", () -> new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> UNOBTIANNETHERITECHEST = ITEMS.register("unobtainnetheritechest", () -> new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> UNOBTIANNETHERITELEGS = ITEMS.register("unobtainnetheritelegs", () -> new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> UNOBTIANNETHERITEBOOTS = ITEMS.register("unobtainnetheriteboots", () -> new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
+    //obsidirite boosted
+    public static final RegistryObject<SwordItem> UNOBTIANOBSIDIRITESWORD = ITEMS.register("unobtainobsidiritesword", () -> new SwordItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 3, -2.4f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<PickaxeItem> UNOBTIANOBSIDIRITEPICKAXE = ITEMS.register("unobtainobsidiritepickaxe", () -> new PickaxeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 1, -2.8f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<AxeItem> UNOBTIANOBSIDIRITEAXE = ITEMS.register("unobtainobsidiriteaxe", () -> new AxeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 5, 3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<ShovelItem> UNOBTIANOBSIDIRITESPADE = ITEMS.register("unobtainobsidiritespade", () -> new ShovelItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 1.5f, -3.0f, new Item.Properties().fireResistant()));
+    public static final RegistryObject<HoeItem> UNOBTIANOBSIDIRITEHOE = ITEMS.register("unobtainobsidiritehoe", () -> new HoeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 0, -3.0f, new Item.Properties().fireResistant()));
+
+
+    public static final RegistryObject<Item> UNOBTIANOBSIDIRITEHELMET = ITEMS.register("unobtainobsidiritehelmit", () -> new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> UNOBTIANOBSIDIRITECHEST = ITEMS.register("unobtainobsidiritechest", () -> new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> UNOBTIANOBSIDIRITELEGS = ITEMS.register("unobtainobsidiritelegs", () -> new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> UNOBTIANOBSIDIRITEBOOTS = ITEMS.register("unobtainobsidiriteboots", () -> new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
 
 
     public static void registerModItems(){

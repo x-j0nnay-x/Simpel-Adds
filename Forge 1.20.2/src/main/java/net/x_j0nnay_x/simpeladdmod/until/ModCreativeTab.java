@@ -37,6 +37,7 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.BLANKUPGRADE.get());
                         pOutput.accept(ModItems.BLANKUPGRADE_RAW.get());
                         pOutput.accept(ModItems.OBSIDIANUPGRADE_SMITHING.get());
+                        pOutput.accept(ModItems.UNOBTANIUMUPGRADE_SMITHING.get());
 
                         pOutput.accept(ModItems.GOLDDUST.get());
                         pOutput.accept(ModItems.IRONDUST.get());
@@ -53,6 +54,9 @@ public class ModCreativeTab {
 
                         pOutput.accept(ModItems.NEHTERITE_SHARD.get());
                         pOutput.accept(ModItems.NEHTERITE_SHARD_RAW.get());
+
+                        pOutput.accept(ModItems.UNOBTIANIUMDUST.get());
+                        pOutput.accept(ModItems.UNOBTIANIUMSCRAP.get());
 
                         pOutput.accept(ModItems.OBSIDAINAXE.get());
                         pOutput.accept(ModItems.OBSIDIANHOE.get());
@@ -77,6 +81,27 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.OBSIDIRITELEGS.get());
                         pOutput.accept(ModItems.OBSIDIRITEBOOTS.get());
 
+                        pOutput.accept(ModItems.UNOBTIANNETHERITEAXE.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITEHOE.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITESWORD.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITEPICKAXE.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITESPADE.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITEHELMET.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITECHEST.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITELEGS.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITEBOOTS.get());
+
+
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITEAXE.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITEHOE.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITESWORD.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITEPICKAXE.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITESPADE.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITEHELMET.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITECHEST.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITELEGS.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITEBOOTS.get());
+
                         //block
                         pOutput.accept(ModBlocks.DEEPSLATE_DEBRI_ORE.get());
                         pOutput.accept(ModBlocks.GRINDER_BLOCK.get());
@@ -84,7 +109,7 @@ public class ModCreativeTab {
                         pOutput.accept(ModBlocks.CHILLER.get());
                         pOutput.accept(ModBlocks.NETHERITE_CRAFTER.get());
                         pOutput.accept(ModBlocks.STONE_SHIFTER.get());
-
+                        pOutput.accept(ModBlocks.UNOBTANIUM_ORE.get());
 
                     })
                     .build());

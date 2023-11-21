@@ -42,8 +42,10 @@ public class ModItems {
     public static final Item BLANKUPGRADE  = registerItem("blankupgrade", new Item(new FabricItemSettings()));
     public static final Item BLANKUPGRADE_RAW   = registerItem("blankupgrade_raw", new Item(new FabricItemSettings()));
     public static final Item OBSIDIANUPGRADE_SMITHING   = registerItem("obsidian_upgrade_smithing", new Item(new FabricItemSettings()));
+    public static final Item UNOBTANIUMUPGRADE_SMITHING   = registerItem("unobtanium_upgrade_smithing",  new Item(new FabricItemSettings()));
 
-//dusts
+
+    //dusts
     public static final Item COPPERDUST = registerItem("copperdust", new Item(new FabricItemSettings()));
     public static final Item IRONDUST = registerItem("irondust", new Item(new FabricItemSettings()));
     public static final Item GOLDDUST = registerItem("golddust", new Item(new FabricItemSettings()));
@@ -76,6 +78,34 @@ public class ModItems {
     public static final Item OBSIDIRITECHEST = registerItem("obsidiritechest", new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
     public static final Item OBSIDIRITELEGS = registerItem("obsidiritelegs", new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
     public static final Item OBSIDIRITEBOOTS = registerItem("obsidiriteboots", new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
+    //unobtain stuffs
+    public static final Item UNOBTIANIUMDUST = registerItem("unobtaniumdust",  new Item(new FabricItemSettings()));
+    public static final Item UNOBTIANIUMSCRAP = registerItem("unobtanium_scrap",  new Item(new FabricItemSettings()));
+
+    //netherite boosted
+    public static final Item UNOBTIANNETHERITESWORD = registerItem("unobtainnetheritesword",  new SwordItem(ModToolTiers.UNOBTAINNETHERITETIER, 3, -2.4f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANNETHERITEPICKAXE = registerItem("unobtainnetheritepickaxe",  new PickaxeItem(ModToolTiers.UNOBTAINNETHERITETIER, 1, -2.8f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANNETHERITEAXE = registerItem("unobtainnetheriteaxe",  new AxeItem(ModToolTiers.UNOBTAINNETHERITETIER, 5, 3.0f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANNETHERITESPADE = registerItem("unobtainnetheritespade",  new ShovelItem(ModToolTiers.UNOBTAINNETHERITETIER, 1.5f, -3.0f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANNETHERITEHOE = registerItem("unobtainnetheritehoe",  new HoeItem(ModToolTiers.UNOBTAINNETHERITETIER, 0, -3.0f, new FabricItemSettings().fireproof()));
+
+
+    public static final Item UNOBTIANNETHERITEHELMET = registerItem("unobtainnetheritehelmit",  new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANNETHERITECHEST = registerItem("unobtainnetheritechest",  new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANNETHERITELEGS = registerItem("unobtainnetheritelegs",  new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANNETHERITEBOOTS = registerItem("unobtainnetheriteboots",  new ArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
+    //obsidirite boosted
+    public static final Item UNOBTIANOBSIDIRITESWORD = registerItem("unobtainobsidiritesword",  new SwordItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 3, -2.4f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANOBSIDIRITEPICKAXE = registerItem("unobtainobsidiritepickaxe",  new PickaxeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 1, -2.8f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANOBSIDIRITEAXE = registerItem("unobtainobsidiriteaxe",  new AxeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 5, 3.0f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANOBSIDIRITESPADE = registerItem("unobtainobsidiritespade",  new ShovelItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 1.5f, -3.0f, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANOBSIDIRITEHOE = registerItem("unobtainobsidiritehoe",  new HoeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 0, -3.0f, new FabricItemSettings().fireproof()));
+
+
+    public static final Item UNOBTIANOBSIDIRITEHELMET = registerItem("unobtainobsidiritehelmit",  new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANOBSIDIRITECHEST = registerItem("unobtainobsidiritechest",  new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANOBSIDIRITELEGS = registerItem("unobtainobsidiritelegs",  new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
+    public static final Item UNOBTIANOBSIDIRITEBOOTS = registerItem("unobtainobsidiriteboots",  new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
 
 

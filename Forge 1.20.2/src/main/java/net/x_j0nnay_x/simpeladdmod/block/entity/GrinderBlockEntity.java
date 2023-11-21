@@ -28,6 +28,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
+import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
@@ -298,6 +299,12 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
                 stacks.set(OUTPUTSLOT, new ItemStack(ModItems.WOODFIBER.get(), stacks.get(OUTPUTSLOT).getCount() + 8));
             }
         }
+        if(stacks.get(INPUTSLOT).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())){
+            if(canInsertOutputItem(ModItems.UNOBTIANIUMDUST.get()) && canInsertOutputAmount(outputAmount)) {
+                this.removeItem(INPUTSLOT, 1);
+                stacks.set(OUTPUTSLOT, new ItemStack(ModItems.UNOBTIANIUMDUST.get(), stacks.get(OUTPUTSLOT).getCount() + 2));
+            }
+        }
 
 
         /*
@@ -330,7 +337,7 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
     private boolean hasRecipe() {
         if(this.stacks.get(INPUTSLOT).is(ModTags.Items.CANGRIND)){
             if(this.stacks.get(INPUTSLOT).is(Items.RAW_GOLD) || this.stacks.get(INPUTSLOT).is(Items.RAW_IRON) ||this.stacks.get(INPUTSLOT).is(Items.RAW_COPPER) ||this.stacks.get(INPUTSLOT).is(Items.OBSIDIAN) ||
-                    this.stacks.get(INPUTSLOT).is(Items.ANCIENT_DEBRIS) ||this.stacks.get(INPUTSLOT).is(ModItems.NEHTERITE_SHARD_RAW.get())){
+                    this.stacks.get(INPUTSLOT).is(Items.ANCIENT_DEBRIS) ||this.stacks.get(INPUTSLOT).is(ModItems.NEHTERITE_SHARD_RAW.get()) || this.stacks.get(INPUTSLOT).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())){
                 doubleCrafting();
             }
             if(this.stacks.get(INPUTSLOT).is(ItemTags.IRON_ORES) || this.stacks.get(INPUTSLOT).is(ItemTags.COPPER_ORES) ||this.stacks.get(INPUTSLOT).is(ModTags.Items.RAW_GOLD_DROPPER) ||this.stacks.get(INPUTSLOT).is(Items.BLAZE_ROD)){

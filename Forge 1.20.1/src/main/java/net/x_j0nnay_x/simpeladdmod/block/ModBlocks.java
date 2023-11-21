@@ -25,7 +25,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
                     .requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
-
+    public static final RegistryObject<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                    .requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
             () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 

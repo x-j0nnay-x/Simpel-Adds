@@ -16,14 +16,20 @@ import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import java.util.List;
 
 public class ModPlacedFeatures {
-    public static final ResourceKey<PlacedFeature> DEEPSLATE_DEBRI_ORE_KEY = registerKey("deepslate_debri_ore");
+    public static final ResourceKey<PlacedFeature> DEEPSLATE_DEBRI_ORE_PLACE_KEY = registerKey("place_deepslate_debri_ore");
+    public static final ResourceKey<PlacedFeature> UNOBTANIUM_ORE_PLACED_KEY = registerKey("place_unobtanium_ore");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
-        register(context, DEEPSLATE_DEBRI_ORE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_DEBRI_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(4,
-                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-1))));
+        register(context, DEEPSLATE_DEBRI_ORE_PLACE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_DEBRI_ORE_KEY),
+                ModOrePlacement.commonOrePlacement(16,
+                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-60), VerticalAnchor.absolute(-5))));
+
+        register(context, UNOBTANIUM_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.UNOBTANIUM_ORE_KEY),
+                ModOrePlacement.commonOrePlacement(1,
+                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(80))));
+
 
     }
 

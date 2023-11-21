@@ -37,12 +37,14 @@ public class ModCreativeTab {
                         entries.add(ModItems.BLANKUPGRADE);
                         entries.add(ModItems.BLANKUPGRADE_RAW);
                         entries.add(ModItems.OBSIDIANUPGRADE_SMITHING);
+                        entries.add(ModItems.UNOBTANIUMUPGRADE_SMITHING);
 
                         entries.add(ModItems.GOLDDUST);
                         entries.add(ModItems.IRONDUST);
                         entries.add(ModItems.COPPERDUST);
                         entries.add(ModItems.NETHERITEDUST);
                         entries.add(ModItems.NEHTERITE_SHARD_DUST);
+                        entries.add(ModItems.UNOBTIANIUMDUST);
 
                         entries.add(ModItems.SIMPEL_ELITRA_HALF);
                         entries.add(ModItems.SIMPEL_ELITRA_PART1);
@@ -53,6 +55,8 @@ public class ModCreativeTab {
 
                         entries.add(ModItems.NEHTERITE_SHARD);
                         entries.add(ModItems.NEHTERITE_SHARD_RAW);
+
+                        entries.add(ModItems.UNOBTIANIUMSCRAP);
 
                         entries.add(ModItems.OBSIDAINAXE);
                         entries.add(ModItems.OBSIDIANHOE);
@@ -77,6 +81,27 @@ public class ModCreativeTab {
                         entries.add(ModItems.OBSIDIRITELEGS);
                         entries.add(ModItems.OBSIDIRITEBOOTS);
 
+                        entries.add(ModItems.UNOBTIANNETHERITEAXE);
+                        entries.add(ModItems.UNOBTIANNETHERITEHOE);
+                        entries.add(ModItems.UNOBTIANNETHERITESWORD);
+                        entries.add(ModItems.UNOBTIANNETHERITEPICKAXE);
+                        entries.add(ModItems.UNOBTIANNETHERITESPADE);
+                        entries.add(ModItems.UNOBTIANNETHERITEHELMET);
+                        entries.add(ModItems.UNOBTIANNETHERITECHEST);
+                        entries.add(ModItems.UNOBTIANNETHERITELEGS);
+                        entries.add(ModItems.UNOBTIANNETHERITEBOOTS);
+
+
+                        entries.add(ModItems.UNOBTIANOBSIDIRITEAXE);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITEHOE);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITESWORD);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITEPICKAXE);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITESPADE);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITEHELMET);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITECHEST);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITELEGS);
+                        entries.add(ModItems.UNOBTIANOBSIDIRITEBOOTS);
+
                         //block
                         entries.add(ModBlocks.DEEPSLATE_DEBRI_ORE);
                         entries.add(ModBlocks.GRINDER_BLOCK);
@@ -84,7 +109,7 @@ public class ModCreativeTab {
                         entries.add(ModBlocks.CHILLER);
                         entries.add(ModBlocks.NETHERITE_CRAFTER);
                         entries.add(ModBlocks.STONE_SHIFTER);
-
+                        entries.add(ModBlocks.UNOBTANIUM_ORE);
 
                     }).build());
 

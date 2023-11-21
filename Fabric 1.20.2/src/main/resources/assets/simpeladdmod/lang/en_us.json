@@ -3,7 +3,8 @@
   "item.simpeladdmod.simpel_elitra_part1": "Simpel Wings Base",
   "item.simpeladdmod.simpel_elitra_part2": "Simpel Wings Support",
 
-  "item.simpeladdmod.grinderhead" : "Grinder Head",
+  "item.simpeladdmod.grinderhead" : "Grinder",
+  "item.simpeladdmod.grinderheadu" : "Grinder",
   "item.simpeladdmod.goldstick" : "Gold Stick",
   "item.simpeladdmod.woodfiber" : "Wood Fiber",
   "item.simpeladdmod.flesh" : "Flesh",
@@ -11,6 +12,9 @@
   "item.simpeladdmod.netherite_shard" : "Ancient Shards",
   "item.simpeladdmod.netherite_shard_dust" : "Ancient Shards Dust",
   "item.simpeladdmod.netherite_shard_raw" : "Raw Ancient Shards",
+
+  "item.simpeladdmod.unobtaniumdust" : "Unobtanium Dust",
+  "item.simpeladdmod.unobtanium_scrap" : "Unobtanium Scrap",
 
   "item.simpeladdmod.sandwich_beef" : "Beef Sandwich",
   "item.simpeladdmod.sandwich_pork" : "Ham Sandwich",
@@ -23,6 +27,7 @@
   "item.simpeladdmod.blankupgrade_raw" : "Unset Blank Upgrade",
   "item.simpeladdmod.blankupgrade" : "Blank Upgrade",
   "item.simpeladdmod.obsidian_upgrade_smithing" : "Obsidian Smithing Template",
+  "item.simpeladdmod.unobtanium_upgrade_smithing" : "Unobtanium Smithing Template",
 
   "item.simpeladdmod.irondust" : "Iron Dust",
   "item.simpeladdmod.copperdust" : "Copper Dust",
@@ -37,7 +42,6 @@
   "item.simpeladdmod.obsidianspade" : "Obsidian Shovel",
   "item.simpeladdmod.obsidianhoe" : "Obsidian Hoe",
   "item.simpeladdmod.obsidiansword" : "Obsidian Sword",
-
   "item.simpeladdmod.obsidianhelmit" : "Obsidian Helmet",
   "item.simpeladdmod.obsidianchest" : "Obsidian Chestplate",
   "item.simpeladdmod.obsidianlegs" : "Obsidian Leggings",
@@ -48,13 +52,33 @@
   "item.simpeladdmod.obsidiritespade" : "Obsidirite Shovel",
   "item.simpeladdmod.obsidiritehoe" : "Obsidirite Hoe",
   "item.simpeladdmod.obsidiritesword" : "Obsidirite Sword",
-
   "item.simpeladdmod.obsidiritehelmit" : "Obsidirite Helmet",
   "item.simpeladdmod.obsidiritechest" : "Obsidirite Chestplate",
   "item.simpeladdmod.obsidiritelegs" : "Obsidirite Leggings",
   "item.simpeladdmod.obsidiriteboots" : "Obsidirite Boots",
 
+  "item.simpeladdmod.unobtainnetheriteaxe": "Unobtan Netherite Axe",
+  "item.simpeladdmod.unobtainnetheritepickaxe" : "Unobtan Netherite Pickaxe",
+  "item.simpeladdmod.unobtainnetheritespade" : "Unobtan Netherite Shovel",
+  "item.simpeladdmod.unobtainnetheritehoe" : "Unobtan Netherite Hoe",
+  "item.simpeladdmod.unobtainnetheritesword" : "Unobtan Netherite Sword",
+  "item.simpeladdmod.unobtainnetheritehelmit" : "Unobtan Netherite Helmet",
+  "item.simpeladdmod.unobtainnetheritechest" : "Unobtan Netherite Chestplate",
+  "item.simpeladdmod.unobtainnetheritelegs" : "Unobtan Netherite Leggings",
+  "item.simpeladdmod.unobtainnetheriteboots" : "Unobtan Netherite Boots",
+
+  "item.simpeladdmod.unobtainobsidiriteaxe": "Unobtan Obsidirite Axe",
+  "item.simpeladdmod.unobtainobsidiritepickaxe" : "Unobtan Obsidirite Pickaxe",
+  "item.simpeladdmod.unobtainobsidiritespade" : "Unobtan Obsidirite Shovel",
+  "item.simpeladdmod.unobtainobsidiritehoe" : "Unobtan Obsidirite Hoe",
+  "item.simpeladdmod.unobtainobsidiritesword" : "Unobtan Obsidirite Sword",
+  "item.simpeladdmod.unobtainobsidiritehelmit" : "Unobtan Obsidirite Helmet",
+  "item.simpeladdmod.unobtainobsidiritechest" : "Unobtan Obsidirite Chestplate",
+  "item.simpeladdmod.unobtainobsidiritelegs" : "Unobtan Obsidirite Leggings",
+  "item.simpeladdmod.unobtainobsidiriteboots" : "Unobtan Obsidirite Boots",
+
   "block.simpeladdmod.deepslate_debri_ore" : "Deepslate Debri Ore",
+  "block.simpeladdmod.unobtanium_ore" : "Unobtanium Ore",
   "block.simpeladdmod.grinder_block": "Grinder",
   "block.simpeladdmod.blockfactory_block": "Block Factory",
   "block.simpeladdmod.chiller_block": "Chilling Block",

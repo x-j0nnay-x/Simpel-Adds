@@ -14,7 +14,11 @@ public enum ModToolTiers implements ToolMaterial {
     OBSIDIANTIER(3, 1900, 8.9f, 3.5f, 14,
                          () -> Ingredient.ofItems(ModItems.OBSIDAININGOT)),
     OBSIDIRITETTIER(4, 2900, 11.1f, 4.5f, 22,
-                            () -> Ingredient.ofItems(Items.NETHERITE_INGOT));
+                            () -> Ingredient.ofItems(Items.NETHERITE_INGOT)),
+    UNOBTAINNETHERITETIER(4, 3200, 11.8f, 4.8f, 22,
+            () -> Ingredient.ofItems(ModItems.UNOBTIANIUMSCRAP)),
+    UNOBTIANOBSIDIRITEATIER(4, 3900, 12.3f, 5.5f, 22,
+            () -> Ingredient.ofItems(ModItems.UNOBTIANIUMSCRAP));
 
     private final int miningLevel;
     private final int itemDurability;

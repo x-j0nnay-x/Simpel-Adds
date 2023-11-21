@@ -2,7 +2,7 @@ package net.x_j0nnay_x.simpeladdmod;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.x_j0nnay_x.simpeladdmod.World.ModOreGeneration;
+import net.x_j0nnay_x.simpeladdmod.World.Gen.ModWorldGeneration;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
@@ -25,6 +25,6 @@ public class Simpeladd implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModMenuType.registerScreenHandlers();
 		ModRecipes.registerRecipes();
-		ModOreGeneration.generateOres();
+		ModWorldGeneration.generateModWorldGen();
 	}
 }

@@ -24,7 +24,9 @@ public class ModBlocks {
              new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).nonOpaque()
                     .requiresTool(), UniformIntProvider.create(2,6)));
 
-
+    public static final Block UNOBTANIUM_ORE = registerBlock("unobtanium_ore",
+             new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).nonOpaque()
+                    .requiresTool()));
     public static final Block BLOCK_FACTORY = registerBlock("blockfactory_block",
              new BlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block CHILLER = registerBlock("chiller_block",

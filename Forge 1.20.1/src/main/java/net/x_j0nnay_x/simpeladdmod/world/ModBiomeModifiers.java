@@ -14,6 +14,7 @@ import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_DEEPSLATE_DEBRI_ORE = registerKey("add_deepslate_debri_ore");
+    public static final ResourceKey<BiomeModifier> ADD_UNOBTANIUM_ORE = registerKey("add_unobtanium_ore");
 
 
 
@@ -23,7 +24,11 @@ public class ModBiomeModifiers {
 
         context.register(ADD_DEEPSLATE_DEBRI_ORE, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.DEEPSLATE_DEBRI_ORE_KEY)),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.DEEPSLATE_DEBRI_ORE_PLACE_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_UNOBTANIUM_ORE, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_END),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.UNOBTANIUM_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
     }
 

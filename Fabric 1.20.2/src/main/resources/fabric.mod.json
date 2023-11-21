@@ -12,7 +12,7 @@
 		"sources": "https://github.com/x-j0nnay-x/Simpel-Adds/issues"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/simpeladd/icon.png",
+	"icon": "assets/simpeladdmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

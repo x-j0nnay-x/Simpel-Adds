@@ -18,7 +18,12 @@ public enum ModArmmorTier implements ArmorMaterial {
     SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 2.7f, 0.07f, () -> Ingredient.ofItems(ModItems.OBSIDAININGOT)),
 
     OBSIDIRITEA("obsidirite", 30, new int[]{ 3, 8, 6, 3 }, 24,
-            SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 2.7f, 0.07f, () -> Ingredient.ofItems(Items.NETHERITE_INGOT));
+            SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 2.7f, 0.07f, () -> Ingredient.ofItems(Items.NETHERITE_INGOT)),
+    UNOBTAINNETHERITE("unobtainnetherite", 45, new int[]{ 3, 8, 6, 3 }, 24,
+    SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.2f, 0.23f, () -> Ingredient.ofItems(ModItems.UNOBTIANIUMSCRAP)),
+    UNOBTIANOBSIDIRITEA("unobtainobsidirite", 48, new int[]{ 3, 8, 6, 3 }, 24,
+    SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.9f, 0.3f, () -> Ingredient.ofItems(ModItems.UNOBTIANIUMSCRAP));
+
 
 
     public final String name;

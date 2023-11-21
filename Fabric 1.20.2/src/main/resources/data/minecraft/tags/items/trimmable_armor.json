@@ -5,9 +5,20 @@
     "simpeladdmod:obsidianchest",
     "simpeladdmod:obsidianlegs",
     "simpeladdmod:obsidianboots",
+
     "simpeladdmod:obsidiritehelmit",
     "simpeladdmod:obsidiritechest",
     "simpeladdmod:obsidiritelegs",
-    "simpeladdmod:obsidiriteboots"
+    "simpeladdmod:obsidiriteboots",
+
+    "simpeladdmod:unobtainnetheritehelmit",
+    "simpeladdmod:unobtainnetheritechest",
+    "simpeladdmod:unobtainnetheritelegs",
+    "simpeladdmod:unobtainnetheriteboots",
+
+    "simpeladdmod:unobtainobsidiritehelmit",
+    "simpeladdmod:unobtainobsidiritechest",
+    "simpeladdmod:unobtainobsidiritelegs",
+    "simpeladdmod:unobtainobsidiriteboots"
   ]
 }

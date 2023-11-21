@@ -1,0 +1,69 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_quartz",
+      "predicate": {
+        "minecraft:trim_type": 0.1
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_iron",
+      "predicate": {
+        "minecraft:trim_type": 0.2
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_netherite",
+      "predicate": {
+        "minecraft:trim_type": 0.3
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_redstone",
+      "predicate": {
+        "minecraft:trim_type": 0.4
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_copper",
+      "predicate": {
+        "minecraft:trim_type": 0.5
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_gold",
+      "predicate": {
+        "minecraft:trim_type": 0.6
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_emerald",
+      "predicate": {
+        "minecraft:trim_type": 0.7
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_diamond",
+      "predicate": {
+        "minecraft:trim_type": 0.8
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_lapis",
+      "predicate": {
+        "minecraft:trim_type": 0.9
+      }
+    },
+    {
+      "model": "simpeladdmod:item/unobtainobsidiritelegs_trim_amethyst",
+      "predicate": {
+        "minecraft:trim_type": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "simpeladdmod:item/unobtainobsidiritelegs"
+  }
+
+}
