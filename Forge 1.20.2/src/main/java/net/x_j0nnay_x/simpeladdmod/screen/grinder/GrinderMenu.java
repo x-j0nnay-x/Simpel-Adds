@@ -21,11 +21,11 @@ public class GrinderMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public GrinderMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
     public GrinderMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.GRINDER_MENU.get(), pContainerID);
-        checkContainerSize(inv, 3);
+        checkContainerSize(inv, 4);
         blockEntity = ((GrinderBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -50,6 +50,17 @@ public class GrinderMenu extends AbstractContainerMenu {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return ModItems.GRINDERHEAD.get() == stack.getItem();
+                }
+            });
+            this.addSlot(new SlotItemHandler(iItemHandler, GrinderBlockEntity.UPGRADESLOT, 144, 12){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(ModTags.Items.UPGRADES);
+                }
+
+                @Override
+                public int getMaxStackSize() {
+                    return 1;
                 }
             });
         });
@@ -97,7 +108,7 @@ public class GrinderMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

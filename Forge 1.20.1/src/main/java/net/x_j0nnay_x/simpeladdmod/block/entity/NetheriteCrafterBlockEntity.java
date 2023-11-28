@@ -25,6 +25,7 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.custom.BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladdmod.block.custom.NetheriteCrafterBlock;
+import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,13 +33,14 @@ import java.util.stream.IntStream;
 
 
 public class NetheriteCrafterBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
-     private final ItemStackHandler itemHandler = new ItemStackHandler(4);
-    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
+     private final ItemStackHandler itemHandler = new ItemStackHandler(5);
+    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
     public static int SCRAPSLOT = 0;
     public static int GOLDSLOT = 1;
     public static int BLAZESLOT = 2;
     public static int OUTPUTSLOT = 3;
+    public static int UPGRADESLOT = 4;
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 90;
@@ -167,6 +169,15 @@ public class NetheriteCrafterBlockEntity extends RandomizableContainerBlockEntit
 
     //process
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
+        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1.get())) {
+            this.maxProgress = 60;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2.get())) {
+            this.maxProgress = 36;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3.get())) {
+            this.maxProgress = 15;
+        }if (stacks.get(UPGRADESLOT).isEmpty()){
+            this.maxProgress = 90;
+        }
         pState = pState.setValue(NetheriteCrafterBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
             if(hasRecipe()) {

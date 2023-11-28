@@ -36,12 +36,13 @@ import java.util.stream.IntStream;
 
 
 public class NetheriteCrafterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
 
     public static int SCRAPSLOT = 0;
     public static int GOLDSLOT = 1;
     public static int BLAZESLOT = 2;
     public static int OUTPUTSLOT = 3;
+    public static int UPGRADESLOT = 4;
     protected final PropertyDelegate data;
     private int progress = 0;
     private int maxProgress = 90;
@@ -154,6 +155,15 @@ public class NetheriteCrafterBlockEntity extends BlockEntity implements Extended
         public void tick(World pLevel, BlockPos pPos, BlockState pState) {
             if(world.isClient()) {
                 return;
+            }
+            if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_1)) {
+                this.maxProgress = 60;
+            }if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_2)) {
+                this.maxProgress = 36;
+            }if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_3)) {
+                this.maxProgress = 15;
+            }if (inventory.get(UPGRADESLOT).isEmpty()){
+                this.maxProgress = 90;
             }
         pState = (BlockState)pState.with(NetheriteCrafterBlock.WORKING, isWorking());
         pLevel.setBlockState(pPos, pState, Block.NOTIFY_ALL);

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "yzy"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    "z":
+    {
+      "item": "minecraft:quartz"
+    },
+    "y":
+    {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result":
+  {
+    "item": "simpeladdmod:speedupgrade_1",
+    "count": 1
+  }
+}

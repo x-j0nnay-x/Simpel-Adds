@@ -1,9 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.recipe;
 
-import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -18,13 +15,11 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
-public class GrinderRecipe implements Recipe<SimpleContainer> {
+public class GrinderRecipeold implements Recipe<SimpleContainer> {
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
 
-    public GrinderRecipe(NonNullList<Ingredient> ingredients, ItemStack itemStack) {
+    public GrinderRecipeold(NonNullList<Ingredient> ingredients, ItemStack itemStack) {
         this.output = itemStack;
         this.recipeItems = ingredients;
     }
@@ -67,27 +62,27 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<GrinderRecipe> {
+    public static class Type implements RecipeType<GrinderRecipeold> {
         public static final Type INSTANCE = new Type();
         public static final String ID = "grinder";
     }
 
-    public static class Serializer implements RecipeSerializer<GrinderRecipe> {
+    public static class Serializer implements RecipeSerializer<GrinderRecipeold> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(Simpeladd.MOD_ID, "grinder");
 
         @Override
-        public Codec<GrinderRecipe> codec() {
+        public Codec<GrinderRecipeold> codec() {
             return null;
         }
 
         @Override
-        public @Nullable GrinderRecipe fromNetwork(FriendlyByteBuf pBuffer) {
+        public @Nullable GrinderRecipeold fromNetwork(FriendlyByteBuf pBuffer) {
             return null;
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf pBuffer, GrinderRecipe pRecipe) {
+        public void toNetwork(FriendlyByteBuf pBuffer, GrinderRecipeold pRecipe) {
 
         }
 
@@ -136,4 +131,4 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
     }
 
      */
-    }
+}

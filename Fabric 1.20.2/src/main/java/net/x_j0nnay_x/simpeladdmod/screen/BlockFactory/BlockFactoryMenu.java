@@ -6,12 +6,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 
 public class BlockFactoryMenu extends ScreenHandler {
@@ -22,7 +24,7 @@ public class BlockFactoryMenu extends ScreenHandler {
 
     public BlockFactoryMenu(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(7));
+                new ArrayPropertyDelegate(6));
     }
 
     public BlockFactoryMenu(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
@@ -33,13 +35,48 @@ public class BlockFactoryMenu extends ScreenHandler {
         this.data = arrayPropertyDelegate;
         this.blockEntity = ((BlockFactoryBlockEntity) blockEntity);
 
-        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.GRINDERSLOT, 79, 8));
-        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.LAVASLOT, 124, 53));
-        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.WATERSLOT, 34, 53));
-        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.COBBLESLOT, 52, 35));
-        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.GRAVALSLOT, 70, 35));
-        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.SANDSLOT, 88, 35));
-        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.OBSIDIANSLOT, 106, 35));
+        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.GRINDERSLOT, 79, 8){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.GRINDERHEAD);
+            }
+        });
+        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.LAVASLOT, 124, 53){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.LAVA_BUCKET);
+            }
+        });
+        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.WATERSLOT, 34, 53){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.WATER_BUCKET);
+            }
+        });
+        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.COBBLESLOT, 52, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.GRAVALSLOT, 70, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.SANDSLOT, 88, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, BlockFactoryBlockEntity.OBSIDIANSLOT, 106, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
 
 
 

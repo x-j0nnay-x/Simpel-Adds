@@ -16,6 +16,11 @@
   "item.simpeladdmod.unobtaniumdust" : "Unobtanium Dust",
   "item.simpeladdmod.unobtanium_scrap" : "Unobtanium Scrap",
 
+  "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1.5x",
+  "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2.5x",
+  "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 6x",
+
+
   "item.simpeladdmod.sandwich_beef" : "Beef Sandwich",
   "item.simpeladdmod.sandwich_pork" : "Ham Sandwich",
   "item.simpeladdmod.sandwich_mut" : "Mutton Sandwich",

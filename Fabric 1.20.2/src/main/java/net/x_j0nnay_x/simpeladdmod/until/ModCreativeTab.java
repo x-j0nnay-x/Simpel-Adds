@@ -26,6 +26,10 @@ public class ModCreativeTab {
                         entries.add(ModItems.WOODFIBER);
                         entries.add(ModItems.FLESH);
 
+                        entries.add(ModItems.SPEEDUPGRADE_1);
+                        entries.add(ModItems.SPEEDUPGRADE_2);
+                        entries.add(ModItems.SPEEDUPGRADE_3);
+
                         entries.add(ModItems.SANDWICH_MUT);
                         entries.add(ModItems.SANDWICH_BEEF);
                         entries.add(ModItems.SANDWICH_PORK);

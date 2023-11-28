@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
@@ -13,6 +14,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 
 
 public class ChillerMenu extends ScreenHandler {
@@ -26,15 +28,31 @@ public class ChillerMenu extends ScreenHandler {
     }
     public ChillerMenu(int pContainerID, PlayerInventory inv, BlockEntity entity, PropertyDelegate data){
         super(ModMenuType.Chiller_MENU, pContainerID);
-        checkSize(((Inventory) entity), 3);
+        checkSize(((Inventory) entity), 5);
         this.inventory = ((Inventory) entity);
         inventory.onOpen(inv.player);
         this.data = data;
         this.blockEntity = ((ChillerBlockEntity) entity);
 
-        this.addSlot(new Slot(inventory, ChillerBlockEntity.CHILLINGSLOT, 16, 53));
-        this.addSlot(new Slot(inventory, ChillerBlockEntity.WATERSLOT, 52, 53));
-        this.addSlot(new Slot(inventory, ChillerBlockEntity.OUTPUTSLOT, 133, 26));
+        this.addSlot(new Slot(inventory, ChillerBlockEntity.CHILLINGSLOT, 16, 53){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModTags.Items.CHILLING);
+            }
+        });
+        this.addSlot(new Slot(inventory, ChillerBlockEntity.WATERSLOT, 52, 53){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.WATER_BUCKET);
+            }
+
+        });
+        this.addSlot(new Slot(inventory, ChillerBlockEntity.OUTPUTSLOT, 133, 26){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
 
 
         addPlayerInventory(inv);

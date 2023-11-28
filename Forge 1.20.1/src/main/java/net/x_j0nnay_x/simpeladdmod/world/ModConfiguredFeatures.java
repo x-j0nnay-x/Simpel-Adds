@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladdmod.world;
 
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +15,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.ForgeBlockTagsProvider;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 
@@ -25,10 +28,10 @@ public class ModConfiguredFeatures {
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-        RuleTest endstoneReplaceables = new BlockMatchTest(Blocks.END_STONE);
+        RuleTest endstoneReplaceables = new TagMatchTest(Tags.Blocks.END_STONES);
 
-        register(context, DEEPSLATE_DEBRI_ORE_KEY, Feature.ORE, new OreConfiguration(deepslateReplaceables, ModBlocks.DEEPSLATE_DEBRI_ORE.get().defaultBlockState(), 4));
-        register(context, UNOBTANIUM_ORE_KEY, Feature.ORE, new OreConfiguration(endstoneReplaceables, ModBlocks.UNOBTANIUM_ORE.get().defaultBlockState(), 1));
+        register(context, DEEPSLATE_DEBRI_ORE_KEY, Feature.ORE, new OreConfiguration(deepslateReplaceables, ModBlocks.DEEPSLATE_DEBRI_ORE.get().defaultBlockState(), 8));
+        register(context, UNOBTANIUM_ORE_KEY, Feature.ORE, new OreConfiguration(endstoneReplaceables, ModBlocks.UNOBTANIUM_ORE.get().defaultBlockState(), 4));
 
     }
 

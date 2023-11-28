@@ -27,7 +27,7 @@ public class ModPlacedFeatures {
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(-60), VerticalAnchor.absolute(-5))));
 
         register(context, UNOBTANIUM_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.UNOBTANIUM_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(1,
+                ModOrePlacement.commonOrePlacement(12,
                          HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(80))));
 
 

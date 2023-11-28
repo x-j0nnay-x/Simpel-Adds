@@ -11,7 +11,9 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 
 
 public class GrinderMenu extends ScreenHandler {
@@ -21,19 +23,51 @@ public class GrinderMenu extends ScreenHandler {
 
     public GrinderMenu(int pContainerId, PlayerInventory inv, PacketByteBuf extraData){
         this(pContainerId, inv, inv.player.getWorld().getBlockEntity(extraData.readBlockPos()),
-                new ArrayPropertyDelegate(3));
+                new ArrayPropertyDelegate(4));
     }
     public GrinderMenu(int pContainerID, PlayerInventory inv, BlockEntity entity, PropertyDelegate data){
         super(ModMenuType.GRINDER_MENU, pContainerID);
-        checkSize(((Inventory) entity), 3);
+        checkSize(((Inventory) entity), 4);
         this.inventory = ((Inventory) entity);
         inventory.onOpen(inv.player);
         this.data = data;
         blockEntity = ((GrinderBlockEntity) entity);
 
-        this.addSlot(new Slot(inventory, GrinderBlockEntity.INPUTSLOT, 34, 44));
-        this.addSlot(new Slot(inventory, GrinderBlockEntity.GRINDERSLOT, 79, 17));
-        this.addSlot(new Slot(inventory, GrinderBlockEntity.OUTPUTSLOT, 124, 44));
+        this.addSlot(new Slot(inventory, GrinderBlockEntity.INPUTSLOT, 34, 44){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModTags.Items.CANGRIND);
+            }
+        });
+        this.addSlot(new Slot(inventory, GrinderBlockEntity.GRINDERSLOT, 79, 17){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.GRINDERHEAD);
+            }
+        });
+        this.addSlot(new Slot(inventory, GrinderBlockEntity.OUTPUTSLOT, 124, 44){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+
+            @Override
+            public boolean canTakeItems(PlayerEntity playerEntity) {
+                return true;
+            }
+        });
+        this.addSlot(new Slot(inventory, GrinderBlockEntity.UPGRADESLOT, 144, 12){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModTags.Items.UPGRADES);
+            }
+
+            @Override
+            public int getMaxItemCount(ItemStack stack) {
+                return 1;
+            }
+
+        });
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);

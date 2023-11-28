@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
@@ -34,14 +35,54 @@ public class StoneSifterMenu extends ScreenHandler {
         this.data = data;
         blockEntity = ((StoneSifterBlockEntity) entity);
 
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.INPUTSLOT, 16, 53));
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.GRINDERSLOT, 16, 17));
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.COPPERSLOT, 124, 17));
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.IRONSLOT, 142, 17));
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.GOLDSLOT, 124, 35));
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.REDSTONESLOT, 142, 35));
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.QUARTZSLOT, 124, 53));
-        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.DIMOANDSLOT, 142, 53));
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.INPUTSLOT, 16, 53){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.COBBLESTONE);
+            }
+        });
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.GRINDERSLOT, 16, 17){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.COPPERSLOT, 124, 17){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.IRONSLOT, 142, 17){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.GOLDSLOT, 124, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.REDSTONESLOT, 142, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.QUARTZSLOT, 124, 53){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(inventory, StoneSifterBlockEntity.DIMOANDSLOT, 142, 53){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);

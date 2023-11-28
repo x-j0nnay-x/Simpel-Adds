@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
@@ -13,6 +14,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.x_j0nnay_x.simpeladdmod.block.entity.NetheriteCrafterBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 
 
 public class NetheriteCrafterMenu extends ScreenHandler {
@@ -26,16 +28,53 @@ public class NetheriteCrafterMenu extends ScreenHandler {
     }
     public NetheriteCrafterMenu(int pContainerID, PlayerInventory inv, BlockEntity entity, PropertyDelegate data){
         super(ModMenuType.Netherite_Menu, pContainerID);
-        checkSize(((Inventory) entity), 3);
+        checkSize(((Inventory) entity), 5);
         this.inventory = ((Inventory) entity);
         inventory.onOpen(inv.player);
         this.data = data;
         blockEntity = ((NetheriteCrafterBlockEntity) entity);
 
-        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.SCRAPSLOT, 25, 35));
-        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.GOLDSLOT, 52, 35));
-        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.BLAZESLOT, 79, 35));
-        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.OUTPUTSLOT, 124, 35));
+        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.SCRAPSLOT, 25, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.NETHERITE_SCRAP);
+            }
+        });
+        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.GOLDSLOT, 52, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.GOLD_INGOT);
+            }
+        });
+        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.BLAZESLOT, 79, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(Items.BLAZE_ROD);
+            }
+        });
+        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.OUTPUTSLOT, 124, 35){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+
+            @Override
+            public boolean canTakeItems(PlayerEntity playerEntity) {
+                return true;
+            }
+        });
+        this.addSlot(new Slot(inventory, NetheriteCrafterBlockEntity.UPGRADESLOT, 144, 12){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModTags.Items.UPGRADES);
+            }
+
+            @Override
+            public int getMaxItemCount(ItemStack stack) {
+                return 1;
+            }
+
+        });
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);

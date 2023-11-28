@@ -15,15 +15,15 @@ import net.minecraft.world.item.ItemStack;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 
-import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
+import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipeold;
 
 
-public class GrinderCategory implements IRecipeCategory<GrinderRecipe> {
+public class GrinderCategory implements IRecipeCategory<GrinderRecipeold> {
     public static final ResourceLocation UID = new ResourceLocation(Simpeladd.MOD_ID, "grinder");
     public static final ResourceLocation TEXTURE = new ResourceLocation(Simpeladd.MOD_ID,
             "textures/screens/sprites/jei/grinder.png");
-    public static final RecipeType<GrinderRecipe> GRINDER_RECIPE_RECIPE_TYPE =
-            new RecipeType<>(UID, GrinderRecipe.class);
+    public static final RecipeType<GrinderRecipeold> GRINDER_RECIPE_RECIPE_TYPE =
+            new RecipeType<>(UID, GrinderRecipeold.class);
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -35,7 +35,7 @@ public class GrinderCategory implements IRecipeCategory<GrinderRecipe> {
     }
 
     @Override
-    public RecipeType<GrinderRecipe> getRecipeType() {
+    public RecipeType<GrinderRecipeold> getRecipeType() {
         return GRINDER_RECIPE_RECIPE_TYPE;
     }
 
@@ -55,7 +55,7 @@ public class GrinderCategory implements IRecipeCategory<GrinderRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, GrinderRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, GrinderRecipeold recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 34, 44).addIngredients(recipe.getIngredients().get(0));
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 124, 44).addItemStack(recipe.getResultItem(null));

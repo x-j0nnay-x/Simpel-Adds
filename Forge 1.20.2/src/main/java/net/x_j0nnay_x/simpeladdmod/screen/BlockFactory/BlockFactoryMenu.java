@@ -22,11 +22,11 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public BlockFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
     public BlockFactoryMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.BLOCKFACTORY_MENU.get(), pContainerID);
-        checkContainerSize(inv, 3);
+        checkContainerSize(inv, 7);
         blockEntity = ((BlockFactoryBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;

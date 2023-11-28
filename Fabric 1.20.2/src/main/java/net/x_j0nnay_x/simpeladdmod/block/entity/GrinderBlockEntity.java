@@ -39,11 +39,12 @@ import java.util.stream.IntStream;
 
 public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
 
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
 
     public static int INPUTSLOT = 0;
     public static int GRINDERSLOT = 1;
     public static int OUTPUTSLOT = 2;
+    public  static int UPGRADESLOT = 3;
     protected final PropertyDelegate data;
     private int progress = 0;
     private int maxProgress = 60;
@@ -152,6 +153,15 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
     public void tick(World pLevel, BlockPos pPos, BlockState pState) {
         if(world.isClient()) {
             return;
+        }
+        if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_1)) {
+            this.maxProgress = 40;
+        }if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_2)) {
+            this.maxProgress = 24;
+        }if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_3)) {
+            this.maxProgress = 10;
+        }if (inventory.get(UPGRADESLOT).isEmpty()){
+            this.maxProgress = 60;
         }
         pState = (BlockState)pState.with(GrinderBlock.WORKING, isWorking());
         pLevel.setBlockState(pPos, pState, Block.NOTIFY_ALL);

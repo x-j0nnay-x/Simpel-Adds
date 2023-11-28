@@ -13,6 +13,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.NetheriteCrafterBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 
 
 public class NetheriteCrafterMenu extends AbstractContainerMenu {
@@ -25,7 +26,7 @@ public class NetheriteCrafterMenu extends AbstractContainerMenu {
     }
     public NetheriteCrafterMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.Netherite_Menu.get(), pContainerID);
-        checkContainerSize(inv, 4);
+        checkContainerSize(inv, 5);
         blockEntity = ((NetheriteCrafterBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -56,6 +57,17 @@ public class NetheriteCrafterMenu extends AbstractContainerMenu {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(Items.BLAZE_ROD);
+                }
+            });
+            this.addSlot(new SlotItemHandler(iItemHandler, NetheriteCrafterBlockEntity.UPGRADESLOT, 144, 12){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(ModTags.Items.UPGRADES);
+                }
+
+                @Override
+                public int getMaxStackSize() {
+                    return 1;
                 }
             });
         });
@@ -108,7 +120,7 @@ public class NetheriteCrafterMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

@@ -16,6 +16,7 @@
     "#minecraft:iron_ores",
     "#minecraft:copper_ores",
     "#simpeladdmod:raw_gold_droper",
-    "simpeladdmod:unobtanium_ore"
+     "simpeladdmod:unobtanium_ore"
+
 ]
 }

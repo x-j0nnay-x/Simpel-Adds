@@ -34,12 +34,14 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class GrinderBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3);
-    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(4);
+    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
     public static int INPUTSLOT = 0;
     public static int GRINDERSLOT = 1;
     public static int OUTPUTSLOT = 2;
+    public  static int UPGRADESLOT = 3;
+
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 60;
@@ -172,6 +174,15 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
 // processing
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
+        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1.get())) {
+            this.maxProgress = 40;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2.get())) {
+            this.maxProgress = 24;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3.get())) {
+            this.maxProgress = 10;
+        }if (stacks.get(UPGRADESLOT).isEmpty()){
+            this.maxProgress = 60;
+        }
         pState = pState.setValue(GrinderBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         if(hasRecipe()){
@@ -223,11 +234,14 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
         progress = 0;
     }
     private void increaseCraftingProgress() {
+
         progress++;
     }
 
     private boolean hasProgressFinished() {
-        return progress >= maxProgress;
+
+            return progress >= maxProgress;
+
     }
 
     private void craftItem() {

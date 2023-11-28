@@ -31,8 +31,8 @@ import java.util.List;
              List<OreFeatureConfig.Target> endUnobtaniumOres =
                 List.of(OreFeatureConfig.createTarget(endReplacables, ModBlocks.UNOBTANIUM_ORE.getDefaultState()));
 
-        register(context, DEEPSLATE_DEBRI_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldDebriOres, 4));
-        register(context, UNOBTANIUM_ORE_KEY, Feature.ORE, new OreFeatureConfig(endUnobtaniumOres, 1));
+        register(context, DEEPSLATE_DEBRI_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldDebriOres, 8));
+        register(context, UNOBTANIUM_ORE_KEY, Feature.ORE, new OreFeatureConfig(endUnobtaniumOres, 4));
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
