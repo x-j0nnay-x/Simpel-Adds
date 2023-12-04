@@ -23,7 +23,6 @@ import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.*;
-import net.x_j0nnay_x.simpeladdmod.world.ModConfiguredFeatures;
 import org.slf4j.Logger;
 import java.util.AbstractMap;
 import java.util.Collection;

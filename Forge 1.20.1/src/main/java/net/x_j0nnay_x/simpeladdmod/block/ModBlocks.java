@@ -30,7 +30,6 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
             () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
-
     public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
             () -> new BlockFactoryBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CHILLER = registerBlock("chiller_block",

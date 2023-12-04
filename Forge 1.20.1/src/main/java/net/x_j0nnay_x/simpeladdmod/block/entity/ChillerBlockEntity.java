@@ -132,11 +132,11 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
     }
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return (direction == Direction.EAST  && (index == CHILLINGSLOT) ||
-                direction == Direction.WEST && (index == CHILLINGSLOT) ||
-                direction == Direction.SOUTH && (index == CHILLINGSLOT) ||
-                direction == Direction.NORTH && (index == CHILLINGSLOT) ||
-                direction == Direction.UP && (index == WATERSLOT));
+        return (
+                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
+                (index == CHILLINGSLOT) ||
+                direction == Direction.UP && (index == WATERSLOT)
+        );
     }
     @Override
     public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {

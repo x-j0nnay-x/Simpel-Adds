@@ -3,7 +3,7 @@
   "pattern":
   [
     "xxx",
-    "xyx",
+    "xzx",
     "yzy"
   ],
 
@@ -15,7 +15,7 @@
     },
     "z":
     {
-      "item": "minecraft:quartz"
+      "item": "minecraft:clay_ball"
     },
     "y":
     {
@@ -24,7 +24,7 @@
   },
   "result":
   {
-    "item": "simpeladdmod:speedupgrade_1",
+    "item": "simpeladdmod:boostupgrade",
     "count": 1
   }
 }

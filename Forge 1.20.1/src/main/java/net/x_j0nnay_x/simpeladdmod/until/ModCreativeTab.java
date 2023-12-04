@@ -29,6 +29,7 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.SPEEDUPGRADE_1.get());
                         pOutput.accept(ModItems.SPEEDUPGRADE_2.get());
                         pOutput.accept(ModItems.SPEEDUPGRADE_3.get());
+                        pOutput.accept(ModItems.BOOSTUPGRADE.get());
 
                         pOutput.accept(ModItems.SANDWICH_MUT.get());
                         pOutput.accept(ModItems.SANDWICH_BEEF.get());

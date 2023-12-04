@@ -19,6 +19,7 @@
   "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1.5x",
   "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2.5x",
   "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 6x",
+  "item.simpeladdmod.boostupgrade" : "Grinder Efficiency 5x",
 
 
   "item.simpeladdmod.sandwich_beef" : "Beef Sandwich",
@@ -104,6 +105,8 @@
   "gui.simpeladdmod.grinder_gui.Grindables": "Any Item with the Tag Grindable",
   "gui.simpeladdmod.chiller_block_gui.Chilling": "Any Item With The Tage Chilling",
   "gui.simpeladdmod.grinder_gui.label": "Grinder",
+  "gui.simpeladdmod.grinder_gui.grinds_left": "Grinds Left: ",
+  "gui.simpeladdmod.grinder_gui.grinds_eff": "Buffer: ",
   "gui.simpeladdmod.blockfactory.label1": "Block",
   "gui.simpeladdmod.blockfactory.label2": "Factory",
   "gui.simpeladdmod.chiller_block_gui.label": "Chiller",

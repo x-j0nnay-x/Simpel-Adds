@@ -3,7 +3,7 @@
 
   "pattern": [
     "zxz",
-    "xvx",
+    "v v",
     "zzz"
   ],
 
@@ -19,7 +19,7 @@
     },
     "x":
     {
-      "item": "simpeladdmod:grinderhead"
+      "item": "minecraft:iron_ingot"
     }
 
   },
