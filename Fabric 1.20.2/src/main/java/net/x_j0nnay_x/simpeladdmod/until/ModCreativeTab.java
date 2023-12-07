@@ -29,6 +29,7 @@ public class ModCreativeTab {
                         entries.add(ModItems.SPEEDUPGRADE_1);
                         entries.add(ModItems.SPEEDUPGRADE_2);
                         entries.add(ModItems.SPEEDUPGRADE_3);
+                        entries.add(ModItems.BOOSTUPGRADE);
 
                         entries.add(ModItems.SANDWICH_MUT);
                         entries.add(ModItems.SANDWICH_BEEF);
@@ -109,6 +110,7 @@ public class ModCreativeTab {
                         //block
                         entries.add(ModBlocks.DEEPSLATE_DEBRI_ORE);
                         entries.add(ModBlocks.GRINDER_BLOCK);
+                        entries.add(ModBlocks.GRINDER_BLOCK_UP);
                         entries.add(ModBlocks.BLOCK_FACTORY);
                         entries.add(ModBlocks.CHILLER);
                         entries.add(ModBlocks.NETHERITE_CRAFTER);

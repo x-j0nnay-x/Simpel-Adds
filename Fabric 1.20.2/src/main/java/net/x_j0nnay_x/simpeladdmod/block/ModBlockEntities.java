@@ -23,6 +23,9 @@ public class ModBlockEntities {
 	public static final BlockEntityType<GrinderBlockEntity> GRINDER = Registry.register(Registries.BLOCK_ENTITY_TYPE,
 			new Identifier(Simpeladd.MOD_ID, "grinder"),
 			FabricBlockEntityTypeBuilder.create(GrinderBlockEntity::new, ModBlocks.GRINDER_BLOCK).build());
+	public static final BlockEntityType<GrinderBlockEntity_upgrade> GRINDER_UP = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+			new Identifier(Simpeladd.MOD_ID, "grinder_up"),
+			FabricBlockEntityTypeBuilder.create(GrinderBlockEntity_upgrade::new, ModBlocks.GRINDER_BLOCK_UP).build());
 	public static final BlockEntityType<NetheriteCrafterBlockEntity> NETHERITE_CRAFTER = Registry.register(Registries.BLOCK_ENTITY_TYPE,
 			new Identifier(Simpeladd.MOD_ID, "netherite_crafter"),
 			FabricBlockEntityTypeBuilder.create(NetheriteCrafterBlockEntity::new, ModBlocks.NETHERITE_CRAFTER).build());

@@ -39,19 +39,22 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class GrinderBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(4);
-    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(5);
+    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
     public static int INPUTSLOT = 0;
     public static int GRINDERSLOT = 1;
     public static int OUTPUTSLOT = 2;
     public  static int UPGRADESLOT = 3;
+    public  static int BOOSTSLOT = 4;
     private int outputAmount = 0;
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 60;
+    private int maxProgress;
     private int grindsleft = 0 ;
     private int maxGrinds = 3;
+    private int grindEff = 5;
+    private int hasBoost = 0;
     public GrinderBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.GRINDER.get(), pPos, pBlockState);
         this.data = new ContainerData() {
@@ -62,6 +65,8 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
                     case 1 -> GrinderBlockEntity.this.maxProgress;
                     case 2 -> GrinderBlockEntity.this.grindsleft;
                     case 3 -> GrinderBlockEntity.this.maxGrinds;
+                    case 4 -> GrinderBlockEntity.this.grindEff;
+                    case 5 -> GrinderBlockEntity.this.hasBoost;
                     default -> 0;
                 };
             }
@@ -73,12 +78,14 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
                     case 1 -> GrinderBlockEntity.this.maxProgress = pValue;
                     case 2 -> GrinderBlockEntity.this.grindsleft = pValue;
                     case 3 -> GrinderBlockEntity.this.maxGrinds = pValue;
+                    case 4 -> GrinderBlockEntity.this.grindEff = pValue;
+                    case 5 -> GrinderBlockEntity.this.hasBoost = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 4;
+                return 6;
             }
         };
     }
@@ -103,11 +110,10 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
     }
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return (direction == Direction.EAST  && (index == INPUTSLOT) ||
-                direction == Direction.WEST && (index == INPUTSLOT) ||
-                direction == Direction.SOUTH && (index == INPUTSLOT) ||
-                direction == Direction.NORTH && (index == INPUTSLOT) ||
-                direction == Direction.UP && (index == GRINDERSLOT));
+        return (
+                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) && (index == INPUTSLOT) ||
+                direction == Direction.UP && (index == GRINDERSLOT)
+        );
     }
     @Override
     public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {
@@ -143,6 +149,7 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
         itemHandler.deserializeNBT(compound.getCompound("inventory"));
         progress = compound.getInt("grinder_progress");
         grindsleft = compound.getInt("grinder_grinds_left");
+        grindEff = compound.getInt("grinder_effec");
         if (!this.tryLoadLootTable(compound))
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound, this.stacks);
@@ -154,6 +161,7 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
         compound.put("inventory", itemHandler.serializeNBT());
         compound.putInt("grinder_progress", progress);
         compound.putInt("grinder_grinds_left", grindsleft);
+        compound.putInt("grinder_effec", grindEff);
         if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.stacks);
         }
@@ -179,6 +187,12 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
 // processing
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
+        if(stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE.get())){
+            this.hasBoost = 1;
+        }
+        if (stacks.get(BOOSTSLOT).isEmpty()){
+            this.hasBoost = 0;
+        }
         if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1.get())) {
             this.maxProgress = 40;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2.get())) {
@@ -210,9 +224,20 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
             resetProgress();
         }
     }
-
+    private void resetGrindEff(){
+        grindEff = 5;
+    }
     private void useGrind(){
-        grindsleft --;
+        if (stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE.get())){
+            if (grindEff > 0) {
+                grindEff--;
+            }else {
+                grindsleft--;
+                resetGrindEff();
+            }
+        }else {
+            grindsleft--;
+        }
     }
     private void resetGrinds() {
         if(stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD.get())){

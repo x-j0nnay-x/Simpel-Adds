@@ -27,7 +27,7 @@ public class ModItems {
     public static final RegistryObject<Item> SPEEDUPGRADE_1  = ITEMS.register("speedupgrade_1", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SPEEDUPGRADE_2  = ITEMS.register("speedupgrade_2", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SPEEDUPGRADE_3  = ITEMS.register("speedupgrade_3", () -> new Item(new Item.Properties()));
-
+    public static final RegistryObject<Item> BOOSTUPGRADE  = ITEMS.register("boostupgrade", () -> new Item(new Item.Properties()));
 
     //ancient shards stuff
     public static final RegistryObject<Item> NEHTERITE_SHARD  = ITEMS.register("netherite_shard", () -> new Item(new Item.Properties()));

@@ -11,9 +11,11 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
+import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity_upgrade;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
+import org.jetbrains.annotations.NotNull;
 
 
 public class GrinderMenu extends ScreenHandler {
@@ -23,11 +25,11 @@ public class GrinderMenu extends ScreenHandler {
 
     public GrinderMenu(int pContainerId, PlayerInventory inv, PacketByteBuf extraData){
         this(pContainerId, inv, inv.player.getWorld().getBlockEntity(extraData.readBlockPos()),
-                new ArrayPropertyDelegate(4));
+                new ArrayPropertyDelegate(6));
     }
     public GrinderMenu(int pContainerID, PlayerInventory inv, BlockEntity entity, PropertyDelegate data){
         super(ModMenuType.GRINDER_MENU, pContainerID);
-        checkSize(((Inventory) entity), 4);
+        checkSize(((Inventory) entity), 5);
         this.inventory = ((Inventory) entity);
         inventory.onOpen(inv.player);
         this.data = data;
@@ -68,6 +70,18 @@ public class GrinderMenu extends ScreenHandler {
             }
 
         });
+        this.addSlot(new Slot(inventory, GrinderBlockEntity.BOOSTSLOT, 124, 13){
+            @Override
+            public boolean canInsert(@NotNull ItemStack stack) {
+                return stack.isOf(ModItems.BOOSTUPGRADE);
+            }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
+
+        });
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -82,6 +96,23 @@ public class GrinderMenu extends ScreenHandler {
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 57;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
+    }
+    public int getGrindsLeft(){
+        int grindsLeft = this.data.get(2);
+
+        return grindsLeft;
+    }
+    public boolean hasEffUpgrade(){
+        int hasboost = this.data.get(5);
+        if (hasboost == 1){
+            return true;
+        }
+        return false;
+
+    }
+    public int getGrinderEff(){
+        int grinderEff = this.data.get(4);
+        return grinderEff;
     }
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {

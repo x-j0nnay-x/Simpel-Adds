@@ -12,6 +12,7 @@ import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderMenu_up;
 
 
 public class ModMenuType {
@@ -25,6 +26,9 @@ public class ModMenuType {
     public static final   ScreenHandlerType<GrinderMenu> GRINDER_MENU =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "grindermenu"),
                     new ExtendedScreenHandlerType<>(GrinderMenu::new));
+    public static final   ScreenHandlerType<GrinderMenu_up> GRINDER_MENU_UP =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "grindermenu_up"),
+                    new ExtendedScreenHandlerType<>(GrinderMenu_up::new));
     public static final   ScreenHandlerType<NetheriteCrafterMenu> Netherite_Menu =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "netheritemenu"),
                     new ExtendedScreenHandlerType<>(NetheriteCrafterMenu::new));

@@ -21,11 +21,11 @@ public class GrinderMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public GrinderMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
     public GrinderMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.GRINDER_MENU.get(), pContainerID);
-        checkContainerSize(inv, 4);
+        checkContainerSize(inv, 5);
         blockEntity = ((GrinderBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -63,6 +63,17 @@ public class GrinderMenu extends AbstractContainerMenu {
                     return 1;
                 }
             });
+            this.addSlot(new SlotItemHandler(iItemHandler, GrinderBlockEntity.BOOSTSLOT, 124, 13){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(ModItems.BOOSTUPGRADE.get());
+                }
+
+                @Override
+                public int getMaxStackSize() {
+                    return 1;
+                }
+            });
         });
 
         addDataSlots(data);
@@ -76,7 +87,25 @@ public class GrinderMenu extends AbstractContainerMenu {
         int progressAerrowSize = 57;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+    public int getGrindsLeft(){
+        int grindsLeft = this.data.get(2);
 
+        return grindsLeft;
+    }
+    public boolean hasEffUpgrade(){
+        int hasboost = this.data.get(5);
+        if (hasboost == 1){
+            return true;
+        }
+        return false;
+
+    }
+
+
+    public int getGrinderEff(){
+        int grinderEff = this.data.get(4);
+        return grinderEff;
+    }
 
     @Override
     public boolean stillValid(Player pPlayer) {
@@ -108,7 +137,7 @@ public class GrinderMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 5;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

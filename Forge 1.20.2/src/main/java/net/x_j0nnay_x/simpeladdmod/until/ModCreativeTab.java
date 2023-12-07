@@ -29,6 +29,7 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.SPEEDUPGRADE_1.get());
                         pOutput.accept(ModItems.SPEEDUPGRADE_2.get());
                         pOutput.accept(ModItems.SPEEDUPGRADE_3.get());
+                        pOutput.accept(ModItems.BOOSTUPGRADE.get());
 
                         pOutput.accept(ModItems.SANDWICH_MUT.get());
                         pOutput.accept(ModItems.SANDWICH_BEEF.get());
@@ -109,6 +110,7 @@ public class ModCreativeTab {
                         //block
                         pOutput.accept(ModBlocks.DEEPSLATE_DEBRI_ORE.get());
                         pOutput.accept(ModBlocks.GRINDER_BLOCK.get());
+                        pOutput.accept(ModBlocks.GRINDER_BLOCK_UP.get());
                         pOutput.accept(ModBlocks.BLOCK_FACTORY.get());
                         pOutput.accept(ModBlocks.CHILLER.get());
                         pOutput.accept(ModBlocks.NETHERITE_CRAFTER.get());

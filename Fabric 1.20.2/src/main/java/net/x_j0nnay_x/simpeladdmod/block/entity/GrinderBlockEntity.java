@@ -39,17 +39,20 @@ import java.util.stream.IntStream;
 
 public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
 
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
 
     public static int INPUTSLOT = 0;
     public static int GRINDERSLOT = 1;
     public static int OUTPUTSLOT = 2;
     public  static int UPGRADESLOT = 3;
+    public  static int BOOSTSLOT = 4;
     protected final PropertyDelegate data;
     private int progress = 0;
     private int maxProgress = 60;
     private int grindsleft = 0 ;
     private int maxGrinds = 3;
+    private int grindEff = 5;
+    private int hasBoost = 0;
     public GrinderBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.GRINDER, pPos, pBlockState);
         this.data = new PropertyDelegate() {
@@ -60,6 +63,8 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
                     case 1 -> GrinderBlockEntity.this.maxProgress;
                     case 2 -> GrinderBlockEntity.this.grindsleft;
                     case 3 -> GrinderBlockEntity.this.maxGrinds;
+                    case 4 -> GrinderBlockEntity.this.grindEff;
+                    case 5 -> GrinderBlockEntity.this.hasBoost;
                     default -> 0;
                 };
             }
@@ -71,12 +76,14 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
                     case 1 -> GrinderBlockEntity.this.maxProgress = pValue;
                     case 2 -> GrinderBlockEntity.this.grindsleft = pValue;
                     case 3 -> GrinderBlockEntity.this.maxGrinds = pValue;
+                    case 4 -> GrinderBlockEntity.this.grindEff = pValue;
+                    case 5 -> GrinderBlockEntity.this.hasBoost = pValue;
                 }
             }
 
             @Override
             public int size() {
-                return 4;
+                return 6;
             }
         };
     }
@@ -98,7 +105,7 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        world.updateListeners(pos, getCachedState(), getCachedState(), 4);
         super.markDirty();
     }
     @Override
@@ -111,6 +118,7 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
         Inventories.readNbt(compound, inventory);
         progress = compound.getInt("grinder_progress");
         grindsleft = compound.getInt("grinder_grinds_left");
+        grindEff = compound.getInt("grinder_effec");
 
     }
 
@@ -120,6 +128,7 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
         Inventories.writeNbt(compound, inventory);
         compound.putInt("grinder_progress", progress);
         compound.putInt("grinder_grinds_left", grindsleft);
+        compound.putInt("grinder_effec", grindEff);
 
     }
     @Override
@@ -143,6 +152,12 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
         if (slot == INPUTSLOT) {
             return  stack.isIn(ModTags.Items.CANGRIND);
         }
+        if (slot == UPGRADESLOT){
+            return  stack.isIn(ModTags.Items.UPGRADES);
+        }
+        if (slot == BOOSTSLOT){
+            return stack.isOf(ModItems.BOOSTUPGRADE);
+        }
 
         return false;
     }
@@ -153,6 +168,12 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
     public void tick(World pLevel, BlockPos pPos, BlockState pState) {
         if(world.isClient()) {
             return;
+        }
+        if(inventory.get(BOOSTSLOT).isOf(ModItems.BOOSTUPGRADE)){
+            this.hasBoost = 1;
+        }
+        if (inventory.get(BOOSTSLOT).isEmpty()){
+            this.hasBoost = 0;
         }
         if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_1)) {
             this.maxProgress = 40;
@@ -185,9 +206,22 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
             }
 
     }
+    private void resetGrindEff(){
+        grindEff = 5;
+    }
 
     private void useGrind(){
-        grindsleft --;
+
+        if (inventory.get(BOOSTSLOT).isOf(ModItems.BOOSTUPGRADE)){
+            if (grindEff > 0) {
+                grindEff--;
+            }else {
+                grindsleft--;
+                resetGrindEff();
+            }
+        }else {
+            grindsleft--;
+        }
     }
     private void resetGrinds() {
         if(inventory.get(GRINDERSLOT).isOf(ModItems.GRINDERHEAD)){

@@ -14,6 +14,7 @@ import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderMenu_up;
 
 public class ModMenuType {
     public static final DeferredRegister<MenuType<?>> MENUS =
@@ -21,6 +22,8 @@ public class ModMenuType {
 
     public static final  RegistryObject<MenuType<GrinderMenu>> GRINDER_MENU =
             registerMenuType("grindermenu", GrinderMenu::new);
+    public static final  RegistryObject<MenuType<GrinderMenu_up>> GRINDER_MENU_UP =
+            registerMenuType("grindermenu_up", GrinderMenu_up::new);
     public static final  RegistryObject<MenuType<BlockFactoryMenu>> BLOCKFACTORY_MENU =
             registerMenuType("blockfactorymenu", BlockFactoryMenu::new);
     public static final  RegistryObject<MenuType<ChillerMenu>> Chiller_MENU =

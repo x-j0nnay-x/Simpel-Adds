@@ -19,6 +19,7 @@
   "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1.5x",
   "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2.5x",
   "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 6x",
+  "item.simpeladdmod.boostupgrade" : "Grinder Efficiency 5x",
 
 
   "item.simpeladdmod.sandwich_beef" : "Beef Sandwich",
@@ -85,6 +86,7 @@
   "block.simpeladdmod.deepslate_debri_ore" : "Deepslate Debri Ore",
   "block.simpeladdmod.unobtanium_ore" : "Unobtanium Ore",
   "block.simpeladdmod.grinder_block": "Grinder",
+  "block.simpeladdmod.grinder_block_up": "Netherite Grinder",
   "block.simpeladdmod.blockfactory_block": "Block Factory",
   "block.simpeladdmod.chiller_block": "Chilling Block",
   "block.simpeladdmod.netherite_crafter_block": "Netherite Crafting Block",
@@ -104,6 +106,9 @@
   "gui.simpeladdmod.grinder_gui.Grindables": "Any Item with the Tag Grindable",
   "gui.simpeladdmod.chiller_block_gui.Chilling": "Any Item With The Tage Chilling",
   "gui.simpeladdmod.grinder_gui.label": "Grinder",
+  "gui.simpeladdmod.grinder_up_gui.label": "Netherite Grinder",
+  "gui.simpeladdmod.grinder_gui.grinds_left": "Uses: ",
+  "gui.simpeladdmod.grinder_gui.grinds_eff": "Buffer: ",
   "gui.simpeladdmod.blockfactory.label1": "Block",
   "gui.simpeladdmod.blockfactory.label2": "Factory",
   "gui.simpeladdmod.chiller_block_gui.label": "Chiller",

@@ -33,6 +33,8 @@ public class ModBlocks {
              new ChillerBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block GRINDER_BLOCK = registerBlock("grinder_block",
             new GrinderBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+    public static final Block GRINDER_BLOCK_UP = registerBlock("grinder_block_up",
+            new GrinderBlock_upgrade(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
 
     public static final Block NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
              new NetheriteCrafterBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
