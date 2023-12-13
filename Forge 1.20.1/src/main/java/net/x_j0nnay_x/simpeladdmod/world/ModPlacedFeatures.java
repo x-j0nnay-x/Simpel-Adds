@@ -23,11 +23,11 @@ public class ModPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         register(context, DEEPSLATE_DEBRI_ORE_PLACE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEEPSLATE_DEBRI_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(16,
+                ModOrePlacement.commonOrePlacement(9,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(-60), VerticalAnchor.absolute(-5))));
 
         register(context, UNOBTANIUM_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.UNOBTANIUM_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(12,
+                ModOrePlacement.commonOrePlacement(6,
                          HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(80))));
 
 

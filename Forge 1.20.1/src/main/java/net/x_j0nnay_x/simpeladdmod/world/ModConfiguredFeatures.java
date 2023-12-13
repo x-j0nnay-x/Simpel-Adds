@@ -30,7 +30,7 @@ public class ModConfiguredFeatures {
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
         RuleTest endstoneReplaceables = new TagMatchTest(Tags.Blocks.END_STONES);
 
-        register(context, DEEPSLATE_DEBRI_ORE_KEY, Feature.ORE, new OreConfiguration(deepslateReplaceables, ModBlocks.DEEPSLATE_DEBRI_ORE.get().defaultBlockState(), 8));
+        register(context, DEEPSLATE_DEBRI_ORE_KEY, Feature.ORE, new OreConfiguration(deepslateReplaceables, ModBlocks.DEEPSLATE_DEBRI_ORE.get().defaultBlockState(), 6));
         register(context, UNOBTANIUM_ORE_KEY, Feature.ORE, new OreConfiguration(endstoneReplaceables, ModBlocks.UNOBTANIUM_ORE.get().defaultBlockState(), 4));
 
     }

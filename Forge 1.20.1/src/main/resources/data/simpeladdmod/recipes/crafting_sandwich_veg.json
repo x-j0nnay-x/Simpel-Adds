@@ -5,7 +5,7 @@
       "item": "minecraft:bread"
     },
     {
-      "item": "minecraft:potato"
+      "tag": "simpeladdmod:veggie_list"
     }
   ],
   "result": {

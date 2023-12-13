@@ -14,7 +14,7 @@
           "item": "minecraft:cooked_beef"
         },
         {
-          "item": "minecraft:carrot"
+          "tag": "simpeladdmod:veggie_list"
         }
       ],
       "result": {
