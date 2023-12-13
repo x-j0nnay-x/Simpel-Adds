@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladdmod.until;
 
 
+import dev.architectury.event.events.client.ClientPlayerEvent;
 
 public record UpdateChecker(String modId) {
 
@@ -23,6 +24,6 @@ public record UpdateChecker(String modId) {
             event.getPlayer().displayClientMessage(message, false);
         }
     }
+*/
 
- */
 }

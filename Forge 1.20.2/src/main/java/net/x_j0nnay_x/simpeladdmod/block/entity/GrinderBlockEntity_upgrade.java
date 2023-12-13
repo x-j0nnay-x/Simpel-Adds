@@ -47,12 +47,10 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
     public static int INPUTSLOT2 = 2;
     public static int INPUTSLOT3 = 3;
     public static int INPUTSLOT4 = 4;
-    public static int [] INPUTSLOT = new int[]{1,2,3,4};
     public static int OUTPUTSLOT1 = 5;
     public static int OUTPUTSLOT2 = 6;
     public static int OUTPUTSLOT3 = 7;
     public static int OUTPUTSLOT4 = 8;
-    public static int []OUTPUTSLOT = new int[]{5,6,7,8};
     public  static int UPGRADESLOT = 9;
     public  static int BOOSTSLOT = 10;
     private int outputAmount1 = 0;
@@ -223,13 +221,13 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
             this.hasBoost = 0;
         }
         if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1.get())) {
-            this.maxProgress = 40;
+            this.maxProgress = 20;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2.get())) {
-            this.maxProgress = 24;
+            this.maxProgress = 12;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3.get())) {
-            this.maxProgress = 10;
+            this.maxProgress = 5;
         }if (stacks.get(UPGRADESLOT).isEmpty()){
-            this.maxProgress = 60;
+            this.maxProgress = 30;
         }
         pState = pState.setValue(GrinderBlock_upgrade.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);

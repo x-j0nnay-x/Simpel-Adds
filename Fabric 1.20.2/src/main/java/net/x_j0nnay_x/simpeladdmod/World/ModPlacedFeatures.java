@@ -21,10 +21,10 @@ public class ModPlacedFeatures {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, DEEPSLATE_DEBRI_ORE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.DEEPSLATE_DEBRI_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(16, // Veins per Chunk
+                ModOrePlacement.modifiersWithCount(9, // Veins per Chunk
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-60), YOffset.fixed(-5))));
         register(context, UNOBTANIUM_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.UNOBTANIUM_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(12,
+                ModOrePlacement.modifiersWithCount(6,
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(80))));
 
     }

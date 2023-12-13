@@ -23,6 +23,7 @@ public class ModTags {
         public static final TagKey<Item> CHILLING = tag("chilling");
         public static final TagKey<Item> UPGRADES = tag("upgrades");
         public static final TagKey<Item> RAW_GOLD_DROPPER = tag("raw_gold_droper");
+        public static final TagKey<Item> VEGGIE = tag("veggie_list");
         private static TagKey<Item> tag(String name) {
             return TagKey.of(RegistryKeys.ITEM, new Identifier(Simpeladd.MOD_ID, name));
         }

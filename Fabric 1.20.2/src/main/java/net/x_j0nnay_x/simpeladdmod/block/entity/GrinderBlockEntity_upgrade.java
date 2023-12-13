@@ -48,12 +48,10 @@ public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedS
     public static int INPUTSLOT2 = 2;
     public static int INPUTSLOT3 = 3;
     public static int INPUTSLOT4 = 4;
-    public static int [] INPUTSLOT = new int[]{1,2,3,4};
     public static int OUTPUTSLOT1 = 5;
     public static int OUTPUTSLOT2 = 6;
     public static int OUTPUTSLOT3 = 7;
     public static int OUTPUTSLOT4 = 8;
-    public static int []OUTPUTSLOT = new int[]{5,6,7,8};
     public  static int UPGRADESLOT = 9;
     public  static int BOOSTSLOT = 10;
 
@@ -193,13 +191,13 @@ public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedS
             this.hasBoost = 0;
         }
         if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_1)) {
-            this.maxProgress = 40;
+            this.maxProgress = 20;
         }if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_2)) {
-            this.maxProgress = 24;
+            this.maxProgress = 12;
         }if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_3)) {
-            this.maxProgress = 10;
+            this.maxProgress = 5;
         }if (inventory.get(UPGRADESLOT).isEmpty()){
-            this.maxProgress = 60;
+            this.maxProgress = 30;
         }
         pState = (BlockState)pState.with(GrinderBlock_upgrade.WORKING, isWorking());
         pLevel.setBlockState(pPos, pState, Block.NOTIFY_ALL);
