@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 
@@ -25,6 +26,7 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockFactoryBlock extends BlockWithEntity implements BlockEntityProvider{
+    public static final MapCodec<BlockFactoryBlock> CODEC = createCodec(BlockFactoryBlock::new);
     public static DirectionProperty FACING = DirectionProperty.of("facing",
             Direction.EAST,
             Direction.WEST,
@@ -36,6 +38,12 @@ public class BlockFactoryBlock extends BlockWithEntity implements BlockEntityPro
 
 
     }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
+
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {

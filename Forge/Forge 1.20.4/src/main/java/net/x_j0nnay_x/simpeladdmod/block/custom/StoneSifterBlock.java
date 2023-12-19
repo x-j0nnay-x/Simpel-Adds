@@ -25,6 +25,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class StoneSifterBlock extends BaseEntityBlock  {
+    public static final MapCodec<StoneSifterBlock> CODEC = m_306223_(StoneSifterBlock::new);
+
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public StoneSifterBlock(Properties pProperties) {
@@ -32,6 +34,11 @@ public class StoneSifterBlock extends BaseEntityBlock  {
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WORKING, false));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+        return CODEC;
     }
 
     @Override

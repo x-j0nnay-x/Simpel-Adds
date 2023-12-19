@@ -76,7 +76,7 @@ public class GrinderRecipe implements Recipe<SimpleInventory> {
 
         public static final Codec<GrinderRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
                 validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 9).fieldOf("ingredients").forGetter(GrinderRecipe::getIngredients),
-                RecipeCodecs.CRAFTING_RESULT.fieldOf("output").forGetter(r -> r.output)
+                CraftingRecipe.CODEC.fieldOf("output").forGetter(r -> r.output)
         ).apply(in, GrinderRecipe::new));
 
         private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int max) {

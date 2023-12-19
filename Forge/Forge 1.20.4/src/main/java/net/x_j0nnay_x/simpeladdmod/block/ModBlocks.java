@@ -22,23 +22,23 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, Simpeladd.MOD_ID);
 
     public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
-                    .requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
+            () -> new DropExperienceBlock(UniformInt.of(2, 6), BlockBehaviour.Properties.m_308003_(Blocks.DEEPSLATE_DIAMOND_ORE)
+                    .requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+            () -> new Block(BlockBehaviour.Properties.m_308003_(Blocks.DEEPSLATE_DIAMOND_ORE)
                     .requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
-            () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+            () -> new GrinderBlock(BlockBehaviour.Properties.m_308003_(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> GRINDER_BLOCK_UP = registerBlock("grinder_block_up",
-            () -> new GrinderBlock_upgrade(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+            () -> new GrinderBlock_upgrade(BlockBehaviour.Properties.m_308003_(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
-            () -> new BlockFactoryBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+            () -> new BlockFactoryBlock(BlockBehaviour.Properties.m_308003_(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> CHILLER = registerBlock("chiller_block",
-            () -> new ChillerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+            () -> new ChillerBlock(BlockBehaviour.Properties.m_308003_(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
-            () -> new NetheriteCrafterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+            () -> new NetheriteCrafterBlock(BlockBehaviour.Properties.m_308003_(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> STONE_SHIFTER = registerBlock("stone_sifter_block",
-            () -> new StoneSifterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+            () -> new StoneSifterBlock(BlockBehaviour.Properties.m_308003_(Blocks.STONE).noOcclusion()));
     private static  <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

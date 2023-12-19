@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 
 import net.minecraft.block.entity.BlockEntity;
@@ -23,6 +24,7 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class ChillerBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<ChillerBlock> CODEC = createCodec(ChillerBlock::new);
     public static DirectionProperty FACING = DirectionProperty.of("facing",
             Direction.EAST,
             Direction.WEST,
@@ -30,6 +32,11 @@ public class ChillerBlock extends BlockWithEntity implements BlockEntityProvider
             Direction.SOUTH);
     public ChillerBlock(Settings pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
     @Nullable

@@ -21,8 +21,8 @@ public class ModBlocks {
 
 
     public static final Block DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",
-             new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).nonOpaque()
-                    .requiresTool(), UniformIntProvider.create(2,6)));
+             new ExperienceDroppingBlock(UniformIntProvider.create(2,6), FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).nonOpaque()
+                    .requiresTool()));
 
     public static final Block UNOBTANIUM_ORE = registerBlock("unobtanium_ore",
              new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).nonOpaque()

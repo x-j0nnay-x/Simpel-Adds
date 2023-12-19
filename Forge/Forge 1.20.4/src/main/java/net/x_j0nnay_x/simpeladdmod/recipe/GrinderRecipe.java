@@ -85,7 +85,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         public static final String ID = "grinder";
 
         public static final Codec<GrinderRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
-                        CraftingRecipe.CODEC.fieldOf("output").forGetter(r -> r.output),
+                        CraftingRecipe.f_302387_.fieldOf("output").forGetter(r -> r.output),
                         Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients")
                                 .flatXmap(ingredients -> {
                                     Ingredient[] ingredientArr = ingredients.stream().filter(i -> !i.isEmpty()).toArray(Ingredient[]::new);

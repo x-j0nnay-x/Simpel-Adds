@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 
 import net.minecraft.block.entity.BlockEntity;
@@ -24,6 +25,8 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity_upgrade;
 import org.jetbrains.annotations.Nullable;
 
 public class GrinderBlock_upgrade extends BlockWithEntity implements BlockEntityProvider {
+    public static final MapCodec<GrinderBlock_upgrade> CODEC = createCodec(GrinderBlock_upgrade::new);
+
     public static DirectionProperty FACING = DirectionProperty.of("facing",
             Direction.EAST,
             Direction.WEST,
@@ -34,6 +37,12 @@ public class GrinderBlock_upgrade extends BlockWithEntity implements BlockEntity
         super(pProperties);
 
     }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
+
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {

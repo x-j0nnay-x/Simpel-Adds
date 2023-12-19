@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -23,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ChillerBlock extends BaseEntityBlock  {
+    public static final MapCodec<ChillerBlock> CODEC = m_306223_(ChillerBlock::new);
+
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public ChillerBlock(Properties pProperties) {
@@ -30,6 +33,12 @@ public class ChillerBlock extends BaseEntityBlock  {
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH));
     }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+        return CODEC;
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);

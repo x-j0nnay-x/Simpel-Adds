@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class GrinderBlock_upgrade extends BaseEntityBlock  {
+    public static final MapCodec<GrinderBlock_upgrade> CODEC = m_306223_(GrinderBlock_upgrade::new);
+
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public GrinderBlock_upgrade(Properties pProperties) {
@@ -33,6 +36,12 @@ public class GrinderBlock_upgrade extends BaseEntityBlock  {
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WORKING, false));
     }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+        return CODEC;
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);

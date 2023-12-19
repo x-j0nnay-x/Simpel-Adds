@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -23,6 +24,8 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.StoneSifterBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class StoneSifterBlock extends BlockWithEntity implements BlockEntityProvider  {
+    public static final MapCodec<StoneSifterBlock> CODEC = createCodec(StoneSifterBlock::new);
+
     public static DirectionProperty FACING = DirectionProperty.of("facing",
             Direction.EAST,
             Direction.WEST,
@@ -32,6 +35,12 @@ public class StoneSifterBlock extends BlockWithEntity implements BlockEntityProv
     public StoneSifterBlock(Settings pProperties) {
         super(pProperties);
     }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
+    }
+
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
