@@ -7,6 +7,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.WorldlyContainer;
@@ -15,6 +16,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,10 +28,13 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
+import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
+import net.x_j0nnay_x.simpeladdmod.recipe.ModRecipes;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -42,7 +48,6 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
     public static int OUTPUTSLOT = 2;
     public  static int UPGRADESLOT = 3;
     public  static int BOOSTSLOT = 4;
-
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress;
@@ -201,13 +206,14 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
         pLevel.setBlock(pPos, pState, 3);
         if(hasRecipe()){
             if(grindsleft > 0){
-                increaseCraftingProgress();
-                setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished()){
-                    useGrind();
-                    craftItem();
-                    resetProgress();
-                }
+               increaseCraftingProgress();
+                    setChanged(pLevel, pPos, pState);
+                    if (hasProgressFinished()) {
+                        useGrind();
+                        craftItem();
+                        resetProgress();
+                    }
+
             }else{
                 resetGrinds();
             }
@@ -259,35 +265,41 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
         progress = 0;
     }
     private void increaseCraftingProgress() {
-
         progress++;
     }
 
     private boolean hasProgressFinished() {
-
-            return progress >= maxProgress;
-
+        return progress >= maxProgress;
     }
 
     private void craftItem() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe();
-        ItemStack result = recipe.get().getResultItem(null);
+
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe();
+        ItemStack result = recipe.get().value().getResultItem(null);
         this.removeItem(INPUTSLOT, 1);
         this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
 
+
+
     }
+
+
+
     private boolean hasRecipe() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe();
+
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe();
 
         if(recipe.isEmpty()) {
             return false;
         }
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
 
         return canInsertOutputAmount(result.getCount()) && canInsertOutputItem(result.getItem());
-}
-    private Optional<GrinderRecipe> getCurrentRecipe() {
+
+
+    }
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.size());
         for(int i = 0; i < stacks.size(); i++) {
             inventory.setItem(i, this.stacks.get(i));
@@ -298,6 +310,7 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
 
 
     private boolean canInsertOutputItem(Item item) {
+
         return this.stacks.get(OUTPUTSLOT).isEmpty() || this.stacks.get(OUTPUTSLOT).is(item);
     }
 

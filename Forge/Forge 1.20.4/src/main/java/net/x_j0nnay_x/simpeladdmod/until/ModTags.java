@@ -11,8 +11,14 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
 
     public static class Blocks {
-        public static final TagKey<Block> OBSIDIANTOOL = tag("needs_obsidiantool");
-          private static TagKey<Block> tag(String name) {
+       
+        public static final TagKey<Block> OBSIDIAN = tag("obsidain_tool_level");
+
+        public static final TagKey<Block> OBSIDIANRITE = tag("obsidainrite_tool_level");
+
+
+
+        private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(Simpeladd.MOD_ID, name));
         }
     }

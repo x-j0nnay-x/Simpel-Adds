@@ -10,9 +10,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
+
+import java.util.List;
 
 @JeiPlugin
 public class JEISimpeladdPlugin implements IModPlugin {
@@ -30,8 +34,8 @@ public class JEISimpeladdPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
-      //  List<GrinderRecipe> grinderrecipes = recipeManager.getAllRecipesFor(GrinderRecipe.Type.INSTANCE);
-       // registration.addRecipes(GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE, grinderrecipes);
+       // List<GrinderRecipe> grinderrecipes = recipeManager.getAllRecipesFor(GrinderRecipe.Type.INSTANCE);
+     //   registration.addRecipes(GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE, grinderrecipes);
 
         registration.addItemStackInfo(new ItemStack(Items.WATER_BUCKET), Component.translatable("simpeladdmod.jei.waterbucket"));
         registration.addItemStackInfo(new ItemStack(Items.LAVA_BUCKET), Component.translatable("simpeladdmod.jei.lavabucket"));

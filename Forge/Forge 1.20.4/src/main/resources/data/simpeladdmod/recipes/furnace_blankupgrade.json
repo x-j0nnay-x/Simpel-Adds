@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+
+  "ingredient": {
+    "item": "simpeladdmod:blankupgrade_raw"
+  },
+
+  "result": "simpeladdmod:blankupgrade",
+  "experience": 0.8,
+  "cookingtime": 50
+
+
+}

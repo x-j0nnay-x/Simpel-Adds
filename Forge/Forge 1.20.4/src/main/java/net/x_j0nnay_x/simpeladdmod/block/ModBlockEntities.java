@@ -5,8 +5,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.entity.*;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 
 public class ModBlockEntities {
@@ -31,7 +31,6 @@ public class ModBlockEntities {
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITY.register(eventBus);
 	}
-
 	public static void registerModBlockEntities(){
 		Simpeladd.LOGGER.info("Registering Mod Blocks Entities for " + Simpeladd.MOD_ID);
 	}

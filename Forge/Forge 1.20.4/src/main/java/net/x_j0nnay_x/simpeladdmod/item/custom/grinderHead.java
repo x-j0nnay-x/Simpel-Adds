@@ -8,7 +8,7 @@ public class grinderHead extends Item {
     int MaxUses;
     public grinderHead(int maxuses){
 
-        super(new Properties()
+        super(new Item.Properties()
                 .stacksTo(1)
                 .durability(maxuses));
         this.MaxUses = maxuses;

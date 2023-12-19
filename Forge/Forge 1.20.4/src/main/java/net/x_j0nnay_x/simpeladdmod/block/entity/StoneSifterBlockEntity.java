@@ -98,18 +98,17 @@ public class StoneSifterBlockEntity extends RandomizableContainerBlockEntity imp
     }
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                        (index == INPUTSLOT) ||
-                direction == Direction.UP && (index == GRINDERSLOT)
-        );
+        return (direction == Direction.EAST  && (index == INPUTSLOT) ||
+                direction == Direction.WEST && (index == INPUTSLOT) ||
+                direction == Direction.SOUTH && (index == INPUTSLOT) ||
+                direction == Direction.NORTH && (index == INPUTSLOT) ||
+                direction == Direction.UP && (index == GRINDERSLOT));
     }
     @Override
     public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {
         // Only allow the down direction and only for the result slot.
-        return (direction == Direction.DOWN &&
-                (slotIndex == COPPERSLOT || slotIndex == IRONSLOT || slotIndex == GOLDSLOT || slotIndex == REDSTONESLOT || slotIndex == QUARTZSLOT || slotIndex == DIMOANDSLOT)
-        );
+        return (direction == Direction.DOWN && (slotIndex == COPPERSLOT || slotIndex == IRONSLOT || slotIndex == GOLDSLOT
+        || slotIndex == REDSTONESLOT || slotIndex == QUARTZSLOT || slotIndex == DIMOANDSLOT));
     }
 
     @Override

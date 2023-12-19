@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -7,9 +8,9 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,12 +21,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockFactoryBlock extends BaseEntityBlock  {
+public class BlockFactoryBlock extends BaseEntityBlock   {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public BlockFactoryBlock(Properties pProperties) {
@@ -34,6 +35,13 @@ public class BlockFactoryBlock extends BaseEntityBlock  {
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WORKING, false));
     }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+        return null;
+    }
+
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
@@ -72,17 +80,21 @@ public class BlockFactoryBlock extends BaseEntityBlock  {
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+        BlockEntity be = pLevel.getBlockEntity(pPos);
 
-        if (!pLevel.isClientSide()){
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof BlockFactoryBlockEntity){
-                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (BlockFactoryBlockEntity)entity, pPos);
-            }else {
-                throw  new IllegalStateException("Block Factory Container Provider is missing");
-            }
+        if (!(be instanceof BlockFactoryBlockEntity blockEntity))
+            return InteractionResult.PASS;
+
+        if (pLevel.isClientSide())
+            return InteractionResult.SUCCESS;
+
+        // open screen
+        if(pPlayer instanceof ServerPlayer sPlayer) {
+            sPlayer.openMenu(blockEntity, pPos);
         }
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+
+        return InteractionResult.CONSUME;
     }
 
     @Nullable

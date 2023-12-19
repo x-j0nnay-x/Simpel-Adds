@@ -6,10 +6,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 
 public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
     private static final ResourceLocation texture = new ResourceLocation(Simpeladd.MOD_ID, "textures/screens/grinder_gui.png");
@@ -19,7 +17,7 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics);
+        this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
         if (mouseX > leftPos + 28 && mouseX < leftPos + 52 && mouseY > topPos + 40 && mouseY < topPos + 64)

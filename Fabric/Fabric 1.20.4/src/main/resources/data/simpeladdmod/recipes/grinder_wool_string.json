@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "tag": "minecraft:wool"
+    }
+  ],
+  "output": {
+    "count": 5,
+    "item": "minecraft:string"
+  }
+}

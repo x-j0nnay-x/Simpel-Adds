@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "zzz",
+    "xvx",
+    "zzz"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:cobblestone"
+    },
+    "v":
+    {
+      "item": "minecraft:grindstone"
+    },
+    "x":
+    {
+      "tag": "minecraft:wool"
+    }
+
+  },
+  "result":
+  {
+    "item": "simpeladdmod:stone_sifter_block",
+    "count":1
+  }
+}

@@ -124,18 +124,21 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     }
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.UP && (index == GRINDERSLOT)
-        );
+        return (direction == Direction.EAST  && (index == LAVASLOT ) && stack.is(Items.LAVA_BUCKET) ||
+                direction == Direction.WEST && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET)||
+                direction == Direction.SOUTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
+                direction == Direction.NORTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
+                direction == Direction.EAST  && (index == WATERSLOT ) && stack.is(Items.WATER_BUCKET) ||
+                direction == Direction.WEST && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET)||
+                direction == Direction.SOUTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
+                direction == Direction.NORTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
+                direction == Direction.UP && (index == GRINDERSLOT));
     }
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        return (direction == Direction.DOWN &&
-                (index == WATERSLOT && stack.is(Items.BUCKET))||
-                (index == LAVASLOT && stack.is(Items.BUCKET)));
+        return (direction == Direction.DOWN && (
+                        index == WATERSLOT && stack.is(Items.BUCKET)||
+                        index == LAVASLOT && stack.is(Items.BUCKET)));
     }
 
     @Override
@@ -289,6 +292,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
             grindsleft = 0;
         }
     }
+   
     private boolean isFull(){
         if (!CobbleSpace() && !GravalSpace() && !SandSpace() && !ObslidanSpace()){
             return true;
@@ -297,6 +301,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     }
     private boolean isWorking() {
         if(hasLiquid() && !isFull()){
+
             return true;
         }
         return false;

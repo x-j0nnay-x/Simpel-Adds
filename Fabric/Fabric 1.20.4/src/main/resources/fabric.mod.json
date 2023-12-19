@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "simpeladd",
+	"version": "${version}",
+	"name": "simpeladd",
+	"description": "just a simpel add mod, this adds some stuff that makes minecraft a touch better with doubling ores. you can craft some items that are only found in chest. new tool levels of obsidian and a netherite boosted version. Still feels like vanilla.",
+	"authors": [
+		"x_j0nnay_x"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/simpel-add-mod",
+		"sources": "https://github.com/x-j0nnay-x/Simpel-Adds/issues"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/simpeladdmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.x_j0nnay_x.simpeladdmod.Simpeladd"
+		],
+		"client": [
+			"net.x_j0nnay_x.simpeladdmod.SimpeladdClient"
+		],
+		"fabric-datagen": [
+			"net.x_j0nnay_x.simpeladdmod.SimpeladdDataGenerator"
+		]
+	},
+	"mixins": [
+		"simpeladd.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.24",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

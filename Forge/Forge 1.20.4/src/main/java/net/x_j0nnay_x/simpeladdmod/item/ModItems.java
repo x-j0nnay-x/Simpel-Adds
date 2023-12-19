@@ -10,15 +10,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
-
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Simpeladd.MOD_ID);
-//other items
+
     public static final RegistryObject<Item> SIMPEL_ELITRA_HALF = ITEMS.register("simpel_elitra_half", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SIMPEL_ELITRA_PART1 = ITEMS.register("simpel_elitra_part1", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SIMPEL_ELITRA_PART2 = ITEMS.register("simpel_elitra_part2", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> GRINDERHEAD = ITEMS.register("grinderhead", () -> new grinderHead(256));
+      //want it to be like a bucket but return damage
+
     public static final RegistryObject<Item> GOLDSTICK  = ITEMS.register("goldstick", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WOODFIBER  = ITEMS.register("woodfiber", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> FLESH  = ITEMS.register("flesh", () -> new Item(new Item.Properties()));
@@ -28,11 +29,11 @@ public class ModItems {
     public static final RegistryObject<Item> SPEEDUPGRADE_3  = ITEMS.register("speedupgrade_3", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BOOSTUPGRADE  = ITEMS.register("boostupgrade", () -> new Item(new Item.Properties()));
 
-//ancient shards stuff
+    //ancient shards stuff
     public static final RegistryObject<Item> NEHTERITE_SHARD  = ITEMS.register("netherite_shard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NEHTERITE_SHARD_DUST  = ITEMS.register("netherite_shard_dust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NEHTERITE_SHARD_RAW     = ITEMS.register("netherite_shard_raw", () -> new Item(new Item.Properties()));
-//sandwiches
+
     public static final RegistryObject<Item> SANDWICH_BEEF = ITEMS.register("sandwich_beef", () -> new Item(new Item.Properties().food(ModFoods.SANDWISH_BEEF)));
     public static final RegistryObject<Item> SANDWICH_MUT = ITEMS.register("sandwich_mut", () -> new Item(new Item.Properties().food(ModFoods.SANDWISH_MUT)));
     public static final RegistryObject<Item> SANDWICH_PORK = ITEMS.register("sandwich_pork", () -> new Item(new Item.Properties().food(ModFoods.SANDWISH_PORK)));
@@ -47,7 +48,8 @@ public class ModItems {
     public static final RegistryObject<Item> OBSIDIANUPGRADE_SMITHING   = ITEMS.register("obsidian_upgrade_smithing", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> UNOBTANIUMUPGRADE_SMITHING   = ITEMS.register("unobtanium_upgrade_smithing", () -> new Item(new Item.Properties()));
 
-//dusts
+
+    //dusts
     public static final RegistryObject<Item> COPPERDUST = ITEMS.register("copperdust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> IRONDUST = ITEMS.register("irondust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GOLDDUST = ITEMS.register("golddust", () -> new Item(new Item.Properties()));
@@ -69,7 +71,7 @@ public class ModItems {
     public static final RegistryObject<Item> OBSIDIANBOOTS = ITEMS.register("obsidianboots", () -> new ArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
 
 
-//obsidirite tear
+    //obsidirite tear
     public static final RegistryObject<SwordItem> OBSIDIRITESWORD = ITEMS.register("obsidiritesword", () -> new SwordItem(ModToolTiers.OBSIDIRITETTIER, 3, -2.4f, new Item.Properties().fireResistant()));
     public static final RegistryObject<PickaxeItem> OBSIDIRITEPICKAXE = ITEMS.register("obsidiritepickaxe", () -> new PickaxeItem(ModToolTiers.OBSIDIRITETTIER, 1, -2.8f, new Item.Properties().fireResistant()));
     public static final RegistryObject<AxeItem> OBSIDIRITEAXE = ITEMS.register("obsidiriteaxe", () -> new AxeItem(ModToolTiers.OBSIDIRITETTIER, 5, 3.0f, new Item.Properties().fireResistant()));
@@ -77,12 +79,12 @@ public class ModItems {
     public static final RegistryObject<HoeItem> OBSIDIRITEHOE = ITEMS.register("obsidiritehoe", () -> new HoeItem(ModToolTiers.OBSIDIRITETTIER, 0, -3.0f, new Item.Properties().fireResistant()));
 
 
-    public static final RegistryObject<Item> OBSIDIRITEHELMET = ITEMS.register("obsidiritehelmit", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
-    public static final RegistryObject<Item> OBSIDIRITECHEST = ITEMS.register("obsidiritechest", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
-    public static final RegistryObject<Item> OBSIDIRITELEGS = ITEMS.register("obsidiritelegs", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()));
-    public static final RegistryObject<Item> OBSIDIRITEBOOTS = ITEMS.register("obsidiriteboots", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> OBSIDIRITEHELMET = ITEMS.register("obsidiritehelmit", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> OBSIDIRITECHEST = ITEMS.register("obsidiritechest", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> OBSIDIRITELEGS = ITEMS.register("obsidiritelegs", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> OBSIDIRITEBOOTS = ITEMS.register("obsidiriteboots", () -> new ArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-//unobtain stuffs
+    //unobtain stuffs
     public static final RegistryObject<Item> UNOBTIANIUMDUST = ITEMS.register("unobtaniumdust", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> UNOBTIANIUMSCRAP = ITEMS.register("unobtanium_scrap", () -> new Item(new Item.Properties()));
 
@@ -112,10 +114,10 @@ public class ModItems {
     public static final RegistryObject<Item> UNOBTIANOBSIDIRITEBOOTS = ITEMS.register("unobtainobsidiriteboots", () -> new ArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()));
 
 
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
-    }
     public static void registerModItems(){
         Simpeladd.LOGGER.info("Registering Mod Items for " + Simpeladd.MOD_ID);
+    }
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
     }
 }

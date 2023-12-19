@@ -35,12 +35,12 @@ public class Simpeladd {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Simpeladd() {
-
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+
         ModCreativeTab.register(modEventBus);
         ModRecipes.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
@@ -79,7 +79,7 @@ public class Simpeladd {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("Loading GUI's for " + MOD_ID);
+            LOGGER.info("Loading GUI's For " + MOD_ID);
             MenuScreens.register(ModMenuType.GRINDER_MENU.get(), GrinderScreen::new);
             MenuScreens.register(ModMenuType.GRINDER_MENU_UP.get(), GrinderScreen_up::new);
             MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);

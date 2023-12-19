@@ -12,9 +12,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
-
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 
 
@@ -60,4 +60,8 @@ public class GrinderCategory implements IRecipeCategory<GrinderRecipe> {
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 124, 44).addItemStack(recipe.getResultItem(null));
     }
+
+
+
+
 }

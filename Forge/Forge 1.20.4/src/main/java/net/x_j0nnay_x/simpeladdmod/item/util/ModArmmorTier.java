@@ -11,15 +11,15 @@ import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import java.util.function.Supplier;
 
 public enum ModArmmorTier implements ArmorMaterial {
-    OBSIDIANA("obsidian", 35, new int[]{ 3, 8, 6, 3 }, 24,
+    OBSIDIANA("obsidian", 30, new int[]{ 3, 8, 6, 3 }, 24,
     SoundEvents.ARMOR_EQUIP_GOLD, 2.7f, 0.07f, () -> Ingredient.of(ModItems.OBSIDAININGOT.get())),
 
-    OBSIDIRITEA("obsidirite", 40, new int[]{ 3, 8, 6, 3 }, 24,
-            SoundEvents.ARMOR_EQUIP_NETHERITE, 3.6f, 0.17f, () -> Ingredient.of(Items.NETHERITE_INGOT.getDefaultInstance())),
+    OBSIDIRITEA("obsidirite", 30, new int[]{ 3, 8, 6, 3 }, 24,
+            SoundEvents.ARMOR_EQUIP_GOLD, 2.7f, 0.07f, () -> Ingredient.of(Items.NETHERITE_INGOT.getDefaultInstance())),
     UNOBTAINNETHERITE("unobtainnetherite", 45, new int[]{ 3, 8, 6, 3 }, 24,
-    SoundEvents.ARMOR_EQUIP_NETHERITE, 4.2f, 0.23f, () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get())),
+            SoundEvents.ARMOR_EQUIP_NETHERITE, 4.2f, 0.23f, () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get())),
     UNOBTIANOBSIDIRITEA("unobtainobsidirite", 48, new int[]{ 3, 8, 6, 3 }, 24,
-    SoundEvents.ARMOR_EQUIP_NETHERITE, 4.9f, 0.3f, () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get()));
+            SoundEvents.ARMOR_EQUIP_NETHERITE, 4.9f, 0.3f, () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get()));
 
 
     public final String name;

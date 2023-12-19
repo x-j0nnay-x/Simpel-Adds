@@ -1,13 +1,13 @@
 package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 
-import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.WorldlyContainer;
@@ -16,6 +16,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,14 +28,14 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
+import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock_upgrade;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
-import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderMenu_up;
+import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -53,6 +55,7 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
     public static int OUTPUTSLOT4 = 8;
     public  static int UPGRADESLOT = 9;
     public  static int BOOSTSLOT = 10;
+
 
     protected final ContainerData data;
     private int progress1 = 0;
@@ -361,93 +364,95 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
     }
 
     private void craftItem1() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe1();
-        ItemStack result = recipe.get().getResultItem(null);
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe1();
+        ItemStack result = recipe.get().value().getResultItem(null);
         this.removeItem(INPUTSLOT1, 1);
         this.stacks.set(OUTPUTSLOT1, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT1).getCount() + result.getCount()));
 
     }
     private void craftItem2() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe2();
-        ItemStack result = recipe.get().getResultItem(null);
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe2();
+        ItemStack result = recipe.get().value().getResultItem(null);
         this.removeItem(INPUTSLOT2, 1);
         this.stacks.set(OUTPUTSLOT2, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT2).getCount() + result.getCount()));
 
     }
     private void craftItem3() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe3();
-        ItemStack result = recipe.get().getResultItem(null);
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe3();
+        ItemStack result = recipe.get().value().getResultItem(null);
         this.removeItem(INPUTSLOT3, 1);
         this.stacks.set(OUTPUTSLOT3, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT3).getCount() + result.getCount()));
 
     }
     private void craftItem4() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe4();
-        ItemStack result = recipe.get().getResultItem(null);
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe4();
+        ItemStack result = recipe.get().value().getResultItem(null);
         this.removeItem(INPUTSLOT4, 1);
         this.stacks.set(OUTPUTSLOT4, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT4).getCount() + result.getCount()));
 
     }
     private boolean hasRecipe1() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe1();
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe1();
 
         if(recipe.isEmpty()) {
             return false;
         }
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
 
         return canInsertOutputAmount1(result.getCount()) && canInsertOutputItem1(result.getItem());
-}
+    }
     private boolean hasRecipe2() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe2();
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe2();
 
         if(recipe.isEmpty()) {
             return false;
         }
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
 
         return canInsertOutputAmount2(result.getCount()) && canInsertOutputItem2(result.getItem());
     }
     private boolean hasRecipe3() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe3();
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe3();
 
         if(recipe.isEmpty()) {
             return false;
         }
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
 
         return canInsertOutputAmount3(result.getCount()) && canInsertOutputItem3(result.getItem());
     }
     private boolean hasRecipe4() {
-        Optional<GrinderRecipe> recipe = getCurrentRecipe4();
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe4();
 
         if(recipe.isEmpty()) {
             return false;
         }
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
 
         return canInsertOutputAmount4(result.getCount()) && canInsertOutputItem4(result.getItem());
     }
-    private Optional<GrinderRecipe> getCurrentRecipe1() {
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe1() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT1));
         return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
     }
-    private Optional<GrinderRecipe> getCurrentRecipe2() {
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe2() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT2));
         return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
+
     }
-    private Optional<GrinderRecipe> getCurrentRecipe3() {
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe3() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT3));
         return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
     }
-    private Optional<GrinderRecipe> getCurrentRecipe4() {
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe4() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT4));
         return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
     }
+
 
 
     private boolean canInsertOutputItem1(Item item) {

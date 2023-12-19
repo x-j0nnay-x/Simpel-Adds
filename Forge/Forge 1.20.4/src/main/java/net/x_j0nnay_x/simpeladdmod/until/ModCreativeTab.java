@@ -7,9 +7,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
 public class ModCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -63,12 +63,12 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.UNOBTIANIUMDUST.get());
                         pOutput.accept(ModItems.UNOBTIANIUMSCRAP.get());
 
-
                         pOutput.accept(ModItems.OBSIDAINAXE.get());
                         pOutput.accept(ModItems.OBSIDIANHOE.get());
                         pOutput.accept(ModItems.OBSIDIANSWORD.get());
                         pOutput.accept(ModItems.OBSIDIANPICKAXE.get());
                         pOutput.accept(ModItems.OBSIDIANSPADE.get());
+
                         pOutput.accept(ModItems.OBSIDIANHELMET.get());
                         pOutput.accept(ModItems.OBSIDIANCHEST.get());
                         pOutput.accept(ModItems.OBSIDIANLEGS.get());
@@ -80,6 +80,7 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.OBSIDIRITESWORD.get());
                         pOutput.accept(ModItems.OBSIDIRITEPICKAXE.get());
                         pOutput.accept(ModItems.OBSIDIRITESPADE.get());
+
                         pOutput.accept(ModItems.OBSIDIRITEHELMET.get());
                         pOutput.accept(ModItems.OBSIDIRITECHEST.get());
                         pOutput.accept(ModItems.OBSIDIRITELEGS.get());
@@ -106,7 +107,6 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.UNOBTIANOBSIDIRITELEGS.get());
                         pOutput.accept(ModItems.UNOBTIANOBSIDIRITEBOOTS.get());
 
-
                         //block
                         pOutput.accept(ModBlocks.DEEPSLATE_DEBRI_ORE.get());
                         pOutput.accept(ModBlocks.GRINDER_BLOCK.get());
@@ -117,13 +117,13 @@ public class ModCreativeTab {
                         pOutput.accept(ModBlocks.STONE_SHIFTER.get());
                         pOutput.accept(ModBlocks.UNOBTANIUM_ORE.get());
 
-
                     })
                     .build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }
+
     public static void registerCreativeTab(){
         Simpeladd.LOGGER.info("Registering Creative Tab For " + Simpeladd.MOD_ID);
     }

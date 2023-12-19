@@ -17,6 +17,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,6 +31,7 @@ import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock_upgrade;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
+import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderMenu_up;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 import org.jetbrains.annotations.Nullable;
@@ -53,10 +55,7 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
     public static int OUTPUTSLOT4 = 8;
     public  static int UPGRADESLOT = 9;
     public  static int BOOSTSLOT = 10;
-    private int outputAmount1 = 0;
-    private int outputAmount2 = 0;
-    private int outputAmount3 = 0;
-    private int outputAmount4 = 0;
+
 
     protected final ContainerData data;
     private int progress1 = 0;
@@ -232,7 +231,7 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
         pState = pState.setValue(GrinderBlock_upgrade.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         if(grindsleft > 0){
-                if(hasRecipe1() && canInsertOutputAmount1(outputAmount1)){
+                if(hasRecipe1()){
                     increaseCraftingProgress1();
                     setChanged(pLevel, pPos, pState);
                         if(hasProgressFinished1()){
@@ -240,7 +239,7 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
                             craftItem1();
                             resetProgress1();
                         }
-                }if(hasRecipe2() && canInsertOutputAmount2(outputAmount2)){
+                }if(hasRecipe2()){
                 increaseCraftingProgress2();
                 setChanged(pLevel, pPos, pState);
                 if(hasProgressFinished2()){
@@ -248,7 +247,7 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
                     craftItem2();
                     resetProgress2();
                 }
-            }if(hasRecipe3() && canInsertOutputAmount3(outputAmount3)){
+            }if(hasRecipe3()){
                 increaseCraftingProgress3();
                 setChanged(pLevel, pPos, pState);
                 if(hasProgressFinished3()){
@@ -256,7 +255,7 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
                     craftItem3();
                     resetProgress3();
                 }
-            }if(hasRecipe4() && canInsertOutputAmount4(outputAmount4)){
+            }if(hasRecipe4()){
                 increaseCraftingProgress4();
                 setChanged(pLevel, pPos, pState);
                 if(hasProgressFinished4()){
@@ -365,420 +364,93 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
     }
 
     private void craftItem1() {
-        if (stacks.get(INPUTSLOT1).is(Items.RAW_IRON)) {
-            if (canInsertOutputItem1(ModItems.IRONDUST.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.IRONDUST.get(), stacks.get(OUTPUTSLOT1).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(Items.RAW_COPPER)) {
-            if (canInsertOutputItem1(ModItems.COPPERDUST.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.COPPERDUST.get(), stacks.get(OUTPUTSLOT1).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(Items.RAW_GOLD)) {
-            if (canInsertOutputItem1(ModItems.GOLDDUST.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.GOLDDUST.get(), stacks.get(OUTPUTSLOT1).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(Items.OBSIDIAN)) {
-            if (canInsertOutputItem1(ModItems.OBSIDAINDUST.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.OBSIDAINDUST.get(), stacks.get(OUTPUTSLOT1).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(Items.ANCIENT_DEBRIS)) {
-            if (canInsertOutputItem1(ModItems.NETHERITEDUST.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.NETHERITEDUST.get(), stacks.get(OUTPUTSLOT1).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(ModItems.NEHTERITE_SHARD_RAW.get())) {
-            if (canInsertOutputItem1(ModItems.NEHTERITE_SHARD_DUST.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.NEHTERITE_SHARD_DUST.get(), stacks.get(OUTPUTSLOT1).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(Items.BLAZE_ROD)) {
-            if (canInsertOutputItem1(Items.BLAZE_POWDER) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(Items.BLAZE_POWDER, stacks.get(OUTPUTSLOT1).getCount() + 3));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(Items.BONE)) {
-            if (canInsertOutputItem1(Items.BONE_MEAL) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(Items.BONE_MEAL, stacks.get(OUTPUTSLOT1).getCount() + 4));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(ItemTags.WOOL)) {
-            if (canInsertOutputItem1(Items.STRING) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(Items.STRING, stacks.get(OUTPUTSLOT1).getCount() + 5));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(ItemTags.LOGS)) {
-            if (canInsertOutputItem1(ModItems.WOODFIBER.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.WOODFIBER.get(), stacks.get(OUTPUTSLOT1).getCount() + 8));
-            }
-        }
-        if (stacks.get(INPUTSLOT1).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())) {
-            if (canInsertOutputItem1(ModItems.UNOBTIANIUMDUST.get()) && canInsertOutputAmount1(outputAmount1)) {
-                this.removeItem(INPUTSLOT1, 1);
-                stacks.set(OUTPUTSLOT1, new ItemStack(ModItems.UNOBTIANIUMDUST.get(), stacks.get(OUTPUTSLOT1).getCount() + 2));
-            }
-        }
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe1();
+        ItemStack result = recipe.get().value().getResultItem(null);
+        this.removeItem(INPUTSLOT1, 1);
+        this.stacks.set(OUTPUTSLOT1, new ItemStack(result.getItem(),
+                this.stacks.get(OUTPUTSLOT1).getCount() + result.getCount()));
+
     }
     private void craftItem2() {
-        if (stacks.get(INPUTSLOT2).is(Items.RAW_IRON)) {
-            if (canInsertOutputItem2(ModItems.IRONDUST.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.IRONDUST.get(), stacks.get(OUTPUTSLOT2).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(Items.RAW_COPPER)) {
-            if (canInsertOutputItem2(ModItems.COPPERDUST.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.COPPERDUST.get(), stacks.get(OUTPUTSLOT2).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(Items.RAW_GOLD)) {
-            if (canInsertOutputItem2(ModItems.GOLDDUST.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.GOLDDUST.get(), stacks.get(OUTPUTSLOT2).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(Items.OBSIDIAN)) {
-            if (canInsertOutputItem2(ModItems.OBSIDAINDUST.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.OBSIDAINDUST.get(), stacks.get(OUTPUTSLOT2).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(Items.ANCIENT_DEBRIS)) {
-            if (canInsertOutputItem2(ModItems.NETHERITEDUST.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.NETHERITEDUST.get(), stacks.get(OUTPUTSLOT2).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(ModItems.NEHTERITE_SHARD_RAW.get())) {
-            if (canInsertOutputItem2(ModItems.NEHTERITE_SHARD_DUST.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.NEHTERITE_SHARD_DUST.get(), stacks.get(OUTPUTSLOT2).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(Items.BLAZE_ROD)) {
-            if (canInsertOutputItem2(Items.BLAZE_POWDER) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(Items.BLAZE_POWDER, stacks.get(OUTPUTSLOT2).getCount() + 3));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(Items.BONE)) {
-            if (canInsertOutputItem2(Items.BONE_MEAL) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(Items.BONE_MEAL, stacks.get(OUTPUTSLOT2).getCount() + 4));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(ItemTags.WOOL)) {
-            if (canInsertOutputItem2(Items.STRING) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(Items.STRING, stacks.get(OUTPUTSLOT2).getCount() + 5));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(ItemTags.LOGS)) {
-            if (canInsertOutputItem2(ModItems.WOODFIBER.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.WOODFIBER.get(), stacks.get(OUTPUTSLOT2).getCount() + 8));
-            }
-        }
-        if (stacks.get(INPUTSLOT2).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())) {
-            if (canInsertOutputItem2(ModItems.UNOBTIANIUMDUST.get()) && canInsertOutputAmount2(outputAmount2)) {
-                this.removeItem(INPUTSLOT2, 1);
-                stacks.set(OUTPUTSLOT2, new ItemStack(ModItems.UNOBTIANIUMDUST.get(), stacks.get(OUTPUTSLOT2).getCount() + 2));
-            }
-        }
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe2();
+        ItemStack result = recipe.get().value().getResultItem(null);
+        this.removeItem(INPUTSLOT2, 1);
+        this.stacks.set(OUTPUTSLOT2, new ItemStack(result.getItem(),
+                this.stacks.get(OUTPUTSLOT2).getCount() + result.getCount()));
+
     }
     private void craftItem3() {
-        if (stacks.get(INPUTSLOT3).is(Items.RAW_IRON)) {
-            if (canInsertOutputItem3(ModItems.IRONDUST.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.IRONDUST.get(), stacks.get(OUTPUTSLOT3).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(Items.RAW_COPPER)) {
-            if (canInsertOutputItem3(ModItems.COPPERDUST.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.COPPERDUST.get(), stacks.get(OUTPUTSLOT3).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(Items.RAW_GOLD)) {
-            if (canInsertOutputItem3(ModItems.GOLDDUST.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.GOLDDUST.get(), stacks.get(OUTPUTSLOT3).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(Items.OBSIDIAN)) {
-            if (canInsertOutputItem3(ModItems.OBSIDAINDUST.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.OBSIDAINDUST.get(), stacks.get(OUTPUTSLOT3).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(Items.ANCIENT_DEBRIS)) {
-            if (canInsertOutputItem3(ModItems.NETHERITEDUST.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.NETHERITEDUST.get(), stacks.get(OUTPUTSLOT3).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(ModItems.NEHTERITE_SHARD_RAW.get())) {
-            if (canInsertOutputItem3(ModItems.NEHTERITE_SHARD_DUST.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.NEHTERITE_SHARD_DUST.get(), stacks.get(OUTPUTSLOT3).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(Items.BLAZE_ROD)) {
-            if (canInsertOutputItem3(Items.BLAZE_POWDER) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(Items.BLAZE_POWDER, stacks.get(OUTPUTSLOT3).getCount() + 3));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(Items.BONE)) {
-            if (canInsertOutputItem3(Items.BONE_MEAL) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(Items.BONE_MEAL, stacks.get(OUTPUTSLOT3).getCount() + 4));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(ItemTags.WOOL)) {
-            if (canInsertOutputItem3(Items.STRING) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(Items.STRING, stacks.get(OUTPUTSLOT3).getCount() + 5));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(ItemTags.LOGS)) {
-            if (canInsertOutputItem3(ModItems.WOODFIBER.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.WOODFIBER.get(), stacks.get(OUTPUTSLOT3).getCount() + 8));
-            }
-        }
-        if (stacks.get(INPUTSLOT3).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())) {
-            if (canInsertOutputItem3(ModItems.UNOBTIANIUMDUST.get()) && canInsertOutputAmount3(outputAmount3)) {
-                this.removeItem(INPUTSLOT3, 1);
-                stacks.set(OUTPUTSLOT3, new ItemStack(ModItems.UNOBTIANIUMDUST.get(), stacks.get(OUTPUTSLOT3).getCount() + 2));
-            }
-        }
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe3();
+        ItemStack result = recipe.get().value().getResultItem(null);
+        this.removeItem(INPUTSLOT3, 1);
+        this.stacks.set(OUTPUTSLOT3, new ItemStack(result.getItem(),
+                this.stacks.get(OUTPUTSLOT3).getCount() + result.getCount()));
+
     }
     private void craftItem4() {
-        if (stacks.get(INPUTSLOT4).is(Items.RAW_IRON)) {
-            if (canInsertOutputItem4(ModItems.IRONDUST.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.IRONDUST.get(), stacks.get(OUTPUTSLOT4).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(Items.RAW_COPPER)) {
-            if (canInsertOutputItem4(ModItems.COPPERDUST.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.COPPERDUST.get(), stacks.get(OUTPUTSLOT4).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(Items.RAW_GOLD)) {
-            if (canInsertOutputItem4(ModItems.GOLDDUST.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.GOLDDUST.get(), stacks.get(OUTPUTSLOT4).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(Items.OBSIDIAN)) {
-            if (canInsertOutputItem4(ModItems.OBSIDAINDUST.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.OBSIDAINDUST.get(), stacks.get(OUTPUTSLOT4).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(Items.ANCIENT_DEBRIS)) {
-            if (canInsertOutputItem4(ModItems.NETHERITEDUST.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.NETHERITEDUST.get(), stacks.get(OUTPUTSLOT4).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(ModItems.NEHTERITE_SHARD_RAW.get())) {
-            if (canInsertOutputItem4(ModItems.NEHTERITE_SHARD_DUST.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.NEHTERITE_SHARD_DUST.get(), stacks.get(OUTPUTSLOT4).getCount() + 2));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(Items.BLAZE_ROD)) {
-            if (canInsertOutputItem4(Items.BLAZE_POWDER) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(Items.BLAZE_POWDER, stacks.get(OUTPUTSLOT4).getCount() + 3));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(Items.BONE)) {
-            if (canInsertOutputItem4(Items.BONE_MEAL) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(Items.BONE_MEAL, stacks.get(OUTPUTSLOT4).getCount() + 4));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(ItemTags.WOOL)) {
-            if (canInsertOutputItem4(Items.STRING) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(Items.STRING, stacks.get(OUTPUTSLOT4).getCount() + 5));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(ItemTags.LOGS)) {
-            if (canInsertOutputItem4(ModItems.WOODFIBER.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.WOODFIBER.get(), stacks.get(OUTPUTSLOT4).getCount() + 8));
-            }
-        }
-        if (stacks.get(INPUTSLOT4).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())) {
-            if (canInsertOutputItem4(ModItems.UNOBTIANIUMDUST.get()) && canInsertOutputAmount4(outputAmount4)) {
-                this.removeItem(INPUTSLOT4, 1);
-                stacks.set(OUTPUTSLOT4, new ItemStack(ModItems.UNOBTIANIUMDUST.get(), stacks.get(OUTPUTSLOT4).getCount() + 2));
-            }
-        }
-    }
-    private void doubleCrafting1(){
-        outputAmount1 = 2;
-    }
-    private void trippleCrafting1(){
-        outputAmount1 = 3;
-    }
-    private void fourCrafting1(){
-        outputAmount1 = 4;
-    }
-    private void fiveCrafting1(){
-        outputAmount1 = 5;
-    }
-    private void fiberCrafting1(){
-        outputAmount1 = 8;
-    }
-    private void doubleCrafting2(){
-        outputAmount2 = 2;
-    }
-    private void trippleCrafting2(){
-        outputAmount2 = 3;
-    }
-    private void fourCrafting2(){
-        outputAmount2 = 4;
-    }
-    private void fiveCrafting2(){
-        outputAmount2 = 5;
-    }
-    private void fiberCrafting2(){
-        outputAmount2 = 8;
-    }
-    private void doubleCrafting3(){
-        outputAmount3 = 2;
-    }
-    private void trippleCrafting3(){
-        outputAmount3 = 3;
-    }
-    private void fourCrafting3(){
-        outputAmount3 = 4;
-    }
-    private void fiveCrafting3(){
-        outputAmount3 = 5;
-    }
-    private void fiberCrafting3(){
-        outputAmount3 = 8;
-    }
-    private void doubleCrafting4(){
-        outputAmount4 = 2;
-    }
-    private void trippleCrafting4(){
-        outputAmount4 = 3;
-    }
-    private void fourCrafting4(){
-        outputAmount4 = 4;
-    }
-    private void fiveCrafting4(){
-        outputAmount4 = 5;
-    }
-    private void fiberCrafting4(){
-        outputAmount4 = 8;
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe4();
+        ItemStack result = recipe.get().value().getResultItem(null);
+        this.removeItem(INPUTSLOT4, 1);
+        this.stacks.set(OUTPUTSLOT4, new ItemStack(result.getItem(),
+                this.stacks.get(OUTPUTSLOT4).getCount() + result.getCount()));
+
     }
     private boolean hasRecipe1() {
-        if(this.stacks.get(INPUTSLOT1).is(ModTags.Items.CANGRIND)){
-            if(this.stacks.get(INPUTSLOT1).is(Items.RAW_GOLD) || this.stacks.get(INPUTSLOT1).is(Items.RAW_IRON) ||this.stacks.get(INPUTSLOT1).is(Items.RAW_COPPER) ||this.stacks.get(INPUTSLOT1).is(Items.OBSIDIAN) ||
-                    this.stacks.get(INPUTSLOT1).is(Items.ANCIENT_DEBRIS) ||this.stacks.get(INPUTSLOT1).is(ModItems.NEHTERITE_SHARD_RAW.get()) || this.stacks.get(INPUTSLOT1).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())){
-                doubleCrafting1();
-            }
-            if(this.stacks.get(INPUTSLOT1).is(ItemTags.IRON_ORES) || this.stacks.get(INPUTSLOT1).is(ItemTags.COPPER_ORES) ||this.stacks.get(INPUTSLOT1).is(ModTags.Items.RAW_GOLD_DROPPER) ||this.stacks.get(INPUTSLOT1).is(Items.BLAZE_ROD)){
-                trippleCrafting1();
-            }
-            if(this.stacks.get(INPUTSLOT1).is(Items.BONE)){
-                fourCrafting1();
-            }
-            if(this.stacks.get(INPUTSLOT1).is(ItemTags.WOOL)){
-                fiveCrafting1();
-            }
-            if(this.stacks.get(INPUTSLOT1).is(ItemTags.LOGS)){
-                fiberCrafting1();
-            } return true;
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe1();
+
+        if(recipe.isEmpty()) {
+            return false;
         }
-        return false;
-}
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
+
+        return canInsertOutputAmount1(result.getCount()) && canInsertOutputItem1(result.getItem());
+    }
     private boolean hasRecipe2() {
-        if(this.stacks.get(INPUTSLOT2).is(ModTags.Items.CANGRIND)){
-            if(this.stacks.get(INPUTSLOT2).is(Items.RAW_GOLD) || this.stacks.get(INPUTSLOT2).is(Items.RAW_IRON) ||this.stacks.get(INPUTSLOT2).is(Items.RAW_COPPER) ||this.stacks.get(INPUTSLOT2).is(Items.OBSIDIAN) ||
-                    this.stacks.get(INPUTSLOT2).is(Items.ANCIENT_DEBRIS) ||this.stacks.get(INPUTSLOT2).is(ModItems.NEHTERITE_SHARD_RAW.get()) || this.stacks.get(INPUTSLOT2).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())){
-                doubleCrafting2();
-            }
-            if(this.stacks.get(INPUTSLOT2).is(ItemTags.IRON_ORES) || this.stacks.get(INPUTSLOT2).is(ItemTags.COPPER_ORES) ||this.stacks.get(INPUTSLOT2).is(ModTags.Items.RAW_GOLD_DROPPER) ||this.stacks.get(INPUTSLOT2).is(Items.BLAZE_ROD)){
-                trippleCrafting2();
-            }
-            if(this.stacks.get(INPUTSLOT2).is(Items.BONE)){
-                fourCrafting2();
-            }
-            if(this.stacks.get(INPUTSLOT2).is(ItemTags.WOOL)){
-                fiveCrafting2();
-            }
-            if(this.stacks.get(INPUTSLOT2).is(ItemTags.LOGS)){
-                fiberCrafting2();
-            } return true;
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe2();
+
+        if(recipe.isEmpty()) {
+            return false;
         }
-        return false;
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
+
+        return canInsertOutputAmount2(result.getCount()) && canInsertOutputItem2(result.getItem());
     }
     private boolean hasRecipe3() {
-        if(this.stacks.get(INPUTSLOT3).is(ModTags.Items.CANGRIND)){
-            if(this.stacks.get(INPUTSLOT3).is(Items.RAW_GOLD) || this.stacks.get(INPUTSLOT3).is(Items.RAW_IRON) ||this.stacks.get(INPUTSLOT3).is(Items.RAW_COPPER) ||this.stacks.get(INPUTSLOT3).is(Items.OBSIDIAN) ||
-                    this.stacks.get(INPUTSLOT3).is(Items.ANCIENT_DEBRIS) ||this.stacks.get(INPUTSLOT3).is(ModItems.NEHTERITE_SHARD_RAW.get()) || this.stacks.get(INPUTSLOT3).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())){
-                doubleCrafting3();
-            }
-            if(this.stacks.get(INPUTSLOT3).is(ItemTags.IRON_ORES) || this.stacks.get(INPUTSLOT3).is(ItemTags.COPPER_ORES) ||this.stacks.get(INPUTSLOT3).is(ModTags.Items.RAW_GOLD_DROPPER) ||this.stacks.get(INPUTSLOT3).is(Items.BLAZE_ROD)){
-                trippleCrafting3();
-            }
-            if(this.stacks.get(INPUTSLOT3).is(Items.BONE)){
-                fourCrafting3();
-            }
-            if(this.stacks.get(INPUTSLOT3).is(ItemTags.WOOL)){
-                fiveCrafting3();
-            }
-            if(this.stacks.get(INPUTSLOT3).is(ItemTags.LOGS)){
-                fiberCrafting3();
-            } return true;
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe3();
+
+        if(recipe.isEmpty()) {
+            return false;
         }
-        return false;
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
+
+        return canInsertOutputAmount3(result.getCount()) && canInsertOutputItem3(result.getItem());
     }
     private boolean hasRecipe4() {
-        if(this.stacks.get(INPUTSLOT4).is(ModTags.Items.CANGRIND)){
-            if(this.stacks.get(INPUTSLOT4).is(Items.RAW_GOLD) || this.stacks.get(INPUTSLOT4).is(Items.RAW_IRON) ||this.stacks.get(INPUTSLOT4).is(Items.RAW_COPPER) ||this.stacks.get(INPUTSLOT4).is(Items.OBSIDIAN) ||
-                    this.stacks.get(INPUTSLOT4).is(Items.ANCIENT_DEBRIS) ||this.stacks.get(INPUTSLOT4).is(ModItems.NEHTERITE_SHARD_RAW.get()) || this.stacks.get(INPUTSLOT4).is(ModBlocks.UNOBTANIUM_ORE.get().asItem())){
-                doubleCrafting4();
-            }
-            if(this.stacks.get(INPUTSLOT4).is(ItemTags.IRON_ORES) || this.stacks.get(INPUTSLOT4).is(ItemTags.COPPER_ORES) ||this.stacks.get(INPUTSLOT4).is(ModTags.Items.RAW_GOLD_DROPPER) ||this.stacks.get(INPUTSLOT4).is(Items.BLAZE_ROD)){
-                trippleCrafting4();
-            }
-            if(this.stacks.get(INPUTSLOT4).is(Items.BONE)){
-                fourCrafting4();
-            }
-            if(this.stacks.get(INPUTSLOT4).is(ItemTags.WOOL)){
-                fiveCrafting4();
-            }
-            if(this.stacks.get(INPUTSLOT4).is(ItemTags.LOGS)){
-                fiberCrafting4();
-            } return true;
+        Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe4();
+
+        if(recipe.isEmpty()) {
+            return false;
         }
-        return false;
+        ItemStack result = recipe.get().value().getResultItem(getLevel().registryAccess());
+
+        return canInsertOutputAmount4(result.getCount()) && canInsertOutputItem4(result.getItem());
+    }
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe1() {
+        SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT1));
+        return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
+    }
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe2() {
+        SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT2));
+        return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
+
+    }
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe3() {
+        SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT3));
+        return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
+    }
+    private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe4() {
+        SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT4));
+        return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
     }
 
 

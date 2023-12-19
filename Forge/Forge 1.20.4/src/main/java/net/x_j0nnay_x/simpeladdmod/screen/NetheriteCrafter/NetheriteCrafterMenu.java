@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.block.entity.NetheriteCrafterBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;

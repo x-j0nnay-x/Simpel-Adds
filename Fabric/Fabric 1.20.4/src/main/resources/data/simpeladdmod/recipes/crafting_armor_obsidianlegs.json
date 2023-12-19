@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "x x",
+    "x x"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "simpeladdmod:obsidianingot"
+    }
+
+
+  },
+  "result":
+  {
+    "item": "simpeladdmod:obsidianlegs",
+    "count": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "simpeladdmod:unobtanium_scrap"
+    },
+    "base": {
+        "item": "minecraft:netherite_sword"
+    },
+    "result": {
+        "item": "simpeladdmod:unobtainnetheritesword"
+    },
+    "template": {
+        "item": "simpeladdmod:unobtanium_upgrade_smithing"
+    }
+}

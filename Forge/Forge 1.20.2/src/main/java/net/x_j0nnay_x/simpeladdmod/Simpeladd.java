@@ -15,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
+import net.x_j0nnay_x.simpeladdmod.recipe.ModRecipes;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterScreen;
@@ -41,7 +42,7 @@ public class Simpeladd {
         ModBlockEntities.register(modEventBus);
 
         ModCreativeTab.register(modEventBus);
-       // ModRecipes.register(modEventBus);
+        ModRecipes.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
         ModMenuType.register(modEventBus);
 

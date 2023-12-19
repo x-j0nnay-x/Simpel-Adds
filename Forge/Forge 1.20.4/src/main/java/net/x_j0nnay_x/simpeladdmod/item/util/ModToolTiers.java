@@ -18,10 +18,9 @@ public enum ModToolTiers implements Tier {
     OBSIDIRITETTIER(4, 2900, 11.1f, 4.5f, 22,
             () -> Ingredient.of(Items.NETHERITE_INGOT)),
     UNOBTAINNETHERITETIER(4, 3200, 11.8f, 4.8f, 22,
-                            () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get())),
+            () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get())),
     UNOBTIANOBSIDIRITEATIER(4, 3900, 12.3f, 5.5f, 22,
-                            () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get()));
-
+            () -> Ingredient.of(ModItems.UNOBTIANIUMSCRAP.get()));
     private final int miningLevel;
     private final int itemDurability;
     private final float miningSpeed;

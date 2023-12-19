@@ -7,9 +7,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,10 +18,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
-
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.entity.NetheriteCrafterBlockEntity;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class NetheriteCrafterBlock extends BaseEntityBlock  {
@@ -73,17 +70,20 @@ public class NetheriteCrafterBlock extends BaseEntityBlock  {
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+        BlockEntity be = pLevel.getBlockEntity(pPos);
+        if (!(be instanceof NetheriteCrafterBlockEntity blockEntity))
+            return InteractionResult.PASS;
 
-        if (!pLevel.isClientSide()){
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof NetheriteCrafterBlockEntity){
-                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (NetheriteCrafterBlockEntity)entity, pPos);
-            }else {
-                throw  new IllegalStateException("Block Factory Container Provider is missing");
-            }
+        if (pLevel.isClientSide())
+            return InteractionResult.SUCCESS;
+
+        // open screen
+        if(pPlayer instanceof ServerPlayer sPlayer) {
+            sPlayer.openMenu(blockEntity, pPos);
         }
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+
+        return InteractionResult.CONSUME;
     }
 
     @Nullable
