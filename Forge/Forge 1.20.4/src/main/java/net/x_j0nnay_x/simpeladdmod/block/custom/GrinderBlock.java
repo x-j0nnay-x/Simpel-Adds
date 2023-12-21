@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class GrinderBlock extends BaseEntityBlock  {
-    public static final MapCodec<GrinderBlock> CODEC = m_306223_(GrinderBlock::new);
+    public static final MapCodec<GrinderBlock> CODEC = simpleCodec(GrinderBlock::new);
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
@@ -38,7 +38,7 @@ public class GrinderBlock extends BaseEntityBlock  {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+    protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 

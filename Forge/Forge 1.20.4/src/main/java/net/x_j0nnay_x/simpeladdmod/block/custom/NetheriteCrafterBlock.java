@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class NetheriteCrafterBlock extends BaseEntityBlock  {
-    public static final MapCodec<NetheriteCrafterBlock> CODEC = m_306223_(NetheriteCrafterBlock::new);
+    public static final MapCodec<NetheriteCrafterBlock> CODEC = simpleCodec(NetheriteCrafterBlock::new);
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
@@ -37,7 +37,7 @@ public class NetheriteCrafterBlock extends BaseEntityBlock  {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+    protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 

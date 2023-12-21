@@ -91,7 +91,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         }
         public static final Codec<GrinderRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
                 validateAmount(Ingredient.CODEC_NONEMPTY, 1).fieldOf("ingredients").forGetter(GrinderRecipe::getIngredients),
-                ItemStack.CODEC.fieldOf("output").forGetter(r -> r.output)
+                ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("output").forGetter(r -> r.output)
         ).apply(in,  (ingredients, result) -> {
             var nnIngredients = NonNullList.<Ingredient>create();
             nnIngredients.addAll(ingredients);

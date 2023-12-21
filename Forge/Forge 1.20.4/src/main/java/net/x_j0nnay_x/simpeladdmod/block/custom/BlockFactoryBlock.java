@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockFactoryBlock extends BaseEntityBlock   {
-    public static final MapCodec<BlockFactoryBlock> CODEC = m_306223_(BlockFactoryBlock::new);
+    public static final MapCodec<BlockFactoryBlock> CODEC = simpleCodec(BlockFactoryBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public BlockFactoryBlock(Properties pProperties) {
@@ -38,7 +38,7 @@ public class BlockFactoryBlock extends BaseEntityBlock   {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+    protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 

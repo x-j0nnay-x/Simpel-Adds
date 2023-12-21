@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ChillerBlock extends BaseEntityBlock  {
-    public static final MapCodec<ChillerBlock> CODEC = m_306223_(ChillerBlock::new);
+    public static final MapCodec<ChillerBlock> CODEC = simpleCodec(ChillerBlock::new);
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
@@ -35,7 +35,7 @@ public class ChillerBlock extends BaseEntityBlock  {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> m_304657_() {
+    protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
