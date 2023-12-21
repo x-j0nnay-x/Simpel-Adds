@@ -84,19 +84,19 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "grinder";
 
+        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int max) {
+            return ExtraCodecs.validate(ExtraCodecs.validate(
+                    delegate.listOf(), list -> list.size() > max ? DataResult.error(() -> "Recipe has too many ingredients!") : DataResult.success(list)
+            ), list -> list.isEmpty() ? DataResult.error(() -> "Recipe has no ingredients!") : DataResult.success(list));
+        }
         public static final Codec<GrinderRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
-                        CraftingRecipe.f_302387_.fieldOf("output").forGetter(r -> r.output),
-                        Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients")
-                                .flatXmap(ingredients -> {
-                                    Ingredient[] ingredientArr = ingredients.stream().filter(i -> !i.isEmpty()).toArray(Ingredient[]::new);
-                                    if (ingredientArr.length == 0) {
-                                        return DataResult.error(() -> "No ingredients for recipe");
-                                    }
-                                    return DataResult.success(NonNullList.of(Ingredient.EMPTY, ingredientArr));
-                                }, DataResult::success).forGetter(x-> x.recipeItems)
-
-                ).apply(in, GrinderRecipe::new)
-        );
+                validateAmount(Ingredient.CODEC_NONEMPTY, 1).fieldOf("ingredients").forGetter(GrinderRecipe::getIngredients),
+                ItemStack.CODEC.fieldOf("output").forGetter(r -> r.output)
+        ).apply(in,  (ingredients, result) -> {
+            var nnIngredients = NonNullList.<Ingredient>create();
+            nnIngredients.addAll(ingredients);
+            return new GrinderRecipe(nnIngredients, result);
+        }));
         @Override
         public Codec<GrinderRecipe> codec() {
             return CODEC;
