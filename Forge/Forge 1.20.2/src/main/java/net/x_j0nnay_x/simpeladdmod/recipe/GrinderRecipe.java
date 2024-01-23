@@ -76,11 +76,13 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
     }
 
     public static class Type implements RecipeType<GrinderRecipe> {
+        private Type() {}
         public static final Type INSTANCE = new Type();
         public static final String ID = "grinder";
     }
 
     public static class Serializer implements RecipeSerializer<GrinderRecipe> {
+        private Serializer() {}
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "grinder";
 

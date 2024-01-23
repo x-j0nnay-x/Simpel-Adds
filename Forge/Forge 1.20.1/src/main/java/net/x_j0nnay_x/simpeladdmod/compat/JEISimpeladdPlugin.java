@@ -14,6 +14,8 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
+import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderScreen_up;
+
 import java.util.List;
 
 @JeiPlugin
@@ -50,6 +52,8 @@ public class JEISimpeladdPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(GrinderScreen.class, 58, 42, 55,23,
+                GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(GrinderScreen_up.class, 42, 34, 71,13,
                 GrinderCategory.GRINDER_RECIPE_RECIPE_TYPE);
     }
 }

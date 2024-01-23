@@ -478,5 +478,5 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
     private boolean canInsertOutputAmount4(int count) {
         return this.stacks.get(OUTPUTSLOT4).getCount() + count <= this.stacks.get(OUTPUTSLOT4).getMaxStackSize();
     }
-
+    
 }
