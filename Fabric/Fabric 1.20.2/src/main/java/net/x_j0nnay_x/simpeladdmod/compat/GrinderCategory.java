@@ -44,10 +44,10 @@ public class GrinderCategory implements DisplayCategory<BasicDisplay>{
         List<Widget> widgets = new LinkedList<>();
         widgets.add(Widgets.createTexturedWidget(TEXTURE, new Rectangle(startPoint.x, startPoint.y, 175, 82)));
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 80, startPoint.y + 11))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 34, startPoint.y + 44))
                 .entries(display.getInputEntries().get(0)));
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 80, startPoint.y + 59))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 124, startPoint.y + 44))
                 .markOutput().entries(display.getOutputEntries().get(0)));
 
 
