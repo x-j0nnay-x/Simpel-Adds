@@ -44,6 +44,7 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
     private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(11, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
 
+
     public static int GRINDERSLOT = 0;
     public static int INPUTSLOT1 = 1;
     public static int INPUTSLOT2 = 2;
@@ -228,6 +229,16 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
         }
+        if(hasItemInFirtsSlot() && !areStackEqual1to2()){
+            moveItemFrom1to2();
+        }
+
+        if(hasItemInSecondSlot() && !areStackEqual2to3()){
+            moveItemFrom2to3();
+        }
+        if(hasItemInThirdSlot() && !areStackEqual3to4()){
+            moveItemFrom3to4();
+        }
         pState = pState.setValue(GrinderBlock_upgrade.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         if(grindsleft > 0){
@@ -295,6 +306,59 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
         }else {
             grindsleft = 0;
         }
+    }
+    private boolean hasItemInFirtsSlot(){
+        return this.stacks.get(INPUTSLOT1).getCount() >= 2;
+    }
+    private boolean hasItemInSecondSlot(){
+        return this.stacks.get(INPUTSLOT2).getCount() >= 2;
+    }
+    private boolean hasItemInThirdSlot(){
+        return this.stacks.get(INPUTSLOT3).getCount() >= 2;
+    }
+
+    private boolean areStackEqual1to2(){
+        return this.stacks.get(INPUTSLOT1).getCount() <= this.stacks.get(INPUTSLOT2).getCount();
+    }
+    private boolean areStackEqual2to3(){
+        return this.stacks.get(INPUTSLOT2).getCount() <= this.stacks.get(INPUTSLOT3).getCount();
+    }
+    private boolean areStackEqual3to4(){
+        return this.stacks.get(INPUTSLOT3).getCount() <= this.stacks.get(INPUTSLOT4).getCount();
+    }
+    private boolean isItemSameSlot2(){
+        return this.stacks.get(INPUTSLOT1).getItem() == this.stacks.get(INPUTSLOT2).getItem() || this.stacks.get(INPUTSLOT2).isEmpty();
+    }
+    private boolean isItemSameSlot3(){
+        return this.stacks.get(INPUTSLOT2).getItem() == this.stacks.get(INPUTSLOT3).getItem() || this.stacks.get(INPUTSLOT3).isEmpty();
+    }
+
+    private boolean isItemSameSlot4(){
+        return this.stacks.get(INPUTSLOT3).getItem() == this.stacks.get(INPUTSLOT4).getItem() || this.stacks.get(INPUTSLOT4).isEmpty();
+    }
+    private void moveItemFrom1to2(){
+        if(isItemSameSlot2()){
+            ItemStack item = this.stacks.get(INPUTSLOT1);
+            this.removeItem(INPUTSLOT1, 1);
+            this.stacks.set(INPUTSLOT2, new ItemStack(item.getItem(),
+                    this.stacks.get(INPUTSLOT2).getCount() + 1));}
+
+    }
+    private void moveItemFrom2to3(){
+        if(isItemSameSlot3()){
+            ItemStack item = this.stacks.get(INPUTSLOT2);
+            this.removeItem(INPUTSLOT2, 1);
+            this.stacks.set(INPUTSLOT3, new ItemStack(item.getItem(),
+                    this.stacks.get(INPUTSLOT3).getCount() + 1));}
+
+    }
+
+    private void moveItemFrom3to4(){
+        if(isItemSameSlot4()){
+            ItemStack item = this.stacks.get(INPUTSLOT3);
+            this.removeItem(INPUTSLOT3, 1);
+            this.stacks.set(INPUTSLOT4, new ItemStack(item.getItem(),
+                    this.stacks.get(INPUTSLOT4).getCount() + 1));}
     }
     private boolean canWork(){
         return  hasRecipe1()||hasRecipe2()||hasRecipe3()||hasRecipe4();
