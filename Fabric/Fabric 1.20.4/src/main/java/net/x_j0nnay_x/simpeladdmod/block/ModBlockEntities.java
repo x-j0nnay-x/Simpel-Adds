@@ -32,6 +32,9 @@ public class ModBlockEntities {
 	public static final BlockEntityType<StoneSifterBlockEntity> STONE_SIFTER = Registry.register(Registries.BLOCK_ENTITY_TYPE,
 			new Identifier(Simpeladd.MOD_ID, "stone_sifter"),
 			FabricBlockEntityTypeBuilder.create(StoneSifterBlockEntity::new, ModBlocks.STONE_SHIFTER).build());
+	public static final BlockEntityType<Upgrade_Furnace_BlockEntity> UPGRADED_FURNACE = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+			new Identifier(Simpeladd.MOD_ID, "upgraded_furnace"),
+			FabricBlockEntityTypeBuilder.create(Upgrade_Furnace_BlockEntity::new, ModBlocks.UPGRADED_FURNACE).build());
 
 
 

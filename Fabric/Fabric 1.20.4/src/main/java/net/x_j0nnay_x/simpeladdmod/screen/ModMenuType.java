@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
+import net.x_j0nnay_x.simpeladdmod.screen.Furnace_Up.FurnaceMenu_up;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
@@ -20,6 +21,9 @@ public class ModMenuType {
     public static final   ScreenHandlerType<BlockFactoryMenu> BLOCKFACTORY_MENU =
              Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "blockfactorymenu"),
                     new ExtendedScreenHandlerType<>(BlockFactoryMenu::new));
+    public static final   ScreenHandlerType<FurnaceMenu_up> UPGRADED_FURNACE_MENU =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "furnacemenu_up"),
+                    new ExtendedScreenHandlerType<>(FurnaceMenu_up::new));
     public static final   ScreenHandlerType<ChillerMenu> Chiller_MENU =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "chillermenu"),
                     new ExtendedScreenHandlerType<>(ChillerMenu::new));

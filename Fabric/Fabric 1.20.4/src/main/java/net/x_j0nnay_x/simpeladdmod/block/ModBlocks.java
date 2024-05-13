@@ -27,6 +27,8 @@ public class ModBlocks {
     public static final Block UNOBTANIUM_ORE = registerBlock("unobtanium_ore",
              new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).nonOpaque()
                     .requiresTool()));
+    public static final Block UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
+            new Upgrade_Furnace(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block BLOCK_FACTORY = registerBlock("blockfactory_block",
              new BlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block CHILLER = registerBlock("chiller_block",

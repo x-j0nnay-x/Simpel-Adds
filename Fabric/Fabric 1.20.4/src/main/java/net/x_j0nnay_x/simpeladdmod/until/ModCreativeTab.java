@@ -109,6 +109,7 @@ public class ModCreativeTab {
 
                         //block
                         entries.add(ModBlocks.DEEPSLATE_DEBRI_ORE);
+                        entries.add(ModBlocks.UPGRADED_FURNACE);
                         entries.add(ModBlocks.GRINDER_BLOCK);
                         entries.add(ModBlocks.GRINDER_BLOCK_UP);
                         entries.add(ModBlocks.BLOCK_FACTORY);

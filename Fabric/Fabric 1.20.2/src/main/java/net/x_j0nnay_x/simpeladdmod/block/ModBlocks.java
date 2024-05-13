@@ -29,6 +29,8 @@ public class ModBlocks {
                     .requiresTool()));
     public static final Block BLOCK_FACTORY = registerBlock("blockfactory_block",
              new BlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+    public static final Block UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
+            new Upgrade_Furnace(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block CHILLER = registerBlock("chiller_block",
              new ChillerBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block GRINDER_BLOCK = registerBlock("grinder_block",
