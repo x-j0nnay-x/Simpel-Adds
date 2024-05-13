@@ -28,6 +28,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
                     .requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
+            () -> new Upgrade_Furnace(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
             () -> new GrinderBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRINDER_BLOCK_UP = registerBlock("grinder_block_up",

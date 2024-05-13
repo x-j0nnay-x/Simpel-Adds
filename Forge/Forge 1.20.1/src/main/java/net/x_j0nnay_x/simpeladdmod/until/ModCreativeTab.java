@@ -109,6 +109,7 @@ public class ModCreativeTab {
 
                         //block
                         pOutput.accept(ModBlocks.DEEPSLATE_DEBRI_ORE.get());
+                        pOutput.accept(ModBlocks.UPGRADED_FURNACE.get());
                         pOutput.accept(ModBlocks.GRINDER_BLOCK.get());
                         pOutput.accept(ModBlocks.GRINDER_BLOCK_UP.get());
                         pOutput.accept(ModBlocks.BLOCK_FACTORY.get());

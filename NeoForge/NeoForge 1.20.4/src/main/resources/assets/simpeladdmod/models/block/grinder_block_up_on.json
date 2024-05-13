@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "simpeladdmod:block/grindertop",
+    "up": "simpeladdmod:block/grinder_up_top",
+    "north": "simpeladdmod:block/grinder_up_on",
+    "east": "simpeladdmod:block/grinder_up_side",
+    "south": "simpeladdmod:block/grinder_up_side",
+    "west": "simpeladdmod:block/grinder_up_side",
+    "particle": "simpeladdmod:block/grindertop"
+  },
+  "render_type": "solid"
+}

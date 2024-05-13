@@ -199,6 +199,16 @@ public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedS
         }if (inventory.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
         }
+        if(hasItemInFirtsSlot() && !areStackEqual1to2()){
+            moveItemFrom1to2();
+        }
+
+        if(hasItemInSecondSlot() && !areStackEqual2to3()){
+            moveItemFrom2to3();
+        }
+        if(hasItemInThirdSlot() && !areStackEqual3to4()){
+            moveItemFrom3to4();
+        }
         pState = (BlockState)pState.with(GrinderBlock_upgrade.WORKING, isWorking());
         pLevel.setBlockState(pPos, pState, Block.NOTIFY_ALL);
         if(grindsleft > 0){
@@ -262,6 +272,59 @@ public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedS
         }else {
             grindsleft = 0;
         }
+    }
+    private boolean hasItemInFirtsSlot(){
+        return this.getStack(INPUTSLOT1).getCount() >= 2;
+    }
+    private boolean hasItemInSecondSlot(){
+        return this.getStack(INPUTSLOT2).getCount() >= 2;
+    }
+    private boolean hasItemInThirdSlot(){
+        return this.getStack(INPUTSLOT3).getCount() >= 2;
+    }
+
+    private boolean areStackEqual1to2(){
+        return this.getStack(INPUTSLOT1).getCount() <= this.getStack(INPUTSLOT2).getCount();
+    }
+    private boolean areStackEqual2to3(){
+        return this.getStack(INPUTSLOT2).getCount() <= this.getStack(INPUTSLOT3).getCount();
+    }
+    private boolean areStackEqual3to4(){
+        return this.getStack(INPUTSLOT3).getCount() <= this.getStack(INPUTSLOT4).getCount();
+    }
+    private boolean isItemSameSlot2(){
+        return this.getStack(INPUTSLOT1).getItem() == this.getStack(INPUTSLOT2).getItem() || this.getStack(INPUTSLOT2).isEmpty();
+    }
+    private boolean isItemSameSlot3(){
+        return this.getStack(INPUTSLOT2).getItem() == this.getStack(INPUTSLOT3).getItem() || this.getStack(INPUTSLOT3).isEmpty();
+    }
+
+    private boolean isItemSameSlot4(){
+        return this.getStack(INPUTSLOT3).getItem() == this.getStack(INPUTSLOT4).getItem() || this.getStack(INPUTSLOT4).isEmpty();
+    }
+    private void moveItemFrom1to2(){
+        if(isItemSameSlot2()){
+            ItemStack item = this.getStack(INPUTSLOT1);
+            this.removeStack(INPUTSLOT1, 1);
+            this.setStack(INPUTSLOT2, new ItemStack(item.getItem(),
+                    this.getStack(INPUTSLOT2).getCount() + 1));}
+
+    }
+    private void moveItemFrom2to3(){
+        if(isItemSameSlot3()){
+            ItemStack item = this.getStack(INPUTSLOT2);
+            this.removeStack(INPUTSLOT2, 1);
+            this.setStack(INPUTSLOT3, new ItemStack(item.getItem(),
+                    this.getStack(INPUTSLOT3).getCount() + 1));}
+
+    }
+
+    private void moveItemFrom3to4(){
+        if(isItemSameSlot4()){
+            ItemStack item = this.getStack(INPUTSLOT3);
+            this.removeStack(INPUTSLOT3, 1);
+            this.setStack(INPUTSLOT4, new ItemStack(item.getItem(),
+                    this.getStack(INPUTSLOT4).getCount() + 1));}
     }
     private boolean canWork(){
         return  hasRecipe1()||hasRecipe2()||hasRecipe3()||hasRecipe4();

@@ -10,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
+import net.x_j0nnay_x.simpeladdmod.screen.Furnace_Up.FurnaceMenu_up;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
@@ -24,6 +25,8 @@ public class ModMenuType {
             registerMenuType("grindermenu", GrinderMenu::new);
     public static final  RegistryObject<MenuType<GrinderMenu_up>> GRINDER_MENU_UP =
             registerMenuType("grindermenu_up", GrinderMenu_up::new);
+    public static final  RegistryObject<MenuType<FurnaceMenu_up>> UPGRADED_FURNACE_MENU =
+            registerMenuType("furnacemenu_up", FurnaceMenu_up::new);
     public static final  RegistryObject<MenuType<BlockFactoryMenu>> BLOCKFACTORY_MENU =
             registerMenuType("blockfactorymenu", BlockFactoryMenu::new);
     public static final  RegistryObject<MenuType<ChillerMenu>> Chiller_MENU =

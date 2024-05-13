@@ -22,7 +22,7 @@ public class GrinderMenu_up extends AbstractContainerMenu {
     private final ContainerData data;
 
     public GrinderMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(9));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(11));
     }
     public GrinderMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.GRINDER_MENU_UP.get(), pContainerID);

@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -30,6 +31,7 @@ import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import org.jetbrains.annotations.Nullable;
 public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
+
 
 
     public static int WATERSLOT = 5;

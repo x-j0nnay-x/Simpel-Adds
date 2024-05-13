@@ -13,7 +13,8 @@ public class ModBlockEntities {
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Simpeladd.MOD_ID);
 
 
-
+	public static final RegistryObject<BlockEntityType<Upgrade_Furnace_BlockEntity>> UPGRADED_FURNACE = BLOCK_ENTITY.register("upgraded_furnace", () ->
+			BlockEntityType.Builder.of(Upgrade_Furnace_BlockEntity::new, ModBlocks.UPGRADED_FURNACE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY.register("grinder", () ->
 		 BlockEntityType.Builder.of(GrinderBlockEntity::new, ModBlocks.GRINDER_BLOCK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<GrinderBlockEntity_upgrade>> GRINDER_UP = BLOCK_ENTITY.register("grinder_up", () ->
