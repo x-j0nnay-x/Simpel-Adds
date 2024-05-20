@@ -76,11 +76,13 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
     }
 
     public static class Type implements RecipeType<GrinderRecipe> {
+        private Type() {}
         public static final Type INSTANCE = new Type();
         public static final String ID = "grinder";
     }
 
     public static class Serializer implements RecipeSerializer<GrinderRecipe> {
+        Serializer() {}
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "grinder";
 
@@ -91,7 +93,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         }
         public static final Codec<GrinderRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
                 validateAmount(Ingredient.CODEC_NONEMPTY, 1).fieldOf("ingredients").forGetter(GrinderRecipe::getIngredients),
-                ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("output").forGetter(r -> r.output)
+                CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("output").forGetter(r -> r.output)
         ).apply(in,  (ingredients, result) -> {
             var nnIngredients = NonNullList.<Ingredient>create();
             nnIngredients.addAll(ingredients);
@@ -122,7 +124,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
                 ingredient.toNetwork(buf);
             }
 
-            buf.writeItem(recipe.getResultItem(null));
+            buf.writeItemStack(recipe.getResultItem(null), false);
 
         }
     }

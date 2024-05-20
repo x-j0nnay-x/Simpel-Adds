@@ -18,11 +18,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-import net.neoforged.jarjar.nio.util.Lazy;
+
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
-
 import net.x_j0nnay_x.simpeladdmod.block.custom.StoneSifterBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
@@ -34,7 +37,7 @@ import java.util.stream.IntStream;
 public class StoneSifterBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
     private final ItemStackHandler itemHandler = new ItemStackHandler(8);
     private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(8, ItemStack.EMPTY);
-    private final Lazy<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
     public static int GRINDERSLOT = 0;
     public static int INPUTSLOT = 1;
     public static int COPPERSLOT = 2;
@@ -162,7 +165,7 @@ public class StoneSifterBlockEntity extends RandomizableContainerBlockEntity imp
     }
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
+        if (!this.remove && facing != null && capability == Capabilities.ITEM_HANDLER)
             return handlers[facing.ordinal()].cast();
         return super.getCapability(capability, facing);
     }

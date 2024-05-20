@@ -14,7 +14,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.common.Tags;
+
+import net.neoforged.neoforge.common.Tags;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 

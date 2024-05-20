@@ -10,9 +10,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.items.SlotItemHandler;
+
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
@@ -41,7 +42,7 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
 
             this.addSlot(new SlotItemHandler(iItemHandler, BlockFactoryBlockEntity.GRINDERSLOT, 79, 8){
                 @Override

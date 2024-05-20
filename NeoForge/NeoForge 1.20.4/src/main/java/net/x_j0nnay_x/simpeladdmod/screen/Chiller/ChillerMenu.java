@@ -11,7 +11,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
 
+import net.neoforged.neoforge.common.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.screen.FluidContainerSlot;
@@ -38,7 +40,7 @@ public class ChillerMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
 
             this.addSlot(new SlotItemHandler(iItemHandler, ChillerBlockEntity.CHILLINGSLOT, 16, 53){
                 @Override
@@ -71,8 +73,8 @@ public class ChillerMenu extends AbstractContainerMenu {
     public boolean hasSnow(){
         return data.get(2) > 0 ;
     }
-    public boolean hasWater(){
-        return data.get(3) > 0 ;
+    public ChillerBlockEntity getBlockEntity() {
+        return this.blockEntity;
     }
     public int getScalledProgress(){
         int progress = this.data.get(0);
@@ -91,9 +93,7 @@ public class ChillerMenu extends AbstractContainerMenu {
         int tankSize = 58;
         return snowLev != 0  ? snowLev * tankSize / 20  : 0;
     }
-    public ChillerBlockEntity getBlockEntity() {
-        return this.blockEntity;
-    }
+
 
     @Override
     public boolean stillValid(Player pPlayer) {

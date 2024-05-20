@@ -19,14 +19,16 @@ import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
-import net.neoforged.jarjar.nio.util.Lazy;
-import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
@@ -83,7 +85,7 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
                     case 1 -> ChillerBlockEntity.this.maxProgress = pValue;
                     case 2 -> ChillerBlockEntity.this.snowLevel = pValue;
                     case 3 -> ChillerBlockEntity.this.waterUese = pValue;
-                }
+                    }
             }
 
             @Override
@@ -149,19 +151,15 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
     }
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        if (index == WATERSLOT && stack.is(Items.WATER_BUCKET))
-            return true;
-        if (index == CHILLINGSLOT && stack.is(ModTags.Items.CHILLING))
-            return true;
-        return false;
+        return (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
+                (index == CHILLINGSLOT) ||
+                direction == Direction.UP && (index == WATERSLOT);
     }
     @Override
     public boolean canTakeItemThroughFace(int slotIndex, ItemStack itemStack, Direction direction) {
         // Only allow the down direction and only for the result slot.
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                        (slotIndex == CHILLINGSLOT) ||
-                        direction == Direction.UP && (slotIndex == WATERSLOT) );
+        return (direction == Direction.DOWN && (slotIndex == OUTPUTSLOT ||
+                slotIndex == WATERSLOT && itemStack.is(Items.BUCKET)) );
     }
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -179,9 +177,9 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
     }
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
+        if (!this.remove && facing != null && capability == Capabilities.ITEM_HANDLER)
             return handlers[facing.ordinal()].cast();
-        if(capability == ForgeCapabilities.FLUID_HANDLER)
+        if(capability == Capabilities.FLUID_HANDLER)
             return this.fluidOptional.cast();
         return super.getCapability(capability, facing);
     }
@@ -254,19 +252,19 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
     }
     private void  fillWater(){
         if(canFillWater()){
-            IFluidHandlerItem fluidHandler = this.stacks.get(WATERSLOT).getCapability(Capabilities.FluidHandler.ITEM);
-            if(fluidHandler != null) {
+            LazyOptional<IFluidHandlerItem> fluidHandler = this.stacks.get(WATERSLOT).getCapability(Capabilities.FLUID_HANDLER_ITEM);
+            fluidHandler.ifPresent(iFluidHandlerItem -> {
                 int amountToDrain = this.fluidTank.getCapacity() - this.fluidTank.getFluidAmount();
-                int amount = fluidHandler.drain(amountToDrain, IFluidHandler.FluidAction.SIMULATE).getAmount();
+                int amount = iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.SIMULATE).getAmount();
                 if(amount > 0) {
-                    this.fluidTank.fill(fluidHandler.drain(amountToDrain, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                    this.fluidTank.fill(iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
 
                     if(amount <= amountToDrain) {
-                        this.stacks.set(WATERSLOT, fluidHandler.getContainer());
+                        this.stacks.set(WATERSLOT, iFluidHandlerItem.getContainer());
 
                     }
                 }
-            };}
+            });}
     }
     private boolean canFillWater() {
         if (this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity()){
@@ -309,6 +307,7 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
     private boolean hasWater() {
         return this.fluidTank.getFluidAmount() > 0 || this.waterUese > 0;
     }
+
     public FluidTank getFluidTank() {
         return this.fluidTank;
     }

@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluids;
 
-import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
@@ -32,7 +32,7 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
     public BlockFactoryMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
-        super(ModMenuType.BLOCKFACTORY_MENU, pContainerID);
+        super(ModMenuType.BLOCKFACTORY_MENU.get(), pContainerID);
         checkContainerSize(inv, 7);
         blockEntity = ((BlockFactoryBlockEntity) entity);
         this.level = inv.player.level();
@@ -42,7 +42,7 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(Capabilities.ItemHandler.ITEM(iItemHandler -> {
+        this.blockEntity.getCapability(Capabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
 
             this.addSlot(new SlotItemHandler(iItemHandler, BlockFactoryBlockEntity.GRINDERSLOT, 79, 8){
                 @Override
@@ -60,10 +60,6 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
                 }
             });
             this.addSlot(new FluidContainerSlot(iItemHandler, BlockFactoryBlockEntity.WATERSLOT, 34, 53){
-                // @Override
-                // public boolean mayPlace(ItemStack stack) {
-                //     return Items.WATER_BUCKET == stack.getItem();
-                //  }
 
                 @Override
                 public boolean mayPlaceFluid(@NotNull ItemStack stack, @NotNull FluidStack fluidStack) {

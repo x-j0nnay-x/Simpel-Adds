@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,8 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class StoneSifterBlock extends BaseEntityBlock  {
-    public static final MapCodec<StoneSifterBlock> CODEC = simpleCodec(StoneSifterBlock::new);
-
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public StoneSifterBlock(Properties pProperties) {
@@ -35,14 +32,6 @@ public class StoneSifterBlock extends BaseEntityBlock  {
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WORKING, false));
     }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
-
-
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
@@ -80,7 +69,7 @@ public class StoneSifterBlock extends BaseEntityBlock  {
 
         // open screen
         if(pPlayer instanceof ServerPlayer sPlayer) {
-            sPlayer.openMenu(blockEntity, pPos);
+            sPlayer.openMenu(blockEntity);
         }
 
         return InteractionResult.CONSUME;

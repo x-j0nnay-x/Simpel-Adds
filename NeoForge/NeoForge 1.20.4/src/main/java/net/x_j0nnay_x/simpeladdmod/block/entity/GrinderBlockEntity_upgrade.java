@@ -7,7 +7,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.WorldlyContainer;
@@ -16,22 +15,22 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-import net.neoforged.jarjar.nio.util.Lazy;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
-import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock_upgrade;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderMenu_up;
-import net.x_j0nnay_x.simpeladdmod.until.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -40,8 +39,7 @@ import java.util.stream.IntStream;
 public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity implements WorldlyContainer {
     private final ItemStackHandler itemHandler = new ItemStackHandler(11);
     private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(11, ItemStack.EMPTY);
-    private final Lazy<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
-
+    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
 
     public static int GRINDERSLOT = 0;
     public static int INPUTSLOT1 = 1;
@@ -202,8 +200,8 @@ public class GrinderBlockEntity_upgrade extends RandomizableContainerBlockEntity
         return this.saveWithFullMetadata();
     }
     @Override
-    public <T> Lazy<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
+        if (!this.remove && facing != null && capability == Capabilities.ITEM_HANDLER)
             return handlers[facing.ordinal()].cast();
         return super.getCapability(capability, facing);
     }

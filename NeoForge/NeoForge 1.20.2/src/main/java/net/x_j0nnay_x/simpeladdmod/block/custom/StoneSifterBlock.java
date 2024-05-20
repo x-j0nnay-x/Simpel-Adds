@@ -69,7 +69,7 @@ public class StoneSifterBlock extends BaseEntityBlock  {
 
         // open screen
         if(pPlayer instanceof ServerPlayer sPlayer) {
-            sPlayer.openMenu(blockEntity, pPos);
+            sPlayer.openMenu(blockEntity);
         }
 
         return InteractionResult.CONSUME;

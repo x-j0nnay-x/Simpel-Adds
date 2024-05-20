@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladdmod.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,15 +18,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
-import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity_upgrade;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class GrinderBlock_upgrade extends BaseEntityBlock  {
-    public static final MapCodec<GrinderBlock_upgrade> CODEC = simpleCodec(GrinderBlock_upgrade::new);
-
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public GrinderBlock_upgrade(Properties pProperties) {
@@ -36,12 +31,6 @@ public class GrinderBlock_upgrade extends BaseEntityBlock  {
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WORKING, false));
     }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
@@ -78,7 +67,7 @@ public class GrinderBlock_upgrade extends BaseEntityBlock  {
 
         // open screen
         if(pPlayer instanceof ServerPlayer sPlayer) {
-            sPlayer.openMenu(blockEntity, pPos);
+            sPlayer.openMenu(blockEntity);
         }
 
         return InteractionResult.CONSUME;
@@ -97,15 +86,7 @@ public class GrinderBlock_upgrade extends BaseEntityBlock  {
     }
 
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if(pLevel.isClientSide()){
-            return null;
-        }
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.GRINDER_UP.get(),
-                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1)));
-    }
+
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {

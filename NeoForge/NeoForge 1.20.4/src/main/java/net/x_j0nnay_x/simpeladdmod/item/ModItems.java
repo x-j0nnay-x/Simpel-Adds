@@ -1,16 +1,15 @@
 package net.x_j0nnay_x.simpeladdmod.item;
 
 import net.minecraft.world.item.*;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import net.x_j0nnay_x.simpeladdmod.item.custom.grinderHead;
 import net.x_j0nnay_x.simpeladdmod.item.util.*;
 
 
 public class ModItems {
-
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Simpeladd.MOD_ID);
 
     public static final DeferredItem<Item> SIMPEL_ELITRA_HALF = ITEMS.register("simpel_elitra_half", () -> new Item(new Item.Properties()));
@@ -117,5 +116,7 @@ public class ModItems {
     public static void registerModItems(){
         Simpeladd.LOGGER.info("Registering Mod Items for " + Simpeladd.MOD_ID);
     }
-
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
 }

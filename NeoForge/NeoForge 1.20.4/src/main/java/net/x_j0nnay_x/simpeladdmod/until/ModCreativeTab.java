@@ -13,8 +13,8 @@ import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 
 public class ModCreativeTab {
-
-    public static DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Simpeladd.MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Simpeladd.MOD_ID);
 
     // tab title
     public static String SIMPELADD_MOD_TAB_TITLE = "creativetab.simpel_tab";
