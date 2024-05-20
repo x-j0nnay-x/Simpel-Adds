@@ -54,7 +54,7 @@ public class Simpeladd {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Hello Forge world! from " + MOD_ID);
+        LOGGER.info("Hello NeoForge world! from " + MOD_ID);
         ModCreativeTab.registerCreativeTab();
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
