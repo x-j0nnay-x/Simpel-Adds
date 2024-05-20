@@ -11,12 +11,13 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.conditions.WithConditions;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.util.ExtraCodecs;
 import java.util.List;
-
+import java.util.Optional;
 
 
 public class GrinderRecipe implements Recipe<SimpleContainer> {
@@ -25,7 +26,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
     private final NonNullList<Ingredient> recipeItems;
 
 
-    public GrinderRecipe(NonNullList<Ingredient> inputItems, ItemStack itemStack) {
+    public GrinderRecipe(NonNullList<Ingredient> inputItems, Optional<WithConditions<Recipe<?>>> itemStack) {
         this.output = itemStack;
         this.recipeItems = inputItems;
     }
@@ -93,7 +94,7 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
         }
         public static final Codec<GrinderRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
                 validateAmount(Ingredient.CODEC_NONEMPTY, 1).fieldOf("ingredients").forGetter(GrinderRecipe::getIngredients),
-                CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("output").forGetter(r -> r.output)
+                CraftingRecipe.CODEC.fieldOf("output").forGetter(r -> r.output)
         ).apply(in,  (ingredients, result) -> {
             var nnIngredients = NonNullList.<Ingredient>create();
             nnIngredients.addAll(ingredients);
