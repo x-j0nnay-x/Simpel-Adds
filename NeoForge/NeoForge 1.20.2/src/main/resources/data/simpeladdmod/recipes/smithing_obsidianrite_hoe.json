@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "minecraft:netherite_ingot"
+    },
+    "base": {
+        "item": "simpeladdmod:obsidianhoe"
+    },
+    "result": {
+        "item": "simpeladdmod:obsidiritehoe"
+    },
+    "template": {
+        "item": "simpeladdmod:obsidian_upgrade_smithing"
+    }
+}
