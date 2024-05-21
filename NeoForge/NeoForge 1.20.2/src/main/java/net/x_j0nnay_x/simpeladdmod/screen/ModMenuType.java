@@ -11,6 +11,8 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistriesSetup;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.Furnace_Up.FurnaceMenu_up;
@@ -24,10 +26,11 @@ import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderMenu_up;
 public class ModMenuType {
 
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(
-                    Registries.MENU, Simpeladd.MOD_ID);
+            DeferredRegister.create(Registries.MENU, Simpeladd.MOD_ID);
+
     public static final DeferredHolder<MenuType<?>, MenuType<GrinderMenu>> GRINDER_MENU =
             registerMenuType("grindermenu", GrinderMenu::new);
+
     public static final DeferredHolder<MenuType<?>, MenuType<GrinderMenu_up>> GRINDER_MENU_UP =
             registerMenuType("grindermenu_up", GrinderMenu_up::new);
     public static final DeferredHolder<MenuType<?>, MenuType<FurnaceMenu_up>> UPGRADED_FURNACE_MENU =
@@ -40,10 +43,12 @@ public class ModMenuType {
             registerMenuType("netheritemenu", NetheriteCrafterMenu::new);
     public static final DeferredHolder<MenuType<?>, MenuType<StoneSifterMenu>> STONESIFTER_MENU =
             registerMenuType("stonesiftermenu", StoneSifterMenu::new);
+
     public static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
 
     }
+
     public static void  register(IEventBus eventBus){
         MENUS.register(eventBus);
     }

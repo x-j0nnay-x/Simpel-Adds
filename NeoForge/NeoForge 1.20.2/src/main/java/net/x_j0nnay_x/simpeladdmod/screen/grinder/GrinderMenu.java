@@ -15,6 +15,7 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.GrinderBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
+import org.jetbrains.annotations.NotNull;
 
 public class GrinderMenu extends AbstractContainerMenu {
     public  final GrinderBlockEntity blockEntity;

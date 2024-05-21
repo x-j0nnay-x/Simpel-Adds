@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.ContainerHelper;
@@ -17,9 +18,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 ;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.capabilities.Capabilities;
 import net.neoforged.neoforge.common.capabilities.Capability;
 import net.neoforged.neoforge.common.util.LazyOptional;
@@ -31,7 +34,10 @@ import net.x_j0nnay_x.simpeladdmod.block.custom.GrinderBlock;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.xml.crypto.Data;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -163,6 +169,8 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
         }
     }
 
+
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -181,6 +189,7 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
 
 
 // processing
+
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
         if(stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE.get())){
@@ -313,6 +322,7 @@ public class GrinderBlockEntity extends RandomizableContainerBlockEntity impleme
     private boolean canInsertOutputAmount(int count) {
         return this.stacks.get(OUTPUTSLOT).getCount() + count <= this.stacks.get(OUTPUTSLOT).getMaxStackSize();
     }
+
 
 
 }

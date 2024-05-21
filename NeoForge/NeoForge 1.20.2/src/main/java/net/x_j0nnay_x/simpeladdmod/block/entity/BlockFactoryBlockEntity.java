@@ -2,9 +2,12 @@ package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -39,6 +43,7 @@ import java.util.stream.IntStream;
 
 
 public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+
     private final ItemStackHandler itemHandler = new ItemStackHandler(7);
     private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
@@ -93,6 +98,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     private int maxGrinds = 3;
     public BlockFactoryBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.BLOCK_FACTORY.get(), pPos, pBlockState);
+
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -226,6 +232,8 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
+
+    
 
     @Override
     public CompoundTag getUpdateTag() {
@@ -459,4 +467,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         if (this.level != null)
             this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
+
+
+
 }

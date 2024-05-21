@@ -1,15 +1,22 @@
 package net.x_j0nnay_x.simpeladdmod.block;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
@@ -19,8 +26,8 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS =
-    DeferredRegister.createBlocks(Simpeladd.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Simpeladd.MOD_ID);
+
 
     public static final DeferredBlock<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
@@ -40,6 +47,7 @@ public class ModBlocks {
             () -> new ChillerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     public static final DeferredBlock<Block> NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
             () -> new NetheriteCrafterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+
     public static final DeferredBlock<Block> STONE_SHIFTER = registerBlock("stone_sifter_block",
             () -> new StoneSifterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
