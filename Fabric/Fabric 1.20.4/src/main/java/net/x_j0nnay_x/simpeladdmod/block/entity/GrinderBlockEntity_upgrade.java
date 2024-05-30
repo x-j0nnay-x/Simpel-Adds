@@ -123,7 +123,7 @@ public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedS
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 11);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 11);
         super.markDirty();
     }
     @Override

@@ -36,7 +36,7 @@ import java.util.stream.IntStream;
 
 
 public class NetheriteCrafterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
 
     public static int SCRAPSLOT = 0;
     public static int GOLDSLOT = 1;
@@ -89,7 +89,7 @@ public class NetheriteCrafterBlockEntity extends BlockEntity implements Extended
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 4);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 4);
         super.markDirty();
     }
     public boolean canTransferTo(Inventory hopperInventory, int slot, ItemStack stack) {
@@ -108,6 +108,7 @@ public class NetheriteCrafterBlockEntity extends BlockEntity implements Extended
     @Override
     public void readNbt(NbtCompound compound) {
         super.readNbt(compound);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(compound, inventory);
         progress = compound.getInt("nether_crafter_progress");
         blazeUse = compound.getInt("netherite_crafter_blaze");

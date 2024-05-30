@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.screen.BlockFactory;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,23 +23,19 @@ import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import org.jetbrains.annotations.NotNull;
 
 public class BlockFactoryMenu extends AbstractContainerMenu {
-    public  final BlockFactoryBlockEntity blockEntity;
-    private final Level level;
+    private final BlockPos pos;
+
     private final ContainerData data;
     private FluidStack fluidStackW;
     private FluidStack fluidStackL;
 
-    public BlockFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
-    }
-    public BlockFactoryMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
+
+    public BlockFactoryMenu(int pContainerID, Player player, BlockPos pos){
         super(ModMenuType.BLOCKFACTORY_MENU.get(), pContainerID);
-        checkContainerSize(inv, 7);
-        blockEntity = ((BlockFactoryBlockEntity) entity);
-        this.level = inv.player.level();
-        this.data = data;
-        this.fluidStackW = blockEntity.getFluidWStack() ;
-        this.fluidStackL = blockEntity.getFluidLStack() ;
+        this.pos = pos;
+        this.data = BlockFactoryBlockEntity.d;
+        this.fluidStackW = BlockFactoryBlockEntity.getFluidWStack() ;
+        this.fluidStackL = BlockFactoryBlockEntity.getFluidLStack() ;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 

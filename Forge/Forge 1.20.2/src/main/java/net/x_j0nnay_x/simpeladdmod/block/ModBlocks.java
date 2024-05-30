@@ -39,8 +39,6 @@ public class ModBlocks {
             () -> new ChillerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
             () -> new NetheriteCrafterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
-    public static final RegistryObject<Block> STONE_SHIFTER = registerBlock("stone_sifter_block",
-            () -> new StoneSifterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     private static  <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

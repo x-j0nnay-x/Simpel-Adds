@@ -406,7 +406,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
             return false;
         }
     }
-    private void  fillWater(){/*
+    private void  fillWater(){
         LazyOptional<IFluidHandlerItem> fluidHandler = this.stacks.get(WATERSLOT).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
         fluidHandler.ifPresent(iFluidHandlerItem -> {
             int amountToDrain = this.fluidTankW.getCapacity() - this.fluidTankW.getFluidAmount();
@@ -419,7 +419,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
 
                 }
             }
-        });*/
+        });
     }
     private void  fillLava(){
         /*

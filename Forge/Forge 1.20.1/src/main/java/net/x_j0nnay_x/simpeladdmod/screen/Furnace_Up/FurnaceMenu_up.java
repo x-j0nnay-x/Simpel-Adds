@@ -24,11 +24,11 @@ public class FurnaceMenu_up extends AbstractContainerMenu {
     private final ContainerData data;
 
     public FurnaceMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(11));
     }
     public FurnaceMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.UPGRADED_FURNACE_MENU.get(), pContainerID);
-        checkContainerSize(inv, 10);
+        checkContainerSize(inv, 11);
         blockEntity = ((Upgrade_Furnace_BlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -97,6 +97,12 @@ public class FurnaceMenu_up extends AbstractContainerMenu {
                     return false;
                 }
             });
+            this.addSlot(new SlotItemHandler(iItemHandler, Upgrade_Furnace_BlockEntity.XPBOTTLESLOT, 144, 60){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return false;
+                }
+            });
             this.addSlot(new SlotItemHandler(iItemHandler, Upgrade_Furnace_BlockEntity.FUELSLOT, 16, 45){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
@@ -160,7 +166,11 @@ public class FurnaceMenu_up extends AbstractContainerMenu {
 
         return fuelLeft;
     }
+    public int getXPStored(){
+        int fuelLeft = this.data.get(6);
 
+        return fuelLeft;
+    }
 
 
 
@@ -195,7 +205,7 @@ public class FurnaceMenu_up extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 10;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 11;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

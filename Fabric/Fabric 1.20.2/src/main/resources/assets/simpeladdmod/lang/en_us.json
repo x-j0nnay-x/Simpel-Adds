@@ -112,6 +112,8 @@
   "gui.simpeladdmod.grinder_gui.grinds_left": "Uses: ",
   "gui.simpeladdmod.grinder_gui.grinds_eff": "Buffer: ",
   "gui.simpeladdmod.upgrade_furnace_gui.fuel_left": "Fuel Left",
+  "gui.simpeladdmod.upgrade_furnace_gui.xp_stored": "XP:",
+  "gui.simpeladdmod.upgrade_furnace_gui.xp_button": "drop xp",
   "gui.simpeladdmod.blockfactory.label1": "Block",
   "gui.simpeladdmod.blockfactory.label2": "Factory",
   "gui.simpeladdmod.chiller_block_gui.label": "Chiller",

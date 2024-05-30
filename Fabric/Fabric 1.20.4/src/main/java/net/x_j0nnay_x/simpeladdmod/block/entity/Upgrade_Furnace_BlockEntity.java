@@ -39,7 +39,7 @@ import static net.minecraft.block.entity.AbstractFurnaceBlockEntity.createFuelTi
 
 
 public class Upgrade_Furnace_BlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(10, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(11, ItemStack.EMPTY);
 
     public static int FUELSLOT = 0;
     public static int INPUTSLOT1 = 1;
@@ -51,7 +51,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     public static int OUTPUTSLOT3 = 7;
     public static int OUTPUTSLOT4 = 8;
     public  static int UPGRADESLOT = 9;
-
+    public  static int XPBOTTLESLOT = 10;
     protected final PropertyDelegate data;
     private int progress1 = 0;
     private int progress2 = 0;
@@ -60,6 +60,8 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private int maxProgress;
     private int fuelLevel = 0 ;
     private int fueluse = 0;
+    private int storedXP = 0;
+    private final int maxXP = 10000;
 
     public Upgrade_Furnace_BlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.UPGRADED_FURNACE, pPos, pBlockState);
@@ -74,6 +76,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
                     case 3 -> Upgrade_Furnace_BlockEntity.this.progress2;
                     case 4 -> Upgrade_Furnace_BlockEntity.this.progress3;
                     case 5 -> Upgrade_Furnace_BlockEntity.this.progress4;
+                    case 6 -> Upgrade_Furnace_BlockEntity.this.storedXP;
                     default -> 0;
                 };
             }
@@ -87,14 +90,14 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
                     case 3 -> Upgrade_Furnace_BlockEntity.this.progress2 = pValue;
                     case 4 -> Upgrade_Furnace_BlockEntity.this.progress3 = pValue;
                     case 5 -> Upgrade_Furnace_BlockEntity.this.progress4 = pValue;
-
+                    case 6 -> Upgrade_Furnace_BlockEntity.this.storedXP = pValue;
 
                 }
             }
 
             @Override
             public int size() {
-                return 6;
+                return 7;
             }
         };
     }
@@ -115,7 +118,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 11);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 11);
         super.markDirty();
     }
     @Override
@@ -126,25 +129,26 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     @Override
     public void readNbt(NbtCompound compound) {
         super.readNbt(compound);
+        this.inventory = DefaultedList.ofSize(11, ItemStack.EMPTY);
         Inventories.readNbt(compound, inventory);
-        progress1 = compound.getInt("upgraded_furnace_progress1");
-        progress2 = compound.getInt("upgraded_furnace_progress2");
-        progress3 = compound.getInt("upgraded_furnace_progress3");
-        progress4 = compound.getInt("upgraded_furnace_progress4");
-        fuelLevel = compound.getInt("upgraded_furnace_fuel_left");
-
+        this.progress1 = compound.getInt("upgraded_furnace_progress1");
+        this.progress2 = compound.getInt("upgraded_furnace_progress2");
+        this.progress3 = compound.getInt("upgraded_furnace_progress3");
+        this.progress4 = compound.getInt("upgraded_furnace_progress4");
+        this.fuelLevel = compound.getInt("upgraded_furnace_fuel_left");
+        this.storedXP = compound.getInt("upgraded_furnace_stored_xp");
     }
 
     @Override
     public void writeNbt(NbtCompound compound) {
         super.writeNbt(compound);
         Inventories.writeNbt(compound, inventory);
-        compound.putInt("upgraded_furnace_progress1", progress1);
-        compound.putInt("upgraded_furnace_progress2", progress2);
-        compound.putInt("upgraded_furnace_progress3", progress3);
-        compound.putInt("upgraded_furnace_progress4", progress4);
-        compound.putInt("upgraded_furnace_fuel_left", fuelLevel);
-
+        compound.putInt("upgraded_furnace_progress1", this.progress1);
+        compound.putInt("upgraded_furnace_progress2", this.progress2);
+        compound.putInt("upgraded_furnace_progress3", this.progress3);
+        compound.putInt("upgraded_furnace_progress4", this.progress4);
+        compound.putInt("upgraded_furnace_fuel_left", this.fuelLevel);
+        compound.putInt("upgraded_furnace_stored_xp", this.storedXP);
     }
     @Override
     public boolean canInsert(int index, ItemStack stack, @Nullable Direction direction) {
@@ -174,7 +178,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
 // processing
 
     public void tick(World pLevel, BlockPos pPos, BlockState pState){
-
+        makeXPBottle();
         addFuel();
         setFuleUse();
         if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_1)) {
@@ -280,6 +284,16 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
             fueluse -= 1;}
         else{
             fueluse = 0;
+        }
+
+    }
+    private boolean canMakeBottleXP(){
+        return this.storedXP >= 200;//200
+    }
+    private void makeXPBottle(){
+        if (canMakeBottleXP() && this.inventory.get(XPBOTTLESLOT).getCount() <= 63) {
+            this.storedXP -= 200;//200
+            this.inventory.set(XPBOTTLESLOT, new ItemStack(Items.EXPERIENCE_BOTTLE.asItem(), this.inventory.get(XPBOTTLESLOT).getCount() + 1));
         }
 
     }
@@ -404,7 +418,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem1() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe1();
         this.removeStack(INPUTSLOT1, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT1, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT1).getCount() + recipe.get().value().getResult(null).getCount()));
 
@@ -412,7 +428,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem2() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe2();
         this.removeStack(INPUTSLOT2, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT2, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT2).getCount() + recipe.get().value().getResult(null).getCount()));
 
@@ -420,7 +438,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem3() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe3();
         this.removeStack(INPUTSLOT3, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT3, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT3).getCount() + recipe.get().value().getResult(null).getCount()));
 
@@ -428,7 +448,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem4() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe4();
         this.removeStack(INPUTSLOT4, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT4, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT4).getCount() + recipe.get().value().getResult(null).getCount()));
     }

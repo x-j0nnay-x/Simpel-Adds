@@ -11,7 +11,6 @@ import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.Furnace_Up.FurnaceMenu_up;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterMenu;
-import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderMenu;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderMenu_up;
 
@@ -36,9 +35,7 @@ public class ModMenuType {
     public static final   ScreenHandlerType<NetheriteCrafterMenu> Netherite_Menu =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "netheritemenu"),
                     new ExtendedScreenHandlerType<>(NetheriteCrafterMenu::new));
-    public static final   ScreenHandlerType<StoneSifterMenu> STONESIFTER_MENU =
-            Registry.register(Registries.SCREEN_HANDLER, new Identifier(Simpeladd.MOD_ID, "stonesiftermenu"),
-                    new ExtendedScreenHandlerType<>(StoneSifterMenu::new));
+
 
    
     public static void registerScreenHandlers() {

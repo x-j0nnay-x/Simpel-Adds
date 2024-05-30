@@ -11,6 +11,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -42,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.stream.IntStream;
 
 
-public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer, MenuProvider {
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(7);
     private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
@@ -90,11 +91,11 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     public static int OBSIDIANSLOT = 4;
 
     protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 35;
-    private int lavaUses = 0 ;
+    public int progress = 0;
+    public int maxProgress = 35;
+    public int lavaUses = 0 ;
     private int maxLavaUses = 4;
-    private int grindsleft = 0;
+    public int grindsleft = 0;
     private int maxGrinds = 3;
     public BlockFactoryBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.BLOCK_FACTORY.get(), pPos, pBlockState);
@@ -213,6 +214,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         if (!this.tryLoadLootTable(compound))
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound, this.stacks);
+
     }
 
     @Override
@@ -226,6 +228,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.stacks);
         }
+
     }
 
     @Override
@@ -442,6 +445,12 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
                 }
             }
         });
+    }
+    public int menuGetProg() {
+        return progress;
+    }
+    public int menuGetMaxProg() {
+        return maxProgress;
     }
     public FluidStack getFluidWStack() {
         return this.fluidTankW.getFluid();

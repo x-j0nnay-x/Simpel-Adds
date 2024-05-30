@@ -88,7 +88,7 @@ public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScr
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 7);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 7);
         super.markDirty();
     }
     @Override

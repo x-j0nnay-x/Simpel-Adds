@@ -25,6 +25,7 @@ public class FurnaceMenu_up extends AbstractContainerMenu {
     public FurnaceMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
     }
+
     public FurnaceMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.UPGRADED_FURNACE_MENU.get(), pContainerID);
         checkContainerSize(inv, 10);

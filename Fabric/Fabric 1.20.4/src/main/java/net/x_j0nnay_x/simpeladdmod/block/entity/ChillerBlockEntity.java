@@ -94,7 +94,7 @@ public class ChillerBlockEntity extends BlockEntity implements ExtendedScreenHan
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 3);
         super.markDirty();
     }
     @Override

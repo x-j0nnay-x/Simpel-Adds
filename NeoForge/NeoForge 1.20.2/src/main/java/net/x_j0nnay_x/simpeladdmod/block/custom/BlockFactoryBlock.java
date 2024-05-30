@@ -2,11 +2,16 @@ package net.x_j0nnay_x.simpeladdmod.block.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.BlastFurnaceMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -24,7 +29,7 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockFactoryBlock extends BaseEntityBlock  {
+public class BlockFactoryBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WORKING = BooleanProperty.create("working");
     public BlockFactoryBlock(Properties pProperties) {
@@ -78,6 +83,9 @@ public class BlockFactoryBlock extends BaseEntityBlock  {
         return createTickerHelper(pBlockEntityType, ModBlockEntities.BLOCK_FACTORY.get(),
                 ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1)));
     }
+
+
+
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
@@ -107,5 +115,6 @@ public class BlockFactoryBlock extends BaseEntityBlock  {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity == null ? false : blockEntity.triggerEvent(eventID, eventParam);
     }
+
 
 }

@@ -105,7 +105,7 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 4);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 4);
         super.markDirty();
     }
     @Override

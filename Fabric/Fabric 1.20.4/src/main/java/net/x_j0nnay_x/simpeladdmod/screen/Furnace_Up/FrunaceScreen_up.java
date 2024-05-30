@@ -42,6 +42,7 @@ public class FrunaceScreen_up extends HandledScreen<FurnaceMenu_up> {
         renderProgressArrow2(pGuiGraphics, x, y);
         renderProgressArrow3(pGuiGraphics, x, y);
         renderProgressArrow4(pGuiGraphics, x, y);
+        renderXPlevle(pGuiGraphics, x, y);
         renderFuelLeft(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
     }
@@ -72,6 +73,12 @@ public class FrunaceScreen_up extends HandledScreen<FurnaceMenu_up> {
         String title = Text.translatable("gui.simpeladdmod.upgrade_furnace_gui.fuel_left").getString();
         guiGraphics.drawText(this.textRenderer, title, x + 5,  y + 18, TextColor.fromRgb(Colors.GRAY).getRgb(), false);
         guiGraphics.drawText(this.textRenderer, gl, x + 5,  y + 28, TextColor.fromRgb(Colors.GRAY).getRgb(), false);
+    }
+    private void  renderXPlevle(DrawContext guiGraphics, int x, int y){
+        String gl = Integer.toString(handler.getXPStored());
+        String title = Text.translatable("gui.simpeladdmod.upgrade_furnace_gui.xp_stored").getString();
+        guiGraphics.drawText(this.textRenderer, title, x + 68,  y + 73, TextColor.fromRgb(Colors.GRAY).getRgb(), false);
+        guiGraphics.drawText(this.textRenderer, gl, x + 84,  y + 73, TextColor.fromRgb(Colors.GRAY).getRgb(), false);
     }
 
 

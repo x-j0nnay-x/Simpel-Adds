@@ -24,7 +24,7 @@ public class ModPlacedFeatures {
                 ModOrePlacement.modifiersWithCount(9, // Veins per Chunk
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-60), YOffset.fixed(-5))));
         register(context, UNOBTANIUM_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.UNOBTANIUM_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(6,
+                ModOrePlacement.modifiersWithCount(4,
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(80))));
 
     }

@@ -28,17 +28,16 @@ public class FurnaceMenu_up extends ScreenHandler {
     private final PropertyDelegate data;
 
     public FurnaceMenu_up(int pContainerId, PlayerInventory inv, PacketByteBuf extraData){
-        this(pContainerId, inv, inv.player.getWorld().getBlockEntity(extraData.readBlockPos()), new ArrayPropertyDelegate(10));
+        this(pContainerId, inv, inv.player.getWorld().getBlockEntity(extraData.readBlockPos()), new ArrayPropertyDelegate(11));
     }
     public FurnaceMenu_up(int pContainerID, PlayerInventory inv, BlockEntity entity, PropertyDelegate data){
         super(ModMenuType.UPGRADED_FURNACE_MENU, pContainerID);
-        checkSize(inv, 10);
+        checkSize(inv, 11);
         blockEntity = ((Upgrade_Furnace_BlockEntity) entity);
         this.inventory = ((Inventory) entity);
         inventory.onOpen(inv.player);
         this.data = data;
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
+
 
         this.addSlot(new Slot(inventory, Upgrade_Furnace_BlockEntity.INPUTSLOT1, 63, 17){
             @Override
@@ -100,6 +99,17 @@ public class FurnaceMenu_up extends ScreenHandler {
                 return false;
             }
         });
+        this.addSlot(new Slot(inventory, Upgrade_Furnace_BlockEntity.XPBOTTLESLOT, 144, 60){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+
+            @Override
+            public int getMaxItemCount() {
+                return 64;
+            }
+        });
         this.addSlot(new Slot(inventory, Upgrade_Furnace_BlockEntity.FUELSLOT, 16, 45){
             @Override
             public boolean canInsert(ItemStack stack) {
@@ -120,7 +130,8 @@ public class FurnaceMenu_up extends ScreenHandler {
         });
 
 
-
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
         addProperties(data);
 
     }
@@ -165,7 +176,11 @@ public class FurnaceMenu_up extends ScreenHandler {
 
         return fuelLeft;
     }
+    public int getXPStored(){
+        int fuelLeft = this.data.get(6);
 
+        return fuelLeft;
+    }
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
@@ -196,9 +211,11 @@ public class FurnaceMenu_up extends ScreenHandler {
         return this.inventory.canPlayerUse(player);
     }
     private void addPlayerInventory(Inventory playerInventory){
-        for (int si = 0; si < 3; ++si)
-            for (int sj = 0; sj < 9; ++sj)
-                this.addSlot(new Slot(playerInventory, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
+        for (int i = 0; i < 3; ++i) {
+            for (int l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+            }
+        }
     }
     private void addPlayerHotbar(Inventory playerInventory){
         for (int si = 0; si < 9; ++si)

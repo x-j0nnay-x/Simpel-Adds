@@ -30,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
 
 
 public class ChillerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
 
     public static int CHILLINGSLOT = 0;
     public static int WATERSLOT = 1;
@@ -94,7 +94,7 @@ public class ChillerBlockEntity extends BlockEntity implements ExtendedScreenHan
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 3);
         super.markDirty();
     }
     @Override
@@ -106,6 +106,7 @@ public class ChillerBlockEntity extends BlockEntity implements ExtendedScreenHan
     @Override
     public void readNbt(NbtCompound compound) {
         super.readNbt(compound);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(compound, inventory);
         progress = compound.getInt("chiller_progress");
         snowLevel = compound.getInt("chiller_snow");

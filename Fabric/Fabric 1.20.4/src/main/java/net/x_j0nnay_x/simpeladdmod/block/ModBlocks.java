@@ -40,8 +40,7 @@ public class ModBlocks {
 
     public static final Block NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
              new NetheriteCrafterBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block STONE_SHIFTER = registerBlock("stone_sifter_block",
-             new StoneSifterBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
 
 
    private static Block registerBlock(String name, Block block){

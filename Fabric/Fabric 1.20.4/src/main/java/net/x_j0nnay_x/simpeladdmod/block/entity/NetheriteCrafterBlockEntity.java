@@ -89,7 +89,7 @@ public class NetheriteCrafterBlockEntity extends BlockEntity implements Extended
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 4);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 4);
         super.markDirty();
     }
     public boolean canTransferTo(Inventory hopperInventory, int slot, ItemStack stack) {

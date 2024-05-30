@@ -41,7 +41,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(11, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(11, ItemStack.EMPTY);
 
     public static int GRINDERSLOT = 0;
     public static int INPUTSLOT1 = 1;
@@ -123,7 +123,7 @@ public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedS
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 11);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 11);
         super.markDirty();
     }
     @Override
@@ -133,6 +133,7 @@ public class GrinderBlockEntity_upgrade extends BlockEntity implements ExtendedS
     @Override
     public void readNbt(NbtCompound compound) {
         super.readNbt(compound);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(compound, inventory);
         progress1 = compound.getInt("grinder_progress1");
         progress2 = compound.getInt("grinder_progress2");

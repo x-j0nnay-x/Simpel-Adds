@@ -18,9 +18,8 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.recipe.ModRecipes;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerScreen;
-import net.x_j0nnay_x.simpeladdmod.screen.Furnace_Up.FrunaceScreen_up;
+import net.x_j0nnay_x.simpeladdmod.screen.Furnace_Up.FurnaceScreen_up;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterScreen;
-import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderScreen_up;
@@ -81,13 +80,12 @@ public class Simpeladd {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             LOGGER.info("Loading GUI's for " + MOD_ID);
-            MenuScreens.register(ModMenuType.UPGRADED_FURNACE_MENU.get(), FrunaceScreen_up::new);
+            MenuScreens.register(ModMenuType.UPGRADED_FURNACE_MENU.get(), FurnaceScreen_up::new);
             MenuScreens.register(ModMenuType.GRINDER_MENU.get(), GrinderScreen::new);
             MenuScreens.register(ModMenuType.GRINDER_MENU_UP.get(), GrinderScreen_up::new);
             MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);
             MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
             MenuScreens.register(ModMenuType.Netherite_Menu.get(), NetheriteCrafterScreen::new);
-            MenuScreens.register(ModMenuType.STONESIFTER_MENU.get(), StoneSifterScreen::new);
         }
 
     }

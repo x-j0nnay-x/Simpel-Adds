@@ -30,6 +30,7 @@ public class ChillerMenu extends AbstractContainerMenu {
     public ChillerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(5));
     }
+
     public ChillerMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuType.Chiller_MENU.get(), pContainerID);
         checkContainerSize(inv, 3);

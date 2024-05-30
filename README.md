@@ -11,3 +11,4 @@ craftable slime balls, elytra, obsidian
 manual crafting to get dusts and raw ores.
 
 all of this is done with out FE this is to give it the vinlla feel but it also dose not use coal. this is all done with ticks and set item uses or values. all of this is done to make vinilla feel more techie with out over complecating it.
+

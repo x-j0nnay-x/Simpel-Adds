@@ -25,7 +25,7 @@ public class ModPlacedFeatures {
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-60), YOffset.fixed(-5))));
         register(context, UNOBTANIUM_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.UNOBTANIUM_ORE_KEY),
                 ModOrePlacement.modifiersWithCount(6,
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(80))));
+                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(-64), YOffset.fixed(80))));
 
     }
 

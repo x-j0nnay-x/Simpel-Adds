@@ -66,19 +66,20 @@ public class Simpeladd {
 
     }
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
+    public class ClientSetup  {
 
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
+        public static void init(FMLClientSetupEvent event) {
             LOGGER.info("Loading GUI's For " + MOD_ID);
-            MenuScreens.register(ModMenuType.UPGRADED_FURNACE_MENU.get(), FrunaceScreen_up::new);
-            MenuScreens.register(ModMenuType.GRINDER_MENU.get(), GrinderScreen::new);
-            MenuScreens.register(ModMenuType.GRINDER_MENU_UP.get(), GrinderScreen_up::new);
-            MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);
-            MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
-            MenuScreens.register(ModMenuType.Netherite_Menu.get(), NetheriteCrafterScreen::new);
-            MenuScreens.register(ModMenuType.STONESIFTER_MENU.get(), StoneSifterScreen::new);
-
+            event.enqueueWork(() -> {
+                MenuScreens.register(ModMenuType.UPGRADED_FURNACE_MENU.get(), FrunaceScreen_up::new);
+                MenuScreens.register(ModMenuType.GRINDER_MENU.get(), GrinderScreen::new);
+                MenuScreens.register(ModMenuType.GRINDER_MENU_UP.get(), GrinderScreen_up::new);
+                MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);
+                MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
+                MenuScreens.register(ModMenuType.Netherite_Menu.get(), NetheriteCrafterScreen::new);
+                MenuScreens.register(ModMenuType.STONESIFTER_MENU.get(), StoneSifterScreen::new);
+            });
         }
 
 

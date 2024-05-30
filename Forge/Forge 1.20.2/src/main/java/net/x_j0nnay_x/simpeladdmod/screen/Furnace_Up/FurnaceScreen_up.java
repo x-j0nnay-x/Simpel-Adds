@@ -9,9 +9,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
-public class FrunaceScreen_up extends AbstractContainerScreen<FurnaceMenu_up> {
+public class FurnaceScreen_up extends AbstractContainerScreen<FurnaceMenu_up> {
     private static final ResourceLocation texture = new ResourceLocation(Simpeladd.MOD_ID, "textures/screens/upgrade_furnace_gui.png");
-    public FrunaceScreen_up(FurnaceMenu_up pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public FurnaceScreen_up(FurnaceMenu_up pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
@@ -33,6 +33,7 @@ public class FrunaceScreen_up extends AbstractContainerScreen<FurnaceMenu_up> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         renderFuelLeft(pGuiGraphics, x, y);
+        renderXPlevle(pGuiGraphics, x, y);
         RenderSystem.setShaderColor(1, 1, 1, 1);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -70,6 +71,11 @@ public class FrunaceScreen_up extends AbstractContainerScreen<FurnaceMenu_up> {
         guiGraphics.drawString(font, title, x + 5,  y + 18, ChatFormatting.DARK_GRAY.getColor());
         guiGraphics.drawString(font, gl, x + 5,  y + 28, ChatFormatting.DARK_GRAY.getColor());
     }
-
+    private void  renderXPlevle(GuiGraphics guiGraphics, int x, int y){
+        String gl = Integer.toString(menu.getXPStored());
+        String title = Component.translatable("gui.simpeladdmod.upgrade_furnace_gui.xp_stored").getString();
+        guiGraphics.drawString(font, title, x + 68,  y + 73, ChatFormatting.DARK_GRAY.getColor());
+        guiGraphics.drawString(font, gl, x + 84,  y + 73, ChatFormatting.DARK_GRAY.getColor());
+    }
 
 }

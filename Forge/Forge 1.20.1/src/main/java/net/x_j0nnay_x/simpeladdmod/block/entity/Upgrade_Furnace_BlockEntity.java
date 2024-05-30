@@ -1,26 +1,37 @@
 package net.x_j0nnay_x.simpeladdmod.block.entity;
 
 
+import com.google.common.collect.Lists;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -37,12 +48,13 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.Furnace_Up.FurnaceMenu_up;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(10);
-    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(10, ItemStack.EMPTY);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(11);
+    private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(11, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
 
     public static int FUELSLOT = 0;
@@ -55,6 +67,7 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
     public static int OUTPUTSLOT3 = 7;
     public static int OUTPUTSLOT4 = 8;
     public  static int UPGRADESLOT = 9;
+    public  static int XPBOTTLESLOT = 10;
 
     protected final ContainerData data;
     private int progress1 = 0;
@@ -64,6 +77,8 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
     private int maxProgress;
     private int fuelLevel = 0 ;
     private int fueluse = 0;
+    private static int storedXP = 0;
+    private  int maxXP = 10000;
 
     public Upgrade_Furnace_BlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.UPGRADED_FURNACE.get(), pPos, pBlockState);
@@ -78,6 +93,7 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
                     case 3 -> Upgrade_Furnace_BlockEntity.this.progress2;
                     case 4 -> Upgrade_Furnace_BlockEntity.this.progress3;
                     case 5 -> Upgrade_Furnace_BlockEntity.this.progress4;
+                    case 6 -> Upgrade_Furnace_BlockEntity.this.storedXP;
                     default -> 0;
                 };
             }
@@ -91,14 +107,14 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
                     case 3 -> Upgrade_Furnace_BlockEntity.this.progress2 = pValue;
                     case 4 -> Upgrade_Furnace_BlockEntity.this.progress3 = pValue;
                     case 5 -> Upgrade_Furnace_BlockEntity.this.progress4 = pValue;
-
+                    case 6 -> Upgrade_Furnace_BlockEntity.this.storedXP = pValue;
 
                 }
             }
 
             @Override
             public int getCount() {
-                return 6;
+                return 7;
             }
         };
     }
@@ -166,6 +182,7 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
         progress3 = compound.getInt("upgraded_furnace_progress3");
         progress4 = compound.getInt("upgraded_furnace_progress4");
         fuelLevel = compound.getInt("upgraded_furnace_fuel_left");
+        storedXP = compound.getInt("upgraded_furnace_stored_xp");
         if (!this.tryLoadLootTable(compound))
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound, this.stacks);
@@ -180,6 +197,7 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
         compound.putInt("upgraded_furnace_progress3", progress3);
         compound.putInt("upgraded_furnace_progress4", progress4);
         compound.putInt("upgraded_furnace_fuel_left", fuelLevel);
+        compound.putInt("upgraded_furnace_stored_xp", storedXP);
         if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.stacks);
         }
@@ -206,6 +224,7 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState){
 
+        makeXPBottle();
         addFuel();
         setFuleUse();
         if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1.get())) {
@@ -281,7 +300,7 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
     }
     private void addFuel() {
         if(!stacks.get(FUELSLOT).isEmpty() && !stacks.get(FUELSLOT).is(Items.BUCKET)){
-            fuelLevel += ForgeHooks.getBurnTime(this.stacks.get(FUELSLOT), RecipeType.SMELTING) / 200;
+            fuelLevel += Math.round(ForgeHooks.getBurnTime(this.stacks.get(FUELSLOT), RecipeType.SMELTING)) / 200;
             if(stacks.get(FUELSLOT).is(Items.LAVA_BUCKET)){
                this.stacks.set(FUELSLOT, this.stacks.get(FUELSLOT).getCraftingRemainingItem());
             }else {
@@ -311,7 +330,17 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
         }
 
     }
+    private boolean canMakeBottleXP(){
+        return storedXP >= 200;
+    }
+private void makeXPBottle(){
+        if (canMakeBottleXP() && this.stacks.get(XPBOTTLESLOT).getCount() <= 63){
+            storedXP -= 200;
+            ItemStack result = new ItemStack(Items.EXPERIENCE_BOTTLE, 1);
+            this.stacks.set(XPBOTTLESLOT, new ItemStack(result.getItem(), this.stacks.get(XPBOTTLESLOT).getCount() + result.getCount()));
 
+    }
+}
     private boolean hasItemInFirtsSlot(){
         return this.stacks.get(INPUTSLOT1).getCount() >= 2;
     }
@@ -434,14 +463,21 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
         Optional<SmeltingRecipe> recipe = getCurrentRecipe1();
         ItemStack result = recipe.get().getResultItem(null);
         this.removeItem(INPUTSLOT1, 1);
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().getExperience());
+        }
         this.stacks.set(OUTPUTSLOT1, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT1).getCount() + result.getCount()));
+
 
     }
     private void craftItem2() {
         Optional<SmeltingRecipe> recipe = getCurrentRecipe2();
         ItemStack result = recipe.get().getResultItem(null);
         this.removeItem(INPUTSLOT2, 1);
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().getExperience());
+        }
         this.stacks.set(OUTPUTSLOT2, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT2).getCount() + result.getCount()));
 
@@ -450,6 +486,9 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
         Optional<SmeltingRecipe> recipe = getCurrentRecipe3();
         ItemStack result = recipe.get().getResultItem(null);
         this.removeItem(INPUTSLOT3, 1);
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().getExperience());
+        }
         this.stacks.set(OUTPUTSLOT3, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT3).getCount() + result.getCount()));
 
@@ -458,13 +497,15 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
         Optional<SmeltingRecipe> recipe = getCurrentRecipe4();
         ItemStack result = recipe.get().getResultItem(null);
         this.removeItem(INPUTSLOT4, 1);
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().getExperience());
+        }
         this.stacks.set(OUTPUTSLOT4, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT4).getCount() + result.getCount()));
 
     }
     public boolean hasRecipe1() {
         Optional<SmeltingRecipe> recipe = getCurrentRecipe1();
-
         if(recipe.isEmpty()) {
             return false;
         }
@@ -474,7 +515,6 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
 }
     public boolean hasRecipe2() {
         Optional<SmeltingRecipe> recipe = getCurrentRecipe2();
-
         if(recipe.isEmpty()) {
             return false;
         }
@@ -506,6 +546,7 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
     private Optional<SmeltingRecipe> getCurrentRecipe1() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT1));
         return this.level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, inventory, level);
+
     }
     private Optional<SmeltingRecipe> getCurrentRecipe2() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT2));
@@ -549,5 +590,5 @@ public class Upgrade_Furnace_BlockEntity extends RandomizableContainerBlockEntit
     private boolean canInsertOutputAmount4(int count) {
         return this.stacks.get(OUTPUTSLOT4).getCount() + count <= this.stacks.get(OUTPUTSLOT4).getMaxStackSize();
     }
-    
+
 }

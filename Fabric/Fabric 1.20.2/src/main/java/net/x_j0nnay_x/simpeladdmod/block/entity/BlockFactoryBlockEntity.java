@@ -29,7 +29,7 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import org.jetbrains.annotations.Nullable;
 public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
 
 
     public static int WATERSLOT = 5;
@@ -86,7 +86,7 @@ public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScr
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 7);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 7);
         super.markDirty();
     }
     @Override
@@ -116,6 +116,7 @@ public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScr
     @Override
     public void readNbt(NbtCompound compound) {
         super.readNbt(compound);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(compound, inventory);
         progress = compound.getInt("blockfactroy_progress");
         grindsleft = compound.getInt("blockfactroy_grinds_left");

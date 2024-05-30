@@ -39,7 +39,7 @@ import static net.minecraft.block.entity.AbstractFurnaceBlockEntity.createFuelTi
 
 
 public class Upgrade_Furnace_BlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(10, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(11, ItemStack.EMPTY);
 
     public static int FUELSLOT = 0;
     public static int INPUTSLOT1 = 1;
@@ -51,6 +51,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     public static int OUTPUTSLOT3 = 7;
     public static int OUTPUTSLOT4 = 8;
     public  static int UPGRADESLOT = 9;
+    public  static int XPBOTTLESLOT = 10;
 
     protected final PropertyDelegate data;
     private int progress1 = 0;
@@ -60,6 +61,8 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private int maxProgress;
     private int fuelLevel = 0 ;
     private int fueluse = 0;
+    private int storedXP = 0;
+    private final int maxXP = 10000;
 
     public Upgrade_Furnace_BlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.UPGRADED_FURNACE, pPos, pBlockState);
@@ -68,12 +71,13 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
             @Override
             public int get(int pIndex) {
                 return switch (pIndex){
-                    case 0 -> Upgrade_Furnace_BlockEntity.this.progress1;
-                    case 1 -> Upgrade_Furnace_BlockEntity.this.maxProgress;
-                    case 2 -> Upgrade_Furnace_BlockEntity.this.fuelLevel;
-                    case 3 -> Upgrade_Furnace_BlockEntity.this.progress2;
-                    case 4 -> Upgrade_Furnace_BlockEntity.this.progress3;
-                    case 5 -> Upgrade_Furnace_BlockEntity.this.progress4;
+                    case 0 -> progress1;
+                    case 1 -> maxProgress;
+                    case 2 -> fuelLevel;
+                    case 3 -> progress2;
+                    case 4 -> progress3;
+                    case 5 -> progress4;
+                    case 6 -> storedXP;
                     default -> 0;
                 };
             }
@@ -87,6 +91,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
                     case 3 -> Upgrade_Furnace_BlockEntity.this.progress2 = pValue;
                     case 4 -> Upgrade_Furnace_BlockEntity.this.progress3 = pValue;
                     case 5 -> Upgrade_Furnace_BlockEntity.this.progress4 = pValue;
+                    case 6 -> Upgrade_Furnace_BlockEntity.this.storedXP = pValue;
 
 
                 }
@@ -94,7 +99,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
 
             @Override
             public int size() {
-                return 6;
+                return 7;
             }
         };
     }
@@ -115,35 +120,44 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 11);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 11);
         super.markDirty();
     }
+
+    @Override
+    public int size() {
+        return this.inventory.size();
+    }
+
     @Override
     public DefaultedList<ItemStack> getItems() {
-        return inventory;
+        return this.inventory;
     }
 
     @Override
     public void readNbt(NbtCompound compound) {
         super.readNbt(compound);
-        Inventories.readNbt(compound, inventory);
-        progress1 = compound.getInt("upgraded_furnace_progress1");
-        progress2 = compound.getInt("upgraded_furnace_progress2");
-        progress3 = compound.getInt("upgraded_furnace_progress3");
-        progress4 = compound.getInt("upgraded_furnace_progress4");
-        fuelLevel = compound.getInt("upgraded_furnace_fuel_left");
+        this.inventory = DefaultedList.ofSize(11, ItemStack.EMPTY);
+        Inventories.readNbt(compound, this.inventory);
+        this.progress1 = compound.getInt("upgraded_furnace_progress1");
+        this.progress2 = compound.getInt("upgraded_furnace_progress2");
+        this.progress3 = compound.getInt("upgraded_furnace_progress3");
+        this.progress4 = compound.getInt("upgraded_furnace_progress4");
+        this.fuelLevel = compound.getInt("upgraded_furnace_fuel_left");
+        this.storedXP = compound.getInt("upgraded_furnace_stored_xp");
 
     }
 
     @Override
     public void writeNbt(NbtCompound compound) {
         super.writeNbt(compound);
-        Inventories.writeNbt(compound, inventory);
-        compound.putInt("upgraded_furnace_progress1", progress1);
-        compound.putInt("upgraded_furnace_progress2", progress2);
-        compound.putInt("upgraded_furnace_progress3", progress3);
-        compound.putInt("upgraded_furnace_progress4", progress4);
-        compound.putInt("upgraded_furnace_fuel_left", fuelLevel);
+        Inventories.writeNbt(compound, this.inventory);
+        compound.putInt("upgraded_furnace_progress1", this.progress1);
+        compound.putInt("upgraded_furnace_progress2", this.progress2);
+        compound.putInt("upgraded_furnace_progress3", this.progress3);
+        compound.putInt("upgraded_furnace_progress4", this.progress4);
+        compound.putInt("upgraded_furnace_fuel_left", this.fuelLevel);
+        compound.putInt("upgraded_furnace_stored_xp", this.storedXP);
 
     }
     @Override
@@ -174,7 +188,7 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
 // processing
 
     public void tick(World pLevel, BlockPos pPos, BlockState pState){
-
+        makeXPBottle();
         addFuel();
         setFuleUse();
         if (inventory.get(UPGRADESLOT).isOf(ModItems.SPEEDUPGRADE_1)) {
@@ -283,34 +297,44 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
         }
 
     }
+    private boolean canMakeBottleXP(){
+        return this.storedXP >= 200;//200
+    }
+    private void makeXPBottle(){
+        if (canMakeBottleXP() && this.inventory.get(XPBOTTLESLOT).getCount() <= 63) {
+            this.storedXP -= 200;//200
+            this.inventory.set(XPBOTTLESLOT, new ItemStack(Items.EXPERIENCE_BOTTLE.asItem(), this.inventory.get(XPBOTTLESLOT).getCount() + 1));
+        }
+
+    }
     private boolean hasItemInFirtsSlot(){
-        return this.inventory.get(INPUTSLOT1).getCount() >= 2;
+        return inventory.get(INPUTSLOT1).getCount() >= 2;
     }
     private boolean hasItemInSecondSlot(){
-        return this.inventory.get(INPUTSLOT2).getCount() >= 2;
+        return inventory.get(INPUTSLOT2).getCount() >= 2;
     }
     private boolean hasItemInThirdSlot(){
-        return this.inventory.get(INPUTSLOT3).getCount() >= 2;
+        return inventory.get(INPUTSLOT3).getCount() >= 2;
     }
 
     private boolean areStackEqual1to2(){
-        return this.inventory.get(INPUTSLOT1).getCount() <= this.inventory.get(INPUTSLOT2).getCount();
+        return inventory.get(INPUTSLOT1).getCount() <= inventory.get(INPUTSLOT2).getCount();
     }
     private boolean areStackEqual2to3(){
-        return this.inventory.get(INPUTSLOT2).getCount() <= this.inventory.get(INPUTSLOT3).getCount();
+        return inventory.get(INPUTSLOT2).getCount() <= inventory.get(INPUTSLOT3).getCount();
     }
     private boolean areStackEqual3to4(){
-        return this.inventory.get(INPUTSLOT3).getCount() <= this.inventory.get(INPUTSLOT4).getCount();
+        return inventory.get(INPUTSLOT3).getCount() <= inventory.get(INPUTSLOT4).getCount();
     }
     private boolean isItemSameSlot2(){
-        return this.inventory.get(INPUTSLOT1).getItem() == this.inventory.get(INPUTSLOT2).getItem() || this.inventory.get(INPUTSLOT2).isEmpty();
+        return inventory.get(INPUTSLOT1).getItem() == inventory.get(INPUTSLOT2).getItem() || inventory.get(INPUTSLOT2).isEmpty();
     }
     private boolean isItemSameSlot3(){
-        return this.inventory.get(INPUTSLOT2).getItem() == this.inventory.get(INPUTSLOT3).getItem() || this.inventory.get(INPUTSLOT3).isEmpty();
+        return inventory.get(INPUTSLOT2).getItem() == inventory.get(INPUTSLOT3).getItem() || inventory.get(INPUTSLOT3).isEmpty();
     }
 
     private boolean isItemSameSlot4(){
-        return this.inventory.get(INPUTSLOT3).getItem() == this.inventory.get(INPUTSLOT4).getItem() || this.inventory.get(INPUTSLOT4).isEmpty();
+        return inventory.get(INPUTSLOT3).getItem() == inventory.get(INPUTSLOT4).getItem() || inventory.get(INPUTSLOT4).isEmpty();
     }
     private void moveItemFrom1to2(){
         if(isItemSameSlot2()){
@@ -404,7 +428,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem1() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe1();
         this.removeStack(INPUTSLOT1, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT1, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT1).getCount() + recipe.get().value().getResult(null).getCount()));
 
@@ -412,7 +438,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem2() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe2();
         this.removeStack(INPUTSLOT2, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT2, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT2).getCount() + recipe.get().value().getResult(null).getCount()));
 
@@ -420,7 +448,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem3() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe3();
         this.removeStack(INPUTSLOT3, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT3, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT3).getCount() + recipe.get().value().getResult(null).getCount()));
 
@@ -428,7 +458,9 @@ public class Upgrade_Furnace_BlockEntity extends BlockEntity implements Extended
     private void craftItem4() {
         Optional<RecipeEntry<SmeltingRecipe>> recipe = getCurrentRecipe4();
         this.removeStack(INPUTSLOT4, 1);
-
+        if(this.storedXP < this.maxXP){
+            this.storedXP += Math.round(recipe.get().value().getExperience());
+        }
         this.setStack(OUTPUTSLOT4, new ItemStack(recipe.get().value().getResult(null).getItem(),
                 getStack(OUTPUTSLOT4).getCount() + recipe.get().value().getResult(null).getCount()));
     }

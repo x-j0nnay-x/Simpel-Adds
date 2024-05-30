@@ -39,7 +39,7 @@ import java.util.stream.IntStream;
 
 public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
 
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
 
     public static int INPUTSLOT = 0;
     public static int GRINDERSLOT = 1;
@@ -105,7 +105,7 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
     }
     @Override
     public void markDirty() {
-        world.updateListeners(pos, getCachedState(), getCachedState(), 4);
+        world.updateListeners(this.pos, getCachedState(), getCachedState(), 4);
         super.markDirty();
     }
     @Override
@@ -115,6 +115,7 @@ public class GrinderBlockEntity extends BlockEntity implements ExtendedScreenHan
     @Override
     public void readNbt(NbtCompound compound) {
         super.readNbt(compound);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(compound, inventory);
         progress = compound.getInt("grinder_progress");
         grindsleft = compound.getInt("grinder_grinds_left");
