@@ -10,9 +10,9 @@ import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.x_j0nnay_x.simpeladdmod.Simpeladd;
 
-public class FrunaceScreen_up extends HandledScreen<FurnaceMenu_up> {
+public class FurnaceScreen_up extends HandledScreen<FurnaceMenu_up> {
     private static final Identifier texture = new Identifier(Simpeladd.MOD_ID, "textures/screens/upgrade_furnace_gui.png");
-    public FrunaceScreen_up(FurnaceMenu_up pMenu, PlayerInventory pPlayerInventory, Text pTitle) {
+    public FurnaceScreen_up(FurnaceMenu_up pMenu, PlayerInventory pPlayerInventory, Text pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 

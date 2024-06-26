@@ -114,7 +114,6 @@ public class ModCreativeTab {
                         pOutput.accept(ModBlocks.BLOCK_FACTORY.get());
                         pOutput.accept(ModBlocks.CHILLER.get());
                         pOutput.accept(ModBlocks.NETHERITE_CRAFTER.get());
-                        pOutput.accept(ModBlocks.STONE_SHIFTER.get());
                         pOutput.accept(ModBlocks.UNOBTANIUM_ORE.get());
 
                     })

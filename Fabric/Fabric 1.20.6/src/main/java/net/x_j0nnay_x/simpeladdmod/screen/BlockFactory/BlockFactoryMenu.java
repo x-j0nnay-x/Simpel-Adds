@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.Generic3x3ContainerScreenHandler;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
@@ -16,11 +17,12 @@ import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 
-public class BlockFactoryMenu extends ScreenHandler {
+public class BlockFactoryMenu extends ScreenHandler  {
     public  final BlockFactoryBlockEntity blockEntity;
     private final Inventory inventory;
 
     private final PropertyDelegate data;
+
 
     public BlockFactoryMenu(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
@@ -86,6 +88,9 @@ public class BlockFactoryMenu extends ScreenHandler {
 
         addProperties(arrayPropertyDelegate);
     }
+
+
+
 
     public boolean isCrafting(){
         return data.get(0) > 0 ;

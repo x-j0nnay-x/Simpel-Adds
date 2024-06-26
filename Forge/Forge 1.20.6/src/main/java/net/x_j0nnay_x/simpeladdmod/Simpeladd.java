@@ -19,15 +19,13 @@ import net.x_j0nnay_x.simpeladdmod.recipe.ModRecipes;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.Chiller.ChillerScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.NetheriteCrafter.NetheriteCrafterScreen;
-import net.x_j0nnay_x.simpeladdmod.screen.StoneSifter.StoneSifterScreen;
+
 import net.x_j0nnay_x.simpeladdmod.screen.grinder.GrinderScreen;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.screen.grinder_up.GrinderScreen_up;
 import net.x_j0nnay_x.simpeladdmod.until.*;
 import org.slf4j.Logger;
-import java.util.AbstractMap;
-import java.util.Collection;
-import java.util.concurrent.ConcurrentLinkedQueue;
+
 
 @Mod(Simpeladd.MOD_ID)
 public class Simpeladd {
@@ -47,7 +45,6 @@ public class Simpeladd {
         ModMenuType.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
-        modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::handleClientSetup);
     }
 
@@ -60,20 +57,7 @@ public class Simpeladd {
         ModMenuType.registerModMenus();
     }
 
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-
-    }
-
-    private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
-
-    public static void queueServerWork(int tick, Runnable action) {
-        workQueue.add(new AbstractMap.SimpleEntry(action, tick));
-    }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
@@ -85,7 +69,7 @@ public class Simpeladd {
             MenuScreens.register(ModMenuType.BLOCKFACTORY_MENU.get(), BlockFactoryScreen::new);
             MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
             MenuScreens.register(ModMenuType.Netherite_Menu.get(), NetheriteCrafterScreen::new);
-            MenuScreens.register(ModMenuType.STONESIFTER_MENU.get(), StoneSifterScreen::new);
+
         }
 
     }

@@ -41,21 +41,8 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
      private final ItemStackHandler itemHandler = new ItemStackHandler(3);
     private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
-    private final FluidTank fluidTank = new FluidTank(10000) {
-        @Override
-        public boolean isFluidValid(int tank, @NotNull FluidStack stack) {
 
-            return stack.getFluid() == Fluids.WATER;
 
-        }
-
-        @Override
-        protected void onContentsChanged() {
-            super.onContentsChanged();
-            ChillerBlockEntity.this.sendUpdate();
-        }
-    };
-    private final LazyOptional<FluidTank> fluidOptional = LazyOptional.of(() -> this.fluidTank);
     public static int CHILLINGSLOT = 0;
     public static int WATERSLOT = 1;
     public static int OUTPUTSLOT = 2;
@@ -63,6 +50,7 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
     private int progress = 0;
     private int maxProgress = 60;
     private int snowLevel = 0;
+    private int waterLevel = 0;
     private int waterUese = 0;
     public ChillerBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.CHILLER.get(), pPos, pBlockState);
@@ -73,7 +61,8 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
                     case 0 -> ChillerBlockEntity.this.progress;
                     case 1 -> ChillerBlockEntity.this.maxProgress;
                     case 2 -> ChillerBlockEntity.this.snowLevel;
-                    case 3 -> ChillerBlockEntity.this.waterUese;
+                    case 3 -> ChillerBlockEntity.this.waterLevel;
+                    case 4 -> ChillerBlockEntity.this.waterUese;
                     default -> 0;
                 };
             }
@@ -84,13 +73,14 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
                     case 0 -> ChillerBlockEntity.this.progress = pValue;
                     case 1 -> ChillerBlockEntity.this.maxProgress = pValue;
                     case 2 -> ChillerBlockEntity.this.snowLevel = pValue;
-                    case 3 -> ChillerBlockEntity.this.waterUese = pValue;
+                    case 3 -> ChillerBlockEntity.this.waterLevel = pValue;
+                    case 4 -> ChillerBlockEntity.this.waterUese = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 4;
+                return 5;
             }
         };
     }
@@ -121,7 +111,7 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
         itemHandler.deserializeNBT(compound.getCompound("inventory"));
         progress = compound.getInt("chiller_progress");
         snowLevel = compound.getInt("chiller_snow");
-        this.fluidTank.readFromNBT(compound.getCompound("FluidTank"));
+        waterLevel = compound.getInt("chiller_water");
         if (!this.tryLoadLootTable(compound))
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound, this.stacks, p_329555_);
@@ -131,7 +121,7 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
         compound.put("inventory", itemHandler.serializeNBT());
         compound.putInt("chiller_progress", progress);
         compound.putInt("chiller_snow", snowLevel);
-        compound.put("FluidTank", this.fluidTank.writeToNBT(new CompoundTag()));
+        compound.putInt("chiller_water", waterLevel);
         if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.stacks, p_335192_);
         }
@@ -182,8 +172,7 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
         if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
             return handlers[facing.ordinal()].cast();
-        if(capability == ForgeCapabilities.FLUID_HANDLER)
-            return this.fluidOptional.cast();
+
         return super.getCapability(capability, facing);
     }
 
@@ -253,35 +242,22 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
             }
         }
     }
-    private void  fillWater(){/*
-        if(canFillWater()){/
-            LazyOptional<IFluidHandlerItem> fluidHandler = this.stacks.get(WATERSLOT).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
-            fluidHandler.ifPresent(iFluidHandlerItem -> {
-                int amountToDrain = this.fluidTank.getCapacity() - this.fluidTank.getFluidAmount();
-                int amount = iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.SIMULATE).getAmount();
-                if(amount > 0) {
-                    this.fluidTank.fill(iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
-
-                    if(amount <= amountToDrain) {
-                        this.stacks.set(WATERSLOT, iFluidHandlerItem.getContainer());
-
-                    }
-                }
-            });}*/
+    private void  fillWater(){
+        if(this.stacks.get(WATERSLOT).getItem() == (Items.WATER_BUCKET)){
+        this.stacks.remove(WATERSLOT);
+        this.stacks.set(WATERSLOT, new ItemStack(Items.BUCKET));
+        waterLevel += 1;
+    }
     }
     private boolean canFillWater() {
-        if (this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity()){
-            return true;
-        }else{
-            return false;
-        }
+        return this.waterLevel < 6;
     }
     private boolean canFillSnow() {
         return this.snowLevel < 20;
     }
     private void setWaterUese(){
-        if(this.fluidTank.getFluid().getAmount() >= 1000){
-            this.fluidTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+        if(this.waterLevel > 0){
+            this.waterLevel --;
             this.waterUese = 10;
         }
 
@@ -308,17 +284,9 @@ public class ChillerBlockEntity extends RandomizableContainerBlockEntity impleme
         return this.snowLevel >0;
     }
     private boolean hasWater() {
-        return this.fluidTank.getFluidAmount() > 0 || this.waterUese > 0;
+        return this.waterLevel >0 || this.waterUese > 0;
     }
-    public FluidTank getFluidTank() {
-        return this.fluidTank;
-    }
-    public FluidStack getFluidStack() {
-        return this.fluidTank.getFluid();
-    }
-    public LazyOptional<FluidTank> getFluidOptional() {
-        return this.fluidOptional;
-    }
+
 
     private void sendUpdate() {
         setChanged();

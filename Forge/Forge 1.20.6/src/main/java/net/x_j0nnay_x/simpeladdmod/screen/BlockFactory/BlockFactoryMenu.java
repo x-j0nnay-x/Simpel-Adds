@@ -1,7 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.screen.BlockFactory;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -9,23 +8,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.BlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
-import net.x_j0nnay_x.simpeladdmod.screen.FluidContainerSlot;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
-import org.jetbrains.annotations.NotNull;
 
 public class BlockFactoryMenu extends AbstractContainerMenu {
     public  final BlockFactoryBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
-    private FluidStack fluidStackW;
-    private FluidStack fluidStackL;
+
 
     public BlockFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
@@ -36,8 +30,6 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
         blockEntity = ((BlockFactoryBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
-        this.fluidStackW = blockEntity.getFluidWStack() ;
-        this.fluidStackL = blockEntity.getFluidLStack() ;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
@@ -49,28 +41,18 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
                     return ModItems.GRINDERHEAD.get() == stack.getItem();
                 }
             });
-            this.addSlot(new FluidContainerSlot(iItemHandler, BlockFactoryBlockEntity.LAVASLOT, 124, 53){
+            this.addSlot(new SlotItemHandler(iItemHandler, BlockFactoryBlockEntity.LAVASLOT, 124, 53){
                 @Override
-                public boolean mayPlaceFluid(@NotNull ItemStack stack, @NotNull FluidStack fluidStack) {
-                    if(fluidStack.getFluid().isSame(Fluids.LAVA)) {
-                        return true;
-                    }
-                    return false;
+                public boolean mayPlace(ItemStack stack) {
+                    return Items.LAVA_BUCKET == stack.getItem();
                 }
             });
-            this.addSlot(new FluidContainerSlot(iItemHandler, BlockFactoryBlockEntity.WATERSLOT, 34, 53){
-                // @Override
-                // public boolean mayPlace(ItemStack stack) {
-                //     return Items.WATER_BUCKET == stack.getItem();
-                //  }
+            this.addSlot(new SlotItemHandler(iItemHandler, BlockFactoryBlockEntity.WATERSLOT, 34, 53){
+                 @Override
+                 public boolean mayPlace(ItemStack stack) {
+                    return Items.WATER_BUCKET == stack.getItem();
+                  }
 
-                @Override
-                public boolean mayPlaceFluid(@NotNull ItemStack stack, @NotNull FluidStack fluidStack) {
-                    if(fluidStack.getFluid().isSame(Fluids.WATER)) {
-                        return true;
-                    }
-                    return false;
-                }
             });
             this.addSlot(new SlotItemHandler(iItemHandler, BlockFactoryBlockEntity.COBBLESLOT, 52, 35){
                 @Override
@@ -102,6 +84,22 @@ public class BlockFactoryMenu extends AbstractContainerMenu {
     }
     public boolean isCrafting(){
         return data.get(0) > 0 ;
+    }
+    public boolean hasWater(){
+        return data.get(3) > 0 ;
+    }
+    public boolean hasLava( ){
+        return data.get(2) > 0 ;
+    }
+    public int getScalledwater(){
+        int waterLevel = this.data.get(3);
+        int tankSize = 61;
+        return waterLevel != 0  ? waterLevel * tankSize / 6 : 0;
+    }
+    public int getScalledlava(){
+        int lavaLevel = this.data.get(2);
+        int tankSize = 61;
+        return lavaLevel != 0  ? lavaLevel * tankSize / 6 : 0;
     }
     public int getScalledProgress(){
         int progress = this.data.get(0);

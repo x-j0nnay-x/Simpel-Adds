@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -42,37 +43,6 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     private final ItemStackHandler itemHandler = new ItemStackHandler(7);
     private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
-    private final FluidTank fluidTankW = new FluidTank(6000) {
-        @Override
-        public boolean isFluidValid(int tank, @NotNull FluidStack stack) {
-
-            return stack.getFluid() == Fluids.WATER;
-
-        }
-
-        @Override
-        protected void onContentsChanged() {
-            super.onContentsChanged();
-            BlockFactoryBlockEntity.this.sendUpdate();
-        }
-    };
-    private final FluidTank fluidTankL = new FluidTank(6000) {
-        @Override
-        public boolean isFluidValid(int tank, @NotNull FluidStack stack) {
-
-            return stack.getFluid() == Fluids.LAVA;
-
-        }
-
-        @Override
-        protected void onContentsChanged() {
-            super.onContentsChanged();
-            BlockFactoryBlockEntity.this.sendUpdate();
-        }
-    };
-
-    private final LazyOptional<FluidTank> fluidOptionalW = LazyOptional.of(() -> this.fluidTankW);
-    private final LazyOptional<FluidTank> fluidOptionalL = LazyOptional.of(() -> this.fluidTankL);
 
     public static int WATERSLOT = 5;
     public static int LAVASLOT = 6;
@@ -85,6 +55,8 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 35;
+    private int lavaLevel = 0 ;
+    private int waterLevel = 0;
     private int lavaUses = 0 ;
     private int maxLavaUses = 4;
     private int grindsleft = 0;
@@ -97,8 +69,10 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
                 return switch (pIndex){
                     case 0 -> BlockFactoryBlockEntity.this.progress;
                     case 1 -> BlockFactoryBlockEntity.this.maxProgress;
-                    case 2 -> BlockFactoryBlockEntity.this.grindsleft;
-                    case 3 -> BlockFactoryBlockEntity.this.lavaUses;
+                    case 2 -> BlockFactoryBlockEntity.this.lavaLevel;
+                    case 3 -> BlockFactoryBlockEntity.this.waterLevel;
+                    case 4 -> BlockFactoryBlockEntity.this.grindsleft;
+                    case 5 -> BlockFactoryBlockEntity.this.lavaUses;
                     default -> 0;
                 };
             }
@@ -108,14 +82,16 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
                 switch (pIndex){
                     case 0 -> BlockFactoryBlockEntity.this.progress = pValue;
                     case 1 -> BlockFactoryBlockEntity.this.maxProgress = pValue;
-                    case 2 -> BlockFactoryBlockEntity.this.grindsleft = pValue;
-                    case 3 -> BlockFactoryBlockEntity.this.lavaUses = pValue;
+                    case 2 -> BlockFactoryBlockEntity.this.lavaLevel = pValue;
+                    case 3 -> BlockFactoryBlockEntity.this.waterLevel = pValue;
+                    case 4 -> BlockFactoryBlockEntity.this.grindsleft = pValue;
+                    case 5 -> BlockFactoryBlockEntity.this.lavaUses = pValue;
             }
             }
 
             @Override
             public int getCount() {
-                return 4;
+                return 6;
             }
         };
     }
@@ -199,8 +175,8 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         itemHandler.deserializeNBT(compound.getCompound("inventory"));
         progress = compound.getInt("blockfactroy_progress");
         grindsleft = compound.getInt("blockfactroy_grinds_left");
-        this.fluidTankW.readFromNBT(compound.getCompound("FluidTankW"));
-        this.fluidTankL.readFromNBT(compound.getCompound("FluidTankL"));
+        waterLevel = compound.getInt("blockfactroy_water_level");
+        lavaLevel = compound.getInt("blockfactroy_lava_level");
         if (!this.tryLoadLootTable(compound))
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compound, this.stacks, p_329555_);
@@ -212,8 +188,8 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         compound.put("inventory", itemHandler.serializeNBT());
         compound.putInt("blockfactroy_progress", progress);
         compound.putInt("blockfactroy_grinds_left", grindsleft);
-        compound.put("FluidTankW", this.fluidTankW.writeToNBT(new CompoundTag()));
-        compound.put("FluidTankL", this.fluidTankL.writeToNBT(new CompoundTag()));
+        compound.putInt("blockfactroy_water_level", waterLevel);
+        compound.putInt("blockfactroy_lava_level", lavaLevel);
         if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.stacks, p_335192_);
         }
@@ -235,9 +211,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
         if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
             return handlers[facing.ordinal()].cast();
-        if(capability == ForgeCapabilities.FLUID_HANDLER) {
-            return  this.fluidOptionalL.cast();
-        }
+
         return super.getCapability(capability, facing);
     }
 
@@ -309,8 +283,8 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         lavaUses --;
     }
     private void resteLavaUses(){
-        if(this.fluidTankL.getFluid().getAmount() >= 1000){
-            this.fluidTankL.drain(1000, IFluidHandler.FluidAction.EXECUTE );
+        if(this.lavaLevel > 0){
+            this.lavaLevel --;
             lavaUses = maxLavaUses;
         }else{
             lavaUses = 0;
@@ -374,11 +348,7 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
                 this.stacks.get(OBSIDIANSLOT).getCount() + result.getCount()));
     }
     private boolean hasLiquid() {
-        if(this.fluidTankW.getFluid().getAmount() >= 1000 && this.fluidTankL.getFluid().getAmount() >= 1000 || lavaUses > 0){
-            return true;
-        }else {
-            return false;
-        }
+        return waterLevel > 0 && lavaLevel > 0 || lavaUses > 0;
     }
     private boolean CobbleSpace(){
         return this.stacks.get(COBBLESLOT).isEmpty() || this.stacks.get(COBBLESLOT).getCount() < 64;
@@ -393,67 +363,26 @@ public class BlockFactoryBlockEntity extends RandomizableContainerBlockEntity im
         return this.stacks.get(OBSIDIANSLOT).isEmpty() || this.stacks.get(OBSIDIANSLOT).getCount() < 64;
     }
     private boolean canFillWater() {
-        if (this.fluidTankW.getFluidAmount() < this.fluidTankW.getCapacity()){
-            return true;
-        }else{
-            return false;
-        }
+        return waterLevel < 6;
     }
     private boolean ccanFillLava() {
-        if (this.fluidTankL.getFluidAmount() < this.fluidTankL.getCapacity()){
-            return true;
-        }else{
-            return false;
-        }
+        return  lavaLevel < 6;
     }
     private void  fillWater(){
-        LazyOptional<IFluidHandlerItem> fluidHandler = this.stacks.get(WATERSLOT).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
-        fluidHandler.ifPresent(iFluidHandlerItem -> {
-            int amountToDrain = this.fluidTankW.getCapacity() - this.fluidTankW.getFluidAmount();
-            int amount = iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.SIMULATE).getAmount();
-            if(amount > 0) {
-                this.fluidTankW.fill(iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
-
-                if(amount <= amountToDrain) {
-                    this.stacks.set(WATERSLOT, iFluidHandlerItem.getContainer());
-
-                }
-            }
-        });
+        if(this.stacks.get(WATERSLOT).getItem() == (Items.WATER_BUCKET)){
+            this.stacks.remove(WATERSLOT);
+            this.stacks.set(WATERSLOT, new ItemStack(Items.BUCKET));
+            waterLevel += 1;
+        }
     }
     private void  fillLava(){
-        /*
-        LazyOptional<IFluidHandlerItem> fluidHandler = this.stacks.get(WATERSLOT).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
-        fluidHandler.ifPresent(iFluidHandlerItem -> {
-            int amountToDrain = this.fluidTankL.getCapacity() - this.fluidTankL.getFluidAmount();
-            int amount = iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.SIMULATE).getAmount();
-            if(amount > 0) {
-                this.fluidTankL.fill(iFluidHandlerItem.drain(amountToDrain, IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+        if(this.stacks.get(LAVASLOT).getItem() ==(Items.LAVA_BUCKET)){
+            this.stacks.remove(LAVASLOT);
+            this.stacks.set(LAVASLOT, new ItemStack(Items.BUCKET));
+            lavaLevel += 1;
+        }
+    }
 
-                if(amount <= amountToDrain) {
-                    this.stacks.set(LAVASLOT, iFluidHandlerItem.getContainer());
-                }
-            }
-        });*/
-    }
-    public FluidStack getFluidWStack() {
-        return this.fluidTankW.getFluid();
-    }
-    public FluidStack getFluidLStack() {
-        return this.fluidTankL.getFluid();
-    }
-    public LazyOptional<FluidTank> getFluidOptionalW() {
-        return this.fluidOptionalW;
-    }
-    public FluidTank getFluidTankW() {
-        return this.fluidTankW;
-    }
-    public LazyOptional<FluidTank> getFluidOptionalL() {
-        return this.fluidOptionalL;
-    }
-    public FluidTank getFluidTankL() {
-        return this.fluidTankL;
-    }
     private void sendUpdate() {
         setChanged();
 

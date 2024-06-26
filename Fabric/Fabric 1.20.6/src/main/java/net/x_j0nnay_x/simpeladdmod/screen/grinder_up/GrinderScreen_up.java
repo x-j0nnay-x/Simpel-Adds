@@ -1,10 +1,8 @@
 package net.x_j0nnay_x.simpeladdmod.screen.grinder_up;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import dev.architectury.event.events.common.ChatEvent;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;

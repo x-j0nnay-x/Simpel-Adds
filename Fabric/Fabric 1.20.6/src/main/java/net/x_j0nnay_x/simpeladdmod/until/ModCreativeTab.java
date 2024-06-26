@@ -115,7 +115,6 @@ public class ModCreativeTab {
                         entries.add(ModBlocks.BLOCK_FACTORY);
                         entries.add(ModBlocks.CHILLER);
                         entries.add(ModBlocks.NETHERITE_CRAFTER);
-                        entries.add(ModBlocks.STONE_SHIFTER);
                         entries.add(ModBlocks.UNOBTANIUM_ORE);
 
                     }).build());

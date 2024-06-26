@@ -1,0 +1,15 @@
+{
+   "replace": false,
+
+   "values":[
+     "simpeladdmod:elytra_chest_iron",
+     "simpeladdmod:elytra_chest_gold",
+     "simpeladdmod:elytra_chest_diamon",
+     "simpeladdmod:elytra_chest_netherite",
+     "simpeladdmod:elytra_chest_obsidian",
+     "simpeladdmod:elytra_chest_obsidirite",
+     "simpeladdmod:elytra_chest_unobtainnetherite",
+     "simpeladdmod:elytra_chest_unobtainobsidirite"
+
+]
+}

@@ -2,7 +2,13 @@ package net.x_j0nnay_x.simpeladdmod;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -12,6 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
 import net.x_j0nnay_x.simpeladdmod.block.ModBlockEntities;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.item.ModItems;
@@ -87,6 +94,7 @@ public class Simpeladd {
             MenuScreens.register(ModMenuType.Chiller_MENU.get(), ChillerScreen::new);
             MenuScreens.register(ModMenuType.Netherite_Menu.get(), NetheriteCrafterScreen::new);
         }
+
 
     }
     private void handleClientSetup(FMLClientSetupEvent event) {

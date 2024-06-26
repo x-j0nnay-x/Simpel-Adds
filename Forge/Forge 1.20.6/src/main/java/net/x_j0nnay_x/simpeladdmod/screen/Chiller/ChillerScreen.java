@@ -26,7 +26,6 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
-        this.renderWaterToolOverlay(guiGraphics, mouseX, mouseY);
         if (mouseX > leftPos + 11 && mouseX < leftPos + 35 && mouseY > topPos + 48 && mouseY < topPos + 72)
             guiGraphics.renderTooltip(font, Component.translatable("gui.simpeladdmod.chiller_block_gui.Chilling"), mouseX, mouseY-16);
 
@@ -35,13 +34,6 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
     public void init() {
         super.init();
 
-    }
-    private static int getFluidHeight(IFluidTank tank) {
-        return (int) (58 * ((float) tank.getFluidAmount() / tank.getCapacity()));
-    }
-
-    private int getFluidY(int fluidHeight) {
-        return this.topPos + 21 + (48 - fluidHeight);
     }
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
@@ -53,39 +45,10 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
         RenderSystem.defaultBlendFunc();
         pGuiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight);
         renderProgressArrow(pGuiGraphics, x, y);
+        renderwater(pGuiGraphics, x, y);
         renderSnow(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
-        FluidTank tank = this.menu.getBlockEntity().getFluidTank();
-        FluidStack fluidStack = tank.getFluid();
-        if(fluidStack.isEmpty())
-            return;
 
-        IClientFluidTypeExtensions fluidTypeExtensionsW = IClientFluidTypeExtensions.of(fluidStack.getFluid());
-        ResourceLocation stillTextureW = fluidTypeExtensionsW.getStillTexture(fluidStack);
-        if(stillTextureW == null)
-            return;
-
-        TextureAtlasSprite spriteW =
-                this.minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTextureW);
-        int tintColorW = fluidTypeExtensionsW.getTintColor(fluidStack);
-
-        float alpha = ((tintColorW >> 24) & 0xFF) / 255f;
-        float red = ((tintColorW >> 16) & 0xFF) / 255f;
-        float green = ((tintColorW >> 8) & 0xFF) / 255f;
-        float blue = (tintColorW & 0xFF) / 255f;
-
-        pGuiGraphics.setColor(red, green, blue, alpha);
-
-        int fluidHeight = getFluidHeight(tank);
-        pGuiGraphics.blit(
-                this.leftPos + 74,
-                getFluidY(fluidHeight),
-                0,
-                15,
-                fluidHeight,
-                spriteW);
-
-        pGuiGraphics.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     }
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
@@ -96,19 +59,10 @@ public class ChillerScreen extends AbstractContainerScreen<ChillerMenu> {
             guiGraphics.blit(texture,  x + 99, y + 42, 177, 62, menu.getScalledProgress(), 16);
         }
     }
-    public void renderWaterToolOverlay(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        FluidTank tankW = this.menu.getBlockEntity().getFluidTank();
-        FluidStack fluidStackW = tankW.getFluid();
-
-        if(fluidStackW.isEmpty())
-            return;
-        int fluidHeightW = getFluidHeight(tankW);
-        if(!isHovering(72, getFluidY(fluidHeightW) - this.topPos, 16, fluidHeightW, mouseX, mouseY))
-            return;
-        Component componentW = MutableComponent.create(fluidStackW.getDisplayName().getContents())
-                .append(" (%s/%s mB)".formatted(tankW.getFluidAmount(), tankW.getCapacity()));
-        guiGraphics.renderTooltip(this.font, componentW, mouseX, mouseY);
-
+    private void renderwater(GuiGraphics guiGraphics, int x, int y) {
+        if(menu.hasWater()) {
+            guiGraphics.blit(texture, x + 73, y + 69 - menu.getScalledwater() , 177, 0, 16, menu.getScalledwater());
+        }
     }
     private void renderSnow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasSnow()) {

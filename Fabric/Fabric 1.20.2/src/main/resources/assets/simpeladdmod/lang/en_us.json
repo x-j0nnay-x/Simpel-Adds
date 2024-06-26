@@ -83,6 +83,15 @@
   "item.simpeladdmod.unobtainobsidiritelegs" : "Unobtan Obsidirite Leggings",
   "item.simpeladdmod.unobtainobsidiriteboots" : "Unobtan Obsidirite Boots",
 
+  "item.simpeladdmod.elytra_chest_iron" : "Iron Elytra ChestPlate",
+  "item.simpeladdmod.elytra_chest_gold" : "Gold Elytra ChestPlate",
+  "item.simpeladdmod.elytra_chest_diamon" : "Diamond Elytra ChestPlate",
+  "item.simpeladdmod.elytra_chest_netherite" : "Netherite Elytra ChestPlate",
+  "item.simpeladdmod.elytra_chest_obsidian" : "Obsidian Elytra ChestPlate",
+  "item.simpeladdmod.elytra_chest_obsidirite" : "Obsidirite Elytra ChestPlate",
+  "item.simpeladdmod.elytra_chest_unobtainnetherite" : "Unobtan Netherite Elytra ChestPlate",
+  "item.simpeladdmod.elytra_chest_unobtainobsidirite" : "Unobtan Obsidirite Elytra ChestPlate",
+
   "block.simpeladdmod.deepslate_debri_ore" : "Deepslate Debri Ore",
   "block.simpeladdmod.unobtanium_ore" : "Unobtanium Ore",
   "block.simpeladdmod.upgraded_furnace_block": "Upgraded Furnace",

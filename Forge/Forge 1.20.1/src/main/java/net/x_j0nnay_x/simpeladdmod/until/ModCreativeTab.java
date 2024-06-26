@@ -63,6 +63,14 @@ public class ModCreativeTab {
                         pOutput.accept(ModItems.UNOBTIANIUMDUST.get());
                         pOutput.accept(ModItems.UNOBTIANIUMSCRAP.get());
 
+                        pOutput.accept(ModItems.IRON_ELYTRA_CHEST.get());
+                        pOutput.accept(ModItems.GOLD_ELYTRA_CHEST.get());
+                        pOutput.accept(ModItems.DIAMOND_ELYTRA_CHEST.get());
+                        pOutput.accept(ModItems.NETHERITE_ELYTRA_CHEST.get());
+                        pOutput.accept(ModItems.OBSIDIAN_ELYTRA_CHEST.get());
+                        pOutput.accept(ModItems.OBSIDIRITE_ELYTRA_CHEST.get());
+                        pOutput.accept(ModItems.UNOBTIANNETHERITE_ELYTRA_CHEST.get());
+                        pOutput.accept(ModItems.UNOBTIANOBSIDIRITE_ELYTRA_CHEST.get());
 
                         pOutput.accept(ModItems.OBSIDAINAXE.get());
                         pOutput.accept(ModItems.OBSIDIANHOE.get());

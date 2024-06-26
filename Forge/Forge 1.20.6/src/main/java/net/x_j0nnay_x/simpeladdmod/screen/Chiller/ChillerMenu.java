@@ -1,7 +1,6 @@
 package net.x_j0nnay_x.simpeladdmod.screen.Chiller;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -9,22 +8,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.SlotItemHandler;
 import net.x_j0nnay_x.simpeladdmod.block.ModBlocks;
 import net.x_j0nnay_x.simpeladdmod.block.entity.ChillerBlockEntity;
-import net.x_j0nnay_x.simpeladdmod.screen.FluidContainerSlot;
 import net.x_j0nnay_x.simpeladdmod.screen.ModMenuType;
 import net.x_j0nnay_x.simpeladdmod.until.ModTags;
-import org.jetbrains.annotations.NotNull;
 
 public class ChillerMenu extends AbstractContainerMenu {
     public  final ChillerBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
-    private FluidStack fluidStack;
+
 
     public ChillerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(5));
@@ -33,7 +28,6 @@ public class ChillerMenu extends AbstractContainerMenu {
         super(ModMenuType.Chiller_MENU.get(), pContainerID);
         checkContainerSize(inv, 3);
         blockEntity = ((ChillerBlockEntity) entity);
-        this.fluidStack = blockEntity.getFluidStack() ;
         this.level = inv.player.level();
         this.data = data;
         addPlayerInventory(inv);
@@ -53,13 +47,10 @@ public class ChillerMenu extends AbstractContainerMenu {
                     return false;
                 }
             });
-            this.addSlot(new FluidContainerSlot(iItemHandler, ChillerBlockEntity.WATERSLOT, 52, 53){
+            this.addSlot(new SlotItemHandler(iItemHandler, ChillerBlockEntity.WATERSLOT, 52, 53){
                 @Override
-                public boolean mayPlaceFluid(@NotNull ItemStack stack, @NotNull FluidStack fluidStack) {
-                    if(fluidStack.getFluid().isSame(Fluids.WATER)) {
-                        return true;
-                    }
-                    return false;
+                public boolean mayPlace(ItemStack stack) {
+                    return Items.WATER_BUCKET == stack.getItem();
                 }
             });
         });

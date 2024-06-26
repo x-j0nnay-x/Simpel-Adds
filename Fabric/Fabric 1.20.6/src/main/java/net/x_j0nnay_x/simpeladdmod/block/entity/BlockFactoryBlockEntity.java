@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -30,7 +31,7 @@ import net.x_j0nnay_x.simpeladdmod.item.ModItems;
 import net.x_j0nnay_x.simpeladdmod.screen.BlockFactory.BlockFactoryMenu;
 import org.jetbrains.annotations.Nullable;
 public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScreenHandlerFactory, ImplementedInventory, SidedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
 
 
 
@@ -92,9 +93,6 @@ public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScr
         super.markDirty();
     }
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(this.pos);
-    }
     public boolean canTransferTo(Inventory hopperInventory, int slot, ItemStack stack) {
         return true;
     }
@@ -113,29 +111,36 @@ public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScr
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
-
+    @Override
+    public Object getScreenOpeningData(ServerPlayerEntity player) {
+        return this.pos;
+    }
 
     @Override
-    public void readNbt(NbtCompound compound) {
-        super.readNbt(compound);
-        Inventories.readNbt(compound, inventory);
+    protected void readNbt(NbtCompound compound, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(compound, registryLookup);
+        this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
+        Inventories.readNbt(compound, this.inventory, registryLookup);
         progress = compound.getInt("blockfactroy_progress");
         grindsleft = compound.getInt("blockfactroy_grinds_left");
         waterLevel = compound.getInt("blockfactroy_water_level");
         lavaLevel = compound.getInt("blockfactroy_lava_level");
-
     }
 
+
+
     @Override
-    public void writeNbt(NbtCompound compound) {
-        super.writeNbt(compound);
-        Inventories.writeNbt(compound, inventory);
+    protected void writeNbt(NbtCompound compound, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(compound, registryLookup);
+        Inventories.writeNbt(compound, this.inventory, registryLookup);
+        NbtCompound nbtCompound = new NbtCompound();
         compound.putInt("blockfactroy_progress", progress);
         compound.putInt("blockfactroy_grinds_left", grindsleft);
         compound.putInt("blockfactroy_water_level", waterLevel);
         compound.putInt("blockfactroy_lava_level", lavaLevel);
-
     }
+
+
     @Override
     public boolean canInsert(int index, ItemStack stack, @Nullable Direction direction) {
         return (direction == Direction.EAST  && (index == LAVASLOT ) && stack.isOf(Items.LAVA_BUCKET) ||
@@ -339,7 +344,5 @@ public class BlockFactoryBlockEntity extends BlockEntity  implements ExtendedScr
             lavaLevel += 1;
         }
     }
-
-
 
 }
