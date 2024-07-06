@@ -21,6 +21,8 @@ you can craft slime balls, obsidian blocks, elytra's and manually craft cobblest
 
 
 
+### Template Information
+this mod uses the MultiLoader Template from https://github.com/jaredlll08/MultiLoader-Template this is a huge help for multi mod Loader dev environments(forge/fabric/neoforge)
 
 ### Mod Download Sites
 [Download Page](https://www.curseforge.com/minecraft/mc-mods/simpel-add-mod/files?page=1&pageSize=20)

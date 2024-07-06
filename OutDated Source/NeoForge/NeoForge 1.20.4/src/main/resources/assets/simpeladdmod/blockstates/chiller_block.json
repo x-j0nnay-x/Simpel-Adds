@@ -1,0 +1,20 @@
+{
+
+  "variants": {
+    "facing=north": {
+      "model": "simpeladdmod:block/chiller_block"
+    },
+    "facing=east": {
+      "model": "simpeladdmod:block/chiller_block",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "simpeladdmod:block/chiller_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "simpeladdmod:block/chiller_block",
+      "y": 270
+    }
+  }
+}

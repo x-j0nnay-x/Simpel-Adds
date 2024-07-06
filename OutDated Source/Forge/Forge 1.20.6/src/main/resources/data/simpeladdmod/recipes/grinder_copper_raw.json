@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "item": "minecraft:raw_copper"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "simpeladdmod:copperdust"
+  }
+}

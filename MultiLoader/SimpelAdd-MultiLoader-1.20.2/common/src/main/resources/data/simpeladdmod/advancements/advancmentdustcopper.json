@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "simpeladdmod:copperdust"
+    },
+    "title": {
+      "translate": "advancements.simpeladdmod.copperdust.title"
+    },
+    "description": {
+      "translate": "advancements.simpeladdmod.copperdust.descrip"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "advancmentdustcopper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simpeladdmod:copperdust"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simpeladdmod:advancmentgrindhead"
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "zxz",
+    "x x",
+    "zxz"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:blackstone"
+    },
+    "x":
+    {
+      "item": "minecraft:furnace"
+    }
+
+  },
+  "result":
+  {
+    "item": "simpeladdmod:upgraded_furnace_block",
+    "count":1
+  }
+}
