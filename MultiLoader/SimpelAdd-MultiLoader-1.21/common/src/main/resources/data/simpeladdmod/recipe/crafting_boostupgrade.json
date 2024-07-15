@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "xzx",
+    "yzy"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    "z":
+    {
+      "item": "minecraft:clay_ball"
+    },
+    "y":
+    {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result":
+  {
+    "id": "simpeladdmod:boostupgrade",
+    "count": 1
+  }
+}

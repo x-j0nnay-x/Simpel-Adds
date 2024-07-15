@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "x",
+    "x"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result":
+  {
+    "id": "simpeladdmod:blankupgrade_raw",
+    "count": 1
+  }
+}

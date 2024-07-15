@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "zzz",
+    "zxz",
+    "zzz"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:lava_bucket"
+    },
+    "x":
+    {
+      "item": "minecraft:water_bucket"
+    }
+
+  },
+  "result":
+  {
+    "id": "minecraft:obsidian",
+    "count":8
+  }
+}

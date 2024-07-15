@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    " z ",
+    "zxz",
+    " z "
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:gravel"
+    },
+    "x":
+    {
+      "item": "simpeladdmod:grinderhead"
+    }
+
+  },
+  "result":
+  {
+    "id": "minecraft:flint",
+    "count":8
+  }
+}

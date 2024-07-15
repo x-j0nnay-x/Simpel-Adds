@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+
+  "ingredient": {
+    "item": "simpeladdmod:blankupgrade_raw"
+  },
+
+  "result":{
+    "id" : "simpeladdmod:blankupgrade"},
+  "experience": 0.8,
+  "cookingtime": 50
+
+
+}

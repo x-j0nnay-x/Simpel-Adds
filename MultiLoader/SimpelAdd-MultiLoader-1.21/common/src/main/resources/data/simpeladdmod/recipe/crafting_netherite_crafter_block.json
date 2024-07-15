@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "zxz",
+    "x x",
+    "pzp"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    "x":
+    {
+      "item": "minecraft:cobblestone"
+    },
+
+    "p":
+    {
+      "item": "minecraft:piston"
+    }
+
+  },
+  "result":
+  {
+    "id": "simpeladdmod:netherite_crafter_block",
+    "count":1
+  }
+}

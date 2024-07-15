@@ -1,8 +1,10 @@
 package net.x_j0nnay_x.simpeladd.item;
 
 
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class GrinderHeadItem extends Item {
 
@@ -21,14 +23,23 @@ public class GrinderHeadItem extends Item {
         return true;
     }
 
-
-    public ItemStack getCraftingRemainingItem(ItemStack itemstack) {
-
-        if (itemstack.getDamageValue() > this.MaxUses) {
-            return itemstack;
+    public ItemStack getRecipeRemainder(ItemStack itemStack) {
+        if (itemStack.getDamageValue() > this.MaxUses) {
+            return itemStack;
         }
         ItemStack ret = new ItemStack(this);
-        ret.setDamageValue(itemstack.getDamageValue() + 1);
+        ret.setDamageValue(itemStack.getDamageValue() + 1);
+        return ret;
+    }
+
+
+    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
+
+        if (itemStack.getDamageValue() > this.MaxUses) {
+            return itemStack;
+        }
+        ItemStack ret = new ItemStack(this);
+        ret.setDamageValue(itemStack.getDamageValue() + 1);
         return ret;
 
     }

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+
+  "ingredient": {
+    "item": "simpeladdmod:netherite_shard_dust"
+  },
+
+  "result":{
+    "id" :  "simpeladdmod:netherite_shard"},
+  "experience": 0.8,
+  "cookingtime": 50
+
+
+}

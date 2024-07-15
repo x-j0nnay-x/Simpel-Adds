@@ -21,6 +21,15 @@ public class GrinderHeadItem extends Item {
         return true;
     }
 
+    public ItemStack getRecipeRemainder(ItemStack itemStack) {
+        if (itemStack.getDamageValue() > this.MaxUses) {
+            return itemStack;
+        }
+        ItemStack ret = new ItemStack(this);
+        ret.setDamageValue(itemStack.getDamageValue() + 1);
+        return ret;
+    }
+
 
     public ItemStack getCraftingRemainingItem(ItemStack itemstack) {
 

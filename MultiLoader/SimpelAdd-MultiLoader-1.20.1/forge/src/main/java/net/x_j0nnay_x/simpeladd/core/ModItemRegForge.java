@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
+import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 
 public class ModItemRegForge {
 

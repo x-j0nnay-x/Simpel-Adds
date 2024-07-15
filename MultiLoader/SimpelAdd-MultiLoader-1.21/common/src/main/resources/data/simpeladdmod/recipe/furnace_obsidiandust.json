@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+
+  "ingredient": {
+    "item": "simpeladdmod:obsidiandust"
+  },
+
+  "result":{
+    "id" :  "simpeladdmod:obsidianingot"},
+  "experience": 0.8,
+  "cookingtime": 50
+
+
+}

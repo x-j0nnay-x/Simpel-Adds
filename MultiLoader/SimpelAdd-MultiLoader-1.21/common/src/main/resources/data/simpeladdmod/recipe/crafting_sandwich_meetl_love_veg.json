@@ -1,0 +1,24 @@
+    {
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "minecraft:bread"
+        },
+        {
+          "item": "minecraft:cooked_porkchop"
+        },
+        {
+          "item": "minecraft:cooked_mutton"
+        },
+        {
+          "item": "minecraft:cooked_beef"
+        },
+        {
+          "tag": "simpeladdmod:veggie_list"
+        }
+      ],
+      "result": {
+        "id": "simpeladdmod:sandwich_meet_love_veg",
+        "count": 1
+      }
+    }
