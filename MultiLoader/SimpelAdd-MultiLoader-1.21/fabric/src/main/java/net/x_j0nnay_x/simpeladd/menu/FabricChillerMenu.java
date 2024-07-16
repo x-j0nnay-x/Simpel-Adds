@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.menu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -15,19 +16,20 @@ import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 
 public class FabricChillerMenu extends AbstractContainerMenu {
-    public  final FabricChillerBlockEntity blockEntity;
+
     private final Container inventory;
     private final Level level;
     private final ContainerData data;
 
-    public FabricChillerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(5));
+    public FabricChillerMenu(int id, Inventory playerInventoryIn) {
+        this( id, playerInventoryIn, new SimpleContainer(3), new SimpleContainerData(5));
     }
-    public FabricChillerMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
+    public FabricChillerMenu(int pContainerID, Inventory inv, Container chiller, ContainerData data){
         super(ModMenuTypeFabric.Chiller_MENU, pContainerID);
         checkContainerSize(inv, 3);
-        blockEntity = ((FabricChillerBlockEntity) entity);
-        this.inventory = ((Container) entity);
+        checkContainerDataCount(data, 5);
+        chiller.startOpen(inv.player);
+        this.inventory = chiller;
         this.level = inv.player.level();
         this.data = data;
         addPlayerInventory(inv);
@@ -81,15 +83,11 @@ public class FabricChillerMenu extends AbstractContainerMenu {
         int tankSize = 59;
         return waterLevel != 0  ? waterLevel * tankSize / 10000 : 0;
     }
-    public FabricChillerBlockEntity getBlockEntity() {
-        return this.blockEntity;
-    }
 
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlockRegFabric.CHILLER);
+        return this.inventory.stillValid(pPlayer);
     }
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)

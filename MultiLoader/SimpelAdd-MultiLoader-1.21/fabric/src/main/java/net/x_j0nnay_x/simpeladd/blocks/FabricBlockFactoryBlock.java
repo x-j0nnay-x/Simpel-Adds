@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricBlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class FabricBlockFactoryBlock extends Abst_BlockFactoryBlock {
@@ -32,6 +33,7 @@ public class FabricBlockFactoryBlock extends Abst_BlockFactoryBlock {
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
+
 
 
     @Override

@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricNetheriteCrafterMenu;
 
-public class FabricNetheriteCrafterBlockEntity extends Abst_NetheriteCrafterBlockEntity {
+public class FabricNetheriteCrafterBlockEntity extends Abst_NetheriteCrafterBlockEntity implements ExtendedScreenHandlerFactory {
 
     public FabricNetheriteCrafterBlockEntity(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesFabric.NETHERITE_CRAFTER, $$1, $$2);
@@ -29,4 +29,8 @@ public class FabricNetheriteCrafterBlockEntity extends Abst_NetheriteCrafterBloc
     }
 
 
+    @Override
+    public Object getScreenOpeningData(ServerPlayer player) {
+        return this.data;
+    }
 }

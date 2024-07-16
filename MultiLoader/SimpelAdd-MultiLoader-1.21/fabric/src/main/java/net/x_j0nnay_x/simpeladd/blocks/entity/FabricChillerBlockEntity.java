@@ -12,8 +12,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricChillerMenu;
+import net.x_j0nnay_x.simpeladd.util.ChillerData;
 
-public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity  {
+public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity implements ExtendedScreenHandlerFactory {
 
 
     public FabricChillerBlockEntity(BlockPos $$1, BlockState $$2) {
@@ -33,4 +34,8 @@ public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity  {
     }
 
 
+    @Override
+    public Object getScreenOpeningData(ServerPlayer player) {
+        return ChillerData.CODEC;
+    }
 }

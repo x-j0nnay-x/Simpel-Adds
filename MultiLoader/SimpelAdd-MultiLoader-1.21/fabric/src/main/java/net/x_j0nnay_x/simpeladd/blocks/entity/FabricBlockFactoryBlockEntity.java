@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricBlockFactoryMenu;
+import net.x_j0nnay_x.simpeladd.util.BlockFactroyData;
 
 
 public class FabricBlockFactoryBlockEntity extends Abst_BlockFactoryBlockEntity implements ExtendedScreenHandlerFactory {
@@ -34,6 +36,6 @@ public class FabricBlockFactoryBlockEntity extends Abst_BlockFactoryBlockEntity 
 
     @Override
     public Object getScreenOpeningData(ServerPlayer player) {
-        return this.data;
+        return BlockFactroyData.CODEC;
     }
 }

@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.menu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -14,26 +15,28 @@ import net.x_j0nnay_x.simpeladd.blocks.entity.FabricBlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
+import net.x_j0nnay_x.simpeladd.util.BlockFactroyData;
 
 
 public class FabricBlockFactoryMenu extends AbstractContainerMenu {
-    public  final FabricBlockFactoryBlockEntity blockEntity;
+
     private final Container inventory;
     private final Level level;
     private final ContainerData data;
 
 
-
-    public FabricBlockFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
+    public FabricBlockFactoryMenu(int id, Inventory playerInventoryIn) {
+        this( id, playerInventoryIn, new SimpleContainer(7), new SimpleContainerData(6));
     }
 
-    public FabricBlockFactoryMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
+
+    public FabricBlockFactoryMenu(int pContainerID, Inventory inv, Container blockFactory,  ContainerData data){
         super(ModMenuTypeFabric.BLOCKFACTORY_MENU, pContainerID);
         checkContainerSize(inv, 7);
-        blockEntity = ((FabricBlockFactoryBlockEntity) entity);
+        checkContainerDataCount(data, 6);
+        blockFactory.startOpen(inv.player);
+        this.inventory = blockFactory;
         this.level = inv.player.level();
-        this.inventory = ((Container) entity);
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -112,14 +115,11 @@ public class FabricBlockFactoryMenu extends AbstractContainerMenu {
         int tankSize = 61;
         return lavaLevel != 0  ? lavaLevel * tankSize / 6000 : 0;
     }
-    public FabricBlockFactoryBlockEntity getBlockEntity() {
-        return this.blockEntity;
-    }
+
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlockRegFabric.BLOCK_FACTORY);
+        return this.inventory.stillValid(pPlayer);
     }
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)

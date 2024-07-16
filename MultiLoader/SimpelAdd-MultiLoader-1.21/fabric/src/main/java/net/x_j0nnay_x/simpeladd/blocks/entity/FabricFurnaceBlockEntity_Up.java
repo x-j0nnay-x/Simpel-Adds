@@ -12,7 +12,7 @@ import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricFurnaceMenu_up;
 
 
-public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up  {
+public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up implements ExtendedScreenHandlerFactory  {
 
     public FabricFurnaceBlockEntity_Up(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesFabric.UPGRADED_FURNACE, $$1, $$2);
@@ -29,4 +29,8 @@ public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up  {
     }
 
 
+    @Override
+    public Object getScreenOpeningData(ServerPlayer player) {
+        return this.data;
+    }
 }

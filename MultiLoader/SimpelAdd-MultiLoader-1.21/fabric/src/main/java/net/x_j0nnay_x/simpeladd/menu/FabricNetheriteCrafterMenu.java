@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.menu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -17,20 +18,21 @@ import net.x_j0nnay_x.simpeladd.core.ModTags;
 
 
 public class FabricNetheriteCrafterMenu extends AbstractContainerMenu {
-    public  final FabricNetheriteCrafterBlockEntity blockEntity;
+
     private final Level level;
     private final Container inventory;
     private final ContainerData data;
 
-    public FabricNetheriteCrafterMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
+    public FabricNetheriteCrafterMenu(int id, Inventory playerInventoryIn) {
+        this( id, playerInventoryIn, new SimpleContainer(5), new SimpleContainerData(4));
     }
-    public FabricNetheriteCrafterMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
+    public FabricNetheriteCrafterMenu(int pContainerID, Inventory inv, Container netheriteCrafter, ContainerData data){
         super(ModMenuTypeFabric.Netherite_Menu, pContainerID);
         checkContainerSize(inv, 5);
-        blockEntity = ((FabricNetheriteCrafterBlockEntity) entity);
+        checkContainerDataCount(data, 4);
+        netheriteCrafter.startOpen(inv.player);
         this.level = inv.player.level();
-        this.inventory = ((Container) entity);
+        this.inventory = netheriteCrafter;
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -92,8 +94,7 @@ public class FabricNetheriteCrafterMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlockRegFabric.NETHERITE_CRAFTER);
+        return this.inventory.stillValid(pPlayer);
     }
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)

@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.menu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -15,20 +16,21 @@ import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.NotNull;
 
 public class FabricFurnaceMenu_up extends AbstractContainerMenu {
-    public  final FabricFurnaceBlockEntity_Up blockEntity;
+
     private final Container inventory;
     private final Level level;
     private final ContainerData data;
 
-    public FabricFurnaceMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(11));
+    public FabricFurnaceMenu_up(int id, Inventory playerInventoryIn) {
+        this( id, playerInventoryIn, new SimpleContainer(11), new SimpleContainerData(7));
     }
-    public FabricFurnaceMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
+    public FabricFurnaceMenu_up(int pContainerID, Inventory inv, Container upFurnace, ContainerData data){
         super(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, pContainerID);
         checkContainerSize(inv, 11);
-        blockEntity = ((FabricFurnaceBlockEntity_Up) entity);
+        checkContainerDataCount(data, 7);
+        upFurnace.startOpen(inv.player);
         this.level = inv.player.level();
-        this.inventory = ((Container) entity);
+        this.inventory = upFurnace;
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -165,14 +167,9 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
 
         return fuelLeft;
     }
-
-
-
-
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlockRegFabric.UPGRADED_FURNACE);
+        return this.inventory.stillValid(pPlayer);
     }
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)

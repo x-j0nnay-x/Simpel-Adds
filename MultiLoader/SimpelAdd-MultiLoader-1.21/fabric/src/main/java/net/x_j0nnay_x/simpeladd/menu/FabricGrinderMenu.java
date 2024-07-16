@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.menu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -17,19 +18,19 @@ import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.NotNull;
 
 public class FabricGrinderMenu extends AbstractContainerMenu {
-    public  final FabricGrinderBlockEntity blockEntity;
     private final Container inventory;
     private final Level level;
     private final ContainerData data;
 
-    public FabricGrinderMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
+    public FabricGrinderMenu(int id, Inventory playerInventoryIn) {
+        this( id, playerInventoryIn, new SimpleContainer(5), new SimpleContainerData(6));
     }
-    public FabricGrinderMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
+    public FabricGrinderMenu(int pContainerID, Inventory inv, Container grinder, ContainerData data){
         super(ModMenuTypeFabric.GRINDER_MENU, pContainerID);
         checkContainerSize( inv, 5);
-        blockEntity = ((FabricGrinderBlockEntity) entity);
-        this.inventory = ((Container) entity);
+        checkContainerDataCount(data, 6);
+        grinder.startOpen(inv.player);
+        this.inventory = grinder;
         this.level = inv.player.level();
         this.data = data;
         addPlayerInventory(inv);
@@ -119,8 +120,7 @@ public class FabricGrinderMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlockRegFabric.GRINDER_BLOCK);
+        return this.inventory.stillValid(pPlayer);
     }
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)

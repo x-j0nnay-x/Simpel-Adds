@@ -30,6 +30,14 @@ public class GrinderHeadItem extends Item {
     public void onCraftedBy(ItemStack itemstack, Level pLevel, Player pPlayer) {
         getCraftingRemainingItem(itemstack);
     }
+    public ItemStack getRecipeRemainder(ItemStack itemStack) {
+        if (itemStack.getDamageValue() > this.MaxUses) {
+            return itemStack;
+        }
+        ItemStack ret = new ItemStack(this);
+        ret.setDamageValue(itemStack.getDamageValue() + 1);
+        return ret;
+    }
 
     public ItemStack getCraftingRemainingItem(ItemStack itemstack) {
 

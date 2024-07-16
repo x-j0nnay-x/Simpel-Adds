@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.menu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -17,20 +18,22 @@ import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.NotNull;
 
 public class FabricGrinderMenu_up extends AbstractContainerMenu {
-    public  final FabricGrinderBlockEntity_Up blockEntity;
+
     private final Container inventory;
     private final Level level;
     private final ContainerData data;
 
-    public FabricGrinderMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(11));
+
+    public FabricGrinderMenu_up(int id, Inventory playerInventoryIn) {
+        this( id, playerInventoryIn, new SimpleContainer(11), new SimpleContainerData(9));
     }
-    public FabricGrinderMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
+    public FabricGrinderMenu_up(int pContainerID, Inventory inv, Container grinderUp, ContainerData data){
         super(ModMenuTypeFabric.GRINDER_MENU_UP, pContainerID);
         checkContainerSize(inv, 11);
-        blockEntity = ((FabricGrinderBlockEntity_Up) entity);
+        checkContainerDataCount(data, 9);
+        grinderUp.startOpen(inv.player);
         this.level = inv.player.level();
-        this.inventory = ((Container) entity);
+        this.inventory = grinderUp;
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -173,8 +176,7 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlockRegFabric.GRINDER_BLOCK_UP);
+        return this.inventory.stillValid(pPlayer);
     }
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)

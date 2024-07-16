@@ -13,7 +13,7 @@ import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricGrinderMenu_up;
 
 
-public class FabricGrinderBlockEntity_Up extends Abst_GrinderBlockEntity_Up{
+public class FabricGrinderBlockEntity_Up extends Abst_GrinderBlockEntity_Up implements ExtendedScreenHandlerFactory{
 
     public FabricGrinderBlockEntity_Up(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesFabric.GRINDER_UP, $$1, $$2);
@@ -30,4 +30,8 @@ public class FabricGrinderBlockEntity_Up extends Abst_GrinderBlockEntity_Up{
     }
 
 
+    @Override
+    public Object getScreenOpeningData(ServerPlayer player) {
+        return this.data;
+    }
 }
