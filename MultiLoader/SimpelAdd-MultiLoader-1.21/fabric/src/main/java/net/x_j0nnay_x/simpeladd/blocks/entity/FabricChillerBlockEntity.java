@@ -2,19 +2,17 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricChillerMenu;
-import net.x_j0nnay_x.simpeladd.util.ChillerData;
+import net.x_j0nnay_x.simpeladd.util.data.BlockFactroyData;
+import net.x_j0nnay_x.simpeladd.util.data.ChillerData;
 
-public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity implements ExtendedScreenHandlerFactory {
+public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity implements ExtendedScreenHandlerFactory<ChillerData> {
 
 
     public FabricChillerBlockEntity(BlockPos $$1, BlockState $$2) {
@@ -35,7 +33,7 @@ public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity implements
 
 
     @Override
-    public Object getScreenOpeningData(ServerPlayer player) {
-        return ChillerData.CODEC;
+    public ChillerData getScreenOpeningData(ServerPlayer player) {
+        return new ChillerData(true);
     }
 }

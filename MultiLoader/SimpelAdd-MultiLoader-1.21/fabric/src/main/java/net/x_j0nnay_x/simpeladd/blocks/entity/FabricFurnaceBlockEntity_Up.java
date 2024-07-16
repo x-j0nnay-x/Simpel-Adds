@@ -10,9 +10,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricFurnaceMenu_up;
+import net.x_j0nnay_x.simpeladd.util.data.BlockFactroyData;
+import net.x_j0nnay_x.simpeladd.util.data.Up_furnaceData;
 
 
-public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up implements ExtendedScreenHandlerFactory  {
+public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up implements ExtendedScreenHandlerFactory<Up_furnaceData>  {
 
     public FabricFurnaceBlockEntity_Up(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesFabric.UPGRADED_FURNACE, $$1, $$2);
@@ -30,7 +32,7 @@ public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up impl
 
 
     @Override
-    public Object getScreenOpeningData(ServerPlayer player) {
-        return this.data;
+    public Up_furnaceData getScreenOpeningData(ServerPlayer player) {
+        return new Up_furnaceData(true);
     }
 }

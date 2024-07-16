@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:chiller_block"
+      "id": "simpeladdmod:chiller_block"
     },
     "title": {
       "translate": "advancements.simpeladdmod.chiller_block.title"

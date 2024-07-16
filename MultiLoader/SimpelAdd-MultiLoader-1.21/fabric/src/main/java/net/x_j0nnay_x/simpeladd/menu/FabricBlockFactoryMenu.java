@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.menu;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -9,13 +8,10 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricBlockFactoryBlockEntity;
-import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
-import net.x_j0nnay_x.simpeladd.util.BlockFactroyData;
 
 
 public class FabricBlockFactoryMenu extends AbstractContainerMenu {

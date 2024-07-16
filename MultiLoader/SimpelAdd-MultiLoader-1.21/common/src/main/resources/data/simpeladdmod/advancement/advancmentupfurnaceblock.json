@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:upgraded_furnace_block"
+      "id": "simpeladdmod:upgraded_furnace_block"
     },
     "title": {
       "translate": "advancements.simpeladdmod.upgraded_furnace_block.title"

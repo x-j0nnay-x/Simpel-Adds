@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:grinderhead"
+      "id": "simpeladdmod:grinderhead"
     },
     "title": {
       "translate": "advancements.simpeladdmod.grindhead.title"

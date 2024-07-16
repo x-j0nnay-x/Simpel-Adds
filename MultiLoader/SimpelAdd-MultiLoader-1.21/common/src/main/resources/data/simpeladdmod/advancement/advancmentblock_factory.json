@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:blockfactory_block"
+      "id": "simpeladdmod:blockfactory_block"
     },
     "title": {
       "translate": "advancements.simpeladdmod.blockfactory_block.title"

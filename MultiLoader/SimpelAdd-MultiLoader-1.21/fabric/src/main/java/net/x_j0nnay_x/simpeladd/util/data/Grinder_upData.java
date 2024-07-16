@@ -1,4 +1,4 @@
-package net.x_j0nnay_x.simpeladd.util;
+package net.x_j0nnay_x.simpeladd.util.data;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

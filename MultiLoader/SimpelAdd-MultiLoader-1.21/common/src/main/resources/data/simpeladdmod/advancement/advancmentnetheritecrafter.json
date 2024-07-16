@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:netherite_crafter_block"
+      "id": "simpeladdmod:netherite_crafter_block"
     },
     "title": {
       "translate": "advancements.simpeladdmod.netherite_crafter_block.title"

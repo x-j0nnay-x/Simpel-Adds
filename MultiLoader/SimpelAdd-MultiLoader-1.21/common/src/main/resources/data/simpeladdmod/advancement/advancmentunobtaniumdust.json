@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:unobtaniumdust"
+      "id": "simpeladdmod:unobtaniumdust"
     },
     "title": {
       "translate": "advancements.simpeladdmod.unobtaniumdust.title"

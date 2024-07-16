@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:blankupgrade_raw"
+      "id": "simpeladdmod:blankupgrade_raw"
     },
     "title": {
       "translate": "advancements.simpeladdmod.blankupgrade_raw.title"

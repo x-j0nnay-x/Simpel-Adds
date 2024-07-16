@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:grinder_block_up"
+      "id": "simpeladdmod:grinder_block_up"
     },
     "title": {
       "translate": "advancements.simpeladdmod.grinder_block_up.title"

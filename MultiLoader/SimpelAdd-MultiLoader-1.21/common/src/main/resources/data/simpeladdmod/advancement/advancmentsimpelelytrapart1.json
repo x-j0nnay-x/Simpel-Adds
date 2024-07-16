@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:simpel_elitra_part1"
+      "id": "simpeladdmod:simpel_elitra_part1"
     },
     "title": {
       "translate": "advancements.simpeladdmod.simpel_elitra_part1.title"

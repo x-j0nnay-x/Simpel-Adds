@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:grinder_block"
+      "id": "simpeladdmod:grinder_block"
     },
     "title": {
       "translate": "advancements.simpeladdmod.coolcraft.title"

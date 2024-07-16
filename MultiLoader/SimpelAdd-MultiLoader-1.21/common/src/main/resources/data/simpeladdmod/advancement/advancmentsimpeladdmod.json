@@ -2,7 +2,7 @@
   "display": {
     "background": "simpeladdmod:textures/block/upgraded_furnace_top.png",
     "icon": {
-      "item": "simpeladdmod:grinder_block"
+      "id": "simpeladdmod:grinder_block"
     },
     "title": {
       "translate": "advancements.simpeladdmod.title"

@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:netherite_shard_dust"
+      "id": "simpeladdmod:netherite_shard_dust"
     },
     "title": {
       "translate": "advancements.simpeladdmod.netheritesharddust.title"

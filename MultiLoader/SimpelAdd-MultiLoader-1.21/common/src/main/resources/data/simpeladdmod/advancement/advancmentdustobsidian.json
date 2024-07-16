@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:obsidiandust"
+      "id": "simpeladdmod:obsidiandust"
     },
     "title": {
       "translate": "advancements.simpeladdmod.obsidiandust.title"

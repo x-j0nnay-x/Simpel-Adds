@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "simpeladdmod:unobtanium_ore"
+      "id": "simpeladdmod:unobtanium_ore"
     },
     "title": {
       "translate": "advancements.simpeladdmod.unobtanium_ore.title"
