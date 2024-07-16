@@ -20,6 +20,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
+import net.x_j0nnay_x.simpeladd.blocks.Abst_ChillerBlock;
+import net.x_j0nnay_x.simpeladd.blocks.Abst_FurnaceBlock_Up;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
@@ -208,6 +210,8 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         if (waterUese == 0) {
             setWaterUese();
         }
+        pState = pState.setValue(Abst_ChillerBlock.WORKING, Boolean.valueOf(isWorking()));
+        pLevel.setBlock(pPos, pState, 3);
         if (hasSnow()) {
             if (hasWater()) {
                 if (hasSpace()) {
@@ -224,7 +228,9 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         }
 
     }
-
+    private boolean isWorking(){
+        return hasSnow() && hasWater() && hasSpace();
+    }
     private void  useContent(){
         this.waterUese --;
         this.snowLevel --;

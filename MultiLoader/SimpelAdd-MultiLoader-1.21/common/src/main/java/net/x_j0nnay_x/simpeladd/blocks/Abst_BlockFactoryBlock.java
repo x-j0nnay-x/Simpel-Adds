@@ -4,6 +4,9 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -77,6 +80,19 @@ public abstract class Abst_BlockFactoryBlock extends BaseEntityBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> $$0) {
         $$0.add(FACING, WORKING);
+    }
+    @Override
+    public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
+        if (!blockState.getValue(WORKING).booleanValue()) {
+            return;
+        }
+        double d = (double)blockPos.getX() + 0.5;
+        double e = blockPos.getY();
+        double f = (double)blockPos.getZ() + 0.5;
+        if (randomSource.nextDouble() < 0.08) {
+            level.playLocalSound(d, e, f, SoundEvents.PISTON_EXTEND, SoundSource.BLOCKS, 0.05f, 0.15f, false);
+        }
+
     }
 
 }

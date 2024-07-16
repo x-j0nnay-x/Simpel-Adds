@@ -17,7 +17,7 @@ The Netherite Crafter Block, It will turn one Scrap one gold ingot into a Nether
 The Upgraded Furnace Block, this is a normal furnace block but with 4 slots. it auto splits from slot 1 to 4. this uses any fuel item and store the burn rate in the block(only use things that can smelt 1 item or more otherwise it will void it). this can smelt things really fast, faster with upgrades in it. This block will also store XP in it once it get high enough it will give you a Bottle o' Enchanting.
 
 ### Craftable items
-you can craft slime balls, obsidian blocks, elytra's and manually craft cobblestone to gravel, gravel to sand
+you can craft slime balls, obsidian blocks, elytra's and manually craft cobblestone to gravel, gravel to sand. All Smithing Templates are craftable using the blank upgrade.
 
 
 
