@@ -43,7 +43,7 @@ public class ModMenuTypeFabric {
     public static final MenuType<FabricFurnaceMenu_up> UPGRADED_FURNACE_MENU =
             Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "furnacemenu_up"),
                 new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
-                    new FabricFurnaceMenu_up(pWindowID,pInventory), BlockFactroyData.CODEC));
+                    new FabricFurnaceMenu_up(pWindowID,pInventory), Up_furnaceData.CODEC));
 
 
 
