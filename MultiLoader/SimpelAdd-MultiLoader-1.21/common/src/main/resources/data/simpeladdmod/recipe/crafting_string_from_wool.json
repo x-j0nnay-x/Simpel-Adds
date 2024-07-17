@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "categroy": "misc",
   "ingredients": [
     {
       "tag": "minecraft:wool"}

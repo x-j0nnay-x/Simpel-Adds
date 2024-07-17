@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.core;
 
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.material.Fluids;
 import net.x_j0nnay_x.simpeladd.item.*;
 import net.x_j0nnay_x.simpeladd.item.util.ModArmmorTier;
 import net.x_j0nnay_x.simpeladd.item.util.ModFoods;
@@ -23,6 +24,7 @@ public class ModItems {
     public static final Item SPEEDUPGRADE_2  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_3  = new SimpelItem(new Item.Properties());
     public static final Item BOOSTUPGRADE  = new SimpelItem(new Item.Properties());
+
 //ancient shards stuff
     public static final Item NEHTERITE_SHARD  = new SimpelItem(new Item.Properties());
     public static final Item NEHTERITE_SHARD_DUST = new SimpelItem(new Item.Properties());
