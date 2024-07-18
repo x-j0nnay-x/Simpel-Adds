@@ -2,7 +2,6 @@ package net.x_j0nnay_x.simpeladd.core;
 
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.material.Fluids;
 import net.x_j0nnay_x.simpeladd.item.*;
 import net.x_j0nnay_x.simpeladd.item.util.ModArmmorTier;
 import net.x_j0nnay_x.simpeladd.item.util.ModFoods;
@@ -11,6 +10,7 @@ import net.x_j0nnay_x.simpeladd.item.util.ModToolTiers;
 public class ModItems {
 
 //other items
+
     public static final Item SIMPEL_ELITRA_HALF = new SimpelItem(new Item.Properties());
     public static final Item SIMPEL_ELITRA_PART1 = new SimpelItem(new Item.Properties());
     public static final Item SIMPEL_ELITRA_PART2 = new SimpelItem(new Item.Properties());
