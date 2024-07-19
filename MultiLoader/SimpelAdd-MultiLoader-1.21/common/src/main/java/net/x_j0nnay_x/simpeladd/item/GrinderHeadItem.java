@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladd.item;
 
 
+import net.minecraft.core.HolderSet;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlagSet;
@@ -34,7 +35,7 @@ public class GrinderHeadItem extends Item {
         return $$1.is(Items.FLINT);
     }
 
-    
+
 
     public ItemStack getRecipeRemainder(ItemStack itemStack) {
         if (itemStack.getDamageValue() > itemStack.getMaxDamage()) {
