@@ -15,6 +15,9 @@
     "#minecraft:wool",
     "#minecraft:iron_ores",
     "#minecraft:copper_ores",
+    "#minecraft:coal_ores",
+    "#minecraft:emerald_ores",
+    "#minecraft:diamond_ores",
     "#simpeladdmod:raw_gold_droper",
      "simpeladdmod:unobtanium_ore"
 

@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
-
+  "category": "misc",
   "pattern": [
-    "x",
+   "x",
     "z"
   ],
 
@@ -10,7 +10,7 @@
   {
     "z":
     {
-      "tag": "minecraft:diamond_ores"
+      "item": "minecraft:bone"
     },
     "x":
     {
@@ -20,7 +20,7 @@
   },
   "result":
   {
-    "item": "minecraft:diamond",
-    "count":3
+    "id": "minecraft:bone_meal",
+    "count":5
   }
 }

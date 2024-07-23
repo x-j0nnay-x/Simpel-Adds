@@ -301,6 +301,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public static boolean isFuel(ItemStack pStack) {
         return getFuel().containsKey(pStack.getItem());
     }
+
     protected int getFuelTime(ItemStack fuel) {
         if (fuel.isEmpty()) {
             return 0;
@@ -316,10 +317,11 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     private void addFuel() {
         if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
             fuelLevel += this.getFuelTime(this.stacks.get(FUELSLOT)) / 200;
-            if(this.stacks.get(FUELSLOT).is(Items.LAVA_BUCKET)){
-                this.stacks.remove(FUELSLOT);
-                this.stacks.set(FUELSLOT, Items.BUCKET.getDefaultInstance());
-            }else {
+            if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
+                this.removeItem(FUELSLOT, 1);
+                this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
+            }
+            else {
                 this.removeItem(FUELSLOT, 1);
             }
         }

@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "tag": "minecraft:emerald_ores"
+    }
+  ],
+  "output": {
+    "count": 3,
+    "item": "minecraft:emerald"
+  }
+}

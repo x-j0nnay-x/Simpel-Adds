@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-
+  "category": "misc",
   "pattern": [
-    "x",
-    "z"
+    "zzz",
+    "zxz",
+    "zzz"
   ],
 
   "key":
   {
     "z":
     {
-      "tag": "minecraft:diamond_ores"
+      "item": "minecraft:cobblestone"
     },
     "x":
     {
@@ -20,7 +21,7 @@
   },
   "result":
   {
-    "item": "minecraft:diamond",
-    "count":3
+    "id": "minecraft:gravel",
+    "count":8
   }
 }

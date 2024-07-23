@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-
+  "category": "misc",
   "pattern": [
     "x",
     "z"
@@ -20,7 +20,7 @@
   },
   "result":
   {
-    "item": "minecraft:diamond",
+    "id": "minecraft:diamond",
     "count":3
   }
 }

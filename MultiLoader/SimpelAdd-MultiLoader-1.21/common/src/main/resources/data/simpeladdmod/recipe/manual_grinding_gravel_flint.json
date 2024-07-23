@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-
+  "category": "misc",
   "pattern": [
-    "x",
-    "z"
+    " z ",
+    "zxz",
+    " z "
   ],
 
   "key":
   {
     "z":
     {
-      "tag": "minecraft:diamond_ores"
+      "item": "minecraft:gravel"
     },
     "x":
     {
@@ -20,7 +21,7 @@
   },
   "result":
   {
-    "item": "minecraft:diamond",
-    "count":3
+    "id": "minecraft:flint",
+    "count":8
   }
 }

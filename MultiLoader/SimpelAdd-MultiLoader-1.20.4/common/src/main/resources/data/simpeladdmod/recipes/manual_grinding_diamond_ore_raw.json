@@ -10,7 +10,7 @@
   {
     "z":
     {
-      "item": "minecraft:diamond_ore"
+      "tag": "minecraft:diamond_ores"
     },
     "x":
     {
@@ -21,6 +21,6 @@
   "result":
   {
     "item": "minecraft:diamond",
-    "count":2
+    "count":3
   }
 }

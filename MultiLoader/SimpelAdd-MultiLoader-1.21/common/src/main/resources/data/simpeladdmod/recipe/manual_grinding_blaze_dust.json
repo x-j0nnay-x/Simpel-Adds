@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-
+  "category": "misc",
   "pattern": [
     "x",
     "z"
@@ -10,7 +10,7 @@
   {
     "z":
     {
-      "tag": "minecraft:diamond_ores"
+      "item": "minecraft:blaze_rod"
     },
     "x":
     {
@@ -20,7 +20,7 @@
   },
   "result":
   {
-    "item": "minecraft:diamond",
+    "id": "minecraft:blaze_powder",
     "count":3
   }
 }

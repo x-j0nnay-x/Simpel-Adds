@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "tag": "minecraft:diamond_ores"
+    }
+  ],
+  "output": {
+    "count": 3,
+    "item": "minecraft:diamond"
+  }
+}
