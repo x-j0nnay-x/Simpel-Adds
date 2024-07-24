@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricBlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 
 
 public class FabricBlockFactoryMenu extends AbstractContainerMenu {
@@ -40,7 +41,7 @@ public class FabricBlockFactoryMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricBlockFactoryBlockEntity.GRINDERSLOT, 79, 8){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return ModItemRegFabric.GRINDERHEAD == stack.getItem();
+                    return stack.is(ModTags.Items.GRINDERS);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricBlockFactoryBlockEntity.LAVASLOT, 124, 53){

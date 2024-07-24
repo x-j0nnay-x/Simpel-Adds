@@ -44,7 +44,7 @@ public class NeoForgeGrinderMenu extends AbstractContainerMenu {
 
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModItemRegNeoForge.GRINDERHEAD.get());
+                return stack.is(ModTags.Items.GRINDERS);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity.OUTPUTSLOT, 124, 44){

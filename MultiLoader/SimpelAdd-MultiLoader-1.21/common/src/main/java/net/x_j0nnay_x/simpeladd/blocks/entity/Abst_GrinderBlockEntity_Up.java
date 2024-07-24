@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_GrinderBlock_Up;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
 
@@ -312,7 +313,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         }
     }
     private void resetGrinds() {
-        if(this.stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)){
+        if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
             if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
                 this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
             }else{

@@ -14,6 +14,9 @@ public class ModItemRegFabric {
     public static final Item SIMPEL_ELITRA_PART2 = registerItem("simpel_elitra_part2", ModItems.SIMPEL_ELITRA_PART2);
 
     public static final Item GRINDERHEAD = registerItem("grinderhead", ModItems.GRINDERHEAD);
+    public static final Item GRINDERHEADNETHERITE = registerItem("grinderhead_netherite", ModItems.GRINDERHEADNEHTERITE);
+    public static final Item GRINDERHEADUNOBTIANIUM = registerItem("grinderhead_unobtanium", ModItems.GRINDERHEADUNOBTIANIUM);
+
     public static final Item GOLDSTICK = registerItem("goldstick", ModItems.GOLDSTICK);
     public static final Item WOODFIBER = registerItem("woodfiber", ModItems.WOODFIBER);
     public static final Item FLESH = registerItem("flesh", ModItems.FLESH);

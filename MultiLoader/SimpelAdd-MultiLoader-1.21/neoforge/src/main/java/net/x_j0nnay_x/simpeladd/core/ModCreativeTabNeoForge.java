@@ -22,6 +22,9 @@ public class ModCreativeTabNeoForge {
 
                         //items
                         pOutput.accept(ModItemRegNeoForge.GRINDERHEAD.get());
+                        pOutput.accept(ModItemRegNeoForge.GRINDERHEADNEHTERITE.get());
+                        pOutput.accept(ModItemRegNeoForge.GRINDERHEADUNOBTIANIUM.get());
+
                         pOutput.accept(ModItemRegNeoForge.GOLDSTICK.get());
                         pOutput.accept(ModItemRegNeoForge.WOODFIBER.get());
                         pOutput.accept(ModItemRegNeoForge.FLESH.get());

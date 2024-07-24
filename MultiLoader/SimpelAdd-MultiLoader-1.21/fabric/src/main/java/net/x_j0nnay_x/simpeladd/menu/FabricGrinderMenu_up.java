@@ -89,7 +89,7 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.GRINDERSLOT, 16, 35){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return ModItemRegFabric.GRINDERHEAD == stack.getItem();
+                    return stack.is(ModTags.Items.GRINDERS);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.UPGRADESLOT, 144, 12){

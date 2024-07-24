@@ -15,6 +15,8 @@ public class ModItems {
     public static final Item SIMPEL_ELITRA_PART2 = new SimpelItem(new Item.Properties());
 
     public static final Item GRINDERHEAD = new GrinderHeadItem(256);
+    public static final Item GRINDERHEADNEHTERITE = new GrinderHeadItem(676);
+    public static final Item GRINDERHEADUNOBTIANIUM = new GrinderHeadItem(1596);
     public static final Item GOLDSTICK  = new SimpelItem(new Item.Properties());
     public static final Item WOODFIBER  = new SimpelItem(new Item.Properties());
     public static final Item FLESH  = new SimpelItem(new Item.Properties().food(ModFoods.FLESH));
@@ -58,10 +60,10 @@ public class ModItems {
     public static final Item OBSIDIANSPADE = new SimpelShovelItem(ModToolTiers.OBSIDIANTIER, 1.5f, -3.0f);
     public static final Item OBSIDIANHOE = new SimpelHoeItem(ModToolTiers.OBSIDIANTIER, 0, -3.0f);
 
-    public static final Item OBSIDIANHELMET = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.HELMET, new Item.Properties().fireResistant());
-    public static final Item OBSIDIANCHEST = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant());
-    public static final Item OBSIDIANLEGS = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant());
-    public static final Item OBSIDIANBOOTS = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant());
+    public static final Item OBSIDIANHELMET = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.HELMET);
+    public static final Item OBSIDIANCHEST = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.CHESTPLATE);
+    public static final Item OBSIDIANLEGS = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.LEGGINGS);
+    public static final Item OBSIDIANBOOTS = new SimpelArmorItem(ModArmmorTier.OBSIDIANA, ArmorItem.Type.BOOTS);
 //obsidirite tear
     public static final Item OBSIDIRITESWORD = new SimpelSwordItem(ModToolTiers.OBSIDIRITETTIER, 3, -2.4f);
     public static final Item OBSIDIRITEPICKAXE = new SimpelPickaxeItem(ModToolTiers.OBSIDIRITETTIER, 1, -2.8f);
@@ -69,10 +71,10 @@ public class ModItems {
     public static final Item OBSIDIRITESPADE = new SimpelShovelItem(ModToolTiers.OBSIDIRITETTIER, 1.5f, -3.0f);
     public static final Item OBSIDIRITEHOE = new SimpelHoeItem(ModToolTiers.OBSIDIRITETTIER, 0, -3.0f);
 
-    public static final Item OBSIDIRITEHELMET = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.HELMET, new Item.Properties().fireResistant());
-    public static final Item OBSIDIRITECHEST = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant());
-    public static final Item OBSIDIRITELEGS = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant());
-    public static final Item OBSIDIRITEBOOTS = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant());
+    public static final Item OBSIDIRITEHELMET = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.HELMET);
+    public static final Item OBSIDIRITECHEST = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.CHESTPLATE);
+    public static final Item OBSIDIRITELEGS = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.LEGGINGS);
+    public static final Item OBSIDIRITEBOOTS = new SimpelArmorItem(ModArmmorTier.OBSIDIRITEA, ArmorItem.Type.BOOTS);
 
 //unobtain stuffs
     public static final Item UNOBTIANIUMDUST = new SimpelItem(new Item.Properties());
@@ -85,10 +87,10 @@ public class ModItems {
     public static final Item UNOBTIANNETHERITESPADE = new SimpelShovelItem(ModToolTiers.UNOBTAINNETHERITETIER, 1.5f, -3.0f);
     public static final Item UNOBTIANNETHERITEHOE = new SimpelHoeItem(ModToolTiers.UNOBTAINNETHERITETIER, 0, -3.0f);
 
-    public static final Item UNOBTIANNETHERITEHELMET = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant());
-    public static final Item UNOBTIANNETHERITECHEST = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant());
-    public static final Item UNOBTIANNETHERITELEGS = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant());
-    public static final Item UNOBTIANNETHERITEBOOTS = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant());
+    public static final Item UNOBTIANNETHERITEHELMET = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.HELMET);
+    public static final Item UNOBTIANNETHERITECHEST = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.CHESTPLATE);
+    public static final Item UNOBTIANNETHERITELEGS = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.LEGGINGS);
+    public static final Item UNOBTIANNETHERITEBOOTS = new SimpelArmorItem(ModArmmorTier.UNOBTAINNETHERITE, ArmorItem.Type.BOOTS);
 //obsidirite boosted
     public static final Item UNOBTIANOBSIDIRITESWORD = new SimpelSwordItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 3, -2.4f);
     public static final Item UNOBTIANOBSIDIRITEPICKAXE = new SimpelPickaxeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 1, -2.8f);
@@ -96,9 +98,9 @@ public class ModItems {
     public static final Item UNOBTIANOBSIDIRITESPADE = new SimpelShovelItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 1.5f, -3.0f);
     public static final Item UNOBTIANOBSIDIRITEHOE = new SimpelHoeItem(ModToolTiers.UNOBTIANOBSIDIRITEATIER, 0, -3.0f);
 
-    public static final Item UNOBTIANOBSIDIRITEHELMET = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.HELMET, new Item.Properties().fireResistant());
-    public static final Item UNOBTIANOBSIDIRITECHEST = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant());
-    public static final Item UNOBTIANOBSIDIRITELEGS = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant());
-    public static final Item UNOBTIANOBSIDIRITEBOOTS = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant());
+    public static final Item UNOBTIANOBSIDIRITEHELMET = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.HELMET);
+    public static final Item UNOBTIANOBSIDIRITECHEST = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.CHESTPLATE);
+    public static final Item UNOBTIANOBSIDIRITELEGS = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.LEGGINGS);
+    public static final Item UNOBTIANOBSIDIRITEBOOTS = new SimpelArmorItem(ModArmmorTier.UNOBTIANOBSIDIRITEA, ArmorItem.Type.BOOTS);
 
 }

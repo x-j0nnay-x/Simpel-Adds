@@ -20,6 +20,9 @@ public class ModCreativeTabForge {
 
                         //items
                         pOutput.accept(ModItemRegForge.GRINDERHEAD.get());
+                        pOutput.accept(ModItemRegForge.GRINDERHEADNEHTERITE.get());
+                        pOutput.accept(ModItemRegForge.GRINDERHEADUNOBTIANIUM.get());
+
                         pOutput.accept(ModItemRegForge.GOLDSTICK.get());
                         pOutput.accept(ModItemRegForge.WOODFIBER.get());
                         pOutput.accept(ModItemRegForge.FLESH.get());

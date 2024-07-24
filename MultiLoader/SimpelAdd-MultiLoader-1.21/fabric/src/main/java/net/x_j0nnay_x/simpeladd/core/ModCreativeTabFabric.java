@@ -26,6 +26,9 @@ public class ModCreativeTabFabric {
 
                         //items
                         entries.accept(ModItemRegFabric.GRINDERHEAD);
+                        entries.accept(ModItemRegFabric.GRINDERHEADNETHERITE);
+                        entries.accept(ModItemRegFabric.GRINDERHEADUNOBTIANIUM);
+
                         entries.accept(ModItemRegFabric.GOLDSTICK);
                         entries.accept(ModItemRegFabric.WOODFIBER);
                         entries.accept(ModItemRegFabric.FLESH);

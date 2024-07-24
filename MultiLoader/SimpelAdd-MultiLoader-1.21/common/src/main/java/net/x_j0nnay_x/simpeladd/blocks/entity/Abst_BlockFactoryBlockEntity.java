@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
@@ -306,7 +307,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     }
 
     private void resetGrinds() {
-        if (stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)) {
+        if (stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)) {
             if (stacks.get(GRINDERSLOT).getDamageValue() >= stacks.get(GRINDERSLOT).getMaxDamage()) {
                 stacks.set(GRINDERSLOT, ItemStack.EMPTY);
             } else {

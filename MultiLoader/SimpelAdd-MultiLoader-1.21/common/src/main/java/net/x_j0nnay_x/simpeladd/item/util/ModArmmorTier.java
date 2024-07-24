@@ -58,6 +58,18 @@ public final class ModArmmorTier {
             attribute.put(ArmorItem.Type.BODY, 55);
         }), 44, 4.2F, 0.22F, ModItems.UNOBTIANIUMSCRAP);
     }
+    public static int getArmorDurabilityMultiplier(Holder<ArmorMaterial> material)
+    {
+        if (material == OBSIDIANA)
+            return 39;
+        if (material == OBSIDIRITEA)
+            return 41;
+        if (material == UNOBTAINNETHERITE)
+            return 43;
+        if (material == UNOBTIANOBSIDIRITEA)
+            return 47;
+        return 0;
+    }
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtections, int enchantability, float toughness, float knockbackResistance, Item ingredientItem) {
         ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name);

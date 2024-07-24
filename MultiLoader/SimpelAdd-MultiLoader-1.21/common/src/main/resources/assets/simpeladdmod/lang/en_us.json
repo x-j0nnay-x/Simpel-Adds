@@ -3,8 +3,10 @@
   "item.simpeladdmod.simpel_elitra_part1": "Simpel Wings Base",
   "item.simpeladdmod.simpel_elitra_part2": "Simpel Wings Support",
 
-  "item.simpeladdmod.grinderhead" : "Grinder",
-  "item.simpeladdmod.grinderheadu" : "Grinder",
+  "item.simpeladdmod.grinderhead" : "Grinder Head",
+  "item.simpeladdmod.grinderhead_netherite" : "Netherite Grinder Head",
+  "item.simpeladdmod.grinderhead_unobtanium" : "Unobtanium Grinder Head",
+
   "item.simpeladdmod.goldstick" : "Gold Stick",
   "item.simpeladdmod.woodfiber" : "Wood Fiber",
   "item.simpeladdmod.flesh" : "Flesh",

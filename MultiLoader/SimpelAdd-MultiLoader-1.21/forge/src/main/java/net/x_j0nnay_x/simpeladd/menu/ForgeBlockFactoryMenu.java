@@ -13,6 +13,7 @@ import net.x_j0nnay_x.simpeladd.blocks.entity.ForgeBlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegForge;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeForge;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 
 
 public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
@@ -41,7 +42,7 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.inventory, ForgeBlockFactoryBlockEntity.GRINDERSLOT, 79, 8){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return ModItemRegForge.GRINDERHEAD.get() == stack.getItem();
+                return stack.is(ModTags.Items.GRINDERS);
             }
         });
         this.addSlot(new Slot(this.inventory, ForgeBlockFactoryBlockEntity.LAVASLOT, 124, 53){

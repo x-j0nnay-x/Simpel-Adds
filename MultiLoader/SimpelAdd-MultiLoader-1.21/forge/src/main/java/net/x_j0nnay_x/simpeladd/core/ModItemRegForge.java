@@ -17,6 +17,9 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> SIMPEL_ELITRA_PART2 = ITEMS.register("simpel_elitra_part2", () -> ModItems.SIMPEL_ELITRA_PART2);
 
     public static final RegistryObject<Item> GRINDERHEAD = ITEMS.register("grinderhead", () -> ModItems.GRINDERHEAD);
+    public static final RegistryObject<Item> GRINDERHEADNEHTERITE = ITEMS.register("grinderhead_netherite", () -> ModItems.GRINDERHEADNEHTERITE);
+    public static final RegistryObject<Item> GRINDERHEADUNOBTIANIUM = ITEMS.register("grinderhead_unobtanium", () -> ModItems.GRINDERHEADUNOBTIANIUM);
+
     public static final RegistryObject<Item> GOLDSTICK = ITEMS.register("goldstick", () -> ModItems.GOLDSTICK);
     public static final RegistryObject<Item> WOODFIBER = ITEMS.register("woodfiber", () -> ModItems.WOODFIBER);
     public static final RegistryObject<Item> FLESH = ITEMS.register("flesh", () -> ModItems.FLESH);

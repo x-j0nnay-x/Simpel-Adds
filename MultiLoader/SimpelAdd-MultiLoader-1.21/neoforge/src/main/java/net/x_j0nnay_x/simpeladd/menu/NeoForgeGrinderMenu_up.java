@@ -86,7 +86,7 @@ public class NeoForgeGrinderMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity_Up.GRINDERSLOT, 16, 35){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return ModItemRegNeoForge.GRINDERHEAD.get() == stack.getItem();
+                    return stack.is(ModTags.Items.GRINDERS);
                 }
             });
             this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity_Up.UPGRADESLOT, 144, 12){

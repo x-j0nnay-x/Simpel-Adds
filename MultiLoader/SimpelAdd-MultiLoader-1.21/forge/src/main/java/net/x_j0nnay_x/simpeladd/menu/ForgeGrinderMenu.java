@@ -50,7 +50,7 @@ public class ForgeGrinderMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity.GRINDERSLOT, 79, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return ModItemRegForge.GRINDERHEAD.get() == stack.getItem();
+                    return stack.is(ModTags.Items.GRINDERS);
                 }
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity.UPGRADESLOT, 144, 12){
