@@ -10,11 +10,11 @@
   {
     "z":
     {
-      "item": "minecraft:deepslate_copper_ore"
+      "tag": "minecraft:copper_ores"
     },
     "x":
     {
-      "item": "simpeladdmod:grinderhead"
+      "tag": "simpeladdmod:grinders"
     }
 
   },

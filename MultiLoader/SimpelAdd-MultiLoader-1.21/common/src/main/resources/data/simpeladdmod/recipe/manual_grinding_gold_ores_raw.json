@@ -10,17 +10,17 @@
   {
     "z":
     {
-      "item": "minecraft:deepslate_iron_ore"
+      "tag": "simpeladdmod:raw_gold_droper"
     },
     "x":
     {
-      "item": "simpeladdmod:grinderhead"
+      "tag": "simpeladdmod:grinders"
     }
 
   },
   "result":
   {
-    "id": "minecraft:raw_iron",
+    "id": "minecraft:raw_gold",
     "count":3
   }
 }

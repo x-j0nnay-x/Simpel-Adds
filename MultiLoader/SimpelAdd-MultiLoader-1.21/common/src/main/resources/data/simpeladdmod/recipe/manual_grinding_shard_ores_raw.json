@@ -10,17 +10,17 @@
   {
     "z":
     {
-      "item": "minecraft:iron_ore"
+      "item": "simpeladdmod:deepslate_debri_ore"
     },
     "x":
     {
-      "item": "simpeladdmod:grinderhead"
+      "tag": "simpeladdmod:grinders"
     }
 
   },
   "result":
   {
-    "id": "minecraft:raw_iron",
+    "id": "simpeladdmod:netherite_shard_raw",
     "count":3
   }
 }

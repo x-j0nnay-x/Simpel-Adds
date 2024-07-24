@@ -12,5 +12,7 @@ public class ModRecipesRegFabric {
                 GrinderRecipe.Serializer.INSTANCE);
         Registry.register(BuiltInRegistries.RECIPE_TYPE,  ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, GrinderRecipe.Type.ID),
                 GrinderRecipe.Type.INSTANCE);
+
+
     }
 }

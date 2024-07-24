@@ -15,6 +15,7 @@ public class ModRecipesForge {
     public static final RegistryObject<RecipeSerializer<GrinderRecipe>> GRINDER_RECIPE_SERIALIZER =
             SERIALIZERS.register("grinder", () -> GrinderRecipe.Serializer.INSTANCE);
 
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }

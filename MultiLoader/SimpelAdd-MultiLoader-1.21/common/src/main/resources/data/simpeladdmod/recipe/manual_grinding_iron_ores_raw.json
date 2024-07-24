@@ -10,17 +10,17 @@
   {
     "z":
     {
-      "item": "minecraft:gold_ore"
+      "tag": "minecraft:iron_ores"
     },
     "x":
     {
-      "item": "simpeladdmod:grinderhead"
+      "tag": "simpeladdmod:grinders"
     }
 
   },
   "result":
   {
-    "id": "minecraft:raw_gold",
+    "id": "minecraft:raw_iron",
     "count":3
   }
 }

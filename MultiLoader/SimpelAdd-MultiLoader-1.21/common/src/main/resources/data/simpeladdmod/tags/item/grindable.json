@@ -9,6 +9,7 @@
     "minecraft:bone",
     "minecraft:ancient_debris",
     "minecraft:obsidian",
+    "simpeladdmod:deepslate_debri_ore",
     "simpeladdmod:netherite_shard_raw",
     "simpeladdmod:deepslate_debri_ore",
     "#minecraft:logs",
@@ -19,7 +20,7 @@
     "#minecraft:emerald_ores",
     "#minecraft:diamond_ores",
     "#simpeladdmod:raw_gold_droper",
-     "simpeladdmod:unobtanium_ore"
+    "simpeladdmod:unobtanium_ore"
 
 ]
 }
