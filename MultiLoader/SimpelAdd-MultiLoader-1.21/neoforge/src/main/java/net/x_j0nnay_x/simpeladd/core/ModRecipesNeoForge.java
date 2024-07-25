@@ -5,10 +5,12 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
+
+import net.x_j0nnay_x.simpeladd.recipe.GrinderRepair;
+import net.x_j0nnay_x.simpeladd.recipe.ManualGrind;
 
 import java.util.function.Supplier;
 
@@ -17,7 +19,11 @@ public class ModRecipesNeoForge {
             DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, SimpelAddModNeoForge.MODID);
 
     public static final Supplier<RecipeSerializer<GrinderRecipe>> GRINDER_RECIPE_SERIALIZER =
-            SERIALIZERS.register("grinder", () -> GrinderRecipe.Serializer.INSTANCE);
+            SERIALIZERS.register(GrinderRecipe.Serializer.ID, () -> GrinderRecipe.Serializer.INSTANCE);
+    public static final Supplier<RecipeSerializer<ManualGrind>> MANUAL_GRINDER_RECIPE_SERIALIZER =
+            SERIALIZERS.register(ManualGrind.Serializer.ID, () -> ManualGrind.Serializer.INSTANCE);
+    public static final Supplier<RecipeSerializer<GrinderRepair>> GRINDER_REPAIR_RECIPE_SERIALIZER =
+            SERIALIZERS.register(GrinderRepair.ID, () -> new SimpleCraftingRecipeSerializer<>(GrinderRepair::new));
 
 
 
