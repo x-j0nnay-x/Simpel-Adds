@@ -35,6 +35,11 @@ public class ModMenuTypeFabric {
                 new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
                     new FabricGrinderMenu_up(pWindowID,pInventory), Grinder_upData.CODEC));
 
+    public static final MenuType<FabricGrindFactoryMenu> GRIND_FACTORY_MENU =
+            Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "grind_factory_menu"),
+                    new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
+                            new FabricGrindFactoryMenu(pWindowID,pInventory), Grind_FactoryData.CODEC));
+
     public static final MenuType<FabricNetheriteCrafterMenu> Netherite_Menu =
             Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "netheritemenu"),
                 new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->

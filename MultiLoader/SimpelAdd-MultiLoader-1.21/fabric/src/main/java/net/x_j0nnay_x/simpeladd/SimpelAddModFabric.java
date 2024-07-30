@@ -4,18 +4,12 @@ package net.x_j0nnay_x.simpeladd;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.world.inventory.MenuType;
 import net.x_j0nnay_x.simpeladd.core.*;
 
-import net.x_j0nnay_x.simpeladd.menu.*;
 import net.x_j0nnay_x.simpeladd.screens.*;
 
 import net.x_j0nnay_x.simpeladd.worldgen.ModWorldGenerationFabric;
 import org.slf4j.Logger;
-
-import java.util.function.Supplier;
-
-import static net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric.*;
 
 public class SimpelAddModFabric implements ModInitializer, ClientModInitializer {
 
@@ -46,6 +40,7 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
             MenuScreens.register(ModMenuTypeFabric.GRINDER_MENU_UP, FabricGrinderScreen_up::new);
             MenuScreens.register(ModMenuTypeFabric.Netherite_Menu, FabricNetheriteCrafterScreen::new);
             MenuScreens.register(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, FabricFurnaceScreen_up::new);
+            MenuScreens.register(ModMenuTypeFabric.GRIND_FACTORY_MENU, FabricGrindFactoryScreen::new);
 
 
         }

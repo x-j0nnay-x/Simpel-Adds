@@ -23,10 +23,16 @@ public class ModMenuTypeNeoForge {
 
     public static final Supplier<MenuType<NeoForgeBlockFactoryMenu>> BLOCKFACTORY_MENU =
             registerMenuType("blockfactorymenu",NeoForgeBlockFactoryMenu::new) ;
+
     public static final  Supplier<MenuType<NeoForgeGrinderMenu>> GRINDER_MENU =
             registerMenuType("grindermenu", NeoForgeGrinderMenu::new);
+
     public static final  Supplier<MenuType<NeoForgeGrinderMenu_up>> GRINDER_MENU_UP =
             registerMenuType("grindermenu_up", NeoForgeGrinderMenu_up::new);
+
+    public static final  Supplier<MenuType<NeoForgeGrindFactoryMenu>> GRIND_FACTORY_MENU =
+            registerMenuType("grind_factory_menu", NeoForgeGrindFactoryMenu::new);
+
     public static final  Supplier<MenuType<NeoForgeFurnaceMenu_up>> UPGRADED_FURNACE_MENU =
             registerMenuType("furnacemenu_up", NeoForgeFurnaceMenu_up::new);
 

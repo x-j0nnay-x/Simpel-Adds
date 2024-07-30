@@ -31,6 +31,7 @@ public class ModCreativeTabForge {
                         pOutput.accept(ModItemRegForge.SPEEDUPGRADE_2.get());
                         pOutput.accept(ModItemRegForge.SPEEDUPGRADE_3.get());
                         pOutput.accept(ModItemRegForge.BOOSTUPGRADE.get());
+                        pOutput.accept(ModItemRegForge.XPBOOSTUPGRADE.get());
 
                         pOutput.accept(ModItemRegForge.SANDWICH_MUT.get());
                         pOutput.accept(ModItemRegForge.SANDWICH_BEEF.get());
@@ -115,6 +116,7 @@ public class ModCreativeTabForge {
                         pOutput.accept(ModBlockRegForge.CHILLER.get());
                         pOutput.accept(ModBlockRegForge.NETHERITE_CRAFTER.get());
                         pOutput.accept(ModBlockRegForge.UPGRADED_FURNACE.get());
+                        pOutput.accept(ModBlockRegForge.GRIND_FACTORY_BLOCK.get());
 
                     })
                     .build());

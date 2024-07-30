@@ -24,14 +24,22 @@ public class ModBlockRegForge {
 
     public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
             () -> new ForgeBlockFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> CHILLER = registerBlock("chiller_block",
             () -> new ForgeChillerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
             () -> new ForgeGrinderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> GRINDER_BLOCK_UP = registerBlock("grinder_block_up",
             () -> new ForgeGrinderBlock_Up(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> GRIND_FACTORY_BLOCK = registerBlock("grind_factory_block",
+            () -> new ForgeGrindFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
             () -> new ForgeNetheriteCraftingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
             () -> new ForgeFurnaceBlock_Up(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 

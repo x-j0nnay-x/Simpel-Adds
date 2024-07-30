@@ -9,9 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.x_j0nnay_x.simpeladd.blocks.entity.NeoForgeFurnaceBlockEntity_Up;
-import net.x_j0nnay_x.simpeladd.core.ModBlockRegNeoForge;
-import net.x_j0nnay_x.simpeladd.core.ModMenuTypeNeoForge;
-import net.x_j0nnay_x.simpeladd.core.ModTags;
+import net.x_j0nnay_x.simpeladd.core.*;
 import org.jetbrains.annotations.NotNull;
 
 public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
@@ -21,11 +19,11 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
     private final ContainerData data;
 
     public NeoForgeFurnaceMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(11));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
     }
     public NeoForgeFurnaceMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuTypeNeoForge.UPGRADED_FURNACE_MENU.get(), pContainerID);
-        checkContainerSize(inv, 11);
+        checkContainerSize(inv, 12);
         blockEntity = ((NeoForgeFurnaceBlockEntity_Up) entity);
         this.level = inv.player.level();
         this.inventory = ((Container) entity);
@@ -35,7 +33,7 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, NeoForgeFurnaceBlockEntity_Up.INPUTSLOT1, 63, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES) || !stack.is(ModItemRegNeoForge.XPBOOSTUPGRADE.get())){
                         return true;
                     }
                     return false;
@@ -44,7 +42,7 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, NeoForgeFurnaceBlockEntity_Up.INPUTSLOT2, 81, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES)|| !stack.is(ModItemRegNeoForge.XPBOOSTUPGRADE.get())){
                         return true;
                     }
                     return false;
@@ -53,7 +51,7 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, NeoForgeFurnaceBlockEntity_Up.INPUTSLOT3, 99, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES)|| !stack.is(ModItemRegNeoForge.XPBOOSTUPGRADE.get())){
                         return true;
                     }
                     return false;
@@ -62,7 +60,7 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, NeoForgeFurnaceBlockEntity_Up.INPUTSLOT4, 117, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES) || !stack.is(ModItemRegNeoForge.XPBOOSTUPGRADE.get())){
                         return true;
                     }
                     return false;
@@ -115,6 +113,17 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
                     return 1;
                 }
             });
+        this.addSlot(new Slot(this.inventory, NeoForgeFurnaceBlockEntity_Up.XPBOOSTSLOT, 144, 28){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(ModItemRegNeoForge.XPBOOSTUPGRADE.get());
+            }
+
+            @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+        });
 
 
         addDataSlots(data);
@@ -199,7 +208,7 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 11;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 12;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

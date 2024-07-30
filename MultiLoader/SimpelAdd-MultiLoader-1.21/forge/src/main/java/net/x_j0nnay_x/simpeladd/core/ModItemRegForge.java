@@ -28,6 +28,7 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> SPEEDUPGRADE_2 = ITEMS.register("speedupgrade_2", () -> ModItems.SPEEDUPGRADE_2);
     public static final RegistryObject<Item> SPEEDUPGRADE_3 = ITEMS.register("speedupgrade_3", () -> ModItems.SPEEDUPGRADE_3);
     public static final RegistryObject<Item> BOOSTUPGRADE = ITEMS.register("boostupgrade", () -> ModItems.BOOSTUPGRADE);
+    public static final RegistryObject<Item> XPBOOSTUPGRADE = ITEMS.register("xpboostupgrade", () -> ModItems.XPBOOSTUPGRADE);
 //ancient shards stuff
     public static final RegistryObject<Item> NEHTERITE_SHARD = ITEMS.register("netherite_shard", () -> ModItems.NEHTERITE_SHARD);
     public static final RegistryObject<Item> NEHTERITE_SHARD_DUST = ITEMS.register("netherite_shard_dust", () -> ModItems.NEHTERITE_SHARD_DUST);

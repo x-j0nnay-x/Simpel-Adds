@@ -33,6 +33,7 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModItemRegNeoForge.SPEEDUPGRADE_2.get());
                         pOutput.accept(ModItemRegNeoForge.SPEEDUPGRADE_3.get());
                         pOutput.accept(ModItemRegNeoForge.BOOSTUPGRADE.get());
+                        pOutput.accept(ModItemRegNeoForge.XPBOOSTUPGRADE.get());
 
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_MUT.get());
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_BEEF.get());
@@ -117,6 +118,7 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModBlockRegNeoForge.CHILLER.get());
                         pOutput.accept(ModBlockRegNeoForge.NETHERITE_CRAFTER.get());
                         pOutput.accept(ModBlockRegNeoForge.UPGRADED_FURNACE.get());
+                        pOutput.accept(ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get());
 
                     })
                     .build());

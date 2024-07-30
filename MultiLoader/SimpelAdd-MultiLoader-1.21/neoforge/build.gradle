@@ -50,7 +50,11 @@ dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
     compileOnly project(":common")
 
-
+    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    testCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-lib:${jei_version}")
+    testCompileOnly("mezz.jei:jei-${minecraft_version}-lib:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 
 }
 

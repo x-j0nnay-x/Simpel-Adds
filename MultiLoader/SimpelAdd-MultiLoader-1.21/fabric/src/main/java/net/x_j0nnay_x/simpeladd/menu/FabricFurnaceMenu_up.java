@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricFurnaceBlockEntity_Up;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
+import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.NotNull;
@@ -22,11 +23,11 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
     private final ContainerData data;
 
     public FabricFurnaceMenu_up(int id, Inventory playerInventoryIn) {
-        this( id, playerInventoryIn, new SimpleContainer(11), new SimpleContainerData(7));
+        this( id, playerInventoryIn, new SimpleContainer(12), new SimpleContainerData(7));
     }
     public FabricFurnaceMenu_up(int pContainerID, Inventory inv, Container upFurnace, ContainerData data){
         super(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, pContainerID);
-        checkContainerSize(inv, 11);
+        checkContainerSize(inv, 12);
         checkContainerDataCount(data, 7);
         upFurnace.startOpen(inv.player);
         this.level = inv.player.level();
@@ -37,7 +38,7 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricFurnaceBlockEntity_Up.INPUTSLOT1, 63, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES)|| !stack.is(ModItemRegFabric.XPBOOSTUPGRADE)){
                         return true;
                     }
                     return false;
@@ -46,7 +47,7 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricFurnaceBlockEntity_Up.INPUTSLOT2, 81, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES)|| !stack.is(ModItemRegFabric.XPBOOSTUPGRADE)){
                         return true;
                     }
                     return false;
@@ -55,7 +56,7 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricFurnaceBlockEntity_Up.INPUTSLOT3, 99, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES)|| !stack.is(ModItemRegFabric.XPBOOSTUPGRADE)){
                         return true;
                     }
                     return false;
@@ -64,7 +65,7 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricFurnaceBlockEntity_Up.INPUTSLOT4, 117, 17){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
-                    if(!stack.is(ModTags.Items.UPGRADES)){
+                    if(!stack.is(ModTags.Items.UPGRADES)|| !stack.is(ModItemRegFabric.XPBOOSTUPGRADE)){
                         return true;
                     }
                     return false;
@@ -110,6 +111,17 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(ModTags.Items.UPGRADES);
+                }
+
+                @Override
+                public int getMaxStackSize() {
+                    return 1;
+                }
+            });
+            this.addSlot(new Slot(this.inventory, FabricFurnaceBlockEntity_Up.XPBOOSTSLOT, 144, 28){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(ModItemRegFabric.XPBOOSTUPGRADE);
                 }
 
                 @Override
@@ -196,7 +208,7 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 11;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 12;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

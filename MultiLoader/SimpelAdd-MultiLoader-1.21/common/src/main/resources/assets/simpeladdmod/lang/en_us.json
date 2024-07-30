@@ -21,7 +21,8 @@
   "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1.5x",
   "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2.5x",
   "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 6x",
-  "item.simpeladdmod.boostupgrade" : "Grinder Efficiency 5x",
+  "item.simpeladdmod.boostupgrade" : "Grinder Efficiency",
+  "item.simpeladdmod.xpboostupgrade" : "Xp Boost 4x",
 
 
   "item.simpeladdmod.sandwich_beef" : "Beef Sandwich",
@@ -85,14 +86,6 @@
   "item.simpeladdmod.unobtainobsidiritelegs" : "Unobtan Obsidirite Leggings",
   "item.simpeladdmod.unobtainobsidiriteboots" : "Unobtan Obsidirite Boots",
 
-  "item.simpeladdmod.elytra_chest_iron" : "Iron Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_gold" : "Gold Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_diamon" : "Diamond Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_netherite" : "Netherite Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_obsidian" : "Obsidian Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_obsidirite" : "Obsidirite Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_unobtainnetherite" : "Unobtan Netherite Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_unobtainobsidirite" : "Unobtan Obsidirite Elytra ChestPlate",
 
   "block.simpeladdmod.deepslate_debri_ore" : "Deepslate Debri Ore",
   "block.simpeladdmod.unobtanium_ore" : "Unobtanium Ore",
@@ -103,6 +96,7 @@
   "block.simpeladdmod.chiller_block": "Chilling Block",
   "block.simpeladdmod.netherite_crafter_block": "Netherite Crafting Block",
   "block.simpeladdmod.upgraded_furnace": "Upgraded Furnace",
+  "block.simpeladdmod.grind_factory_block": "Grind Factory",
 
 
   "creativetab.simpel_tab": "Simpel add Tab",
@@ -132,6 +126,8 @@
   "advancements.simpeladdmod.title.descrip" : "Simpel Add Mod was Loaded",
   "advancements.simpeladdmod.automation.title" : "Simpel Add Mod Automation",
   "advancements.simpeladdmod.automation.title.descrip" : "Making crafts better",
+  "advancements.simpeladdmod.automationupgrades.title" : "Automation Upgrades",
+  "advancements.simpeladdmod.automationupgrades.title.descrip" : "Making crafts faster and more",
   "advancements.simpeladdmod.coolcraft.title" : "Simpel Add Mod useful Crafts",
   "advancements.simpeladdmod.coolcraft.descrip" : "hard to get items made easier",
   "advancements.simpeladdmod.manual.title" : "Simpel Add Mod manual crafting",
@@ -171,6 +167,8 @@
   "advancements.simpeladdmod.upgraded_furnace_block.descrip" : "lets not waste coal, auto splitting with XP Bottles and Upgradable",
   "advancements.simpeladdmod.grinder_block_up.title" : "Lets Make this even faster",
   "advancements.simpeladdmod.grinder_block_up.descrip" : "More slots auto splitting and upgradable for speed and efficiency",
+  "advancements.simpeladdmod.grind_factory_block.title" : "Lets Make this more automated",
+  "advancements.simpeladdmod.grind_factory_block.descrip" : "Grinding gets XP, and it Smelts Them aswell?",
   "advancements.simpeladdmod.netherite_crafter_block.title" : "Lets Make Ingots Even better",
   "advancements.simpeladdmod.netherite_crafter_block.descrip" : "One Scrap, One Gold, some heat from a blaze rod and off we go!!!",
   "advancements.simpeladdmod.blockfactory_block.title" : "Cobble works",
@@ -187,5 +185,12 @@
   "advancements.simpeladdmod.simpel_elitra_half.title" : "WHAT STILL NOT DONE?!?!?!",
   "advancements.simpeladdmod.simpel_elitra_half.descrip" : "maybe if i do that again i can finally finish it",
   "advancements.simpeladdmod.simpel_elitra.title" : "There we go Off to the races",
-  "advancements.simpeladdmod.simpel_elitra.descrip" : "Not to bad for ealry flight"
+  "advancements.simpeladdmod.simpel_elitra.descrip" : "Not to bad for ealry flight",
+
+  "advancements.simpeladdmod.speedupgrade.title" : "Run Faster",
+  "advancements.simpeladdmod.speedupgrade.descrip" : "Lets run some machines 1.5/2.5/6 times faster",
+  "advancements.simpeladdmod.effupgrade.title" : "Run More Efficiently",
+  "advancements.simpeladdmod.effupgrade.descrip" : "Lets run grinding blocks more efficiently",
+  "advancements.simpeladdmod.xpupgrade.title" : "Get More Xp",
+  "advancements.simpeladdmod.xpupgrade.descrip" : "Lets you run smelting blocks in my my mod and get 4x the XP"
 }

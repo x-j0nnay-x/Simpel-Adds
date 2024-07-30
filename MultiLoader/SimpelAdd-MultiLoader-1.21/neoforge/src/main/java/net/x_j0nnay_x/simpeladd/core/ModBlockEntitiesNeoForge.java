@@ -20,14 +20,22 @@ public class ModBlockEntitiesNeoForge {
 
 	public static final Supplier<BlockEntityType<NeoForgeChillerBlockEntity>> CHILLER = BLOCK_ENTITY.register("chiller", () ->
 			BlockEntityType.Builder.of(NeoForgeChillerBlockEntity::new, ModBlockRegNeoForge.CHILLER.get()).build(null));
+
 	public static final Supplier<BlockEntityType<NeoForgeGrinderBlockEntity>> GRINDER = BLOCK_ENTITY.register("grinder", () ->
 			BlockEntityType.Builder.of(NeoForgeGrinderBlockEntity::new, ModBlockRegNeoForge.GRINDER_BLOCK.get()).build(null));
+
 	public static final Supplier<BlockEntityType<NeoForgeGrinderBlockEntity_Up>> GRINDER_UP = BLOCK_ENTITY.register("grinder_up", () ->
 			BlockEntityType.Builder.of(NeoForgeGrinderBlockEntity_Up::new, ModBlockRegNeoForge.GRINDER_BLOCK_UP.get()).build(null));
+
+	public static final Supplier<BlockEntityType<NeoForgeGrindFactoryBlockEntity>> GRIND_FACTORY = BLOCK_ENTITY.register("grinder_factory", () ->
+			BlockEntityType.Builder.of(NeoForgeGrindFactoryBlockEntity::new, ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get()).build(null));
+
 	public static final Supplier<BlockEntityType<NeoForgeNetheriteCrafterBlockEntity>> NETHERITE_CRAFTER = BLOCK_ENTITY.register("netherite_crafter", () ->
 			BlockEntityType.Builder.of(NeoForgeNetheriteCrafterBlockEntity::new, ModBlockRegNeoForge.NETHERITE_CRAFTER.get()).build(null));
+
 	public static final Supplier<BlockEntityType<NeoForgeFurnaceBlockEntity_Up>> UPGRADED_FURNACE = BLOCK_ENTITY.register("upgraded_furnace", () ->
 			BlockEntityType.Builder.of(NeoForgeFurnaceBlockEntity_Up::new, ModBlockRegNeoForge.UPGRADED_FURNACE.get()).build(null));
+
 
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITY.register(eventBus);

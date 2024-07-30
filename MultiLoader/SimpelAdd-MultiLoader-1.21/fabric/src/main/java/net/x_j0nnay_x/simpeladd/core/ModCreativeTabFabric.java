@@ -37,6 +37,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_2);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_3);
                         entries.accept(ModItemRegFabric.BOOSTUPGRADE);
+                        entries.accept(ModItemRegFabric.XPBOOSTUPGRADE);
 
                         entries.accept(ModItemRegFabric.SANDWICH_MUT);
                         entries.accept(ModItemRegFabric.SANDWICH_BEEF);
@@ -123,6 +124,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.GRINDER_BLOCK_UP);
                         entries.accept(ModBlockRegFabric.UPGRADED_FURNACE);
                         entries.accept(ModBlockRegFabric.NETHERITE_CRAFTER);
+                        entries.accept(ModBlockRegFabric.GRIND_FACTORY_BLOCK);
 
                     }).build());
     }

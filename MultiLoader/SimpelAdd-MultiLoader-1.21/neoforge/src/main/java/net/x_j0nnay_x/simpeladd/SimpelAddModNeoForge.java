@@ -53,6 +53,7 @@ public class SimpelAddModNeoForge {
         event.register(ModMenuTypeNeoForge.BLOCKFACTORY_MENU.get(), NeoForgeBlockFactoryScreen::new);
         event.register(ModMenuTypeNeoForge.Chiller_MENU.get(), NeoForgeChillerScreen::new);
         event.register(ModMenuTypeNeoForge.Netherite_Menu.get(), NeoForgeNetheriteCrafterScreen::new);
+        event.register(ModMenuTypeNeoForge.GRIND_FACTORY_MENU.get(), NeoForgeGrindFactoryScreen::new);
     }
 
     private void handleClientSetup(FMLClientSetupEvent event) {

@@ -25,6 +25,7 @@ public class ModItemRegFabric {
     public static final Item SPEEDUPGRADE_2 = registerItem("speedupgrade_2", ModItems.SPEEDUPGRADE_2);
     public static final Item SPEEDUPGRADE_3 = registerItem("speedupgrade_3", ModItems.SPEEDUPGRADE_3);
     public static final Item BOOSTUPGRADE = registerItem("boostupgrade", ModItems.BOOSTUPGRADE);
+    public static final Item XPBOOSTUPGRADE = registerItem("xpboostupgrade", ModItems.XPBOOSTUPGRADE);
     //ancient shards stuff
     public static final Item NEHTERITE_SHARD = registerItem("netherite_shard", ModItems.NEHTERITE_SHARD);
     public static final Item NEHTERITE_SHARD_DUST = registerItem("netherite_shard_dust", ModItems.NEHTERITE_SHARD_DUST);

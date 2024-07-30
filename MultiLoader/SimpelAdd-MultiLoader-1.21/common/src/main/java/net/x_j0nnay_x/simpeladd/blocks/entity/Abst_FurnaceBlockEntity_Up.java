@@ -35,7 +35,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
 
 
     private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends AbstractCookingRecipe> recipeCheckSmelting;
-    protected NonNullList<ItemStack> stacks = NonNullList.withSize(11, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> stacks = NonNullList.withSize(12, ItemStack.EMPTY);
     public static int FUELSLOT = 0;
     public static int INPUTSLOT1 = 1;
     public static int INPUTSLOT2 = 2;
@@ -45,8 +45,9 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public static int OUTPUTSLOT2 = 6;
     public static int OUTPUTSLOT3 = 7;
     public static int OUTPUTSLOT4 = 8;
-    public  static int UPGRADESLOT = 9;
-    public  static int XPBOTTLESLOT = 10;;
+    public static int UPGRADESLOT = 9;
+    public static int XPBOTTLESLOT = 10;
+    public static int XPBOOSTSLOT = 11;
     private static final int[] SLOTS_FOR_UP = new int[]{FUELSLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4, XPBOTTLESLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3, INPUTSLOT4};
@@ -60,6 +61,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     private int fueluse = 0;
     private int storedXP = 0;
     private int maxXP = 10000;
+    private int xpBoost;
 
 
     protected Abst_FurnaceBlockEntity_Up(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
@@ -138,7 +140,8 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4) || (index == FUELSLOT && var2.is(Items.BUCKET)));
+        return (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH && index == XPBOTTLESLOT ||
+                direction == Direction.DOWN && (index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4) || (index == FUELSLOT && var2.is(Items.BUCKET)));
     }
 
     @Override
@@ -234,6 +237,10 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
             this.maxProgress = 5;
         }if (this.stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
+        }if (this.stacks.get(XPBOOSTSLOT).isEmpty()){
+            this.xpBoost = 1;
+        }if (!this.stacks.get(XPBOOSTSLOT).isEmpty()){
+            this.xpBoost = 4;
         }
 
         if(hasItemInFirtsSlot() && !areStackEqual1to2()){
@@ -260,7 +267,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
                 if(hasProgressFinished1()){
                     useFuel();
                     craftItem(irecipe1, INPUTSLOT1);
-                    this.storedXP += Math.round(irecipe1.value().getExperience());
+                    this.storedXP += Math.round(irecipe1.value().getExperience() * xpBoost);
                     resetProgress1();
                 }
             }
@@ -269,7 +276,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
                 if(hasProgressFinished2()){
                     useFuel();
                     craftItem(irecipe2, INPUTSLOT2);
-                    this.storedXP += Math.round(irecipe2.value().getExperience());
+                    this.storedXP += Math.round(irecipe2.value().getExperience()* xpBoost);
                     resetProgress2();
                 }
             }
@@ -278,7 +285,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
                 if(hasProgressFinished3()){
                     useFuel();
                     craftItem(irecipe3, INPUTSLOT3);
-                    this.storedXP += Math.round(irecipe3.value().getExperience());
+                    this.storedXP += Math.round(irecipe3.value().getExperience()* xpBoost);
                     resetProgress3();
                 }
             }
@@ -287,11 +294,12 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
                 if(hasProgressFinished4()){
                     useFuel();
                     craftItem(irecipe4, INPUTSLOT4);
-                    this.storedXP += Math.round(irecipe4.value().getExperience());
+                    this.storedXP += Math.round(irecipe4.value().getExperience() * xpBoost);
                     resetProgress4();
                 }
             }
         }else{
+
             resetProgressAll();
         }
     }

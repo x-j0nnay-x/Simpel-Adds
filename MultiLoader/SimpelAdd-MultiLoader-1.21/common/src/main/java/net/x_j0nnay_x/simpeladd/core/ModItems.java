@@ -25,6 +25,7 @@ public class ModItems {
     public static final Item SPEEDUPGRADE_2  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_3  = new SimpelItem(new Item.Properties());
     public static final Item BOOSTUPGRADE  = new SimpelItem(new Item.Properties());
+    public static final Item XPBOOSTUPGRADE = new SimpelItem(new Item.Properties());
 //ancient shards stuff
     public static final Item NEHTERITE_SHARD  = new SimpelItem(new Item.Properties());
     public static final Item NEHTERITE_SHARD_DUST = new SimpelItem(new Item.Properties());

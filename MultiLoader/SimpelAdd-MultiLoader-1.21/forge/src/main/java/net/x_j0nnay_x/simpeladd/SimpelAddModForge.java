@@ -56,6 +56,7 @@ public class SimpelAddModForge {
             MenuScreens.register(ModMenuTypeForge.BLOCKFACTORY_MENU.get(), ForgeBlockFactoryScreen::new);
             MenuScreens.register(ModMenuTypeForge.Chiller_MENU.get(), ForgeChillerScreen::new);
             MenuScreens.register(ModMenuTypeForge.Netherite_Menu.get(), ForgeNetheriteCrafterScreen::new);
+            MenuScreens.register(ModMenuTypeForge.GRIND_FACTORY_MENU.get(), ForgeGrindFactoryScreen::new);
         }
 
 

@@ -1,27 +1,19 @@
-{
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "zxz",
-    "x x",
-    "zxz"
-  ],
 
-  "key":
-  {
-    "z":
-    {
-      "item": "minecraft:blackstone"
-    },
-    "x":
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
     {
       "item": "minecraft:furnace"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "minecraft:netherite_ingot"
     }
-
-  },
-  "result":
-  {
+  ],
+  "result": {
     "id": "simpeladdmod:upgraded_furnace_block",
-    "count":1
+    "count": 1
   }
 }
