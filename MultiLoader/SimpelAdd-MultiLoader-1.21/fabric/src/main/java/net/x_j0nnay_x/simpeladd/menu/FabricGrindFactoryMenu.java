@@ -150,7 +150,7 @@ public class FabricGrindFactoryMenu extends AbstractContainerMenu {
                 return false;
             }
             });
-            this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.BOOSTSLOT, 124, 45){
+            this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.XPBOOSTSLOT, 124, 45){
                 @Override
                 public boolean mayPlace(@NotNull ItemStack stack) {
                     return stack.is(ModItemRegFabric.XPBOOSTUPGRADE);

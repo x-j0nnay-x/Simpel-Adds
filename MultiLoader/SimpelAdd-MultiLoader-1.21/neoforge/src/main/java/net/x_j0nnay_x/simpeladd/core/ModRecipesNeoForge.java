@@ -7,6 +7,7 @@ import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
+import net.x_j0nnay_x.simpeladd.recipe.GrindFactoryRecipe;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRepair;
@@ -20,6 +21,8 @@ public class ModRecipesNeoForge {
 
     public static final Supplier<RecipeSerializer<GrinderRecipe>> GRINDER_RECIPE_SERIALIZER =
             SERIALIZERS.register(GrinderRecipe.Serializer.ID, () -> GrinderRecipe.Serializer.INSTANCE);
+    public static final Supplier<RecipeSerializer<GrindFactoryRecipe>> GRINDFACTORY_RECIPE_SERIALIZER =
+            SERIALIZERS.register(GrindFactoryRecipe.Serializer.ID, () -> GrindFactoryRecipe.Serializer.INSTANCE);
     public static final Supplier<RecipeSerializer<ManualGrind>> MANUAL_GRINDER_RECIPE_SERIALIZER =
             SERIALIZERS.register(ManualGrind.Serializer.ID, () -> ManualGrind.Serializer.INSTANCE);
     public static final Supplier<RecipeSerializer<GrinderRepair>> GRINDER_REPAIR_RECIPE_SERIALIZER =

@@ -49,8 +49,8 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public static int XPBOTTLESLOT = 10;
     public static int XPBOOSTSLOT = 11;
     private static final int[] SLOTS_FOR_UP = new int[]{FUELSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4, XPBOTTLESLOT};
-    private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3, INPUTSLOT4};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{FUELSLOT, OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3, INPUTSLOT4, XPBOTTLESLOT};
     protected final ContainerData data;
     private int progress1 = 0;
     private int progress2 = 0;
@@ -134,7 +134,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
         return (
                 (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
                         (index == INPUTSLOT1 || index == INPUTSLOT2 || index == INPUTSLOT3 || index == INPUTSLOT4)||
-                        direction == Direction.UP && (index == FUELSLOT)
+                        direction == Direction.UP && (index == FUELSLOT && isFuel(var2))
         );
     }
 
@@ -324,7 +324,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
 
     private void addFuel() {
         if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
-            fuelLevel += this.getFuelTime(this.stacks.get(FUELSLOT)) / 200;
+            fuelLevel +=  (this.getFuelTime(this.stacks.get(FUELSLOT)) / 200);
             if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
                 this.removeItem(FUELSLOT, 1);
                 this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));

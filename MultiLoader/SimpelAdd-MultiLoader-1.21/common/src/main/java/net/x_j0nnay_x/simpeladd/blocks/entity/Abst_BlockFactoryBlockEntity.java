@@ -17,6 +17,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -30,7 +31,7 @@ import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer{
 
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(7, ItemStack.EMPTY);
 

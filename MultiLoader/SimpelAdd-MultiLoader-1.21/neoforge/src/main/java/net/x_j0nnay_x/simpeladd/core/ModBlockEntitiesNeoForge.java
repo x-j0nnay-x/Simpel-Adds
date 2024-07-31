@@ -1,14 +1,22 @@
 package net.x_j0nnay_x.simpeladd.core;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.capabilities.BlockCapability;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.blocks.entity.*;
 
+import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public class ModBlockEntitiesNeoForge {
@@ -44,4 +52,5 @@ public class ModBlockEntitiesNeoForge {
 	public static void registerModBlockEntities(){
 		SimpelAddModNeoForge.LOGGER.info("Registering Mod Blocks Entities for " + SimpelAddModNeoForge.MODID);
 	}
+
 }

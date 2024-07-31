@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grindfactory",
+  "ingredients": [
+    {
+      "tag": "minecraft:copper_ores"
+    }
+  ],
+  "output": {
+    "count": 6,
+    "item": "simpeladdmod:copperdust"
+  }
+}
