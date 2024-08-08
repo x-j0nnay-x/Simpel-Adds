@@ -2,6 +2,9 @@ package net.x_j0nnay_x.simpeladd.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -12,7 +15,7 @@ import net.x_j0nnay_x.simpeladd.menu.NeoForgeBlockFactoryMenu;
 
 public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForgeBlockFactoryMenu> {
     private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, "textures/screens/blockfactory_gui.png");
-
+    private Button button;
 
     public NeoForgeBlockFactoryScreen(NeoForgeBlockFactoryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -23,6 +26,7 @@ public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForge
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
+
 
     }
 
@@ -44,6 +48,7 @@ public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForge
         renderProgressArrow(pGuiGraphics, x, y);
         renderlava(pGuiGraphics, x, y);
         renderwater(pGuiGraphics, x, y);
+        renderButton();
         pGuiGraphics.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.disableBlend();
     }
@@ -71,7 +76,44 @@ public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForge
         guiGraphics.drawString(this.font, Component.translatable("gui.simpeladdmod.blockfactory.label1"), 40, 9, -12829636, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.simpeladdmod.blockfactory.label2"), 105, 9, -12829636, false);
     }
+    private void  renderButton(){
+        Component outputslot = Component.literal(Integer.toString(menu.getOutPutSlot()));
+        Component text = Component.translatable("gui.simpeladdmod.blockfactory.button.tooltip" );
 
+
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+        this.button =
+
+                addRenderableWidget(
+                         Button.builder(
+                                        outputslot,
+                                        this::handleButton
+
+                                )
+                                .bounds(x + 56 , y + 59, 12 , 12)
+                                .tooltip(Tooltip.create(text))
+                                .build()
+                );
+
+    }
+
+    private void handleButton(Button button){
+        int cereentslot = this.menu.getOutPutSlot();
+        if (cereentslot == 4) {
+            this.menu.setOutPutSlot(1);
+
+        }
+        if (cereentslot == 1) {
+            this.menu.setOutPutSlot(2);
+        }
+        if (cereentslot == 2) {
+            this.menu.setOutPutSlot(3);
+        }
+        if (cereentslot == 3) {
+            this.menu.setOutPutSlot(4);
+        }
+    }
 
 
 }

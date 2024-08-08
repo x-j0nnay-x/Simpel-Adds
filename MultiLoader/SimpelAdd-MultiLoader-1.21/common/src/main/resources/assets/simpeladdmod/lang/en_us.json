@@ -119,6 +119,7 @@
   "gui.simpeladdmod.upgrade_furnace_gui.xp_stored": "XP:",
   "gui.simpeladdmod.blockfactory.label1": "Block",
   "gui.simpeladdmod.blockfactory.label2": "Factory",
+  "gui.simpeladdmod.blockfactory.button.tooltip": "OutPut Slot",
   "gui.simpeladdmod.chiller_block_gui.label": "Chiller",
   "gui.simpeladdmod.netherite_crafter_gui": "Netherite Auto Crafting",
 

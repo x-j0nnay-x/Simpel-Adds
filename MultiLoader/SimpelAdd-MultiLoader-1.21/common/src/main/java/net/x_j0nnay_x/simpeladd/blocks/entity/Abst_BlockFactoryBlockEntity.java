@@ -9,6 +9,8 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -37,14 +39,13 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
 
     public static int WATERSLOT = 5;
     public static int LAVASLOT = 6;
-
     public static int GRINDERSLOT = 0;
     public static int COBBLESLOT = 1;
     public static int GRAVALSLOT = 2;
     public static int SANDSLOT = 3;
     public static int OBSIDIANSLOT = 4;
     private static final int[] SLOTS_FOR_UP = new int[]{GRINDERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{WATERSLOT, LAVASLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{WATERSLOT, LAVASLOT, COBBLESLOT, SANDSLOT, GRAVALSLOT, OBSIDIANSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{WATERSLOT, LAVASLOT};
     protected final ContainerData data;
     private int progress = 0;
@@ -55,6 +56,8 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public int lavaUses = 0;
     public int lavaLevel = 0;
     public int waterLevel = 0;
+    public int outPutSlot = 4;
+
 
     private int bucketValue = 1000;
 
@@ -72,6 +75,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     case 3 -> Abst_BlockFactoryBlockEntity.this.lavaUses;
                     case 4 -> Abst_BlockFactoryBlockEntity.this.waterLevel;
                     case 5 -> Abst_BlockFactoryBlockEntity.this.lavaLevel;
+                    case 6 -> Abst_BlockFactoryBlockEntity.this.outPutSlot;
                     default -> 0;
                 };
             }
@@ -85,12 +89,13 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     case 3 -> Abst_BlockFactoryBlockEntity.this.lavaUses = pValue;
                     case 4 -> Abst_BlockFactoryBlockEntity.this.waterLevel = pValue;
                     case 5 -> Abst_BlockFactoryBlockEntity.this.lavaLevel = pValue;
+                    case 6 -> Abst_BlockFactoryBlockEntity.this.outPutSlot = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 6;
+                return 7;
             }
         };
     }
@@ -102,41 +107,54 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         super.loadAdditional(pTag, pRegistries);
         this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(pTag, this.stacks, pRegistries);
-        this.progress = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_progress");
-        this.grindsleft = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left");
-        this.lavaUses = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses");
-        this.lavaLevel = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel");
-        this.waterLevel = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel");
+        this.progress = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_progress");
+        this.grindsleft = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left");
+        this.lavaUses = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses");
+        this.lavaLevel = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel");
+        this.waterLevel = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel");
+        this.outPutSlot = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactory_outputslot");
     }
 
     @Override
     protected void saveAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.saveAdditional($$0,pRegistries);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_progress", (short) this.progress);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left", (short) this.grindsleft);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses", (short) this.lavaUses);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel", (short) this.lavaLevel);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel", (short) this.waterLevel);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_progress", this.progress);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left", this.grindsleft);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses", this.lavaUses);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel", this.lavaLevel);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel", this.waterLevel);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_outputslot", this.outPutSlot);
         ContainerHelper.saveAllItems($$0, this.stacks, pRegistries);
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return (direction == Direction.EAST && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.WEST && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.SOUTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.NORTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.EAST && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.WEST && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.SOUTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.NORTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.UP && (index == GRINDERSLOT));
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH ||direction == Direction.NORTH){
+            if(index == LAVASLOT && stack.is(Items.LAVA_BUCKET)){
+                return true;
+            }
+            if(index == WATERSLOT && stack.is(Items.WATER_BUCKET)){
+                return true;
+            }
+        }if(direction == Direction.UP && index == GRINDERSLOT && stack.is(ModTags.Items.GRINDERS)){
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == WATERSLOT && var2.is(Items.BUCKET)) ||
-                (index == LAVASLOT && var2.is(Items.BUCKET)));
+        if(direction == Direction.DOWN){
+            if(index == WATERSLOT || index == LAVASLOT){
+                if(var2.is(Items.BUCKET)){
+                    return true;
+                }
+            }
+           // if(index == outPutSlot){
+           //     return true;
+           // }
+        }
+        return false;
     }
 
     @Override
@@ -166,6 +184,8 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public ItemStack removeItemNoUpdate(int var1) {
         return ContainerHelper.takeItem(this.stacks, var1);
     }
+
+
 
     @Override
     public void setItem(int var1, ItemStack var2) {
@@ -212,19 +232,17 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         return Component.translatable("block.simpeladdmod.blockfactory_block");
     }
 
-    public void sendUpdate() {
-        setChanged();
-
-        if (this.level != null)
-            this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
+    public ContainerData getData() {
+        return data;
     }
 
+
+
+    @Nullable
     @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
-
-
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
@@ -239,6 +257,8 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         if (canFillLava()) {
             fillLava();
         }
+
+
         pState = pState.setValue(Abst_BlockFactoryBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         if (hasLiquid()) {
@@ -290,6 +310,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         }
     }
 
+
     private void useGrind() {
         this.grindsleft--;
     }
@@ -329,6 +350,9 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
 
     private boolean isWorking() {
         if (hasLiquid() && !isFull()) {
+            if(this.progress == 0){
+                return false;
+            }
             return true;
         }
         return false;

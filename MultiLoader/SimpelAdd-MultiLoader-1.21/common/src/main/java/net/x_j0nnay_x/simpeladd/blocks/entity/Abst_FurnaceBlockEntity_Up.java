@@ -131,17 +131,35 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                        (index == INPUTSLOT1 || index == INPUTSLOT2 || index == INPUTSLOT3 || index == INPUTSLOT4)||
-                        direction == Direction.UP && (index == FUELSLOT && isFuel(var2))
-        );
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if(index == INPUTSLOT1 || index == INPUTSLOT2 || index == INPUTSLOT3 || index == INPUTSLOT4){
+                return true;
+            }
+            return false;
+        }
+        if(direction == Direction.UP && index == FUELSLOT && isFuel(var2)){
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH && index == XPBOTTLESLOT ||
-                direction == Direction.DOWN && (index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4) || (index == FUELSLOT && var2.is(Items.BUCKET)));
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if(index == XPBOTTLESLOT){
+                return true;
+            }
+            return false;
+        }
+        if(direction == Direction.DOWN){
+            if(index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4){
+                return true;
+            }
+            if(index == FUELSLOT && var2.is(Items.BUCKET)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

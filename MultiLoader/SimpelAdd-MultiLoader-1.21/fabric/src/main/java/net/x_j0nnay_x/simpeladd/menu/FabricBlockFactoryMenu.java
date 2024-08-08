@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
+import net.x_j0nnay_x.simpeladd.blocks.FabricBlockFactoryBlock;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricBlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
@@ -23,14 +24,14 @@ public class FabricBlockFactoryMenu extends AbstractContainerMenu {
 
 
     public FabricBlockFactoryMenu(int id, Inventory playerInventoryIn) {
-        this( id, playerInventoryIn, new SimpleContainer(7), new SimpleContainerData(6));
+        this( id, playerInventoryIn, new SimpleContainer(7), new SimpleContainerData(7));
     }
 
 
     public FabricBlockFactoryMenu(int pContainerID, Inventory inv, Container blockFactory,  ContainerData data){
         super(ModMenuTypeFabric.BLOCKFACTORY_MENU, pContainerID);
         checkContainerSize(inv, 7);
-        checkContainerDataCount(data, 6);
+        checkContainerDataCount(data, 7);
         blockFactory.startOpen(inv.player);
         this.inventory = blockFactory;
         this.level = inv.player.level();
@@ -112,7 +113,12 @@ public class FabricBlockFactoryMenu extends AbstractContainerMenu {
         int tankSize = 61;
         return lavaLevel != 0  ? lavaLevel * tankSize / 6000 : 0;
     }
-
+    public int getOutPutSlot(){
+        return this.data.get(6);
+    }
+    public void setOutPutSlot(int value){
+        this.data.set(6, value);
+    }
 
     @Override
     public boolean stillValid(Player pPlayer) {

@@ -93,32 +93,44 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         super.loadAdditional($$0, pRegistries);
         this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems($$0, this.stacks, pRegistries);
-        this.progress = $$0.getShort(SimpelAddMod.MODCUSTOM +"grinder_progress");
-        this.grindsleft = $$0.getShort(SimpelAddMod.MODCUSTOM +"grinder_grinds_left");
-        this.grindEff = $$0.getShort(SimpelAddMod.MODCUSTOM +"grinder_effec");
+        this.progress = $$0.getInt(SimpelAddMod.MODCUSTOM +"grinder_progress");
+        this.grindsleft = $$0.getInt(SimpelAddMod.MODCUSTOM +"grinder_grinds_left");
+        this.grindEff = $$0.getInt(SimpelAddMod.MODCUSTOM +"grinder_effec");
 
     }
 
     @Override
     protected void saveAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.saveAdditional($$0, pRegistries);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"grinder_progress", (short)this.progress);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"grinder_grinds_left", (short)this.grindsleft);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"grinder_effec", (short)this.grindEff);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"grinder_progress", this.progress);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"grinder_grinds_left", this.grindsleft);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"grinder_effec", this.grindEff);
         ContainerHelper.saveAllItems($$0, this.stacks, pRegistries);
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) && (index == INPUTSLOT) ||
-                        direction == Direction.UP && (index == GRINDERSLOT)
-        );
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if(index == INPUTSLOT && var2.is(ModTags.Items.CANGRIND)){
+                return true;
+            }
+            return false;
+        }
+        if(direction == Direction.UP){
+            if(index == GRINDERSLOT && var2.is(ModTags.Items.GRINDERS)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT));
+        if(direction == Direction.DOWN && index == OUTPUTSLOT){
+            return true;
+        }
+        return false;
     }
 
     @Override

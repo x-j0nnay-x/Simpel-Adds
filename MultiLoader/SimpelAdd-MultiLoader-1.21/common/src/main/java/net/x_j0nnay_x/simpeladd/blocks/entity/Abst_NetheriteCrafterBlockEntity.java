@@ -82,15 +82,15 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
         super.loadAdditional($$0, pRegistries);
         this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems($$0, this.stacks, pRegistries);
-        this.progress = $$0.getShort(SimpelAddMod.MODCUSTOM +"netherite_crafter_progress");
-        this.blazeUse = $$0.getShort(SimpelAddMod.MODCUSTOM +"netherite_crafter_blaze_uses");
+        this.progress = $$0.getInt(SimpelAddMod.MODCUSTOM +"netherite_crafter_progress");
+        this.blazeUse = $$0.getInt(SimpelAddMod.MODCUSTOM +"netherite_crafter_blaze_uses");
     }
 
     @Override
     protected void saveAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.saveAdditional($$0, pRegistries);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"netherite_crafter_progress", (short)this.progress);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"netherite_crafter_blaze_uses", (short)this.blazeUse);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"netherite_crafter_progress", this.progress);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"netherite_crafter_blaze_uses", this.blazeUse);
         ContainerHelper.saveAllItems($$0, this.stacks, pRegistries);
     }
 
@@ -107,15 +107,30 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH || direction == Direction.UP) &&
-                        (index == GOLDSLOT || index == SCRAPSLOT|| index == BLAZESLOT)
-        );
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH || direction == Direction.UP){
+            if(index == GOLDSLOT && var2.is(Items.GOLD_INGOT)){
+                return true;
+            }
+            if(index == SCRAPSLOT && var2.is(Items.NETHERITE_SCRAP)){
+                return true;
+            }
+            if(index == BLAZESLOT && var2.is(Items.BLAZE_ROD)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT));
+        if(direction == Direction.DOWN){
+            if(index == OUTPUTSLOT){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override

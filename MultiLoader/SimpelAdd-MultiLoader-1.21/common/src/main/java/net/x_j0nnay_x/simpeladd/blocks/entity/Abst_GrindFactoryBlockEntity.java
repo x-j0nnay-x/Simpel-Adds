@@ -147,8 +147,8 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         this.furnProg4 = $$0.getInt(SimpelAddMod.MODCUSTOM +"grind_factory_furn_prog4");
         this.fuelLevel = $$0.getInt(SimpelAddMod.MODCUSTOM +"grind_factory_fuel_left");
         this.storedXP = $$0.getInt(SimpelAddMod.MODCUSTOM +"grind_factory_stored_xp");
-        this.grindsleft = $$0.getShort(SimpelAddMod.MODCUSTOM +"grind_factory_grinds_left");
-        this.grindEff = $$0.getShort(SimpelAddMod.MODCUSTOM +"grind_factory_grinder_effec");
+        this.grindsleft = $$0.getInt(SimpelAddMod.MODCUSTOM +"grind_factory_grinds_left");
+        this.grindEff = $$0.getInt(SimpelAddMod.MODCUSTOM +"grind_factory_grinder_effec");
        }
 
     @Override
@@ -171,12 +171,25 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
-        return (
-                (var2.is(ModTags.Items.CANGRIND) && direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                        (index == GRINDERINSLOT1 || index == GRINDERINSLOT2 || index == GRINDERINSLOT3 || index == GRINDERINSLOT4)||
-                        (var2.is(ModTags.Items.GRINDERS) && direction == Direction.UP && index == GRINDERSLOT) ||
-                        (isFuel(var2) && direction == Direction.UP  && (index == FUELSLOT))
-        );
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if(index == GRINDERINSLOT1 || index == GRINDERINSLOT2 || index == GRINDERINSLOT3 || index == GRINDERINSLOT4){
+                if(var2.is(ModTags.Items.CANGRIND)){
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        if(direction == Direction.UP){
+            if(index == GRINDERSLOT && var2.is(ModTags.Items.GRINDERS)){
+                return true;
+            }
+            if(index == FUELSLOT && isFuel(var2)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override

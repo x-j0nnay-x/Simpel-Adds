@@ -27,7 +27,7 @@ public class NeoForgeBlockFactoryMenu extends AbstractContainerMenu {
 
 
     public NeoForgeBlockFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
     }
     public NeoForgeBlockFactoryMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuTypeNeoForge.BLOCKFACTORY_MENU.get(), pContainerID);
@@ -36,6 +36,7 @@ public class NeoForgeBlockFactoryMenu extends AbstractContainerMenu {
         this.level = inv.player.level();
         this.inventory = ((Container) entity);
         this.data = data;
+        this.addDataSlots(data);
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
@@ -82,7 +83,8 @@ public class NeoForgeBlockFactoryMenu extends AbstractContainerMenu {
                 }
             });
 
-        addDataSlots(data);
+
+
     }
 
 
@@ -111,6 +113,14 @@ public class NeoForgeBlockFactoryMenu extends AbstractContainerMenu {
         int lavaLevel = this.data.get(5);
         int tankSize = 61;
         return lavaLevel != 0  ? lavaLevel * tankSize / 6000 : 0;
+    }
+    public int getOutPutSlot(){
+        return this.data.get(6);
+    }
+    public void setOutPutSlot(int value){
+        this.data.set(6, value);
+        this.inventory.setChanged();
+        this.blockEntity.getUpdatePacket();
     }
     public NeoForgeBlockFactoryBlockEntity getBlockEntity() {
         return this.blockEntity;

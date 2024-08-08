@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_ChillerBlock;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
@@ -83,33 +84,51 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         super.loadAdditional($$0, pRegistries);
         this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems($$0, this.stacks, pRegistries);
-        this.progress = $$0.getShort(SimpelAddMod.MODCUSTOM + "chiller_progress");
-        this.snowLevel = $$0.getShort(SimpelAddMod.MODCUSTOM + "chiller_snow");
-        this.waterUese = $$0.getShort(SimpelAddMod.MODCUSTOM + "chiller_wateruse");
-        this.waterLevel = $$0.getShort(SimpelAddMod.MODCUSTOM + "chiller_waterlevel");
+        this.progress = $$0.getInt(SimpelAddMod.MODCUSTOM + "chiller_progress");
+        this.snowLevel = $$0.getInt(SimpelAddMod.MODCUSTOM + "chiller_snow");
+        this.waterUese = $$0.getInt(SimpelAddMod.MODCUSTOM + "chiller_wateruse");
+        this.waterLevel = $$0.getInt(SimpelAddMod.MODCUSTOM + "chiller_waterlevel");
     }
 
     @Override
     protected void saveAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.saveAdditional($$0, pRegistries);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "chiller_progress", (short) this.progress);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "chiller_snow", (short) this.snowLevel);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "chiller_wateruse", (short) this.waterUese);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "chiller_waterlevel", (short) this.waterLevel);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "chiller_progress", this.progress);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "chiller_snow", this.snowLevel);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "chiller_wateruse", this.waterUese);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "chiller_waterlevel",  this.waterLevel);
         ContainerHelper.saveAllItems($$0, this.stacks, pRegistries);
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return ((direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                (index == CHILLINGSLOT) ||
-                direction == Direction.UP && (index == WATERSLOT));
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if(index == CHILLINGSLOT && stack.is(ModTags.Items.CHILLING)){
+                return true;
+            }
+            return false;
+        }
+        if(direction == Direction.UP){
+            if(index == WATERSLOT && stack.is(Items.WATER_BUCKET)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT ||
-                index == WATERSLOT && var2.is(Items.BUCKET)));
+        if(direction == Direction.DOWN){
+            if(index == OUTPUTSLOT){
+                return true;
+            }
+            if(index == WATERSLOT && var2.is(Items.BUCKET)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override

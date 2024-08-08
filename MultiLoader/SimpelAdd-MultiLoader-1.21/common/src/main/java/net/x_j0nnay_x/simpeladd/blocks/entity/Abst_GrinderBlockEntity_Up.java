@@ -107,39 +107,56 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         super.loadAdditional($$0, pRegistries);
         this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems($$0, this.stacks, pRegistries);
-        this.progress1 = $$0.getShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress1");
-        this.progress2 = $$0.getShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress2");
-        this.progress3 = $$0.getShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress3");
-        this.progress4 = $$0.getShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress4");
-        this.grindsleft = $$0.getShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_grinds_left");
-        this.grindEff = $$0.getShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_effec");
+        this.progress1 = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress1");
+        this.progress2 = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress2");
+        this.progress3 = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress3");
+        this.progress4 = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress4");
+        this.grindsleft = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_grinds_left");
+        this.grindEff = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_effec");
 
     }
 
     @Override
     protected void saveAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.saveAdditional($$0, pRegistries);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress1", (short)this.progress1);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress2", (short)this.progress2);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress3", (short)this.progress3);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress4", (short)this.progress4);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_grinds_left", (short)this.grindsleft);
-        $$0.putShort(SimpelAddMod.MODCUSTOM +"upgraded_grinder_effec", (short)this.grindEff);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress1", this.progress1);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress2", this.progress2);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress3", this.progress3);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress4", this.progress4);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_grinds_left", this.grindsleft);
+        $$0.putInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_effec", this.grindEff);
         ContainerHelper.saveAllItems($$0, this.stacks, pRegistries);
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                        (index == INPUTSLOT1 || index == INPUTSLOT2 || index == INPUTSLOT3 || index == INPUTSLOT4)||
-                        direction == Direction.UP && (index == GRINDERSLOT)
-        );
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if (index == INPUTSLOT1 || index == INPUTSLOT2 || index == INPUTSLOT3 || index == INPUTSLOT4){
+                if(var2.is(ModTags.Items.CANGRIND)){
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        if(direction == Direction.UP){
+            if(index == GRINDERSLOT && var2.is(ModTags.Items.GRINDERS)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4));
+        if(direction == Direction.DOWN){
+            if(index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4){
+                return true;
+            }
+            return  false;
+        }
+        return false;
     }
 
     @Override
