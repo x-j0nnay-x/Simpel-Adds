@@ -10,5 +10,4 @@ public record Grind_FactoryData(boolean empty) {
             Grind_FactoryData::empty,
             Grind_FactoryData::new
     );
-
 }

@@ -9,9 +9,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.menu.NeoForgeNetheriteCrafterMenu;
 
-
 public class NeoForgeNetheriteCrafterScreen extends AbstractContainerScreen<NeoForgeNetheriteCrafterMenu> {
+
     private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, "textures/screens/netheritecrafter_gui.png");
+
     public NeoForgeNetheriteCrafterScreen(NeoForgeNetheriteCrafterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         this.title.contains(Component.translatable("gui.simpeladdmod.netherite_crafter_gui"));
@@ -22,20 +23,17 @@ public class NeoForgeNetheriteCrafterScreen extends AbstractContainerScreen<NeoF
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
-
-
     }
+
     @Override
     public void init() {
         super.init();
-
     }
 
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-
         RenderSystem.setShaderColor(1, 1, 1, 1);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -44,16 +42,14 @@ public class NeoForgeNetheriteCrafterScreen extends AbstractContainerScreen<NeoF
         renderBlazeUses(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
     }
+
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
-        if(menu.isCrafting()){
-            guiGraphics.blit(texture,  x + 43, y + 59, 0, 168, menu.getScalledProgress(), 6);
+        if (menu.isCrafting()) {
+            guiGraphics.blit(texture, x + 43, y + 59, 0, 168, menu.getScalledProgress(), 6);
         }
     }
+
     private void renderBlazeUses(GuiGraphics guiGraphics, int x, int y) {
-
-            guiGraphics.blit(texture,  x + 107 , y + 34, 176, 0, 4, menu.getBlazeLevel());
-
+        guiGraphics.blit(texture, x + 107, y + 34, 176, 0, 4, menu.getBlazeLevel());
     }
-
-
 }

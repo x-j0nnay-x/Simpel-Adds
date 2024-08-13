@@ -8,7 +8,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,6 @@ public class GrinderRepair extends RepairItemRecipe {
     public boolean matches(CraftingInput input, Level level) {
         ItemStack grinder = null;
         List<ItemStack> flint = new ArrayList<>();
-
         for (int i = 0; i < input.size(); ++i) {
             ItemStack stackInQuestion = input.getItem(i);
             if (!stackInQuestion.isEmpty()) {
@@ -55,13 +53,11 @@ public class GrinderRepair extends RepairItemRecipe {
                         return ItemStack.EMPTY;
                     }
                 }
-
                 if (itemstack.is(flintItem)) {
                     flintList.add(itemstack.getItem());
                 }
             }
         }
-
         if ((!flintList.isEmpty()) && grinder != null && grinder.isDamaged()) {
             ItemStack newGrinder = ModItems.GRINDERHEAD.getDefaultInstance();
             ItemStack newGrinderN = ModItems.GRINDERHEADNEHTERITE.getDefaultInstance();
@@ -78,12 +74,7 @@ public class GrinderRepair extends RepairItemRecipe {
                 newGrinderU.setDamageValue(grinder.getDamageValue() - (flintList.size() * 5));
                 return newGrinderU;
             }
-
-
             }
-
-
-
         return ItemStack.EMPTY;
     }
 
@@ -91,8 +82,4 @@ public class GrinderRepair extends RepairItemRecipe {
     public boolean canCraftInDimensions(int width, int height) {
         return width * height >= 2;
     }
-
-
-
-
 }

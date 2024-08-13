@@ -7,9 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
-
 import java.util.function.Supplier;
-
 
 public class ModCreativeTabNeoForge {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -19,22 +17,25 @@ public class ModCreativeTabNeoForge {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItemRegNeoForge.GRINDERHEAD.get()))
                     .title(Component.translatable("creativetab.simpel_tab"))
                     .displayItems((pParameters, pOutput) -> {
-
-                        //items
+                    //items grind head
                         pOutput.accept(ModItemRegNeoForge.GRINDERHEAD.get());
                         pOutput.accept(ModItemRegNeoForge.GRINDERHEADNEHTERITE.get());
                         pOutput.accept(ModItemRegNeoForge.GRINDERHEADUNOBTIANIUM.get());
-
+                    //items random
                         pOutput.accept(ModItemRegNeoForge.GOLDSTICK.get());
                         pOutput.accept(ModItemRegNeoForge.WOODFIBER.get());
                         pOutput.accept(ModItemRegNeoForge.FLESH.get());
-
+                        pOutput.accept(ModItemRegNeoForge.OBSIDAININGOT.get());
+                        pOutput.accept(ModItemRegNeoForge.NEHTERITE_SHARD.get());
+                        pOutput.accept(ModItemRegNeoForge.NEHTERITE_SHARD_RAW.get());
+                        pOutput.accept(ModItemRegNeoForge.UNOBTIANIUMSCRAP.get());
+                    //items upgrade
                         pOutput.accept(ModItemRegNeoForge.SPEEDUPGRADE_1.get());
                         pOutput.accept(ModItemRegNeoForge.SPEEDUPGRADE_2.get());
                         pOutput.accept(ModItemRegNeoForge.SPEEDUPGRADE_3.get());
                         pOutput.accept(ModItemRegNeoForge.BOOSTUPGRADE.get());
                         pOutput.accept(ModItemRegNeoForge.XPBOOSTUPGRADE.get());
-
+                    //items sandwich
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_MUT.get());
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_BEEF.get());
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_PORK.get());
@@ -42,31 +43,24 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_VEG.get());
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_MEET_LOVE.get());
                         pOutput.accept(ModItemRegNeoForge.SANDWICH_MEET_LOVE_VEG.get());
-
+                    //items templates
                         pOutput.accept(ModItemRegNeoForge.BLANKUPGRADE.get());
                         pOutput.accept(ModItemRegNeoForge.BLANKUPGRADE_RAW.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIANUPGRADE_SMITHING.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTANIUMUPGRADE_SMITHING.get());
-
+                    //items dust
                         pOutput.accept(ModItemRegNeoForge.GOLDDUST.get());
                         pOutput.accept(ModItemRegNeoForge.IRONDUST.get());
                         pOutput.accept(ModItemRegNeoForge.COPPERDUST.get());
                         pOutput.accept(ModItemRegNeoForge.NETHERITEDUST.get());
                         pOutput.accept(ModItemRegNeoForge.NEHTERITE_SHARD_DUST.get());
-
+                        pOutput.accept(ModItemRegNeoForge.OBSIDAINDUST.get());
+                        pOutput.accept(ModItemRegNeoForge.UNOBTIANIUMDUST.get());
+                    //items elytra
                         pOutput.accept(ModItemRegNeoForge.SIMPEL_ELITRA_HALF.get());
                         pOutput.accept(ModItemRegNeoForge.SIMPEL_ELITRA_PART1.get());
                         pOutput.accept(ModItemRegNeoForge.SIMPEL_ELITRA_PART2.get());
-
-                        pOutput.accept(ModItemRegNeoForge.OBSIDAININGOT.get());
-                        pOutput.accept(ModItemRegNeoForge.OBSIDAINDUST.get());
-
-                        pOutput.accept(ModItemRegNeoForge.NEHTERITE_SHARD.get());
-                        pOutput.accept(ModItemRegNeoForge.NEHTERITE_SHARD_RAW.get());
-
-                        pOutput.accept(ModItemRegNeoForge.UNOBTIANIUMDUST.get());
-                        pOutput.accept(ModItemRegNeoForge.UNOBTIANIUMSCRAP.get());
-
+                    //items obsidian tire
                         pOutput.accept(ModItemRegNeoForge.OBSIDAINAXE.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIANHOE.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIANSWORD.get());
@@ -76,7 +70,7 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModItemRegNeoForge.OBSIDIANCHEST.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIANLEGS.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIANBOOTS.get());
-
+                    //items Obsidirite tire
                         pOutput.accept(ModItemRegNeoForge.OBSIDIRITEAXE.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIRITEHOE.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIRITESWORD.get());
@@ -86,7 +80,7 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModItemRegNeoForge.OBSIDIRITECHEST.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIRITELEGS.get());
                         pOutput.accept(ModItemRegNeoForge.OBSIDIRITEBOOTS.get());
-
+                    //items Unobtiannetherite tire
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANNETHERITEAXE.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANNETHERITEHOE.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANNETHERITESWORD.get());
@@ -96,8 +90,7 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANNETHERITECHEST.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANNETHERITELEGS.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANNETHERITEBOOTS.get());
-
-
+                    //items UnObtianObsidirtie tire
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANOBSIDIRITEAXE.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANOBSIDIRITEHOE.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANOBSIDIRITESWORD.get());
@@ -107,9 +100,7 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANOBSIDIRITECHEST.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANOBSIDIRITELEGS.get());
                         pOutput.accept(ModItemRegNeoForge.UNOBTIANOBSIDIRITEBOOTS.get());
-
-
-                        //block
+                    //block
                         pOutput.accept(ModBlockRegNeoForge.DEEPSLATE_DEBRI_ORE.get());
                         pOutput.accept(ModBlockRegNeoForge.UNOBTANIUM_ORE.get());
                         pOutput.accept(ModBlockRegNeoForge.GRINDER_BLOCK.get());
@@ -119,13 +110,12 @@ public class ModCreativeTabNeoForge {
                         pOutput.accept(ModBlockRegNeoForge.NETHERITE_CRAFTER.get());
                         pOutput.accept(ModBlockRegNeoForge.UPGRADED_FURNACE.get());
                         pOutput.accept(ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get());
-
-                    })
-                    .build());
+                    }).build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }
+
     public static void registerCreativeTab(){
         SimpelAddModNeoForge.LOGGER.info("Registering Creative Tab For " + SimpelAddModNeoForge.MODID);
     }

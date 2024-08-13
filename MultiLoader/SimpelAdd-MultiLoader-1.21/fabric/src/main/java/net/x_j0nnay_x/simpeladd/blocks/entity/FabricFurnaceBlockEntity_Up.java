@@ -2,7 +2,6 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -10,9 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricFurnaceMenu_up;
-import net.x_j0nnay_x.simpeladd.util.data.BlockFactroyData;
 import net.x_j0nnay_x.simpeladd.util.data.Up_furnaceData;
-
 
 public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up implements ExtendedScreenHandlerFactory<Up_furnaceData>  {
 
@@ -29,7 +26,6 @@ public class FabricFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up impl
     public void upFurnaceTick(Level pLevel, BlockPos pPos, BlockState pState) {
         super.upFurnaceTick(pLevel, pPos, pState);
     }
-
 
     @Override
     public Up_furnaceData getScreenOpeningData(ServerPlayer player) {

@@ -13,20 +13,23 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesForge;
 import net.x_j0nnay_x.simpeladd.menu.ForgeGrindFactoryMenu;
-
 import org.jetbrains.annotations.Nullable;
 
 public class ForgeGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntity {
+
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+
     public ForgeGrindFactoryBlockEntity(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesForge.GRIND_FACTORY.get(), $$1, $$2);
     }
+
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
         if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
             return handlers[facing.ordinal()].cast();
         return super.getCapability(capability, facing);
     }
+
     @Override
     protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
         return new ForgeGrindFactoryMenu(i, inventory, this, this.data);

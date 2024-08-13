@@ -10,5 +10,4 @@ public record BlockFactroyData(boolean empty) {
             BlockFactroyData::empty,
             BlockFactroyData::new
     );
-
 }

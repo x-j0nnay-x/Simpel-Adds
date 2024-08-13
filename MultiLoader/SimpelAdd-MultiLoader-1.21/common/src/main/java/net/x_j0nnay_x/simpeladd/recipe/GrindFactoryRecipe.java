@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.recipe;
 
-
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
@@ -16,12 +15,11 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 
-
 public class GrindFactoryRecipe implements Recipe<SingleRecipeInput> {
+
     public static final ResourceLocation ID =  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "grindfactory");
     private final ItemStack output;
     private final Ingredient recipeItems;
-
 
     public GrindFactoryRecipe(Ingredient inputItems, ItemStack itemStack) {
         this.output = itemStack;
@@ -33,7 +31,6 @@ public class GrindFactoryRecipe implements Recipe<SingleRecipeInput> {
         if(pLevel.isClientSide()) {
             return false;
         }
-
         return recipeItems.test(inv.item());
     }
 
@@ -41,8 +38,6 @@ public class GrindFactoryRecipe implements Recipe<SingleRecipeInput> {
     public ItemStack assemble(SingleRecipeInput simpleContainer, HolderLookup.Provider provider) {
         return this.output.copy();
     }
-
-
 
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
@@ -54,12 +49,9 @@ public class GrindFactoryRecipe implements Recipe<SingleRecipeInput> {
         return output.copy();
     }
 
-
     public ItemStack getOutput() {
         return output.copy();
     }
-
-
 
     @Override
     public  RecipeSerializer<?> getSerializer() {
@@ -72,16 +64,21 @@ public class GrindFactoryRecipe implements Recipe<SingleRecipeInput> {
     }
 
     public static class Type implements RecipeType<GrindFactoryRecipe> {
+
         private Type() {}
+
         public static final Type INSTANCE = new Type();
+
         public static final String ID = "grindfactory";
     }
 
     public static class Serializer implements RecipeSerializer<GrindFactoryRecipe> {
-        private Serializer() {}
-        public static final Serializer INSTANCE = new Serializer();
-        public static final String ID = "grindfactory";
 
+        private Serializer() {}
+
+        public static final Serializer INSTANCE = new Serializer();
+
+        public static final String ID = "grindfactory";
 
         private static final MapCodec<ItemStack> RESULT_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
                 BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("item")
@@ -101,12 +98,11 @@ public class GrindFactoryRecipe implements Recipe<SingleRecipeInput> {
                 Serializer::fromNetwork
         );
 
-
-
         @Override
         public MapCodec<GrindFactoryRecipe> codec() {
             return CODEC;
         }
+
         @Override
         public StreamCodec<RegistryFriendlyByteBuf, GrindFactoryRecipe> streamCodec() {
             return STREAM_CODEC;
@@ -123,5 +119,4 @@ public class GrindFactoryRecipe implements Recipe<SingleRecipeInput> {
             ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.output);
         }
     }
-
 }

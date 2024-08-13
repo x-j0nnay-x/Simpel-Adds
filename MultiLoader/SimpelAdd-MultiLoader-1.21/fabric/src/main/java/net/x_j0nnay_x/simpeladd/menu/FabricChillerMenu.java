@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.menu;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -9,9 +8,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricChillerBlockEntity;
-import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 
@@ -24,6 +21,7 @@ public class FabricChillerMenu extends AbstractContainerMenu {
     public FabricChillerMenu(int id, Inventory playerInventoryIn) {
         this( id, playerInventoryIn, new SimpleContainer(3), new SimpleContainerData(5));
     }
+
     public FabricChillerMenu(int pContainerID, Inventory inv, Container chiller, ContainerData data){
         super(ModMenuTypeFabric.Chiller_MENU, pContainerID);
         checkContainerSize(inv, 3);
@@ -34,7 +32,6 @@ public class FabricChillerMenu extends AbstractContainerMenu {
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
-
             this.addSlot(new Slot(this.inventory, FabricChillerBlockEntity.CHILLINGSLOT, 16, 53){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
@@ -53,19 +50,20 @@ public class FabricChillerMenu extends AbstractContainerMenu {
                     return stack.is(Items.WATER_BUCKET);
                 }
             });
-
-
         addDataSlots(data);
     }
     public boolean isCrafting(){
         return data.get(0) > 0 ;
     }
+
     public boolean hasSnow(){
         return data.get(2) > 0 ;
     }
+
     public boolean hasWater(){
         return data.get(3) > 0 ;
     }
+
     public int getScalledProgress(){
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
@@ -84,16 +82,17 @@ public class FabricChillerMenu extends AbstractContainerMenu {
         return waterLevel != 0  ? waterLevel * tankSize / 10000 : 0;
     }
 
-
     @Override
     public boolean stillValid(Player pPlayer) {
         return this.inventory.stillValid(pPlayer);
     }
+
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)
             for (int sj = 0; sj < 9; ++sj)
                 this.addSlot(new Slot(playerInventory, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
     }
+
     private void addPlayerHotbar(Inventory playerInventory){
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(playerInventory, si, 0 + 8 + si * 18, 0 + 142));
@@ -112,7 +111,6 @@ public class FabricChillerMenu extends AbstractContainerMenu {
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
     @Override
@@ -121,7 +119,6 @@ public class FabricChillerMenu extends AbstractContainerMenu {
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
-
         // Check if the slot clicked is one of the vanilla container slots
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory

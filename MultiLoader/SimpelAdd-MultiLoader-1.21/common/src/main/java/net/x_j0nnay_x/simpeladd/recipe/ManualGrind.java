@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.recipe;
 
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -15,11 +14,10 @@ import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 
-
 public class ManualGrind implements CraftingRecipe {
+
     final ShapedRecipePattern pattern;
     final ItemStack result;
-
     final String group;
     final CraftingBookCategory category;
     final boolean showNotification;
@@ -31,30 +29,34 @@ public class ManualGrind implements CraftingRecipe {
         this.category = category;
         this.showNotification = showNotification;
     }
+
     public ManualGrind(String $$0, CraftingBookCategory $$1, ShapedRecipePattern $$2, ItemStack $$3) {
         this($$0, $$1, $$2, $$3, true);
     }
+
     @Override
     public CraftingBookCategory category() {
         return this.category;
     }
+
     public String getGroup() {
         return this.group;
     }
-
-
 
     @Override
     public boolean matches(CraftingInput $$0, Level $$1) {
         return this.pattern.matches($$0);
     }
+
     @Override
     public ItemStack assemble(CraftingInput input, HolderLookup.Provider $$1) {
         return this.getResultItem($$1).copy();
     }
+
     public NonNullList<Ingredient> getIngredients() {
         return this.pattern.ingredients();
     }
+
     @Override
     public boolean canCraftInDimensions(int i, int i1) {
         return i >= this.pattern.width() && i1 >= this.pattern.height();
@@ -93,6 +95,7 @@ public class ManualGrind implements CraftingRecipe {
     public RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
+
     public int getWidth() {
         return this.pattern.width();
     }
@@ -101,14 +104,18 @@ public class ManualGrind implements CraftingRecipe {
         return this.pattern.height();
     }
 
-
     public static class Type implements RecipeType<ManualGrind> {
+
         private Type() {}
+
         public static final ManualGrind.Type INSTANCE = new ManualGrind.Type();
+
         public static final String ID = "manualgrind";
     }
     public static class Serializer implements RecipeSerializer<ManualGrind> {
+
         public static final ManualGrind.Serializer INSTANCE = new ManualGrind.Serializer();
+
         public static final String ID = "manualgrind";
 
         public static final MapCodec<ManualGrind> CODEC = RecordCodecBuilder.mapCodec(($$0) -> {
@@ -124,6 +131,7 @@ public class ManualGrind implements CraftingRecipe {
                 return $$0x.showNotification;
             })).apply($$0, ManualGrind::new);
         });
+
         public static final StreamCodec<RegistryFriendlyByteBuf, ManualGrind> STREAM_CODEC = StreamCodec.of(ManualGrind.Serializer::toNetwork, ManualGrind.Serializer::fromNetwork);
 
         public Serializer() {

@@ -10,5 +10,4 @@ public record NetheriteCrafterData(boolean empty) {
             NetheriteCrafterData::empty,
             NetheriteCrafterData::new
     );
-
 }

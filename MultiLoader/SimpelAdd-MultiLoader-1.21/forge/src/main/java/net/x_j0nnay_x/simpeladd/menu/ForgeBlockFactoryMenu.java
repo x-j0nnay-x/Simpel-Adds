@@ -11,24 +11,20 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.x_j0nnay_x.simpeladd.blocks.entity.ForgeBlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
-import net.x_j0nnay_x.simpeladd.core.ModItemRegForge;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeForge;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 
-
 public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
+
     public  final ForgeBlockFactoryBlockEntity blockEntity;
     private final Container inventory;
     private final Level level;
     private final ContainerData data;
-    private int xPos ;
-    private int yPos;
-    private int zPos;
-
 
     public ForgeBlockFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
     }
+
     public ForgeBlockFactoryMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuTypeForge.BLOCKFACTORY_MENU.get(), pContainerID);
         checkContainerSize(inv, 7);
@@ -38,7 +34,6 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
-
         this.addSlot(new Slot(this.inventory, ForgeBlockFactoryBlockEntity.GRINDERSLOT, 79, 8){
             @Override
             public boolean mayPlace(ItemStack stack) {
@@ -81,37 +76,60 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
                 return false;
             }
         });
-
         addDataSlots(data);
     }
 
+    public int getOutPutSlot(){
+        return this.data.get(6);
+    }
 
+    public int getButtonPosX(){
+        if (this.data.get(6) == 1 ){
+            return 0;
+        }
+        if (this.data.get(6) == 2 ){
+            return 12;
+        }
+        if (this.data.get(6) == 3 ){
+            return 24;
+        }
+        if (this.data.get(6) == 4 ){
+            return 36;
+        }
+        return 48;
+    }
 
     public boolean isCrafting(){
         return data.get(0) > 0 ;
     }
+
     public int getScalledProgress(){
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public boolean hasWater(){
         return data.get(4) > 0 ;
     }
+
     public boolean hasLava( ){
         return data.get(5) > 0 ;
     }
+
     public int getScalledwater(){
         int waterLevel = this.data.get(4);
         int tankSize = 61;
         return waterLevel != 0  ? waterLevel * tankSize / 6000 : 0;
     }
+
     public int getScalledlava(){
         int lavaLevel = this.data.get(5);
         int tankSize = 61;
         return lavaLevel != 0  ? lavaLevel * tankSize / 6000 : 0;
     }
+
     public ForgeBlockFactoryBlockEntity getBlockEntity() {
         return this.blockEntity;
     }
@@ -121,11 +139,13 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, ModBlockRegForge.BLOCK_FACTORY.get());
     }
+
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)
             for (int sj = 0; sj < 9; ++sj)
                 this.addSlot(new Slot(playerInventory, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
     }
+
     private void addPlayerHotbar(Inventory playerInventory){
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(playerInventory, si, 0 + 8 + si * 18, 0 + 142));
@@ -144,7 +164,6 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 7;  // must be the number of slots you have!
     @Override
@@ -153,7 +172,6 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
-
         // Check if the slot clicked is one of the vanilla container slots
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory

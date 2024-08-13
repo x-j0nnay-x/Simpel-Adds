@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.menu;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -8,10 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricGrinderBlockEntity_Up;
-import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
@@ -23,10 +19,10 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
-
     public FabricGrinderMenu_up(int id, Inventory playerInventoryIn) {
         this( id, playerInventoryIn, new SimpleContainer(11), new SimpleContainerData(9));
     }
+
     public FabricGrinderMenu_up(int pContainerID, Inventory inv, Container grinderUp, ContainerData data){
         super(ModMenuTypeFabric.GRINDER_MENU_UP, pContainerID);
         checkContainerSize(inv, 11);
@@ -37,7 +33,6 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
-
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.INPUTSLOT1, 43, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
@@ -114,51 +109,57 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
                     return 1;
                 }
             });
-
-
         addDataSlots(data);
     }
     public boolean isCrafting1(){
         return data.get(0) > 0 ;
     }
+
     public boolean isCrafting2(){
         return data.get(6) > 0 ;
     }
+
     public boolean isCrafting3(){
         return data.get(7) > 0 ;
     }
+
     public boolean isCrafting4(){
         return data.get(8) > 0 ;
     }
+
     public int getScalledProgress1(){
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress2(){
         int progress = this.data.get(6);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress3(){
         int progress = this.data.get(7);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress4(){
         int progress = this.data.get(8);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getGrindsLeft(){
         int grindsLeft = this.data.get(2);
-
         return grindsLeft;
     }
+
     public boolean hasEffUpgrade(){
         int hasboost = this.data.get(5);
         if (hasboost == 1){
@@ -167,7 +168,6 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
         return false;
 
     }
-
 
     public int getGrinderEff(){
         int grinderEff = this.data.get(4);
@@ -183,6 +183,7 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
             for (int sj = 0; sj < 9; ++sj)
                 this.addSlot(new Slot(playerInventory, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
     }
+
     private void addPlayerHotbar(Inventory playerInventory){
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(playerInventory, si, 0 + 8 + si * 18, 0 + 142));
@@ -201,7 +202,6 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 11;  // must be the number of slots you have!
     @Override
@@ -210,7 +210,6 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
-
         // Check if the slot clicked is one of the vanilla container slots
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory

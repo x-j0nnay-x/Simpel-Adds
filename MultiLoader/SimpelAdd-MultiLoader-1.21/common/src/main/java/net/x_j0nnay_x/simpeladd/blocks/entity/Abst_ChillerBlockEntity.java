@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -16,7 +15,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,7 +26,6 @@ import org.jetbrains.annotations.Nullable;
 public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
-
     public static int CHILLINGSLOT = 0;
     public static int WATERSLOT = 1;
     public static int OUTPUTSLOT = 2;
@@ -45,7 +42,6 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
 
     protected Abst_ChillerBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
-
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -76,8 +72,6 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
             }
         };
     }
-
-
 
     @Override
     public void loadAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
@@ -203,7 +197,6 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         return Component.translatable("block.simpeladdmod.chiller_block");
     }
 
-
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -213,10 +206,7 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return this.saveWithFullMetadata(pRegistries);
     }
-
-
 //Processing
-
     public void chillerTick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (canFillWater()) {
             fillWater();
@@ -245,13 +235,16 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         }
 
     }
+
     private boolean isWorking(){
         return hasSnow() && hasWater() && hasSpace();
     }
+
     private void  useContent(){
         this.waterUese --;
         this.snowLevel --;
     }
+
     public void  fillSnow(){
         if (canFillSnow()){
             if (snowLevel < 20) {
@@ -286,6 +279,7 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
             }
         }
     }
+
     public void  fillWater(){
         if(this.stacks.get(WATERSLOT).getItem() == (Items.WATER_BUCKET)){
             this.removeItem(WATERSLOT, 1);
@@ -293,12 +287,15 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
             waterLevel += bucketValue;
         }
     }
+
     public boolean canFillWater() {
         return this.waterLevel < bucketValue * 10;
     }
+
     private boolean canFillSnow() {
         return this.snowLevel < 20;
     }
+
     public void setWaterUese(){
         if(this.waterLevel > 0){
             this.waterLevel -= bucketValue;
@@ -306,9 +303,11 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         }
 
     }
+
     private void resetProgress() {
         progress = 0;
     }
+
     private void increaseCraftingProgress() {
         progress++;
     }
@@ -316,21 +315,22 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
     private boolean hasProgressFinished() {
         return progress >= maxProgress;
     }
+
     private void craftItem() {
         ItemStack result = new ItemStack(Items.ICE, 1);
         this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
     }
+
     private boolean hasSpace(){
         return this.stacks.get(OUTPUTSLOT).getCount() < 64;
     }
+
     private boolean hasSnow() {
         return this.snowLevel >0;
     }
+
     public boolean hasWater() {
         return this.waterLevel >0 || this.waterUese > 0;
     }
-
-
-
 }

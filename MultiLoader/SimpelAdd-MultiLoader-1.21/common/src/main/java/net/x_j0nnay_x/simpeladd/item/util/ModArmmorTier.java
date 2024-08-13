@@ -14,12 +14,12 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
-
 import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
 
 public final class ModArmmorTier {
+
     public static final Holder<ArmorMaterial> OBSIDIANA;
     public static final Holder<ArmorMaterial> OBSIDIRITEA;
     public static final Holder<ArmorMaterial> UNOBTAINNETHERITE;
@@ -58,6 +58,7 @@ public final class ModArmmorTier {
             attribute.put(ArmorItem.Type.BODY, 55);
         }), 44, 4.2F, 0.22F, ModItems.UNOBTIANIUMSCRAP);
     }
+
     public static int getArmorDurabilityMultiplier(Holder<ArmorMaterial> material)
     {
         if (material == OBSIDIANA)
@@ -76,12 +77,10 @@ public final class ModArmmorTier {
         Holder<SoundEvent> equipSound = SoundEvents.ARMOR_EQUIP_NETHERITE;
         Supplier<Ingredient> ingredient = () -> Ingredient.of(ingredientItem);
         List<ArmorMaterial.Layer> layers = List.of(new ArmorMaterial.Layer(loc));
-
         EnumMap<ArmorItem.Type, Integer> typeMap = new EnumMap<>(ArmorItem.Type.class);
         for (ArmorItem.Type type : ArmorItem.Type.values()) {
             typeMap.put(type, typeProtections.get(type));
         }
-
         return Registry.registerForHolder(BuiltInRegistries.ARMOR_MATERIAL, loc, new ArmorMaterial(typeProtections, enchantability, equipSound, ingredient, layers, toughness, knockbackResistance));
     }
 }

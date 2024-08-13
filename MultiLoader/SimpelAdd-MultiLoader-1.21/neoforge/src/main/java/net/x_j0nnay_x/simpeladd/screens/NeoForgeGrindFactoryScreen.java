@@ -9,13 +9,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.menu.NeoForgeGrindFactoryMenu;
-import net.x_j0nnay_x.simpeladd.menu.NeoForgeGrinderMenu;
-
 import java.text.DecimalFormat;
 
-
 public class NeoForgeGrindFactoryScreen extends AbstractContainerScreen<NeoForgeGrindFactoryMenu> {
+
     private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, "textures/screens/grinder_factory_gui.png");
+
     public NeoForgeGrindFactoryScreen(NeoForgeGrindFactoryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
@@ -25,8 +24,8 @@ public class NeoForgeGrindFactoryScreen extends AbstractContainerScreen<NeoForge
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
-
     }
+
     @Override
     public void init() {
         super.init();
@@ -59,55 +58,64 @@ public class NeoForgeGrindFactoryScreen extends AbstractContainerScreen<NeoForge
             guiGraphics.blit(texture,  x + 45, y + 29, 177, 0, menu.getGrindScalledProgress1(), 3);
         }
     }
+
     private void renderGrindProgressArrow2(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isGrinding2()){
             guiGraphics.blit(texture,  x + 63, y + 29, 177, 0,  menu.getGrindScalledProgress2(), 3);
         }
     }
+
     private void renderGrindProgressArrow3(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isGrinding3()){
             guiGraphics.blit(texture,  x + 81, y + 29, 177, 0, menu.getGrindScalledProgress3(), 3);
         }
     }
+
     private void renderGrindProgressArrow4(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isGrinding4()){
             guiGraphics.blit(texture,  x + 99, y + 29, 177, 0,  menu.getGrindScalledProgress4(), 3);
         }
     }
+
     private void renderFurnProgressArrow1(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isSmelting1()){
             guiGraphics.blit(texture,  x + 45, y + 50, 177, 3, menu.getFurnScalledProgress1(), 3);
         }
     }
+
     private void renderFurnProgressArrow2(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isSmelting2()){
             guiGraphics.blit(texture,  x + 63, y + 50, 177, 3,  menu.getFurnScalledProgress2(), 3);
         }
     }
+
     private void renderFurnProgressArrow3(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isSmelting3()){
             guiGraphics.blit(texture,  x + 81, y + 50, 177, 3,  menu.getFurnScalledProgress3(), 3);
         }
     }
+
     private void renderFurnProgressArrow4(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isSmelting4()){
             guiGraphics.blit(texture,  x + 99, y + 50, 177, 3, menu.getFurnScalledProgress4(), 3);
         }
     }
+
     private void  renderGrindsLeft(GuiGraphics guiGraphics, int x, int y){
         String gl = Integer.toString(menu.getGrindsLeft());
         String title = Component.translatable("gui.simpeladdmod.grinder_gui.grinds_left").getString();
         guiGraphics.drawString(font, title + gl, x + 124,  y + 5, ChatFormatting.DARK_GRAY.getColor());
     }
+
     private void  renderFuelLeft(GuiGraphics guiGraphics, int x, int y){
         int fuel = menu.getFuleLeft();
         DecimalFormat format = new DecimalFormat("#,###.#");
         String glp = format.format(fuel);
         String title = Component.translatable("gui.simpeladdmod.upgrade_furnace_gui.fuel_left").getString();
-
         guiGraphics.drawString(font, title, x + 124,  y + 28, ChatFormatting.DARK_GRAY.getColor());
         guiGraphics.drawString(font, glp, x + 124,  y + 38, ChatFormatting.DARK_GRAY.getColor());
     }
+
     private void  renderXPlevle(GuiGraphics guiGraphics, int x, int y){
         int xp = menu.getXPStored();
         DecimalFormat format = new DecimalFormat("#,###");
@@ -116,12 +124,9 @@ public class NeoForgeGrindFactoryScreen extends AbstractContainerScreen<NeoForge
         guiGraphics.drawString(font, title, x + 68,  y + 73, ChatFormatting.DARK_GRAY.getColor());
         guiGraphics.drawString(font, glp, x + 84,  y + 73, ChatFormatting.DARK_GRAY.getColor());
     }
-
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int i, int j) {
         guiGraphics.drawString(this.font, this.title, this.titleLabelX - 2, this.titleLabelY - 3, 4210752, false);
         guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
     }
-
-
 }

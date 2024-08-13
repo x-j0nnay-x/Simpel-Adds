@@ -16,7 +16,9 @@ import net.x_j0nnay_x.simpeladd.menu.ForgeGrinderMenu_up;
 import org.jetbrains.annotations.Nullable;
 
 public class ForgeGrinderBlockEntity_Up extends Abst_GrinderBlockEntity_Up {
+
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+
     public ForgeGrinderBlockEntity_Up(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesForge.GRINDER_UP.get(), $$1, $$2);
     }

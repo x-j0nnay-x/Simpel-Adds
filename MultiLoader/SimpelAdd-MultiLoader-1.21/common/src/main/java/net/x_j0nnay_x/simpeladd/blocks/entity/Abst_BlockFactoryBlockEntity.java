@@ -1,42 +1,38 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerChunkCache;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
-import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
+import net.x_j0nnay_x.simpeladd.data.OutPutSlotChange;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer{
 
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(7, ItemStack.EMPTY);
-
     public static int WATERSLOT = 5;
     public static int LAVASLOT = 6;
     public static int GRINDERSLOT = 0;
@@ -48,6 +44,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     private static final int[] SLOTS_FOR_DOWN = new int[]{WATERSLOT, LAVASLOT, COBBLESLOT, SANDSLOT, GRAVALSLOT, OBSIDIANSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{WATERSLOT, LAVASLOT};
     protected final ContainerData data;
+    private int makingItem;
     private int progress = 0;
     private int maxProgress = 35;
     private int grindsleft = 0;
@@ -57,14 +54,12 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public int lavaLevel = 0;
     public int waterLevel = 0;
     public int outPutSlot = 4;
-
-
+    public OutPutSlotChange SlotOutPut = OutPutSlotChange.OBSIDIAN;
+    public int canExtractOutput = 1;
     private int bucketValue = 1000;
-
 
     protected Abst_BlockFactoryBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
-
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -76,6 +71,9 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     case 4 -> Abst_BlockFactoryBlockEntity.this.waterLevel;
                     case 5 -> Abst_BlockFactoryBlockEntity.this.lavaLevel;
                     case 6 -> Abst_BlockFactoryBlockEntity.this.outPutSlot;
+                    case 7 -> Abst_BlockFactoryBlockEntity.this.SlotOutPut.ordinal();
+                    case 8 -> Abst_BlockFactoryBlockEntity.this.canExtractOutput;
+                    case 9 -> Abst_BlockFactoryBlockEntity.this.makingItem;
                     default -> 0;
                 };
             }
@@ -90,17 +88,18 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     case 4 -> Abst_BlockFactoryBlockEntity.this.waterLevel = pValue;
                     case 5 -> Abst_BlockFactoryBlockEntity.this.lavaLevel = pValue;
                     case 6 -> Abst_BlockFactoryBlockEntity.this.outPutSlot = pValue;
+                    case 7 -> Abst_BlockFactoryBlockEntity.this.SlotOutPut = OutPutSlotChange.values()[pValue];
+                    case 8 -> Abst_BlockFactoryBlockEntity.this.canExtractOutput = pValue;
+                    case 9 -> Abst_BlockFactoryBlockEntity.this.makingItem = pValue;
                 }
             }
 
             @Override
             public int getCount() {
-                return 7;
+                return 10;
             }
         };
     }
-
-
 
     @Override
     protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
@@ -113,18 +112,24 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         this.lavaLevel = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel");
         this.waterLevel = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel");
         this.outPutSlot = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactory_outputslot");
+        this.makingItem = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactory_making");
+        this.SlotOutPut = OutPutSlotChange.values()[pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactory_outputslot_data")];
+        this.canExtractOutput = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactory_allow_output");
     }
 
     @Override
-    protected void saveAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
-        super.saveAdditional($$0,pRegistries);
-        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_progress", this.progress);
-        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left", this.grindsleft);
-        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses", this.lavaUses);
-        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel", this.lavaLevel);
-        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel", this.waterLevel);
-        $$0.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_outputslot", this.outPutSlot);
-        ContainerHelper.saveAllItems($$0, this.stacks, pRegistries);
+    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+        super.saveAdditional(pTag,pRegistries);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_progress", this.progress);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left", this.grindsleft);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses", this.lavaUses);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel", this.lavaLevel);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel", this.waterLevel);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_outputslot", this.outPutSlot);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_making", this.makingItem);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_outputslot_data", this.SlotOutPut.ordinal());
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_allow_output", this.canExtractOutput);
+        ContainerHelper.saveAllItems(pTag, this.stacks, pRegistries);
     }
 
     @Override
@@ -150,9 +155,10 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     return true;
                 }
             }
-           // if(index == outPutSlot){
-           //     return true;
-           // }
+            if(index == outPutSlot && this.canExtractOutput == 1){
+                return true;
+            }
+            return false;
         }
         return false;
     }
@@ -184,8 +190,6 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public ItemStack removeItemNoUpdate(int var1) {
         return ContainerHelper.takeItem(this.stacks, var1);
     }
-
-
 
     @Override
     public void setItem(int var1, ItemStack var2) {
@@ -221,7 +225,6 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         this.stacks.clear();
     }
 
-
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
@@ -232,10 +235,9 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         return Component.translatable("block.simpeladdmod.blockfactory_block");
     }
 
-    public ContainerData getData() {
-        return data;
+    public ContainerData getData(int index) {
+        return this.data;
     }
-
 
 
     @Nullable
@@ -246,28 +248,27 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
-        return  this.saveWithFullMetadata(pRegistries);
+        CompoundTag updateCompoundTag = new CompoundTag();
+        saveAdditional(updateCompoundTag, pRegistries);
+        return updateCompoundTag;
     }
-    //Processing
-
+//Processing
     public void blockFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
+        setBlockOuput();
         if (canFillWater()) {
             fillWater();
         }
         if (canFillLava()) {
             fillLava();
         }
-
-
         pState = pState.setValue(Abst_BlockFactoryBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
-        if (hasLiquid()) {
-            if (!isFull()) {
+        if (hasLiquid() && !isFull()) {
                 increaseCraftingProgress();
                 setChanged(pLevel, pPos, pState);
                 if (CobbleSpace()) {
                     if (hasProgressFinished()) {
-                        makeCobble();
+                        craftItems();
                         resetProgress();
                     }
                 }
@@ -275,14 +276,14 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     if (GravalSpace() && !CobbleSpace()) {
                         if (hasProgressFinished()) {
                             useGrind();
-                            makeGraval();
+                            craftItems();
                             resetProgress();
                         }
                     }
                     if (SandSpace() && !GravalSpace() && !CobbleSpace()) {
                         if (hasProgressFinished()) {
                             useGrind();
-                            makeSand();
+                            craftItems();
                             resetProgress();
                         }
                     }
@@ -292,7 +293,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                 if (ObslidanSpace() && !SandSpace() && !GravalSpace() && !CobbleSpace()) {
                     if (this.lavaUses > 0) {
                         if (hasProgressFinished()) {
-                            makeObsidain();
+                            craftItems();
                             useLava();
                             resetProgress();
                         }
@@ -306,11 +307,8 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                 if (this.grindsleft == 0 && !isFull() && !CobbleSpace()) {
                     resetProgress();
                 }
-            }
         }
     }
-
-
     private void useGrind() {
         this.grindsleft--;
     }
@@ -370,28 +368,42 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         return this.progress >= this.maxProgress;
     }
 
-    private void makeCobble() {
-        ItemStack result = new ItemStack(Items.COBBLESTONE, 1);
-        this.stacks.set(COBBLESLOT, new ItemStack(result.getItem(),
-                this.stacks.get(COBBLESLOT).getCount() + result.getCount()));
+    private void setBlockOuput(){
+        if(CobbleSpace()){
+            this.makingItem = 1;
+        }
+        if(!CobbleSpace() && GravalSpace()){
+            this.makingItem = 2;
+        }
+        if(!CobbleSpace() && !GravalSpace() && SandSpace()){
+            this.makingItem = 3;
+        }
+        if(!CobbleSpace() && !GravalSpace() && !SandSpace() && ObslidanSpace()){
+            this.makingItem = 4;
+        }
     }
 
-    private void makeGraval() {
-        ItemStack result = new ItemStack(Items.GRAVEL, 1);
-        this.stacks.set(GRAVALSLOT, new ItemStack(result.getItem(),
-                this.stacks.get(GRAVALSLOT).getCount() + result.getCount()));
-    }
-
-    private void makeSand() {
-        ItemStack result = new ItemStack(Items.SAND, 1);
-        this.stacks.set(SANDSLOT, new ItemStack(result.getItem(),
-                this.stacks.get(SANDSLOT).getCount() + result.getCount()));
-    }
-
-    private void makeObsidain() {
-        ItemStack result = new ItemStack(Items.OBSIDIAN, 1);
-        this.stacks.set(OBSIDIANSLOT, new ItemStack(result.getItem(),
-                this.stacks.get(OBSIDIANSLOT).getCount() + result.getCount()));
+    private void craftItems(){
+        if(this.makingItem ==1 ){
+            ItemStack result = new ItemStack(Items.COBBLESTONE, 1);
+            this.stacks.set(COBBLESLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(COBBLESLOT).getCount() + result.getCount()));
+        }
+        if(this.makingItem == 2){
+            ItemStack result = new ItemStack(Items.GRAVEL, 1);
+            this.stacks.set(GRAVALSLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(GRAVALSLOT).getCount() + result.getCount()));
+        }
+        if(this.makingItem == 3){
+            ItemStack result = new ItemStack(Items.SAND, 1);
+            this.stacks.set(SANDSLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(SANDSLOT).getCount() + result.getCount()));
+        }
+        if(this.makingItem == 4){
+            ItemStack result = new ItemStack(Items.OBSIDIAN, 1);
+            this.stacks.set(OBSIDIANSLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(OBSIDIANSLOT).getCount() + result.getCount()));
+        }
     }
 
     public boolean hasLiquid() {
@@ -420,7 +432,6 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
 
     public boolean canFillLava() {
         return lavaLevel < bucketValue * 6;
-
     }
 
     public void fillWater() {
@@ -431,12 +442,34 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         }
     }
 
-
     public void fillLava() {
         if (this.stacks.get(LAVASLOT).getItem() == (Items.LAVA_BUCKET)) {
             this.removeItem(LAVASLOT, 1);
             this.stacks.set(LAVASLOT, new ItemStack(Items.BUCKET));
             lavaLevel += bucketValue;
         }
+    }
+
+    public OutPutSlotChange getSlotOutPut() {
+        return this.SlotOutPut;
+    }
+
+    public void setSlotOutPut(OutPutSlotChange slotOutPut) {
+        this.SlotOutPut = slotOutPut;
+        this.syncData();
+    }
+
+    public void syncData() {
+        setChanged();
+        if (level instanceof ServerLevel serverLevel) {
+            LevelChunk chunk = serverLevel.getChunkAt(getBlockPos());
+            if (chunk.getLevel().getChunkSource() instanceof ServerChunkCache serverChunkCache) {
+                serverChunkCache.chunkMap.getPlayers(chunk.getPos(), false).forEach(this::syncContents);
+            }
+        }
+    }
+
+    public void syncContents(ServerPlayer player) {
+        player.connection.send(getUpdatePacket());
     }
 }

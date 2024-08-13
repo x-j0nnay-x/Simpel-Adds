@@ -7,8 +7,6 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
-
-
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 

@@ -1,11 +1,9 @@
 package net.x_j0nnay_x.simpeladd.core;
 
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,10 +14,12 @@ import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import java.util.function.Supplier;
 
 public class ModBlockRegForge {
+
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SimpelAddModForge.MODID);
 
     public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",() -> ModBlocks.DEEPSLATE_DEBRI_ORE);
+
     public static final RegistryObject<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",() -> ModBlocks.UNOBTANIUM_ORE);
 
     public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
@@ -56,6 +56,7 @@ public class ModBlockRegForge {
     public static void registerModBlocks(){
         SimpelAddModForge.LOGGER.info("Registering Mod Blocks for " + SimpelAddModForge.MODID);
     }
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }

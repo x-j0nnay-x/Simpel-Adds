@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.core;
 
-
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -18,7 +17,6 @@ public class ModTags {
     }
 
     public static class Items {
-
         public static final TagKey<Item> CANGRIND = tag("grindable");
         public static final TagKey<Item> GRINDERS = tag("grinders");
         public static final TagKey<Item> DUST = tag("dusts");

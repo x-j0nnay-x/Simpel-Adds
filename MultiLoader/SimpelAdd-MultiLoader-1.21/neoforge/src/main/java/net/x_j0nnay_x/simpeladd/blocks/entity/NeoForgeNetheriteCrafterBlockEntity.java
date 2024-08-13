@@ -1,15 +1,12 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.BlockPos;
-
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesNeoForge;
 import net.x_j0nnay_x.simpeladd.menu.NeoForgeNetheriteCrafterMenu;
-
 
 public class NeoForgeNetheriteCrafterBlockEntity extends Abst_NetheriteCrafterBlockEntity {
 
@@ -26,6 +23,4 @@ public class NeoForgeNetheriteCrafterBlockEntity extends Abst_NetheriteCrafterBl
     public void netheriteCrafterTick(Level pLevel, BlockPos pPos, BlockState pState) {
         super.netheriteCrafterTick(pLevel, pPos, pState);
     }
-
-
 }

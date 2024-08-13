@@ -13,6 +13,7 @@ import net.x_j0nnay_x.simpeladd.core.*;
 import org.jetbrains.annotations.NotNull;
 
 public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
+
     public  final NeoForgeFurnaceBlockEntity_Up blockEntity;
     private final Container inventory;
     private final Level level;
@@ -21,6 +22,7 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
     public NeoForgeFurnaceMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
     }
+
     public NeoForgeFurnaceMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuTypeNeoForge.UPGRADED_FURNACE_MENU.get(), pContainerID);
         checkContainerSize(inv, 12);
@@ -124,70 +126,75 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
                 return 1;
             }
         });
-
-
         addDataSlots(data);
     }
+
     public boolean isCrafting1(){
         return data.get(0) > 0 ;
     }
+
     public boolean isCrafting2(){
         return data.get(3) > 0 ;
     }
+
     public boolean isCrafting3(){
         return data.get(4) > 0 ;
     }
+
     public boolean isCrafting4(){
         return data.get(5) > 0 ;
     }
+
     public int getScalledProgress1(){
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress2(){
         int progress = this.data.get(3);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress3(){
         int progress = this.data.get(4);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress4(){
         int progress = this.data.get(5);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getFuleLeft(){
         int fuelLeft = this.data.get(2);
-
         return fuelLeft;
     }
+
     public int getXPStored(){
         int fuelLeft = this.data.get(6);
-
         return fuelLeft;
     }
-
-
-
 
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, ModBlockRegNeoForge.UPGRADED_FURNACE.get());
     }
+
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)
             for (int sj = 0; sj < 9; ++sj)
                 this.addSlot(new Slot(playerInventory, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
     }
+
     private void addPlayerHotbar(Inventory playerInventory){
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(playerInventory, si, 0 + 8 + si * 18, 0 + 142));
@@ -206,7 +213,6 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 12;  // must be the number of slots you have!
     @Override
@@ -215,7 +221,6 @@ public class NeoForgeFurnaceMenu_up extends AbstractContainerMenu {
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
-
         // Check if the slot clicked is one of the vanilla container slots
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory

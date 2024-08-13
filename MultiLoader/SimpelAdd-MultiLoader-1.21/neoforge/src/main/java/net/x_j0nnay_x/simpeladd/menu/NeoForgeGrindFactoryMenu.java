@@ -8,7 +8,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-
 import net.x_j0nnay_x.simpeladd.blocks.entity.NeoForgeGrindFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegNeoForge;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegNeoForge;
@@ -17,6 +16,7 @@ import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.NotNull;
 
 public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
+
     public  final NeoForgeGrindFactoryBlockEntity blockEntity;
     private final Container inventory;
     private final Level level;
@@ -25,6 +25,7 @@ public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
     public NeoForgeGrindFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(13));
     }
+
     public NeoForgeGrindFactoryMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuTypeNeoForge.GRIND_FACTORY_MENU.get(), pContainerID);
         checkContainerSize( inv, 18);
@@ -34,7 +35,6 @@ public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
-
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.GRINDERINSLOT1, 43, 12){
             @Override
             public boolean mayPlace(ItemStack stack) {
@@ -158,30 +158,36 @@ public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
                 return 1;
             }
         });
-
         addDataSlots(data);
     }
     public boolean isGrinding1(){
         return data.get(5) > 0 ;
     }
+
     public boolean isGrinding2(){
         return data.get(6) > 0 ;
     }
+
     public boolean isGrinding3(){
         return data.get(7) > 0 ;
     }
+
     public boolean isGrinding4(){
         return data.get(8) > 0 ;
     }
+
     public boolean isSmelting1(){
         return data.get(9) > 0 ;
     }
+
     public boolean isSmelting2(){
         return data.get(10) > 0 ;
     }
+
     public boolean isSmelting3(){
         return data.get(11) > 0 ;
     }
+
     public boolean isSmelting4(){
         return data.get(12) > 0 ;
     }
@@ -192,75 +198,83 @@ public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getGrindScalledProgress2(){
         int progress = this.data.get(6);
         int maxProgress = this.data.get(0);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getGrindScalledProgress3(){
         int progress = this.data.get(7);
         int maxProgress = this.data.get(0);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getGrindScalledProgress4(){
         int progress = this.data.get(8);
         int maxProgress = this.data.get(0);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getFurnScalledProgress1(){
         int progress = this.data.get(9);
         int maxProgress = this.data.get(0);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getFurnScalledProgress2(){
         int progress = this.data.get(10);
         int maxProgress = this.data.get(0);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getFurnScalledProgress3(){
         int progress = this.data.get(11);
         int maxProgress = this.data.get(0);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getFurnScalledProgress4(){
         int progress = this.data.get(12);
         int maxProgress = this.data.get(0);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getGrindsLeft(){
         int grindsLeft = this.data.get(1);
-
         return grindsLeft;
     }
 
-
     public int getFuleLeft(){
         int fuelLeft = this.data.get(2);
-
         return fuelLeft;
     }
+
     public int getXPStored(){
         int fuelLeft = this.data.get(3);
-
         return fuelLeft;
     }
+
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get());
     }
+
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)
             for (int sj = 0; sj < 9; ++sj)
                 this.addSlot(new Slot(playerInventory, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
     }
+
     private void addPlayerHotbar(Inventory playerInventory){
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(playerInventory, si, 0 + 8 + si * 18, 0 + 142));
@@ -279,7 +293,6 @@ public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 18;  // must be the number of slots you have!
     @Override
@@ -288,7 +301,6 @@ public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
-
         // Check if the slot clicked is one of the vanilla container slots
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory

@@ -2,18 +2,14 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricGrinderMenu_up;
-import net.x_j0nnay_x.simpeladd.util.data.BlockFactroyData;
 import net.x_j0nnay_x.simpeladd.util.data.Grinder_upData;
-
 
 public class FabricGrinderBlockEntity_Up extends Abst_GrinderBlockEntity_Up implements ExtendedScreenHandlerFactory<Grinder_upData>{
 
@@ -30,7 +26,6 @@ public class FabricGrinderBlockEntity_Up extends Abst_GrinderBlockEntity_Up impl
     public void grinderUpTick(Level pLevel, BlockPos pPos, BlockState pState) {
         super.grinderUpTick(pLevel, pPos, pState);
     }
-
 
     @Override
     public Grinder_upData getScreenOpeningData(ServerPlayer player) {

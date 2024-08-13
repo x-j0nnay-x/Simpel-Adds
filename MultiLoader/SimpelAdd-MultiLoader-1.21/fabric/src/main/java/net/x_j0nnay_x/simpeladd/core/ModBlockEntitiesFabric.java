@@ -1,19 +1,14 @@
 package net.x_j0nnay_x.simpeladd.core;
 
-
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.x_j0nnay_x.simpeladd.blocks.entity.*;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
-
 public class ModBlockEntitiesFabric {
-
 
 	public static final BlockEntityType<FabricBlockFactoryBlockEntity> BLOCK_FACTORY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
 			ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "block_factory"),
@@ -42,8 +37,6 @@ public class ModBlockEntitiesFabric {
 	public static final BlockEntityType<FabricFurnaceBlockEntity_Up> UPGRADED_FURNACE = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
 			ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "upgraded_furnace"),
 			FabricBlockEntityTypeBuilder.create(FabricFurnaceBlockEntity_Up::new, ModBlockRegFabric.UPGRADED_FURNACE).build());
-
-
 
 
 	public static void registerBlockEntities() {

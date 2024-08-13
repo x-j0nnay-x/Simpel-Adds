@@ -10,5 +10,4 @@ public record Grinder_upData(boolean empty) {
             Grinder_upData::empty,
             Grinder_upData::new
     );
-
 }

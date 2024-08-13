@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.menu;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -8,9 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricFurnaceBlockEntity_Up;
-import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
@@ -25,6 +22,7 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
     public FabricFurnaceMenu_up(int id, Inventory playerInventoryIn) {
         this( id, playerInventoryIn, new SimpleContainer(12), new SimpleContainerData(7));
     }
+
     public FabricFurnaceMenu_up(int pContainerID, Inventory inv, Container upFurnace, ContainerData data){
         super(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, pContainerID);
         checkContainerSize(inv, 12);
@@ -112,7 +110,6 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(ModTags.Items.UPGRADES);
                 }
-
                 @Override
                 public int getMaxStackSize() {
                     return 1;
@@ -123,71 +120,79 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(ModItemRegFabric.XPBOOSTUPGRADE);
                 }
-
                 @Override
                 public int getMaxStackSize() {
                     return 1;
                 }
             });
-
-
         addDataSlots(data);
     }
+
     public boolean isCrafting1(){
         return data.get(0) > 0 ;
     }
+
     public boolean isCrafting2(){
         return data.get(3) > 0 ;
     }
+
     public boolean isCrafting3(){
         return data.get(4) > 0 ;
     }
+
     public boolean isCrafting4(){
         return data.get(5) > 0 ;
     }
+
     public int getScalledProgress1(){
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress2(){
         int progress = this.data.get(3);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress3(){
         int progress = this.data.get(4);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getScalledProgress4(){
         int progress = this.data.get(5);
         int maxProgress = this.data.get(1);
         int progressAerrowSize = 12;
         return maxProgress != 0 && progress != 0 ? progress * progressAerrowSize / maxProgress : 0;
     }
+
     public int getFuleLeft(){
         int fuelLeft = this.data.get(2);
-
         return fuelLeft;
     }
+
     public int getXPStored(){
         int fuelLeft = this.data.get(6);
-
         return fuelLeft;
     }
+
     @Override
     public boolean stillValid(Player pPlayer) {
         return this.inventory.stillValid(pPlayer);
     }
+
     private void addPlayerInventory(Inventory playerInventory){
         for (int si = 0; si < 3; ++si)
             for (int sj = 0; sj < 9; ++sj)
                 this.addSlot(new Slot(playerInventory, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
     }
+
     private void addPlayerHotbar(Inventory playerInventory){
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(playerInventory, si, 0 + 8 + si * 18, 0 + 142));
@@ -206,7 +211,6 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 12;  // must be the number of slots you have!
     @Override
@@ -215,7 +219,6 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
-
         // Check if the slot clicked is one of the vanilla container slots
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory

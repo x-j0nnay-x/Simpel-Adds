@@ -5,11 +5,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.blocks.entity.*;
-
-
 
 public class ModBlockEntitiesForge {
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SimpelAddModForge.MODID);
@@ -34,6 +31,7 @@ public class ModBlockEntitiesForge {
 
 	public static final RegistryObject<BlockEntityType<ForgeFurnaceBlockEntity_Up>> UPGRADED_FURNACE = BLOCK_ENTITY.register("upgraded_furnace", () ->
 			BlockEntityType.Builder.of(ForgeFurnaceBlockEntity_Up::new, ModBlockRegForge.UPGRADED_FURNACE.get()).build(null));
+
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITY.register(eventBus);
 	}

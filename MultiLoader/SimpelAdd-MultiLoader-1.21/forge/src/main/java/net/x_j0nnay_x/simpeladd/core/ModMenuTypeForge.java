@@ -11,10 +11,11 @@ import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.menu.*;
 
-
 public class ModMenuTypeForge {
+
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, SimpelAddModForge.MODID);
+
     public static final  RegistryObject<MenuType<ForgeBlockFactoryMenu>> BLOCKFACTORY_MENU =
             registerMenuType("blockfactorymenu", ForgeBlockFactoryMenu::new);
 
@@ -39,9 +40,11 @@ public class ModMenuTypeForge {
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }
+
     public static void  register(IEventBus eventBus){
         MENUS.register(eventBus);
     }
+
     public static void registerModMenus(){
         SimpelAddModForge.LOGGER.info("Registering Mod Menus for " + SimpelAddModForge.MODID);
     }

@@ -16,7 +16,9 @@ import net.x_j0nnay_x.simpeladd.menu.ForgeFurnaceMenu_up;
 import org.jetbrains.annotations.Nullable;
 
 public class ForgeFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up {
+
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+
     public ForgeFurnaceBlockEntity_Up(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesForge.UPGRADED_FURNACE.get(), $$1, $$2);
     }

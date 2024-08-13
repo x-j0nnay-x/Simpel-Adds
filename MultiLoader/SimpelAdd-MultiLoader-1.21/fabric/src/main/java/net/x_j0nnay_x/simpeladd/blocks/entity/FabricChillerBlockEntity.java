@@ -9,11 +9,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricChillerMenu;
-import net.x_j0nnay_x.simpeladd.util.data.BlockFactroyData;
 import net.x_j0nnay_x.simpeladd.util.data.ChillerData;
 
 public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity implements ExtendedScreenHandlerFactory<ChillerData> {
-
 
     public FabricChillerBlockEntity(BlockPos $$1, BlockState $$2) {
         super(ModBlockEntitiesFabric.CHILLER, $$1, $$2);
@@ -24,13 +22,10 @@ public class FabricChillerBlockEntity extends Abst_ChillerBlockEntity implements
         return new FabricChillerMenu(i, inventory, this, this.data);
     }
 
-
     @Override
     public void chillerTick(Level pLevel, BlockPos pPos, BlockState pState) {
         super.chillerTick(pLevel, pPos, pState);
-
     }
-
 
     @Override
     public ChillerData getScreenOpeningData(ServerPlayer player) {

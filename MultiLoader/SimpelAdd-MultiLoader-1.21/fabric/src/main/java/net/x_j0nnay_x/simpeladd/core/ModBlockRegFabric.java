@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.core;
 
-
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -11,7 +10,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.x_j0nnay_x.simpeladd.blocks.*;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
-
 
 public class ModBlockRegFabric {
 
@@ -44,6 +42,7 @@ public class ModBlockRegFabric {
         registerBlockItem(name, block);
         return Registry.register(BuiltInRegistries.BLOCK,  ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, name), block);
     }
+
     private static Item registerBlockItem(String name, Block block){
         return Registry.register(BuiltInRegistries.ITEM,  ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, name), new BlockItem(block, new Item.Properties()));
     }

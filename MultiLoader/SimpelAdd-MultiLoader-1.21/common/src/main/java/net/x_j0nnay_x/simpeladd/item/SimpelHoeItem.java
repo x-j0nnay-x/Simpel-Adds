@@ -4,6 +4,7 @@ import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Tier;
 
 public class SimpelHoeItem extends HoeItem {
+
     public SimpelHoeItem(Tier tire, int attackDamage, float attackSpeed) {
         super(tire,new Properties().attributes(createAttributes(tire, attackDamage, attackSpeed)).fireResistant());
     }

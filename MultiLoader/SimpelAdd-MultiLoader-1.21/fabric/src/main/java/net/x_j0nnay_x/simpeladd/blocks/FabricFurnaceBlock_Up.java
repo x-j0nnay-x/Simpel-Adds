@@ -2,7 +2,6 @@ package net.x_j0nnay_x.simpeladd.blocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -19,13 +18,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class FabricFurnaceBlock_Up extends Abst_FurnaceBlock_Up {
     public static final MapCodec<FabricFurnaceBlock_Up> CODEC = simpleCodec(FabricFurnaceBlock_Up::new);
+
     public FabricFurnaceBlock_Up(Properties $$0) {
         super($$0);
     }
+
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -44,7 +46,6 @@ public class FabricFurnaceBlock_Up extends Abst_FurnaceBlock_Up {
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
-
 
     @Nullable
     @Override

@@ -100,8 +100,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         };
     }
 
-
-
     @Override
     public void loadAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.loadAdditional($$0, pRegistries);
@@ -113,7 +111,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         this.progress4 = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_progress4");
         this.grindsleft = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_grinds_left");
         this.grindEff = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_grinder_effec");
-
     }
 
     @Override
@@ -186,6 +183,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public ItemStack removeItemNoUpdate(int var1) {
         return ContainerHelper.takeItem(this.stacks, var1);
     }
+
     @Override
     public void setItem(int var1, ItemStack var2) {
         ItemStack $$2 = this.stacks.get(var1);
@@ -195,6 +193,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             var2.setCount(this.getMaxStackSize());
         }
     }
+
     @Override
     protected NonNullList<ItemStack> getItems() {
         return this.stacks;
@@ -213,24 +212,28 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             return var1 == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
         }
     }
+
     @Override
     public void clearContent() {
         this.stacks.clear();
     }
+
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.grinder_block_up");
     }
+
     public void sendUpdate() {
         setChanged();
-
         if (this.level != null)
             this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -240,9 +243,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return this.saveWithFullMetadata(pRegistries);
     }
-
-    //Processing
-
+ //Processing
     public void grinderUpTick(Level pLevel, BlockPos pPos, BlockState pState) {
         if(stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             this.hasBoost = 1;
@@ -262,7 +263,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         if(hasItemInFirtsSlot() && !areStackEqual1to2()){
             moveItemFrom1to2();
         }
-
         if(hasItemInSecondSlot() && !areStackEqual2to3()){
             moveItemFrom2to3();
         }
@@ -314,9 +314,11 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             resetProgressAll();
         }
     }
+
     private void resetGrindEff(){
         this.grindEff = 5;
     }
+
     private void useGrind(){
         if (this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             if (this.grindEff > 0) {
@@ -329,6 +331,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             this.grindsleft--;
         }
     }
+
     private void resetGrinds() {
         if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
             if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
@@ -345,9 +348,11 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private boolean hasItemInFirtsSlot(){
         return this.stacks.get(INPUTSLOT1).getCount() >= 2;
     }
+
     private boolean hasItemInSecondSlot(){
         return this.stacks.get(INPUTSLOT2).getCount() >= 2;
     }
+
     private boolean hasItemInThirdSlot(){
         return this.stacks.get(INPUTSLOT3).getCount() >= 2;
     }
@@ -355,15 +360,19 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private boolean areStackEqual1to2(){
         return this.stacks.get(INPUTSLOT1).getCount() <= this.stacks.get(INPUTSLOT2).getCount();
     }
+
     private boolean areStackEqual2to3(){
         return this.stacks.get(INPUTSLOT2).getCount() <= this.stacks.get(INPUTSLOT3).getCount();
     }
+
     private boolean areStackEqual3to4(){
         return this.stacks.get(INPUTSLOT3).getCount() <= this.stacks.get(INPUTSLOT4).getCount();
     }
+
     private boolean isItemSameSlot2(){
         return this.stacks.get(INPUTSLOT1).getItem() == this.stacks.get(INPUTSLOT2).getItem() || this.stacks.get(INPUTSLOT2).isEmpty();
     }
+
     private boolean isItemSameSlot3(){
         return this.stacks.get(INPUTSLOT2).getItem() == this.stacks.get(INPUTSLOT3).getItem() || this.stacks.get(INPUTSLOT3).isEmpty();
     }
@@ -371,13 +380,13 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private boolean isItemSameSlot4(){
         return this.stacks.get(INPUTSLOT3).getItem() == this.stacks.get(INPUTSLOT4).getItem() || this.stacks.get(INPUTSLOT4).isEmpty();
     }
+
     private void moveItemFrom1to2(){
         if(isItemSameSlot2()){
             ItemStack item = this.stacks.get(INPUTSLOT1);
             this.removeItem(INPUTSLOT1, 1);
             this.stacks.set(INPUTSLOT2, new ItemStack(item.getItem(),
                     this.stacks.get(INPUTSLOT2).getCount() + 1));}
-
     }
     private void moveItemFrom2to3(){
         if(isItemSameSlot3()){
@@ -385,7 +394,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             this.removeItem(INPUTSLOT2, 1);
             this.stacks.set(INPUTSLOT3, new ItemStack(item.getItem(),
                     this.stacks.get(INPUTSLOT3).getCount() + 1));}
-
     }
 
     private void moveItemFrom3to4(){
@@ -413,56 +421,55 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private void resetProgress1() {
         this.progress1 = 0;
     }
+
     private void resetProgress2() {
         this.progress2 = 0;
     }
+
     private void resetProgress3() {
         this.progress3 = 0;
     }
+
     private void resetProgress4() {
         this.progress4 = 0;
     }
-    private void increaseCraftingProgress1() {
 
+    private void increaseCraftingProgress1() {
         this.progress1++;
     }
-    private void increaseCraftingProgress2() {
 
+    private void increaseCraftingProgress2() {
         this.progress2++;
     }
-    private void increaseCraftingProgress3() {
 
+    private void increaseCraftingProgress3() {
         this.progress3++;
     }
-    private void increaseCraftingProgress4() {
 
+    private void increaseCraftingProgress4() {
         this.progress4++;
     }
 
     private boolean hasProgressFinished1() {
-
         return this.progress1 >= this.maxProgress;
-
     }
+
     private boolean hasProgressFinished2() {
-
         return this.progress2 >= this.maxProgress;
-
     }
+
     private boolean hasProgressFinished3() {
-
         return this.progress3 >= this.maxProgress;
-
     }
+
     private boolean hasProgressFinished4() {
-
         return this.progress4 >= this.maxProgress;
-
     }
 
     private RecipeHolder<? extends GrinderRecipe> getRecipeNonCached(ItemStack itemStack) {
         return this.recipeCheckGrinding.getRecipeFor(new SingleRecipeInput(itemStack), this.level).orElse(null);
     }
+
     private  void craftItem(@Nullable RecipeHolder<?> recipe, int slot){
         int outputSlot = slot + 4;
         if (recipe != null && this.hasRecipe(recipe, slot)) {
@@ -474,7 +481,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             } else if (itemstack2.getItem() == itemstack1.getItem()) {
                 itemstack2.grow(itemstack1.getCount());
             }
-
             itemstack.shrink(1);
         }
     }

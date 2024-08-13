@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -16,7 +15,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,10 +40,8 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     private int blazeUse = 0;
     private int  maxBlazeuse = 4;
 
-
     protected Abst_NetheriteCrafterBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
-
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -74,8 +70,6 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
             }
         };
     }
-
-
 
     @Override
     public void loadAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
@@ -160,6 +154,7 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     public ItemStack removeItemNoUpdate(int var1) {
         return ContainerHelper.takeItem(this.stacks, var1);
     }
+
     @Override
     public void setItem(int var1, ItemStack var2) {
         ItemStack $$2 = this.stacks.get(var1);
@@ -187,14 +182,17 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
             return var1 == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
         }
     }
+
     @Override
     public void clearContent() {
         this.stacks.clear();
     }
+
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.netherite_crafter_block");
@@ -205,15 +203,11 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
         return this.saveWithFullMetadata(pRegistries);
     }
 
-
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
-
-
 //Processing
-
     public void netheriteCrafterTick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
             this.maxProgress = 60;
@@ -234,20 +228,20 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
                     craftItem();
                     resetProgress();
                 }
-
             }else {
                 refillBlaze();
             }
         }else{
             resetProgress();
         }
-
     }
+
     private void  useContent(){
         this.removeItem(SCRAPSLOT, 1);
         this.removeItem(GOLDSLOT, 1);
         blazeUse --;
     }
+
     private void  refillBlaze(){
         if(this.stacks.get(BLAZESLOT).is(Items.BLAZE_ROD)) {
             this.removeItem(BLAZESLOT, 1);
@@ -255,24 +249,26 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
         }else{
             blazeUse = 0;
         }
-
-
     }
+
     private boolean isWorking(){
         if(hasRecipe() && blazeUse > 0){
             return true;
         }
         return false;
     }
+
     private boolean hasRecipe(){
         if(this.stacks.get(SCRAPSLOT).is(Items.NETHERITE_SCRAP) && this.stacks.get(GOLDSLOT).is(Items.GOLD_INGOT)){
             return true;
         }
         return false;
     }
+
     private void resetProgress() {
         progress = 0;
     }
+
     private void increaseCraftingProgress() {
         progress++;
     }
@@ -280,15 +276,14 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     private boolean hasProgressFinished() {
         return progress >= maxProgress;
     }
-    private void craftItem() {
 
+    private void craftItem() {
         ItemStack result = new ItemStack(Items.NETHERITE_INGOT, 1);
         this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
     }
+
     private boolean hasSpace(){
         return this.stacks.get(OUTPUTSLOT).getCount() < 64;
     }
-
-
 }

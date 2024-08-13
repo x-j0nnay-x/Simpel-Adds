@@ -10,5 +10,4 @@ public record ChillerData(boolean empty) {
             ChillerData::empty,
             ChillerData::new
     );
-
 }

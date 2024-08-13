@@ -10,5 +10,4 @@ public record Up_furnaceData(boolean empty) {
             Up_furnaceData::empty,
             Up_furnaceData::new
     );
-
 }

@@ -12,44 +12,43 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-
 import net.x_j0nnay_x.simpeladd.blocks.entity.ForgeGrindFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesForge;
 import org.jetbrains.annotations.Nullable;
 
 public class ForgeGrindFactoryBlock extends Abst_GrindFactoryBlock {
+
     public static final MapCodec<ForgeGrindFactoryBlock> CODEC = simpleCodec(ForgeGrindFactoryBlock::new);
+
     public ForgeGrindFactoryBlock(Properties $$0) {
         super($$0);
     }
+
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new ForgeGrindFactoryBlockEntity(blockPos, blockState);
     }
+
     @Override
     public InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
-
         if (!(be instanceof ForgeGrindFactoryBlockEntity blockEntity))
             return InteractionResult.PASS;
-
         if (pLevel.isClientSide())
             return InteractionResult.SUCCESS;
-
         // open screen
         if(pPlayer instanceof ServerPlayer sPlayer) {
             sPlayer.openMenu(blockEntity, pPos);
         }else {
             throw  new IllegalStateException("Grind Factory Container Provider is missing");
         }
-
         return InteractionResult.CONSUME;
-
     }
 
     @Nullable

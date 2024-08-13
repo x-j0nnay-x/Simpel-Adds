@@ -11,7 +11,6 @@ import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricGrindFactoryMenu;
 import net.x_j0nnay_x.simpeladd.util.data.Grind_FactoryData;
 
-
 public class FabricGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntity implements ExtendedScreenHandlerFactory<Grind_FactoryData>{
 
     public FabricGrindFactoryBlockEntity(BlockPos $$1, BlockState $$2) {
@@ -27,7 +26,6 @@ public class FabricGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntity 
     public void grindFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
         super.grindFactoryTick(pLevel, pPos, pState);
     }
-
 
     @Override
     public Grind_FactoryData getScreenOpeningData(ServerPlayer player) {

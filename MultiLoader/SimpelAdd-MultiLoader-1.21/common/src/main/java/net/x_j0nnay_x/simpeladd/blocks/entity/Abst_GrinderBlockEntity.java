@@ -1,32 +1,26 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.x_j0nnay_x.simpeladd.blocks.Abst_GrinderBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
-import java.util.Optional;
 
 public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
@@ -48,11 +42,9 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     private int grindEff = 5;
     private int hasBoost = 0;
 
-
     protected Abst_GrinderBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
         this.recipeCheckGrinder = RecipeManager.createCheck(GrinderRecipe.Type.INSTANCE);
-
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -86,8 +78,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         };
     }
 
-
-
     @Override
     public void loadAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.loadAdditional($$0, pRegistries);
@@ -96,7 +86,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         this.progress = $$0.getInt(SimpelAddMod.MODCUSTOM +"grinder_progress");
         this.grindsleft = $$0.getInt(SimpelAddMod.MODCUSTOM +"grinder_grinds_left");
         this.grindEff = $$0.getInt(SimpelAddMod.MODCUSTOM +"grinder_effec");
-
     }
 
     @Override
@@ -160,6 +149,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public ItemStack removeItemNoUpdate(int var1) {
         return ContainerHelper.takeItem(this.stacks, var1);
     }
+
     @Override
     public void setItem(int var1, ItemStack var2) {
         ItemStack $$2 = this.stacks.get(var1);
@@ -169,6 +159,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             var2.setCount(this.getMaxStackSize());
         }
     }
+
     @Override
     protected NonNullList<ItemStack> getItems() {
         return this.stacks;
@@ -191,10 +182,12 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public void clearContent() {
         this.stacks.clear();
     }
+
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.grinder_block");
@@ -209,11 +202,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return this.saveWithFullMetadata(pRegistries);
     }
-
-
-
 //Processing
-
     public void grinderTick(Level pLevel, BlockPos pPos, BlockState pState) {
         if(this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             this.hasBoost = 1;
@@ -245,15 +234,15 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             }else{
                 resetGrinds();
             }
-
         }else {
-
             resetProgress();
         }
     }
+
     private void resetGrindEff(){
         this.grindEff = 5;
     }
+
     private void useGrind(){
         if (this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             if (this.grindEff > 0) {
@@ -266,6 +255,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             this.grindsleft--;
         }
     }
+
     private void resetGrinds() {
         if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
             if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
@@ -287,18 +277,19 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         }
         return false;
     }
+
     private void resetProgress() {
         this.progress = 0;
     }
+
     private void increaseCraftingProgress() {
         this.progress++;
     }
 
     private boolean hasProgressFinished() {
-
         return this.progress >= this.maxProgress;
-
     }
+
     private RecipeHolder<? extends GrinderRecipe> getRecipeNonCached(ItemStack itemStack) {
         return this.recipeCheckGrinder.getRecipeFor(new SingleRecipeInput(itemStack), this.level).orElse(null);
     }
@@ -314,7 +305,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             } else if (itemstack2.getItem() == itemstack1.getItem()) {
                 itemstack2.grow(itemstack1.getCount());
             }
-
             itemstack.shrink(1);
         }
     }
@@ -332,5 +322,4 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         }
         return false;
     }
-
 }

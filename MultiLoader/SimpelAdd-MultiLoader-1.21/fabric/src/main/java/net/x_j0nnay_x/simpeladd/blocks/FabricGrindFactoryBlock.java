@@ -18,13 +18,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class FabricGrindFactoryBlock extends Abst_GrindFactoryBlock {
     public static final MapCodec<FabricGrindFactoryBlock> CODEC = simpleCodec(FabricGrindFactoryBlock::new);
+
     public FabricGrindFactoryBlock(Properties $$0) {
         super($$0);
     }
+
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -35,17 +38,14 @@ public class FabricGrindFactoryBlock extends Abst_GrindFactoryBlock {
     public InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         if (!pLevel.isClientSide()){
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-
             if(entity instanceof FabricGrindFactoryBlockEntity){
                 pPlayer.openMenu((MenuProvider)entity);
             }else {
-
                 throw  new IllegalStateException("Grinder Factory Container Provider is missing");
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
-
 
     @Nullable
     @Override

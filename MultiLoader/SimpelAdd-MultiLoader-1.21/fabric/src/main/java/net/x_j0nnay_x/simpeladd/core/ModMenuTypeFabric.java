@@ -1,7 +1,5 @@
 package net.x_j0nnay_x.simpeladd.core;
 
-
-
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -11,9 +9,7 @@ import net.x_j0nnay_x.simpeladd.menu.*;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 import net.x_j0nnay_x.simpeladd.util.data.*;
 
-
 public class ModMenuTypeFabric {
-
 
     public static final MenuType<FabricBlockFactoryMenu> BLOCKFACTORY_MENU =
             Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "blockfactorymenu"),
@@ -50,13 +46,7 @@ public class ModMenuTypeFabric {
                 new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
                     new FabricFurnaceMenu_up(pWindowID,pInventory), Up_furnaceData.CODEC));
 
-
-
-
-
     public static void registerScreenHandlers() {
         SimpelAddModFabric.LOGGER.info("Registering Screen Handlers for " + SimpelAddModFabric.MODID);
     }
-
-
 }

@@ -9,14 +9,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.menu.NeoForgeFurnaceMenu_up;
-
-
 import java.text.DecimalFormat;
 
-
 public class NeoForgeFurnaceScreen_up extends AbstractContainerScreen<NeoForgeFurnaceMenu_up> {
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, "textures/screens/upgrade_furnace_gui.png");
 
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, "textures/screens/upgrade_furnace_gui.png");
 
     public NeoForgeFurnaceScreen_up(NeoForgeFurnaceMenu_up pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -27,14 +24,11 @@ public class NeoForgeFurnaceScreen_up extends AbstractContainerScreen<NeoForgeFu
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
-
-
     }
+
     @Override
     public void init() {
         super.init();
-
-
     }
 
     @Override
@@ -59,37 +53,40 @@ public class NeoForgeFurnaceScreen_up extends AbstractContainerScreen<NeoForgeFu
             guiGraphics.blit(texture,  x + 69, y + 37, 177, 0, 4 ,menu.getScalledProgress1());
         }
     }
+
     private void renderProgressArrow2(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting2()){
             guiGraphics.blit(texture,  x + 87, y + 37, 177, 0, 4, menu.getScalledProgress2());
         }
     }
+
     private void renderProgressArrow3(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting3()){
             guiGraphics.blit(texture,  x + 105, y + 37, 177, 0, 4, menu.getScalledProgress3());
         }
     }
+
     private void renderProgressArrow4(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting4()){
             guiGraphics.blit(texture,  x + 123, y + 37, 177, 0, 4, menu.getScalledProgress4());
         }
     }
+
     private void  renderFuelLeft(GuiGraphics guiGraphics, int x, int y){
         int fuel = menu.getFuleLeft();
         DecimalFormat format = new DecimalFormat("#,###.#");
         String glp = format.format(fuel);
         String title = Component.translatable("gui.simpeladdmod.upgrade_furnace_gui.fuel_left").getString();
-
         guiGraphics.drawString(font, title, x + 5,  y + 18, ChatFormatting.DARK_GRAY.getColor());
         guiGraphics.drawString(font, glp, x + 5,  y + 28, ChatFormatting.DARK_GRAY.getColor());
     }
+
     private void  renderXPlevle(GuiGraphics guiGraphics, int x, int y){
         int xp = menu.getXPStored();
         DecimalFormat format = new DecimalFormat("#,###");
         String glp = format.format(xp);
-                String title = Component.translatable("gui.simpeladdmod.upgrade_furnace_gui.xp_stored").getString();
+        String title = Component.translatable("gui.simpeladdmod.upgrade_furnace_gui.xp_stored").getString();
         guiGraphics.drawString(font, title, x + 68,  y + 73, ChatFormatting.DARK_GRAY.getColor());
         guiGraphics.drawString(font, glp, x + 84,  y + 73, ChatFormatting.DARK_GRAY.getColor());
     }
-
 }
