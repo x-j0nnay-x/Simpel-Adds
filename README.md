@@ -1,6 +1,6 @@
 ![LogoSimpelAdd.png](LogoSimpelAdd.png)
 
-## SimpleAdd Mod Info
+## SimpelAdd Mod Info
 just a simpel mod that add a vanilla feeling tech aspect to minecraft. useful crafts and doubling or 6X ore production with an ability to automate it all.
 
 This mod does not use FE on any of its automation blocks, this was done to hold true to vanilla and make things feel more advanced without changing the way the game plays.
