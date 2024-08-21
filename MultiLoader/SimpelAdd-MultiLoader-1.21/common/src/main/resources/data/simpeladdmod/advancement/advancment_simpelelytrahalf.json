@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "simpeladdmod:simpel_elitra_half"
+    },
+    "title": {
+      "translate": "advancements.simpeladdmod.simpel_elitra_half.title"
+    },
+    "description": {
+      "translate": "advancements.simpeladdmod.simpel_elitra_half.descrip"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "advancment_simpelelytrahalf": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simpeladdmod:simpel_elitra_half"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simpeladdmod:advancment_simpelelytrapart2"
+}

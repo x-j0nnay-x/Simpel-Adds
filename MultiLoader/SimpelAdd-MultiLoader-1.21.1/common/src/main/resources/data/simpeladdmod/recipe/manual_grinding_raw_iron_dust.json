@@ -1,0 +1,27 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "pattern":
+  [
+    "x",
+    "z"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:raw_iron"
+    },
+    "x":
+    {
+      "tag": "simpeladdmod:grinders"
+    }
+
+  },
+  "result":
+  {
+    "id": "simpeladdmod:irondust",
+    "count":2
+  }
+}

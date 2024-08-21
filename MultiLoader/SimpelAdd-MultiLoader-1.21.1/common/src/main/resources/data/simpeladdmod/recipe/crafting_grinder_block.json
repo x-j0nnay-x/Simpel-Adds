@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "zxz",
+    "v v",
+    "zzz"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:cobblestone"
+    },
+    "v":
+    {
+      "item": "minecraft:grindstone"
+    },
+    "x":
+    {
+      "item": "minecraft:iron_ingot"
+    }
+
+  },
+  "result":
+  {
+    "id": "simpeladdmod:grinder_block",
+    "count":1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "pattern": [
+    "x",
+    "z"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    "x":
+    {
+      "tag": "simpeladdmod:grinders"
+    }
+
+  },
+  "result":
+  {
+    "id": "minecraft:blaze_powder",
+    "count":3
+  }
+}

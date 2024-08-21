@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "vxc",
+    "vzc",
+    "v c"
+  ],
+
+  "key":
+  {
+    "v":
+    {
+      "item": "minecraft:gravel"
+    },
+    "c":
+    {
+      "item": "minecraft:sand"
+    },
+    "z":
+  {
+    "item": "minecraft:water_bucket"
+  },
+    "x":
+    {
+      "item": "simpeladdmod:grinderhead"
+    }
+
+  },
+  "result":
+  {
+    "id": "minecraft:clay",
+    "count":8
+  }
+}

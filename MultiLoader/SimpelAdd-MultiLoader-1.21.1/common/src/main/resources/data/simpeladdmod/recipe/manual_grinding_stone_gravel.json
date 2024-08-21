@@ -1,0 +1,27 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "pattern": [
+    "zzz",
+    "zxz",
+    "zzz"
+  ],
+
+  "key":
+  {
+    "z":
+    {
+      "item": "minecraft:cobblestone"
+    },
+    "x":
+    {
+      "tag": "simpeladdmod:grinders"
+    }
+
+  },
+  "result":
+  {
+    "id": "minecraft:gravel",
+    "count":8
+  }
+}
