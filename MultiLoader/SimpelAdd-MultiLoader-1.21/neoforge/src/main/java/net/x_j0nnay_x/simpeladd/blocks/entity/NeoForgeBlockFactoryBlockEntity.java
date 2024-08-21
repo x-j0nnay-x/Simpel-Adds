@@ -24,7 +24,5 @@ public class NeoForgeBlockFactoryBlockEntity extends Abst_BlockFactoryBlockEntit
         super.blockFactoryTick(pLevel, pPos, pState);
     }
 
-    public void setData(int data, int set) {
-        this.data.set(data, set);
-    }
+
 }

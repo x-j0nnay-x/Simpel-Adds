@@ -12,7 +12,7 @@ public class SimpelAddMod {
     public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
     public static final String LOGNAME = "Simpel add mod log name";
     public static final String LOG_REGISTER_PREFIX = "Register " + LOGNAME;
-
+    
     public static void init() {
         LOG.info("Hello from Common init on {}! we are currently in a {} environment!", Services.PLATFORM.getPlatformName(), Services.PLATFORM.getEnvironmentName());
         if (Services.PLATFORM.isModLoaded(MOD_ID)) {

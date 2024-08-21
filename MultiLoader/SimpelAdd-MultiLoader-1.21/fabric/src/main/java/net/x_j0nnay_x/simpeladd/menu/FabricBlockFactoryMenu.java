@@ -129,6 +129,7 @@ public class FabricBlockFactoryMenu extends AbstractContainerMenu {
 
     public void changeData(int data, int set){
         this.setData(data, set);
+
     }
 
     @Override

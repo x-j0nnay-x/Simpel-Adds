@@ -43,6 +43,8 @@ public class SimpelAddModNeoForge {
         modEventBus.addListener(this::handleClientSetup);
     }
 
+
+
     public void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.BLOCK_FACTORY.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.CHILLER.get(), SidedInvWrapper::new);

@@ -246,6 +246,10 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    public void setData(int data, int set) {
+        this.data.set(data, set);
+    }
+
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         CompoundTag updateCompoundTag = new CompoundTag();
