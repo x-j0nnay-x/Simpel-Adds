@@ -23,7 +23,6 @@ public class FabricBlockFactoryScreen extends AbstractContainerScreen<FabricBloc
     private int buttonPosX = 56;
     private int buttonPosY = 57;
 
-
     public FabricBlockFactoryScreen(FabricBlockFactoryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
@@ -43,9 +42,6 @@ public class FabricBlockFactoryScreen extends AbstractContainerScreen<FabricBloc
     protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
         super.renderTooltip(guiGraphics, x, y);
          renderButtonToolTip(guiGraphics, x, y);
-    }
-    private void  updateResult(){
-
     }
 
     @Override
@@ -114,70 +110,24 @@ public class FabricBlockFactoryScreen extends AbstractContainerScreen<FabricBloc
                 );
     }
 
-    @Override
-    protected void containerTick() {
-
-    }
-
     private void handleButton(Button button){
-
         int cereentslot = this.menu.getOutPutSlot();
-
             if (cereentslot == 4) {
                 ClientPlayNetworking.send(new FabricSlotChangePacket(6,0));
                 ClientPlayNetworking.send(new FabricSlotChangePacket(8,0));
-               // ServerPlayNetworking.createS2CPacket(SlotChangePacket.create(8, 0));
-                // SlotChangePacket.create(6, 0);
-                // SlotChangePacket.create(8, 0);
-              //  this.menu.changeData(6, 0);
-              //  this.menu.changeData(8, 0);
-                // ServerPlayNetworking.send( new SlotChangePacket(6, 0));
-                //ServerPlayNetworking.send(player, new SlotChangePacket(8, 0));
-
             }
             if (cereentslot == 0) {
                 ClientPlayNetworking.send(new FabricSlotChangePacket(8,1));
                 ClientPlayNetworking.send(new FabricSlotChangePacket(6,1));
-
-                //ServerPlayNetworking.createS2CPacket(SlotChangePacket.create(6, 1));
-                //ServerPlayNetworking.createS2CPacket(SlotChangePacket.create(8, 1));
-                //  SlotChangePacket.create(6, 1);
-                // SlotChangePacket.create(8, 1);
-                //  this.menu.changeData(6,1);
-                // this.menu.changeData(8, 1);
-                //  ServerPlayNetworking.send(player, new SlotChangePacket(6, 1));
-                // ServerPlayNetworking.send(player, new SlotChangePacket(8, 1));
             }
             if (cereentslot == 1) {
                 ClientPlayNetworking.send(new FabricSlotChangePacket(6,2));
-
-                // ServerPlayNetworking.createS2CPacket(SlotChangePacket.create(6, 2));
-
-                // SlotChangePacket.create(6, 2);
-
-                //  this.menu.changeData(6,2);
-                // ServerPlayNetworking.send(player, new SlotChangePacket(6, 2));
             }
             if (cereentslot == 2) {
                 ClientPlayNetworking.send(new FabricSlotChangePacket(6,3));
-// ServerPlayNetworking.createS2CPacket(SlotChangePacket.create(6, 3));
-
-                //   SlotChangePacket.create(6, 3);
-
-                //  this.menu.changeData(6,3);
-                // ServerPlayNetworking.send(player, new SlotChangePacket(6, 3));
             }
             if (cereentslot == 3) {
                 ClientPlayNetworking.send(new FabricSlotChangePacket(6,4));
-
-                // ServerPlayNetworking.createS2CPacket(SlotChangePacket.create(6, 4));
-
-                //  SlotChangePacket.create(6, 4);
-
-                // this.menu.changeData(6,4);
-                //  ServerPlayNetworking.send(player, new SlotChangePacket(6, 4));
             }
-
-
     }
 }

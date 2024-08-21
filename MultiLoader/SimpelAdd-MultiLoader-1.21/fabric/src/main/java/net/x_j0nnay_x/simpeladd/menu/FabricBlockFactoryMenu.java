@@ -127,11 +127,6 @@ public class FabricBlockFactoryMenu extends AbstractContainerMenu {
         return 48;
     }
 
-    public void changeData(int data, int set){
-        this.setData(data, set);
-
-    }
-
     @Override
     public boolean stillValid(Player pPlayer) {
         return this.inventory.stillValid(pPlayer);
