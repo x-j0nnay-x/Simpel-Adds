@@ -16,9 +16,14 @@ The Netherite Crafter Block, It will turn one Scrap one gold ingot into a Nether
 
 The Upgraded Furnace Block, this is a normal furnace block but with 4 slots. it auto splits from slot 1 to 4. this uses any fuel item and store the burn rate in the block(only use things that can smelt 1 item or more otherwise it will void it). this can smelt things really fast, faster with upgrades in it. This block will also store XP in it once it get high enough it will give you a Bottle o' Enchanting.
 
+The Grind Factory Block, this is an upgrade from the Upgraded Grinder Block, as it also Can Smelt items like the upgraded Furnace block. this block will also give you xp for grinds.
 ### Craftable items
-you can craft slime balls, obsidian blocks, elytra's and manually craft cobblestone to gravel, gravel to sand. All Smithing Templates are craftable using the blank upgrade.
+you can craft slime balls, obsidian blocks, elytra's and manually craft cobblestone to gravel, gravel to sand. All Smithing Templates are craftable using the blank upgrade. Blaze Rods with Gold Nuggets and Lava Bucket.
 
+### Tools
+Repair tool that will rechage 4 damage per 100 ticks. it will take damage per item repaired. A tag is called for items that can not be repaired.
+Feeding Tool this will give you food when your health is less than max. it works every 500 ticks.
+Fireproof Tool this will keep you from dieing in lava or in the flams, it will try its best to keep you alive.
 
 
 ### Template Information

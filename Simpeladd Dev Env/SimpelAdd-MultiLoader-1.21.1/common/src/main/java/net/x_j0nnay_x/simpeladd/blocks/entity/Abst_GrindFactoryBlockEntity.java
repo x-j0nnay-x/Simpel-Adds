@@ -2,8 +2,10 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -295,9 +297,9 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     }
 //Processing
     public void grindFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
-        BlockEntity blockEntity = this.level.getBlockEntity(pPos);
         makeXPBottle();
         addFuel();
+        splitStack();
         if(stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             this.hasBoost = 1;
         }if (stacks.get(BOOSTSLOT).isEmpty()){
@@ -316,12 +318,6 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
             this.xpBoost = 4;
         }if(!hasGrind()){
             resetGrinds();
-        }if(hasGrindItemInFirtsSlot() && !areGrindStackEqual1to2()){
-            moveGrindItemFrom1to2();
-        }if(hasGrindItemInSecondSlot() && !areGrindStackEqual2to3()){
-            moveGrindItemFrom2to3();
-        }if(hasGrindItemInThirdSlot() && !areGrindStackEqual3to4()){
-            moveGrindItemFrom3to4();
         }
         pState = pState.setValue(Abst_GrindFactoryBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
@@ -332,28 +328,34 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
 
     private void resetCheck(){
         if(isSlotEmpty(GRINDERINSLOT1)){
-            resetGrindProgress1();
+            resetProgress(GRINDERINSLOT1);
         }
         if(isSlotEmpty(GRINDERINSLOT2)){
-            resetGrindProgress2();
+            resetProgress(GRINDERINSLOT2);
         }
         if(isSlotEmpty(GRINDERINSLOT3)){
-            resetGrindProgress3();
+            resetProgress(GRINDERINSLOT3);
         }
         if(isSlotEmpty(GRINDERINSLOT4)){
-            resetGrindProgress4();
+            resetProgress(GRINDERINSLOT4);
         }
         if(isSlotEmpty(FURNACEINSLOT1)){
-            resetFurnProgress1();
+            resetProgress(FURNACEINSLOT1);
         }
         if(isSlotEmpty(FURNACEINSLOT2)){
-            resetFurnProgress2();
+            resetProgress(FURNACEINSLOT2);
         }
         if(isSlotEmpty(FURNACEINSLOT3)){
-            resetFurnProgress3();
+            resetProgress(FURNACEINSLOT3);
         }
         if(isSlotEmpty(FURNACEINSLOT4)){
-            resetFurnProgress4();
+            resetProgress(FURNACEINSLOT4);
+        }
+        if(fuelLevel < 0){
+            fuelLevel = 0;
+        }
+        if(grindsleft < 0){
+            grindsleft = 0;
         }
     }
 
@@ -367,76 +369,60 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
             RecipeHolder<? extends GrindFactoryRecipe> irecipeGrindF3 = this.getGrindFactoryRecipeNonCached(this.stacks.get(GRINDERINSLOT3));
             RecipeHolder<? extends GrindFactoryRecipe> irecipeGrindF4 = this.getGrindFactoryRecipeNonCached(this.stacks.get(GRINDERINSLOT4));
         if(grindsleft > 0) {
-            if (hasGrindRecipe(irecipeGrind1, GRINDERINSLOT1) && !isOreBlock(GRINDERINSLOT1)) {
-                increaseGrindCraftingProgress1();
-                if (hasGrindProgressFinished1()) {
+            if (hasGrindRecipe(irecipeGrind1, GRINDERINSLOT1) || hasGrindFactoryRecipe(irecipeGrindF1, GRINDERINSLOT1)) {
+                incresseProgress(GRINDERINSLOT1);
+                if (hasProgressFinished(GRINDERINSLOT1)) {
                     useGrind();
                     this.storedXP += this.grindXP * xpBoost;
-                    craftGrindItem(irecipeGrind1, GRINDERINSLOT1);
-                    resetGrindProgress1();
+                    if(!isOreBlock(GRINDERINSLOT1)) {
+                        craftGrindItem(irecipeGrind1, GRINDERINSLOT1);
+                    }
+                    if(isOreBlock(GRINDERINSLOT1)){
+                        craftGrindFactoryItem(irecipeGrindF1, GRINDERINSLOT1);
+                    }
+                    resetProgress(GRINDERINSLOT1);
                 }
             }
-            if (hasGrindRecipe(irecipeGrind2, GRINDERINSLOT2) && !isOreBlock(GRINDERINSLOT2)) {
-                increaseGrindCraftingProgress2();
-                if (hasGrindProgressFinished2()) {
+            if (hasGrindRecipe(irecipeGrind2, GRINDERINSLOT2) || hasGrindFactoryRecipe(irecipeGrindF2, GRINDERINSLOT2)) {
+                incresseProgress(GRINDERINSLOT2);
+                if (hasProgressFinished(GRINDERINSLOT2)) {
                     useGrind();
                     this.storedXP += this.grindXP * xpBoost;
-                    craftGrindItem(irecipeGrind2, GRINDERINSLOT2);
-                    resetGrindProgress2();
+                    if(!isOreBlock(GRINDERINSLOT2)) {
+                        craftGrindItem(irecipeGrind2, GRINDERINSLOT2);
+                    }
+                    if(isOreBlock(GRINDERINSLOT2)){
+                        craftGrindFactoryItem(irecipeGrindF2, GRINDERINSLOT2);
+                    }
+                    resetProgress(GRINDERINSLOT2);
                 }
             }
-            if (hasGrindRecipe(irecipeGrind3, GRINDERINSLOT3) && !isOreBlock(GRINDERINSLOT3)) {
-                increaseGrindCraftingProgress3();
-                if (hasGrindProgressFinished3()) {
+            if (hasGrindRecipe(irecipeGrind3, GRINDERINSLOT3) || hasGrindFactoryRecipe(irecipeGrindF3, GRINDERINSLOT3)) {
+                incresseProgress(GRINDERINSLOT3);
+                if (hasProgressFinished(GRINDERINSLOT3)) {
                     useGrind();
                     this.storedXP += this.grindXP * xpBoost;
-                    craftGrindItem(irecipeGrind3, GRINDERINSLOT3);
-                    resetGrindProgress3();
+                    if(!isOreBlock(GRINDERINSLOT3)) {
+                        craftGrindItem(irecipeGrind3, GRINDERINSLOT3);
+                    }
+                    if(isOreBlock(GRINDERINSLOT3)){
+                        craftGrindFactoryItem(irecipeGrindF3, GRINDERINSLOT3);
+                    }
+                    resetProgress(GRINDERINSLOT3);
                 }
             }
-            if (hasGrindRecipe(irecipeGrind4, GRINDERINSLOT4) && !isOreBlock(GRINDERINSLOT4)) {
-                increaseGrindCraftingProgress4();
-                if (hasGrindProgressFinished4()) {
+            if (hasGrindRecipe(irecipeGrind4, GRINDERINSLOT4) || hasGrindFactoryRecipe(irecipeGrindF4, GRINDERINSLOT4)) {
+                incresseProgress(GRINDERINSLOT4);
+                if (hasProgressFinished(GRINDERINSLOT4)) {
                     useGrind();
                     this.storedXP += this.grindXP * xpBoost;
-                    craftGrindItem(irecipeGrind4, GRINDERINSLOT4);
-                    resetGrindProgress4();
-                }
-            }
-            if (hasGrindFactoryRecipe(irecipeGrindF1, GRINDERINSLOT1) && isOreBlock(GRINDERINSLOT1)) {
-                increaseGrindCraftingProgress1();
-                if (hasGrindProgressFinished1()) {
-                    useGrind();
-                    this.storedXP += this.grindXP * 2 * xpBoost;
-                    craftGrindFactoryItem(irecipeGrindF1, GRINDERINSLOT1);
-                    resetGrindProgress1();
-                }
-            }
-            if (hasGrindFactoryRecipe(irecipeGrindF2, GRINDERINSLOT2) && isOreBlock(GRINDERINSLOT2)) {
-                increaseGrindCraftingProgress2();
-                if (hasGrindProgressFinished2()) {
-                    useGrind();
-                    this.storedXP += this.grindXP * 2 * xpBoost ;
-                    craftGrindFactoryItem(irecipeGrindF2, GRINDERINSLOT2);
-                    resetGrindProgress2();
-                }
-            }
-            if (hasGrindFactoryRecipe(irecipeGrindF3, GRINDERINSLOT3) && isOreBlock(GRINDERINSLOT3)) {
-                increaseGrindCraftingProgress3();
-                if (hasGrindProgressFinished3()) {
-                    useGrind();
-                    this.storedXP += this.grindXP * 2 * xpBoost;
-                    craftGrindFactoryItem(irecipeGrindF3, GRINDERINSLOT3);
-                    resetGrindProgress3();
-                }
-            }
-            if (hasGrindFactoryRecipe(irecipeGrindF4, GRINDERINSLOT4) && isOreBlock(GRINDERINSLOT4)) {
-                increaseGrindCraftingProgress4();
-                if (hasGrindProgressFinished4()) {
-                    useGrind();
-                    this.storedXP += this.grindXP * 2 * xpBoost;
-                    craftGrindFactoryItem(irecipeGrindF4, GRINDERINSLOT4);
-                    resetGrindProgress4();
+                    if(!isOreBlock(GRINDERINSLOT4)) {
+                        craftGrindItem(irecipeGrind4, GRINDERINSLOT4);
+                    }
+                    if(isOreBlock(GRINDERINSLOT4)){
+                        craftGrindFactoryItem(irecipeGrindF4, GRINDERINSLOT4);
+                    }
+                    resetProgress(GRINDERINSLOT4);
                 }
             }
         }
@@ -449,47 +435,47 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         RecipeHolder<? extends AbstractCookingRecipe> irecipeFurn4 = this.getFurnRecipeNonCached(this.stacks.get(FURNACEINSLOT4));
         if(fuelLevel > 0) {
             if (hasFurnRecipe(irecipeFurn1, FURNACEINSLOT1)) {
-                increaseFurnCraftingProgress1();
-                if (hasFurnProgressFinished1()) {
+                incresseProgress(FURNACEINSLOT1);
+                if (hasProgressFinished(FURNACEINSLOT1)) {
                     useFuel();
                     craftFurnItem(irecipeFurn1, FURNACEINSLOT1);
                     this.storedXP += Math.round(irecipeFurn1.value().getExperience() * 2 * xpBoost);
-                    resetFurnProgress1();
+                    resetProgress(FURNACEINSLOT1);
                 }
             }
             if (hasFurnRecipe(irecipeFurn2, FURNACEINSLOT2)) {
-                increaseFurnCraftingProgress2();
-                if (hasFurnProgressFinished2()) {
+                incresseProgress(FURNACEINSLOT2);
+                if (hasProgressFinished(FURNACEINSLOT2)) {
                     useFuel();
                     craftFurnItem(irecipeFurn2, FURNACEINSLOT2);
                     this.storedXP += Math.round(irecipeFurn2.value().getExperience() * 2* xpBoost);
-                    resetFurnProgress2();
+                    resetProgress(FURNACEINSLOT2);
                 }
             }
             if (hasFurnRecipe(irecipeFurn3, FURNACEINSLOT3)) {
-                increaseFurnCraftingProgress3();
-                if (hasFurnProgressFinished3()) {
+                incresseProgress(FURNACEINSLOT3);
+                if (hasProgressFinished(FURNACEINSLOT3)) {
                     useFuel();
                     craftFurnItem(irecipeFurn3, FURNACEINSLOT3);
                     this.storedXP += Math.round(irecipeFurn3.value().getExperience() * 2* xpBoost);
-                    resetFurnProgress3();
+                    resetProgress(FURNACEINSLOT3);
                 }
             }
             if (hasFurnRecipe(irecipeFurn4, FURNACEINSLOT4)) {
-                increaseFurnCraftingProgress4();
-                if (hasFurnProgressFinished4()) {
+                incresseProgress(FURNACEINSLOT4);
+                if (hasProgressFinished(FURNACEINSLOT4)) {
                     useFuel();
                     craftFurnItem(irecipeFurn4, FURNACEINSLOT4);
                     this.storedXP += Math.round(irecipeFurn4.value().getExperience() * 3* xpBoost);
-                    resetFurnProgress4();
+                    resetProgress(FURNACEINSLOT4);
                 }
             }
         }
     }
 
     private boolean isblockEmpty(){
-        return stacks.get(GRINDERINSLOT1).isEmpty() && stacks.get(GRINDERINSLOT2).isEmpty() && stacks.get(GRINDERINSLOT3).isEmpty() && stacks.get(GRINDERINSLOT4).isEmpty() &&
-                stacks.get(FURNACEINSLOT1).isEmpty() && stacks.get(FURNACEINSLOT2).isEmpty() && stacks.get(FURNACEINSLOT3).isEmpty() && stacks.get(FURNACEINSLOT4).isEmpty();
+        return isSlotEmpty(GRINDERINSLOT1) && isSlotEmpty(GRINDERINSLOT2) && isSlotEmpty(GRINDERINSLOT3) && isSlotEmpty(GRINDERINSLOT4) &&
+               isSlotEmpty(FURNACEINSLOT1) && isSlotEmpty(FURNACEINSLOT2) && isSlotEmpty(FURNACEINSLOT3) && isSlotEmpty(FURNACEINSLOT4) ;
     }
 
     private boolean hasGrind(){
@@ -584,61 +570,41 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         return false;
     }
 
-    private boolean hasGrindItemInFirtsSlot(){
-        return this.stacks.get(GRINDERINSLOT1).getCount() >= 2;
+    private boolean hasEnoughtToMove(int slot, int count){
+        return this.stacks.get(slot).getCount() >= count;
     }
 
-    private boolean hasGrindItemInSecondSlot(){
-        return this.stacks.get(GRINDERINSLOT2).getCount() >= 2;
+    private boolean areStacksSplit(int checkSlot, int currentSlot){
+        return this.stacks.get(checkSlot).getCount() <= this.stacks.get(currentSlot).getCount();
+    }
+    private boolean areStacksSame(int checkSlot, int currentSlot){
+        return this.stacks.get(checkSlot).getItem() == this.stacks.get(currentSlot).getItem() || this.stacks.get(currentSlot).isEmpty();
     }
 
-    private boolean hasGrindItemInThirdSlot(){
-        return this.stacks.get(GRINDERINSLOT3).getCount() >= 2;
+    private void moveItem(int slotToSplit, int slotToFill, int count){
+        if (hasEnoughtToMove(slotToSplit, count)) {
+            if (areStacksSame(slotToSplit, slotToFill)) {
+                if (!areStacksSplit(slotToSplit, slotToFill)) {
+                    ItemStack item = this.stacks.get(slotToSplit);
+                    this.removeItem(slotToSplit, count);
+                    this.stacks.set(slotToFill, new ItemStack(item.getItem(),
+                            this.stacks.get(slotToFill).getCount() + count));
+                }
+            }
+        }
     }
 
-    private boolean areGrindStackEqual1to2(){
-        return this.stacks.get(GRINDERINSLOT1).getCount() <= this.stacks.get(GRINDERINSLOT2).getCount();
-    }
-    private boolean areGrindStackEqual2to3(){
-        return this.stacks.get(GRINDERINSLOT2).getCount() <= this.stacks.get(GRINDERINSLOT3).getCount();
-    }
-    private boolean areGrindStackEqual3to4(){
-        return this.stacks.get(GRINDERINSLOT3).getCount() <= this.stacks.get(GRINDERINSLOT4).getCount();
-    }
-
-    private boolean isGrindItemSameSlot2(){
-        return this.stacks.get(GRINDERINSLOT1).getItem() == this.stacks.get(GRINDERINSLOT2).getItem() || this.stacks.get(GRINDERINSLOT2).isEmpty();
-    }
-    private boolean isGrindItemSameSlot3(){
-        return this.stacks.get(GRINDERINSLOT2).getItem() == this.stacks.get(GRINDERINSLOT3).getItem() || this.stacks.get(GRINDERINSLOT3).isEmpty();
-    }
-
-    private boolean isGrindItemSameSlot4(){
-        return this.stacks.get(GRINDERINSLOT3).getItem() == this.stacks.get(GRINDERINSLOT4).getItem() || this.stacks.get(GRINDERINSLOT4).isEmpty();
-    }
-
-    private void moveGrindItemFrom1to2(){
-        if(isGrindItemSameSlot2()){
-            ItemStack item = this.stacks.get(GRINDERINSLOT1);
-            this.removeItem(GRINDERINSLOT1, 1);
-            this.stacks.set(GRINDERINSLOT2, new ItemStack(item.getItem(),
-                    this.stacks.get(GRINDERINSLOT2).getCount() + 1));}
-    }
-
-    private void moveGrindItemFrom2to3(){
-        if(isGrindItemSameSlot3()){
-            ItemStack item = this.stacks.get(GRINDERINSLOT2);
-            this.removeItem(GRINDERINSLOT2, 1);
-            this.stacks.set(GRINDERINSLOT3, new ItemStack(item.getItem(),
-                    this.stacks.get(GRINDERINSLOT3).getCount() + 1));}
-    }
-
-    private void moveGrindItemFrom3to4(){
-        if(isGrindItemSameSlot4()){
-            ItemStack item = this.stacks.get(GRINDERINSLOT3);
-            this.removeItem(GRINDERINSLOT3, 1);
-            this.stacks.set(GRINDERINSLOT4, new ItemStack(item.getItem(),
-                    this.stacks.get(GRINDERINSLOT4).getCount() + 1));}
+    private void splitStack(){
+        int slotCount = 1;
+        for (int i = 0; i < 3; i ++) {
+            if (areStacksSame(GRINDERINSLOT1 + i, GRINDERINSLOT2 + i)) {
+                slotCount++;
+            }
+        }
+        for (int i = 0; i < 3; i ++) {
+            int count = this.stacks.get(GRINDERINSLOT1 + i).getCount() / slotCount;
+            moveItem(GRINDERINSLOT1 + i, GRINDERINSLOT2 + i, count);
+        }
     }
 
     private boolean isWorking() {
@@ -651,101 +617,87 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         return false;
     }
 
-    private void resetFurnProgress1() {
-        this.furnProg1 = 0;
+    private void resetProgress(int slot){
+        if(slot == GRINDERINSLOT1){
+            this.grindProg1 = 0;
+        }
+        if(slot == GRINDERINSLOT2){
+            this.grindProg2 = 0;
+        }
+        if(slot == GRINDERINSLOT3){
+            this.grindProg3 = 0;
+        }
+        if(slot == GRINDERINSLOT4){
+            this.grindProg4 = 0;
+        }
+        if(slot == FURNACEINSLOT1){
+            this.furnProg1 = 0;
+        }
+        if(slot == FURNACEINSLOT2){
+            this.furnProg2 = 0;
+        }
+        if(slot == FURNACEINSLOT3){
+            this.furnProg3 = 0;
+        }
+        if(slot == FURNACEINSLOT4){
+            this.furnProg4 = 0;
+        }
     }
 
-    private void resetFurnProgress2() {
-        this.furnProg2 = 0;
-    }
+   private void incresseProgress(int slot){
+       if(slot == GRINDERINSLOT1){
+           this.grindProg1 ++;
+       }
+       if(slot == GRINDERINSLOT2){
+           this.grindProg2 ++;
+       }
+       if(slot == GRINDERINSLOT3){
+           this.grindProg3 ++;
+       }
+       if(slot == GRINDERINSLOT4){
+           this.grindProg4 ++;
+       }
+       if(slot == FURNACEINSLOT1){
+           this.furnProg1 ++;
+       }
+       if(slot == FURNACEINSLOT2){
+           this.furnProg2 ++;
+       }
+       if(slot == FURNACEINSLOT3){
+           this.furnProg3 ++;
+       }
+       if(slot == FURNACEINSLOT4){
+           this.furnProg4 ++;
+       }
+   }
 
-    private void resetFurnProgress3() {
-        this.furnProg3 = 0;
-    }
-
-    private void resetFurnProgress4() {
-        this.furnProg4 = 0;
-    }
-
-    private void resetGrindProgress1() {
-        this.grindProg1 = 0;
-    }
-
-    private void resetGrindProgress2() {
-        this.grindProg2 = 0;
-    }
-
-    private void resetGrindProgress3() {
-        this.grindProg3 = 0;
-    }
-
-    private void resetGrindProgress4() {
-        this.grindProg4 = 0;
-    }
-
-    private void increaseFurnCraftingProgress1() {
-        this.furnProg1++;
-    }
-
-    private void increaseFurnCraftingProgress2() {
-        this.furnProg2++;
-    }
-
-    private void increaseFurnCraftingProgress3() {
-        this.furnProg3++;
-    }
-
-    private void increaseFurnCraftingProgress4() {
-        this.furnProg4++;
-    }
-
-    private void increaseGrindCraftingProgress1() {
-        this.grindProg1++;
-    }
-
-    private void increaseGrindCraftingProgress2() {
-        this.grindProg2++;
-    }
-
-    private void increaseGrindCraftingProgress3() {
-        this.grindProg3++;
-    }
-
-    private void increaseGrindCraftingProgress4() {
-        this.grindProg4++;
-    }
-
-    private boolean hasFurnProgressFinished1() {
-        return this.furnProg1 >= this.maxProgress;
-    }
-
-    private boolean hasFurnProgressFinished2() {
-        return this.furnProg2 >= this.maxProgress;
-    }
-
-    private boolean hasFurnProgressFinished3() {
-        return this.furnProg3 >= this.maxProgress;
-    }
-
-    private boolean hasFurnProgressFinished4() {
-        return this.furnProg4 >= this.maxProgress;
-    }
-
-    private boolean hasGrindProgressFinished1() {
-        return this.grindProg1 >= this.maxProgress;
-    }
-
-    private boolean hasGrindProgressFinished2() {
-        return this.grindProg2 >= this.maxProgress;
-    }
-
-    private boolean hasGrindProgressFinished3() {
-        return this.grindProg3 >= this.maxProgress;
-    }
-
-    private boolean hasGrindProgressFinished4() {
-        return this.grindProg4 >= this.maxProgress;
-    }
+   private boolean hasProgressFinished(int slot){
+       if(slot == GRINDERINSLOT1){
+           return this.grindProg1 >= this.maxProgress;
+       }
+       if(slot == GRINDERINSLOT2){
+           return this.grindProg2 >= this.maxProgress;
+       }
+       if(slot == GRINDERINSLOT3){
+           return this.grindProg3 >= this.maxProgress;
+       }
+       if(slot == GRINDERINSLOT4){
+           return this.grindProg4 >= this.maxProgress;
+       }
+       if(slot == FURNACEINSLOT1){
+           return this.furnProg1 >= this.maxProgress;
+       }
+       if(slot == FURNACEINSLOT2){
+           return this.furnProg2 >= this.maxProgress;
+       }
+       if(slot == FURNACEINSLOT3){
+           return this.furnProg3 >= this.maxProgress;
+       }
+       if(slot == FURNACEINSLOT4){
+           return this.furnProg4 >= this.maxProgress;
+       }
+       return false;
+   }
 
     private RecipeHolder<? extends AbstractCookingRecipe> getFurnRecipeNonCached(ItemStack itemStack) {
         return this.recipeCheckSmelting.getRecipeFor(new SingleRecipeInput(itemStack), this.level).orElse(null);
@@ -798,7 +750,6 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
             itemstack.shrink(1);
         }
     }
-
 
     public  boolean hasGrindRecipe(@Nullable RecipeHolder<?> recipe, int slot){
         int outputslot = slot + 4;

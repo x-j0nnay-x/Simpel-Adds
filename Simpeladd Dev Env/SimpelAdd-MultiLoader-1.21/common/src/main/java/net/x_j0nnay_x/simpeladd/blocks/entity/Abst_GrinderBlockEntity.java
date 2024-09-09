@@ -167,7 +167,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     @Override
     protected void setItems(NonNullList<ItemStack> nonNullList) {
-            this.stacks = nonNullList;
+        this.stacks = nonNullList;
     }
 
     @Override
@@ -202,7 +202,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return this.saveWithFullMetadata(pRegistries);
     }
-//Processing
+    //Processing
     public void grinderTick(Level pLevel, BlockPos pPos, BlockState pState) {
         if(this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             this.hasBoost = 1;
@@ -271,7 +271,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     private boolean isWorking() {
         if (progress > 0){
-            if(this.grindsleft > 0 || this.stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)){
+            if(this.grindsleft > 0 || this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
                 return true;
             }
         }

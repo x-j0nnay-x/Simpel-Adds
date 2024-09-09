@@ -53,7 +53,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private int progress4 = 0;
     private int maxProgress;
     private int grindsleft = 0 ;
-    private int maxGrinds = 3;
+    private int maxGrinds = 4;
     private int grindEff = 5;
     private int hasBoost = 0;
 
@@ -201,7 +201,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
 
     @Override
     protected void setItems(NonNullList<ItemStack> nonNullList) {
-            this.stacks = nonNullList;
+        this.stacks = nonNullList;
     }
 
     @Override
@@ -243,8 +243,10 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return this.saveWithFullMetadata(pRegistries);
     }
- //Processing
+    //Processing
     public void grinderUpTick(Level pLevel, BlockPos pPos, BlockState pState) {
+        resetCheck();
+        splitStack();
         if(stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             this.hasBoost = 1;
         }
@@ -260,15 +262,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
         }
-        if(hasItemInFirtsSlot() && !areStackEqual1to2()){
-            moveItemFrom1to2();
-        }
-        if(hasItemInSecondSlot() && !areStackEqual2to3()){
-            moveItemFrom2to3();
-        }
-        if(hasItemInThirdSlot() && !areStackEqual3to4()){
-            moveItemFrom3to4();
-        }
+
         pState = pState.setValue(Abst_GrinderBlock_Up.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         RecipeHolder<? extends GrinderRecipe> irecipe1 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT1));
@@ -277,41 +271,38 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         RecipeHolder<? extends GrinderRecipe> irecipe4 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT4));
         if(grindsleft > 0){
             if(hasRecipe(irecipe1, INPUTSLOT1)){
-                increaseCraftingProgress1();
+                incresseProgress(INPUTSLOT1);
                 setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished1()){
+                if(hasProgressFinished(INPUTSLOT1)){
                     useGrind();
                     craftItem(irecipe1,INPUTSLOT1);
-                    resetProgress1();
+                    resetProgress(INPUTSLOT1);
                 }
             }if(hasRecipe(irecipe2, INPUTSLOT2)){
-                increaseCraftingProgress2();
+                incresseProgress(INPUTSLOT2);
                 setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished2()){
+                if(hasProgressFinished(INPUTSLOT2)){
                     useGrind();
                     craftItem(irecipe2, INPUTSLOT2);
-                    resetProgress2();
+                    resetProgress(INPUTSLOT2);
                 }
             }if(hasRecipe(irecipe3, INPUTSLOT3)){
-                increaseCraftingProgress3();
+                incresseProgress(INPUTSLOT3);
                 setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished3()){
+                if(hasProgressFinished(INPUTSLOT3)){
                     useGrind();
                     craftItem(irecipe3, INPUTSLOT3);
-                    resetProgress3();
+                    resetProgress(INPUTSLOT3);
                 }
             }if(hasRecipe(irecipe4, INPUTSLOT4)){
-                increaseCraftingProgress4();
+                incresseProgress(INPUTSLOT4);
                 setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished4()){
+                if(hasProgressFinished(INPUTSLOT4)){
                     useGrind();
                     craftItem(irecipe4, INPUTSLOT4);
-                    resetProgress4();
+                    resetProgress(INPUTSLOT4);
                 }
             }
-        }else{
-            resetGrinds();
-            resetProgressAll();
         }
     }
 
@@ -333,137 +324,134 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     }
 
     private void resetGrinds() {
-        if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
-            if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
-                this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
-            }else{
-                this.stacks.get(GRINDERSLOT).setDamageValue(this.stacks.get(GRINDERSLOT).getDamageValue() + 1);
-                this.grindsleft = this.maxGrinds;
+        if(grindsleft == 0) {
+            if (this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)) {
+                if (this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()) {
+                    this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
+                } else {
+                    this.stacks.get(GRINDERSLOT).setDamageValue(this.stacks.get(GRINDERSLOT).getDamageValue() + 1);
+                    this.grindsleft = this.maxGrinds;
+                }
+            } else {
+                this.grindsleft = 0;
             }
-        }else {
-            this.grindsleft = 0;
         }
     }
 
-    private boolean hasItemInFirtsSlot(){
-        return this.stacks.get(INPUTSLOT1).getCount() >= 2;
+    private boolean hasEnoughtToMove(int slot, int count){
+        return this.stacks.get(slot).getCount() >= count;
     }
 
-    private boolean hasItemInSecondSlot(){
-        return this.stacks.get(INPUTSLOT2).getCount() >= 2;
+    private boolean areStacksSplit(int checkSlot, int currentSlot){
+        return this.stacks.get(checkSlot).getCount() <= this.stacks.get(currentSlot).getCount();
     }
 
-    private boolean hasItemInThirdSlot(){
-        return this.stacks.get(INPUTSLOT3).getCount() >= 2;
+    private boolean areStacksSame(int checkSlot, int currentSlot){
+        return this.stacks.get(checkSlot).getItem() == this.stacks.get(currentSlot).getItem() || this.stacks.get(currentSlot).isEmpty();
     }
 
-    private boolean areStackEqual1to2(){
-        return this.stacks.get(INPUTSLOT1).getCount() <= this.stacks.get(INPUTSLOT2).getCount();
+    private void moveItem(int slotToSplit, int slotToFill, int count){
+        if (hasEnoughtToMove(slotToSplit, count)) {
+            if (areStacksSame(slotToSplit, slotToFill)) {
+                if (!areStacksSplit(slotToSplit, slotToFill)) {
+                    ItemStack item = this.stacks.get(slotToSplit);
+                    this.removeItem(slotToSplit, count);
+                    this.stacks.set(slotToFill, new ItemStack(item.getItem(),
+                            this.stacks.get(slotToFill).getCount() + count));
+                }
+            }
+        }
     }
 
-    private boolean areStackEqual2to3(){
-        return this.stacks.get(INPUTSLOT2).getCount() <= this.stacks.get(INPUTSLOT3).getCount();
-    }
+    private void splitStack(){
+        int slotCount = 1;
+        for (int i = 0; i < 3; i ++) {
+            if (areStacksSame(INPUTSLOT1 + i, INPUTSLOT2 + i)) {
+                slotCount++;
+            }
+        }
+        for (int i = 0; i < 3; i ++) {
+            int count = this.stacks.get(INPUTSLOT1+ i).getCount() / slotCount;
+            moveItem(INPUTSLOT1 + i, INPUTSLOT2 + i, count);
+        }
 
-    private boolean areStackEqual3to4(){
-        return this.stacks.get(INPUTSLOT3).getCount() <= this.stacks.get(INPUTSLOT4).getCount();
     }
-
-    private boolean isItemSameSlot2(){
-        return this.stacks.get(INPUTSLOT1).getItem() == this.stacks.get(INPUTSLOT2).getItem() || this.stacks.get(INPUTSLOT2).isEmpty();
+    private boolean isblockEmpty(){
+        return stacks.get(INPUTSLOT1).isEmpty() && stacks.get(INPUTSLOT2).isEmpty() && stacks.get(INPUTSLOT3).isEmpty() && stacks.get(INPUTSLOT4).isEmpty() ;
     }
-
-    private boolean isItemSameSlot3(){
-        return this.stacks.get(INPUTSLOT2).getItem() == this.stacks.get(INPUTSLOT3).getItem() || this.stacks.get(INPUTSLOT3).isEmpty();
-    }
-
-    private boolean isItemSameSlot4(){
-        return this.stacks.get(INPUTSLOT3).getItem() == this.stacks.get(INPUTSLOT4).getItem() || this.stacks.get(INPUTSLOT4).isEmpty();
-    }
-
-    private void moveItemFrom1to2(){
-        if(isItemSameSlot2()){
-            ItemStack item = this.stacks.get(INPUTSLOT1);
-            this.removeItem(INPUTSLOT1, 1);
-            this.stacks.set(INPUTSLOT2, new ItemStack(item.getItem(),
-                    this.stacks.get(INPUTSLOT2).getCount() + 1));}
-    }
-    private void moveItemFrom2to3(){
-        if(isItemSameSlot3()){
-            ItemStack item = this.stacks.get(INPUTSLOT2);
-            this.removeItem(INPUTSLOT2, 1);
-            this.stacks.set(INPUTSLOT3, new ItemStack(item.getItem(),
-                    this.stacks.get(INPUTSLOT3).getCount() + 1));}
-    }
-
-    private void moveItemFrom3to4(){
-        if(isItemSameSlot4()){
-            ItemStack item = this.stacks.get(INPUTSLOT3);
-            this.removeItem(INPUTSLOT3, 1);
-            this.stacks.set(INPUTSLOT4, new ItemStack(item.getItem(),
-                    this.stacks.get(INPUTSLOT4).getCount() + 1));}
+    private boolean isSlotEmpty(int slot){
+        return  this.stacks.get(slot).isEmpty();
     }
 
     private boolean isWorking() {
-        if (this.progress1 > 0 || this.progress2 > 0 || this.progress3 > 0 || this.progress4 > 0){
-            if(this.grindsleft > 0 || stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)){
+        if (this.progress1 > 0 || this.progress2 > 0 || this.progress3 > 0 || this.progress4 > 0 && !isblockEmpty()){
+            if(this.grindsleft > 0 || stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
                 return true;
             }
         }
         return false;
     }
-    private void resetProgressAll() {
-        this.progress1 = 0;
-        this.progress2 = 0;
-        this.progress3 = 0;
-        this.progress4 = 0;
+    private void resetCheck(){
+        if(isSlotEmpty(INPUTSLOT1)){
+            resetProgress(INPUTSLOT1);
+        }
+        if(isSlotEmpty(INPUTSLOT2)){
+            resetProgress(INPUTSLOT2);
+        }
+        if(isSlotEmpty(INPUTSLOT3)){
+            resetProgress(INPUTSLOT3);
+        }
+        if(isSlotEmpty(INPUTSLOT4)){
+            resetProgress(INPUTSLOT4);
+        }
+        if(grindsleft < 0){
+            grindsleft = 0;
+        }
+        resetGrinds();
     }
-    private void resetProgress1() {
-        this.progress1 = 0;
+    private void resetProgress(int slot){
+        if(slot == INPUTSLOT1){
+            this.progress1 = 0;
+        }
+        if(slot == INPUTSLOT2){
+            this.progress2 = 0;
+        }
+        if(slot == INPUTSLOT3){
+            this.progress3 = 0;
+        }
+        if(slot == INPUTSLOT4){
+            this.progress4 = 0;
+        }
     }
-
-    private void resetProgress2() {
-        this.progress2 = 0;
-    }
-
-    private void resetProgress3() {
-        this.progress3 = 0;
-    }
-
-    private void resetProgress4() {
-        this.progress4 = 0;
-    }
-
-    private void increaseCraftingProgress1() {
-        this.progress1++;
-    }
-
-    private void increaseCraftingProgress2() {
-        this.progress2++;
-    }
-
-    private void increaseCraftingProgress3() {
-        this.progress3++;
-    }
-
-    private void increaseCraftingProgress4() {
-        this.progress4++;
-    }
-
-    private boolean hasProgressFinished1() {
-        return this.progress1 >= this.maxProgress;
-    }
-
-    private boolean hasProgressFinished2() {
-        return this.progress2 >= this.maxProgress;
-    }
-
-    private boolean hasProgressFinished3() {
-        return this.progress3 >= this.maxProgress;
+    private void incresseProgress(int slot){
+        if(slot == INPUTSLOT1){
+            this.progress1 ++;
+        }
+        if(slot == INPUTSLOT2){
+            this.progress2 ++;
+        }
+        if(slot == INPUTSLOT3){
+            this.progress3 ++;
+        }
+        if(slot == INPUTSLOT4){
+            this.progress4 ++;
+        }
     }
 
-    private boolean hasProgressFinished4() {
-        return this.progress4 >= this.maxProgress;
+    private boolean hasProgressFinished(int slot){
+        if(slot == INPUTSLOT1){
+            return this.progress1 >= this.maxProgress;
+        }
+        if(slot == INPUTSLOT2){
+            return this.progress2 >= this.maxProgress;
+        }
+        if(slot == INPUTSLOT3){
+            return this.progress3 >= this.maxProgress;
+        }
+        if(slot == INPUTSLOT4){
+            return this.progress4 >= this.maxProgress;
+        }
+        return false;
     }
 
     private RecipeHolder<? extends GrinderRecipe> getRecipeNonCached(ItemStack itemStack) {

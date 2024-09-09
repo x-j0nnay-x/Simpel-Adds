@@ -271,7 +271,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     private boolean isWorking() {
         if (progress > 0){
-            if(this.grindsleft > 0 || this.stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)){
+            if(this.grindsleft > 0 || this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
                 return true;
             }
         }
