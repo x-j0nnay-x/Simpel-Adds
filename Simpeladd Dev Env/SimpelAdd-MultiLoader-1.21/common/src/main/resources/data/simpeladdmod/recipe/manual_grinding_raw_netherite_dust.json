@@ -1,24 +1,14 @@
 {
   "type": "simpeladdmod:manualgrind",
   "category": "misc",
-  "pattern":
-  [
-    "x",
-    "z"
-  ],
-
-  "key":
-  {
-    "z":
+  "ingredients": [
     {
       "item": "minecraft:ancient_debris"
     },
-    "x":
     {
       "tag": "simpeladdmod:grinders"
     }
-
-  },
+  ],
   "result":
   {
     "id": "simpeladdmod:netheritedust",

@@ -201,7 +201,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
 
     @Override
     protected void setItems(NonNullList<ItemStack> nonNullList) {
-            this.stacks = nonNullList;
+        this.stacks = nonNullList;
     }
 
     @Override
@@ -243,17 +243,38 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return this.saveWithFullMetadata(pRegistries);
     }
- //Processing
+    //Processing
     public void grinderUpTick(Level pLevel, BlockPos pPos, BlockState pState) {
         resetCheck();
         splitStack();
+        setUpgrades();
+
+        pState = pState.setValue(Abst_GrinderBlock_Up.WORKING, Boolean.valueOf(isWorking()));
+        pLevel.setBlock(pPos, pState, 3);
+
+        for (int i = 0; i < 4; i ++) {
+            int slot = INPUTSLOT1 + i;
+                RecipeHolder<? extends GrinderRecipe> irecipe = this.getRecipeNonCached(this.stacks.get(slot));
+                if(grindsleft > 0){
+                    if(hasRecipe(irecipe, slot)){
+                        incresseProgress(slot);
+                        setChanged(pLevel, pPos, pState);
+                        if(hasProgressFinished(slot)){
+                            useGrind();
+                            craftItem(irecipe,slot);
+                            resetProgress(slot);
+                        }
+                    }
+                }
+        }
+    }
+
+    private void setUpgrades(){
         if(stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             this.hasBoost = 1;
-        }
-        if (stacks.get(BOOSTSLOT).isEmpty()){
+        }if (stacks.get(BOOSTSLOT).isEmpty()){
             this.hasBoost = 0;
-        }
-        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
             this.maxProgress = 20;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
             this.maxProgress = 12;
@@ -261,48 +282,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             this.maxProgress = 5;
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
-        }
-
-        pState = pState.setValue(Abst_GrinderBlock_Up.WORKING, Boolean.valueOf(isWorking()));
-        pLevel.setBlock(pPos, pState, 3);
-        RecipeHolder<? extends GrinderRecipe> irecipe1 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT1));
-        RecipeHolder<? extends GrinderRecipe> irecipe2 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT2));
-        RecipeHolder<? extends GrinderRecipe> irecipe3 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT3));
-        RecipeHolder<? extends GrinderRecipe> irecipe4 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT4));
-        if(grindsleft > 0){
-            if(hasRecipe(irecipe1, INPUTSLOT1)){
-                incresseProgress(INPUTSLOT1);
-                setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished(INPUTSLOT1)){
-                    useGrind();
-                    craftItem(irecipe1,INPUTSLOT1);
-                    resetProgress(INPUTSLOT1);
-                }
-            }if(hasRecipe(irecipe2, INPUTSLOT2)){
-                incresseProgress(INPUTSLOT2);
-                setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished(INPUTSLOT2)){
-                    useGrind();
-                    craftItem(irecipe2, INPUTSLOT2);
-                    resetProgress(INPUTSLOT2);
-                }
-            }if(hasRecipe(irecipe3, INPUTSLOT3)){
-                incresseProgress(INPUTSLOT3);
-                setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished(INPUTSLOT3)){
-                    useGrind();
-                    craftItem(irecipe3, INPUTSLOT3);
-                    resetProgress(INPUTSLOT3);
-                }
-            }if(hasRecipe(irecipe4, INPUTSLOT4)){
-                incresseProgress(INPUTSLOT4);
-                setChanged(pLevel, pPos, pState);
-                if(hasProgressFinished(INPUTSLOT4)){
-                    useGrind();
-                    craftItem(irecipe4, INPUTSLOT4);
-                    resetProgress(INPUTSLOT4);
-                }
-            }
         }
     }
 
@@ -392,17 +371,11 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         return false;
     }
     private void resetCheck(){
-        if(isSlotEmpty(INPUTSLOT1)){
-            resetProgress(INPUTSLOT1);
-        }
-        if(isSlotEmpty(INPUTSLOT2)){
-            resetProgress(INPUTSLOT2);
-        }
-        if(isSlotEmpty(INPUTSLOT3)){
-            resetProgress(INPUTSLOT3);
-        }
-        if(isSlotEmpty(INPUTSLOT4)){
-            resetProgress(INPUTSLOT4);
+        for (int i = 0; i < 4; i ++) {
+            int slot = INPUTSLOT1 + i;
+            if (isSlotEmpty(slot) || grindsleft == 0) {
+                resetProgress(slot);
+            }
         }
         if(grindsleft < 0){
             grindsleft = 0;

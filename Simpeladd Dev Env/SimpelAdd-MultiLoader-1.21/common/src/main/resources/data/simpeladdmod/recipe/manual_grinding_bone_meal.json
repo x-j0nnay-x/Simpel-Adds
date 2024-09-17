@@ -1,23 +1,14 @@
 {
   "type": "simpeladdmod:manualgrind",
   "category": "misc",
-  "pattern": [
-   "x",
-    "z"
-  ],
-
-  "key":
-  {
-    "z":
+  "ingredients": [
     {
       "item": "minecraft:bone"
     },
-    "x":
     {
       "tag": "simpeladdmod:grinders"
     }
-
-  },
+  ],
   "result":
   {
     "id": "minecraft:bone_meal",

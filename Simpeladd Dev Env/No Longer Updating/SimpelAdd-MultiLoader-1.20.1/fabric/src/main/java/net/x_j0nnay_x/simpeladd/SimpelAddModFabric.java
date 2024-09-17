@@ -38,6 +38,7 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
             MenuScreens.register(ModMenuTypeFabric.Chiller_MENU, FabricChillerScreen::new);
             MenuScreens.register(ModMenuTypeFabric.GRINDER_MENU, FabricGrinderScreen::new);
             MenuScreens.register(ModMenuTypeFabric.GRINDER_MENU_UP, FabricGrinderScreen_up::new);
+            MenuScreens.register(ModMenuTypeFabric.GRIND_FACTORY_MENU, FabricGrindFactoryScreen::new);
             MenuScreens.register(ModMenuTypeFabric.Netherite_Menu, FabricNetheriteCrafterScreen::new);
             MenuScreens.register(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, FabricFurnaceScreen_up::new);
 

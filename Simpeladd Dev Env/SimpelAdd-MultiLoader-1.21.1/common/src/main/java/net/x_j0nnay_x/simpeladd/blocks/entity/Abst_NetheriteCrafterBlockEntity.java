@@ -209,15 +209,7 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     }
 //Processing
     public void netheriteCrafterTick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
-            this.maxProgress = 60;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
-            this.maxProgress = 36;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
-            this.maxProgress = 15;
-        }if (stacks.get(UPGRADESLOT).isEmpty()){
-            this.maxProgress = 90;
-        }
+        setUpgrades();
         pState = pState.setValue(Abst_NetheriteCrafterBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         if(hasRecipe()) {
@@ -233,6 +225,18 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
             }
         }else{
             resetProgress();
+        }
+    }
+
+    private void setUpgrades(){
+        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
+            this.maxProgress = 60;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
+            this.maxProgress = 36;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
+            this.maxProgress = 15;
+        }if (stacks.get(UPGRADESLOT).isEmpty()){
+            this.maxProgress = 90;
         }
     }
 

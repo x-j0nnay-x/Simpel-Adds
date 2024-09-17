@@ -41,7 +41,6 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     private int blazeUse = 0;
     private int  maxBlazeuse = 4;
 
-
     protected Abst_NetheriteCrafterBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
 
@@ -74,8 +73,6 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
         };
     }
 
-
-
     @Override
     public void load(CompoundTag $$0) {
         super.load($$0);
@@ -106,15 +103,30 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH || direction == Direction.UP) &&
-                        (index == GOLDSLOT || index == SCRAPSLOT|| index == BLAZESLOT)
-        );
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH || direction == Direction.UP){
+            if(index == GOLDSLOT && var2.is(Items.GOLD_INGOT)){
+                return true;
+            }
+            if(index == SCRAPSLOT && var2.is(Items.NETHERITE_SCRAP)){
+                return true;
+            }
+            if(index == BLAZESLOT && var2.is(Items.BLAZE_ROD)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT));
+        if(direction == Direction.DOWN){
+            if(index == OUTPUTSLOT){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
@@ -144,6 +156,7 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     public ItemStack removeItemNoUpdate(int var1) {
         return ContainerHelper.takeItem(this.stacks, var1);
     }
+
     @Override
     public void setItem(int var1, ItemStack var2) {
         ItemStack $$2 = this.stacks.get(var1);
@@ -153,6 +166,7 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
             var2.setCount(this.getMaxStackSize());
         }
     }
+
     @Override
     protected NonNullList<ItemStack> getItems() {
         return this.stacks;
@@ -171,24 +185,28 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
             return var1 == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
         }
     }
+
     @Override
     public void clearContent() {
         this.stacks.clear();
     }
+
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.netherite_crafter_block");
     }
+
     public void sendUpdate() {
         setChanged();
-
         if (this.level != null)
             this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -198,19 +216,9 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     public CompoundTag getUpdateTag() {
         return this.saveWithFullMetadata();
     }
-
 //Processing
-
     public void netheriteCrafterTick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
-            this.maxProgress = 60;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
-            this.maxProgress = 36;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
-            this.maxProgress = 15;
-        }if (stacks.get(UPGRADESLOT).isEmpty()){
-            this.maxProgress = 90;
-        }
+        setUpgrades();
         pState = pState.setValue(Abst_NetheriteCrafterBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         if(hasRecipe()) {
@@ -221,20 +229,32 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
                     craftItem();
                     resetProgress();
                 }
-
             }else {
                 refillBlaze();
             }
         }else{
             resetProgress();
         }
-
     }
+
+    private void setUpgrades(){
+        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
+            this.maxProgress = 60;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
+            this.maxProgress = 36;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
+            this.maxProgress = 15;
+        }if (stacks.get(UPGRADESLOT).isEmpty()){
+            this.maxProgress = 90;
+        }
+    }
+
     private void  useContent(){
         this.removeItem(SCRAPSLOT, 1);
         this.removeItem(GOLDSLOT, 1);
         blazeUse --;
     }
+
     private void  refillBlaze(){
         if(this.stacks.get(BLAZESLOT).is(Items.BLAZE_ROD)) {
             this.removeItem(BLAZESLOT, 1);
@@ -242,24 +262,26 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
         }else{
             blazeUse = 0;
         }
-
-
     }
+
     private boolean isWorking(){
         if(hasRecipe() && blazeUse > 0){
             return true;
         }
         return false;
     }
+
     private boolean hasRecipe(){
         if(this.stacks.get(SCRAPSLOT).is(Items.NETHERITE_SCRAP) && this.stacks.get(GOLDSLOT).is(Items.GOLD_INGOT)){
             return true;
         }
         return false;
     }
+
     private void resetProgress() {
         progress = 0;
     }
+
     private void increaseCraftingProgress() {
         progress++;
     }
@@ -267,15 +289,14 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
     private boolean hasProgressFinished() {
         return progress >= maxProgress;
     }
-    private void craftItem() {
 
+    private void craftItem() {
         ItemStack result = new ItemStack(Items.NETHERITE_INGOT, 1);
         this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
     }
+
     private boolean hasSpace(){
         return this.stacks.get(OUTPUTSLOT).getCount() < 64;
     }
-
-
 }

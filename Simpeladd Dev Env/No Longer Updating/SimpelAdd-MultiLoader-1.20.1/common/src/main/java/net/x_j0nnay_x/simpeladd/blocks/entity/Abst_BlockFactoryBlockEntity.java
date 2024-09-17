@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -22,15 +21,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(7, ItemStack.EMPTY);
-
     public static int WATERSLOT = 5;
     public static int LAVASLOT = 6;
-
     public static int GRINDERSLOT = 0;
     public static int COBBLESLOT = 1;
     public static int GRAVALSLOT = 2;
@@ -40,6 +38,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     private static final int[] SLOTS_FOR_DOWN = new int[]{WATERSLOT, LAVASLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{WATERSLOT, LAVASLOT};
     protected final ContainerData data;
+    private int makingItem;
     private int progress = 0;
     private int maxProgress = 35;
     private int grindsleft = 0;
@@ -48,13 +47,10 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public int lavaUses = 0;
     public int lavaLevel = 0;
     public int waterLevel = 0;
-
     private int bucketValue = 1000;
-
 
     protected Abst_BlockFactoryBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
-
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -65,6 +61,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     case 3 -> Abst_BlockFactoryBlockEntity.this.lavaUses;
                     case 4 -> Abst_BlockFactoryBlockEntity.this.waterLevel;
                     case 5 -> Abst_BlockFactoryBlockEntity.this.lavaLevel;
+                    case 6 -> Abst_BlockFactoryBlockEntity.this.makingItem;
                     default -> 0;
                 };
             }
@@ -78,53 +75,67 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     case 3 -> Abst_BlockFactoryBlockEntity.this.lavaUses = pValue;
                     case 4 -> Abst_BlockFactoryBlockEntity.this.waterLevel = pValue;
                     case 5 -> Abst_BlockFactoryBlockEntity.this.lavaLevel = pValue;
+                    case 6 -> Abst_BlockFactoryBlockEntity.this.makingItem = pValue;
                 }
             }
-
             @Override
             public int getCount() {
-                return 6;
+                return 7;
             }
         };
     }
 
-
     @Override
-    public void load(CompoundTag $$0) {
-        super.load($$0);
+    public void load(CompoundTag pTag) {
+        super.load(pTag);
         this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems($$0, this.stacks);
-        this.progress = $$0.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_progress");
-        this.grindsleft = $$0.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left");
-        this.lavaUses = $$0.getShort(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses");
+        ContainerHelper.loadAllItems(pTag, this.stacks);
+        this.progress = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_progress");
+        this.grindsleft = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left");
+        this.lavaUses = pTag.getShort(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses");
+        this.lavaLevel = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel");
+        this.waterLevel = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel");
+        this.makingItem = pTag.getInt(SimpelAddMod.MODCUSTOM + "blockfactory_making");
     }
 
     @Override
-    protected void saveAdditional(CompoundTag $$0) {
-        super.saveAdditional($$0);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_progress", (short) this.progress);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left", (short) this.grindsleft);
-        $$0.putShort(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses", (short) this.lavaUses);
-        ContainerHelper.saveAllItems($$0, this.stacks);
+    protected void saveAdditional(CompoundTag pTag) {
+        super.saveAdditional(pTag);
+        pTag.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_progress", (short) this.progress);
+        pTag.putShort(SimpelAddMod.MODCUSTOM + "blockfactroy_grinds_left", (short) this.grindsleft);
+        pTag.putShort(SimpelAddMod.MODCUSTOM + "blockfactory_lavauses", (short) this.lavaUses);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_lavalevel", this.lavaLevel);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactroy_waterlevel", this.waterLevel);
+        pTag.putInt(SimpelAddMod.MODCUSTOM + "blockfactory_making", this.makingItem);
+        ContainerHelper.saveAllItems(pTag, this.stacks);
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return (direction == Direction.EAST && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.WEST && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.SOUTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.NORTH && (index == LAVASLOT) && stack.is(Items.LAVA_BUCKET) ||
-                direction == Direction.EAST && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.WEST && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.SOUTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.NORTH && (index == WATERSLOT) && stack.is(Items.WATER_BUCKET) ||
-                direction == Direction.UP && (index == GRINDERSLOT));
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH ||direction == Direction.NORTH){
+            if(index == LAVASLOT && stack.is(Items.LAVA_BUCKET)){
+                return true;
+            }
+            if(index == WATERSLOT && stack.is(Items.WATER_BUCKET)){
+                return true;
+            }
+        }if(direction == Direction.UP && index == GRINDERSLOT && stack.is(ModTags.Items.GRINDERS)){
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == WATERSLOT && var2.is(Items.BUCKET)) ||
-                (index == LAVASLOT && var2.is(Items.BUCKET)));
+        if(direction == Direction.DOWN){
+            if(index == WATERSLOT || index == LAVASLOT){
+                if(var2.is(Items.BUCKET)){
+                    return true;
+                }
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
@@ -215,10 +226,9 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public CompoundTag getUpdateTag() {
         return this.saveWithFullMetadata();
     }
-
 //Processing
-
     public void blockFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
+        setBlockOuput();
         if (canFillWater()) {
             fillWater();
         }
@@ -227,52 +237,65 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         }
         pState = pState.setValue(Abst_BlockFactoryBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
-        if (hasLiquid()) {
-            if (!isFull()) {
-                increaseCraftingProgress();
-                setChanged(pLevel, pPos, pState);
-                if (CobbleSpace()) {
-                    if (hasProgressFinished()) {
-                        makeCobble();
-                        resetProgress();
-                    }
-                }
-                if (this.grindsleft > 0) {
-                    if (GravalSpace() && !CobbleSpace()) {
-                        if (hasProgressFinished()) {
-                            useGrind();
-                            makeGraval();
-                            resetProgress();
-                        }
-                    }
-                    if (SandSpace() && !GravalSpace() && !CobbleSpace()) {
-                        if (hasProgressFinished()) {
-                            useGrind();
-                            makeSand();
-                            resetProgress();
-                        }
-                    }
-                } else {
-                    resetGrinds();
-                }
-                if (ObslidanSpace() && !SandSpace() && !GravalSpace() && !CobbleSpace()) {
-                    if (this.lavaUses > 0) {
-                        if (hasProgressFinished()) {
-                            makeObsidain();
-                            useLava();
-                            resetProgress();
-                        }
-                    } else {
-                        resteLavaUses();
-                    }
-                }
-                if (!ObslidanSpace() && !SandSpace() && !GravalSpace() && !CobbleSpace()) {
-                    resetProgress();
-                }
-                if (this.grindsleft == 0 && !isFull() && !CobbleSpace()) {
+        if (hasLiquid() && !isFull()) {
+            increaseCraftingProgress();
+            setChanged(pLevel, pPos, pState);
+            if (CobbleSpace()) {
+                if (hasProgressFinished()) {
+                    craftItems();
                     resetProgress();
                 }
             }
+            if (this.grindsleft > 0) {
+                if (GravalSpace() && !CobbleSpace()) {
+                    if (hasProgressFinished()) {
+                        useGrind();
+                        craftItems();
+                        resetProgress();
+                    }
+                }
+                if (SandSpace() && !GravalSpace() && !CobbleSpace()) {
+                    if (hasProgressFinished()) {
+                        useGrind();
+                        craftItems();
+                        resetProgress();
+                    }
+                }
+            } else {
+                resetGrinds();
+            }
+            if (ObslidanSpace() && !SandSpace() && !GravalSpace() && !CobbleSpace()) {
+                if (this.lavaUses > 0) {
+                    if (hasProgressFinished()) {
+                        craftItems();
+                        useLava();
+                        resetProgress();
+                    }
+                } else {
+                    resteLavaUses();
+                }
+            }
+            if (!ObslidanSpace() && !SandSpace() && !GravalSpace() && !CobbleSpace()) {
+                resetProgress();
+            }
+            if (this.grindsleft == 0 && !isFull() && !CobbleSpace()) {
+                resetProgress();
+            }
+        }
+    }
+
+    private void setBlockOuput(){
+        if(CobbleSpace()){
+            this.makingItem = 1;
+        }
+        if(!CobbleSpace() && GravalSpace()){
+            this.makingItem = 2;
+        }
+        if(!CobbleSpace() && !GravalSpace() && SandSpace()){
+            this.makingItem = 3;
+        }
+        if(!CobbleSpace() && !GravalSpace() && !SandSpace() && ObslidanSpace()){
+            this.makingItem = 4;
         }
     }
 
@@ -294,7 +317,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     }
 
     private void resetGrinds() {
-        if (stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)) {
+        if (stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)) {
             if (stacks.get(GRINDERSLOT).getDamageValue() >= stacks.get(GRINDERSLOT).getMaxDamage()) {
                 stacks.set(GRINDERSLOT, ItemStack.EMPTY);
             } else {
@@ -332,28 +355,27 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         return this.progress >= this.maxProgress;
     }
 
-    private void makeCobble() {
-        ItemStack result = new ItemStack(Items.COBBLESTONE, 1);
-        this.stacks.set(COBBLESLOT, new ItemStack(result.getItem(),
-                this.stacks.get(COBBLESLOT).getCount() + result.getCount()));
-    }
-
-    private void makeGraval() {
-        ItemStack result = new ItemStack(Items.GRAVEL, 1);
-        this.stacks.set(GRAVALSLOT, new ItemStack(result.getItem(),
-                this.stacks.get(GRAVALSLOT).getCount() + result.getCount()));
-    }
-
-    private void makeSand() {
-        ItemStack result = new ItemStack(Items.SAND, 1);
-        this.stacks.set(SANDSLOT, new ItemStack(result.getItem(),
-                this.stacks.get(SANDSLOT).getCount() + result.getCount()));
-    }
-
-    private void makeObsidain() {
-        ItemStack result = new ItemStack(Items.OBSIDIAN, 1);
-        this.stacks.set(OBSIDIANSLOT, new ItemStack(result.getItem(),
-                this.stacks.get(OBSIDIANSLOT).getCount() + result.getCount()));
+    private void craftItems(){
+        if(this.makingItem ==1 ){
+            ItemStack result = new ItemStack(Items.COBBLESTONE, 1);
+            this.stacks.set(COBBLESLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(COBBLESLOT).getCount() + result.getCount()));
+        }
+        if(this.makingItem == 2){
+            ItemStack result = new ItemStack(Items.GRAVEL, 1);
+            this.stacks.set(GRAVALSLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(GRAVALSLOT).getCount() + result.getCount()));
+        }
+        if(this.makingItem == 3){
+            ItemStack result = new ItemStack(Items.SAND, 1);
+            this.stacks.set(SANDSLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(SANDSLOT).getCount() + result.getCount()));
+        }
+        if(this.makingItem == 4){
+            ItemStack result = new ItemStack(Items.OBSIDIAN, 1);
+            this.stacks.set(OBSIDIANSLOT, new ItemStack(result.getItem(),
+                    this.stacks.get(OBSIDIANSLOT).getCount() + result.getCount()));
+        }
     }
 
     public boolean hasLiquid() {
@@ -392,7 +414,6 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
             this.waterLevel += bucketValue;
         }
     }
-
 
     public void fillLava() {
         if (this.stacks.get(LAVASLOT).getItem() == (Items.LAVA_BUCKET)) {

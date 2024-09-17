@@ -204,21 +204,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     }
     //Processing
     public void grinderTick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
-            this.hasBoost = 1;
-        }
-        if (stacks.get(BOOSTSLOT).isEmpty()){
-            this.hasBoost = 0;
-        }
-        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
-            this.maxProgress = 40;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
-            this.maxProgress = 24;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
-            this.maxProgress = 10;
-        }if (stacks.get(UPGRADESLOT).isEmpty()){
-            this.maxProgress = 60;
-        }
+        setUpgrades();
         pState = pState.setValue(Abst_GrinderBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         RecipeHolder<? extends GrinderRecipe> irecipe1 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT));
@@ -236,6 +222,24 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             }
         }else {
             resetProgress();
+        }
+    }
+
+    private void setUpgrades(){
+        if(this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
+            this.hasBoost = 1;
+        }
+        if (stacks.get(BOOSTSLOT).isEmpty()){
+            this.hasBoost = 0;
+        }
+        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
+            this.maxProgress = 40;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
+            this.maxProgress = 24;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
+            this.maxProgress = 10;
+        }if (stacks.get(UPGRADESLOT).isEmpty()){
+            this.maxProgress = 60;
         }
     }
 

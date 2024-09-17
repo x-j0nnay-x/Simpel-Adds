@@ -28,8 +28,6 @@ public abstract class Abst_GrinderBlock  extends BaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WORKING, Boolean.valueOf(false)));
     }
 
-
-
     @Override
     public void onRemove(BlockState $$0, Level $$1, BlockPos $$2, BlockState $$3, boolean $$4) {
         if (!$$0.is($$3.getBlock())) {
@@ -38,13 +36,12 @@ public abstract class Abst_GrinderBlock  extends BaseEntityBlock {
                 if ($$1 instanceof ServerLevel) {
                     Containers.dropContents($$1, $$2, (Abst_GrinderBlockEntity)$$5);
                 }
-
                 $$1.updateNeighbourForOutputSignal($$2, this);
             }
-
             super.onRemove($$0, $$1, $$2, $$3, $$4);
         }
     }
+
     @Override
     public RenderShape getRenderShape(BlockState $$0) {
         return RenderShape.MODEL;
@@ -58,10 +55,12 @@ public abstract class Abst_GrinderBlock  extends BaseEntityBlock {
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
+
     @Override
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
     }
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
@@ -71,6 +70,7 @@ public abstract class Abst_GrinderBlock  extends BaseEntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> $$0) {
         $$0.add(FACING, WORKING);
     }
+
     @Override
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
         if (!blockState.getValue(WORKING).booleanValue()) {
@@ -92,5 +92,4 @@ public abstract class Abst_GrinderBlock  extends BaseEntityBlock {
         level.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         level.addParticle(ParticleTypes.ASH, d + i, e + j, f + k, 0.0, 0.0, 0.0);
     }
-
 }

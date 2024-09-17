@@ -1,24 +1,23 @@
 {
   "type": "simpeladdmod:manualgrind",
   "category": "misc",
-  "pattern": [
-    " z ",
-    "zxz",
-    " z "
-  ],
-
-  "key":
-  {
-    "z":
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:grinders"
+    },
     {
       "item": "minecraft:gravel"
     },
-    "x":
     {
-      "tag": "simpeladdmod:grinders"
+      "item": "minecraft:gravel"
+    },
+    {
+      "item": "minecraft:gravel"
+    },
+    {
+      "item": "minecraft:gravel"
     }
-
-  },
+  ],
   "result":
   {
     "id": "minecraft:flint",

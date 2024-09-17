@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -24,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_GrinderBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
@@ -47,10 +47,8 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     private int grindEff = 5;
     private int hasBoost = 0;
 
-
     protected Abst_GrinderBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
-
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -84,8 +82,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         };
     }
 
-
-
     @Override
     public void load(CompoundTag $$0) {
         super.load($$0);
@@ -94,7 +90,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         this.progress = $$0.getShort(SimpelAddMod.MODCUSTOM +"grinder_progress");
         this.grindsleft = $$0.getShort(SimpelAddMod.MODCUSTOM +"grinder_grinds_left");
         this.grindEff = $$0.getShort(SimpelAddMod.MODCUSTOM +"grinder_effec");
-
     }
 
     @Override
@@ -108,15 +103,27 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
-        return (
-                (direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) && (index == INPUTSLOT) ||
-                        direction == Direction.UP && (index == GRINDERSLOT)
-        );
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if(index == INPUTSLOT && var2.is(ModTags.Items.CANGRIND)){
+                return true;
+            }
+            return false;
+        }
+        if(direction == Direction.UP){
+            if(index == GRINDERSLOT && var2.is(ModTags.Items.GRINDERS)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT));
+        if(direction == Direction.DOWN && index == OUTPUTSLOT){
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -146,6 +153,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public ItemStack removeItemNoUpdate(int var1) {
         return ContainerHelper.takeItem(this.stacks, var1);
     }
+
     @Override
     public void setItem(int var1, ItemStack var2) {
         ItemStack $$2 = this.stacks.get(var1);
@@ -155,6 +163,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             var2.setCount(this.getMaxStackSize());
         }
     }
+
     @Override
     protected NonNullList<ItemStack> getItems() {
         return this.stacks;
@@ -173,24 +182,28 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             return var1 == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
         }
     }
+
     @Override
     public void clearContent() {
         this.stacks.clear();
     }
+
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.grinder_block");
     }
+
     public void sendUpdate() {
         setChanged();
-
         if (this.level != null)
             this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -200,25 +213,9 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public CompoundTag getUpdateTag() {
         return this.saveWithFullMetadata();
     }
-
 //Processing
-
     public void grinderTick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if(this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
-            this.hasBoost = 1;
-        }
-        if (stacks.get(BOOSTSLOT).isEmpty()){
-            this.hasBoost = 0;
-        }
-        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
-            this.maxProgress = 40;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
-            this.maxProgress = 24;
-        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
-            this.maxProgress = 10;
-        }if (stacks.get(UPGRADESLOT).isEmpty()){
-            this.maxProgress = 60;
-        }
+        setUpgrades();
         pState = pState.setValue(Abst_GrinderBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
         if(hasRecipe()){
@@ -239,9 +236,29 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             resetProgress();
         }
     }
+
+    private void setUpgrades(){
+        if(this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
+            this.hasBoost = 1;
+        }
+        if (stacks.get(BOOSTSLOT).isEmpty()){
+            this.hasBoost = 0;
+        }
+        if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
+            this.maxProgress = 40;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
+            this.maxProgress = 24;
+        }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
+            this.maxProgress = 10;
+        }if (stacks.get(UPGRADESLOT).isEmpty()){
+            this.maxProgress = 60;
+        }
+    }
+
     private void resetGrindEff(){
         this.grindEff = 5;
     }
+
     private void useGrind(){
         if (this.stacks.get(BOOSTSLOT).is(ModItems.BOOSTUPGRADE)){
             if (this.grindEff > 0) {
@@ -254,8 +271,9 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             this.grindsleft--;
         }
     }
+
     private void resetGrinds() {
-        if(this.stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)){
+        if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
             if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
                 this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
             }else{
@@ -266,9 +284,11 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             this.grindsleft = 0;
         }
     }
+
     private boolean canWork(){
         return  hasRecipe();
     }
+
     private boolean isWorking() {
         if (canWork()){
             if(this.grindsleft > 0 || this.stacks.get(GRINDERSLOT).is(ModItems.GRINDERHEAD)){
@@ -277,17 +297,17 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         }
         return false;
     }
+
     private void resetProgress() {
         this.progress = 0;
     }
+
     private void increaseCraftingProgress() {
         this.progress++;
     }
 
     private boolean hasProgressFinished() {
-
         return this.progress >= this.maxProgress;
-
     }
 
     private void craftItem() {
@@ -298,21 +318,20 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
 
     }
+
     private boolean hasRecipe() {
         Optional<GrinderRecipe> recipe = getCurrentRecipe();
-
         if(recipe.isEmpty()) {
             return false;
         }
         ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
-
         return canInsertOutputAmount(result.getCount()) && canInsertOutputItem(result.getItem());
     }
+
     private Optional<GrinderRecipe> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.stacks.get(INPUTSLOT));
         return this.level.getRecipeManager().getRecipeFor(GrinderRecipe.Type.INSTANCE, inventory, level);
     }
-
 
     private boolean canInsertOutputItem(Item item) {
         return this.stacks.get(OUTPUTSLOT).isEmpty() || this.stacks.get(OUTPUTSLOT).is(item);
@@ -321,5 +340,4 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     private boolean canInsertOutputAmount(int count) {
         return this.stacks.get(OUTPUTSLOT).getCount() + count <= this.stacks.get(OUTPUTSLOT).getMaxStackSize();
     }
-
 }

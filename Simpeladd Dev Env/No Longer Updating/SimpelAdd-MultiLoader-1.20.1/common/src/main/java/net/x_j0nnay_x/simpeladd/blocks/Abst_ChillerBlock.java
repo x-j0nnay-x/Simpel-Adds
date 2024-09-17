@@ -29,8 +29,6 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WORKING, Boolean.valueOf(false)));
     }
 
-
-
     @Override
     public void onRemove(BlockState $$0, Level $$1, BlockPos $$2, BlockState $$3, boolean $$4) {
         if (!$$0.is($$3.getBlock())) {
@@ -39,13 +37,12 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
                 if ($$1 instanceof ServerLevel) {
                     Containers.dropContents($$1, $$2, (Abst_ChillerBlockEntity)$$5);
                 }
-
                 $$1.updateNeighbourForOutputSignal($$2, this);
             }
-
             super.onRemove($$0, $$1, $$2, $$3, $$4);
         }
     }
+
     @Override
     public RenderShape getRenderShape(BlockState $$0) {
         return RenderShape.MODEL;
@@ -59,10 +56,12 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
+
     @Override
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
     }
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
@@ -81,7 +80,6 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
         if ($$3.nextInt(100) == 0) {
             $$1.playLocalSound((double)$$2.getX() + 0.5, (double)$$2.getY() + 0.5, (double)$$2.getZ() + 0.5, SoundEvents.SNOW_STEP, SoundSource.BLOCKS, 0.5F, $$3.nextFloat() * 0.07F + 0.15F, false);
         }
-
         for(int $$4 = 0; $$4 < 4; ++$$4) {
             double $$5 = (double)$$2.getX() + $$3.nextDouble();
             double $$6 = (double)$$2.getY() + $$3.nextDouble();
@@ -97,11 +95,8 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
                 $$7 = (double)$$2.getZ() + 0.5 + 0.25 * (double)$$11;
                 $$10 = (double)($$3.nextFloat() * 0.25F * (float)$$11);
             }
-
             $$1.addParticle(ParticleTypes.SNOWFLAKE, $$5, $$6, $$7, $$8, $$9, $$10);
             $$1.addParticle(ParticleTypes.ASH, $$5, $$6, $$7, $$8, $$9, $$10);
         }
-
     }
-
 }

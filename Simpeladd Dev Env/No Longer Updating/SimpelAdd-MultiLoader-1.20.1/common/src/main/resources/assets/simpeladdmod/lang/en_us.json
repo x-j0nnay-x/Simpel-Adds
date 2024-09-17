@@ -3,23 +3,34 @@
   "item.simpeladdmod.simpel_elitra_part1": "Simpel Wings Base",
   "item.simpeladdmod.simpel_elitra_part2": "Simpel Wings Support",
 
-  "item.simpeladdmod.grinderhead" : "Grinder",
-  "item.simpeladdmod.grinderheadu" : "Grinder",
+  "item.simpeladdmod.grinderhead" : "Grinder Head",
+  "item.simpeladdmod.grinderhead_netherite" : "Netherite Grinder Head",
+  "item.simpeladdmod.grinderhead_unobtanium" : "Unobtanium Grinder Head",
+
   "item.simpeladdmod.goldstick" : "Gold Stick",
   "item.simpeladdmod.woodfiber" : "Wood Fiber",
   "item.simpeladdmod.flesh" : "Flesh",
-
   "item.simpeladdmod.netherite_shard" : "Ancient Shards",
-  "item.simpeladdmod.netherite_shard_dust" : "Ancient Shards Dust",
   "item.simpeladdmod.netherite_shard_raw" : "Raw Ancient Shards",
+  "item.simpeladdmod.unobtanium_scrap" : "Unobtanium Scrap",
+  "item.simpeladdmod.obsidianingot": "Obsidian Ingot",
+  "item.simpeladdmod.repairtool": "Repair Tool",
+  "item.simpeladdmod.fireprooftool": "Fire Proof Tool",
+  "item.simpeladdmod.feedingtool": "Feeding Tool",
 
   "item.simpeladdmod.unobtaniumdust" : "Unobtanium Dust",
-  "item.simpeladdmod.unobtanium_scrap" : "Unobtanium Scrap",
+  "item.simpeladdmod.netherite_shard_dust" : "Ancient Shards Dust",
+  "item.simpeladdmod.irondust" : "Iron Dust",
+  "item.simpeladdmod.copperdust" : "Copper Dust",
+  "item.simpeladdmod.golddust" : "Gold Dust",
+  "item.simpeladdmod.netheritedust" : "Netherite Scrap Dust",
+  "item.simpeladdmod.obsidiandust": "Obsidian Dust",
 
   "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1.5x",
   "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2.5x",
   "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 6x",
-  "item.simpeladdmod.boostupgrade" : "Grinder Efficiency 5x",
+  "item.simpeladdmod.boostupgrade" : "Grinder Efficiency",
+  "item.simpeladdmod.xpboostupgrade" : "Xp Boost 4x",
 
 
   "item.simpeladdmod.sandwich_beef" : "Beef Sandwich",
@@ -34,14 +45,6 @@
   "item.simpeladdmod.blankupgrade" : "Blank Upgrade",
   "item.simpeladdmod.obsidian_upgrade_smithing" : "Obsidian Smithing Template",
   "item.simpeladdmod.unobtanium_upgrade_smithing" : "Unobtanium Smithing Template",
-
-  "item.simpeladdmod.irondust" : "Iron Dust",
-  "item.simpeladdmod.copperdust" : "Copper Dust",
-  "item.simpeladdmod.golddust" : "Gold Dust",
-  "item.simpeladdmod.netheritedust" : "Netherite Scrap Dust",
-
-  "item.simpeladdmod.obsidianingot": "Obsidian Ingot",
-  "item.simpeladdmod.obsidiandust": "Obsidian Dust",
 
   "item.simpeladdmod.obsidianaxe": "Obsidian Axe",
   "item.simpeladdmod.obsidianpickaxe" : "Obsidian Pickaxe",
@@ -83,14 +86,6 @@
   "item.simpeladdmod.unobtainobsidiritelegs" : "Unobtan Obsidirite Leggings",
   "item.simpeladdmod.unobtainobsidiriteboots" : "Unobtan Obsidirite Boots",
 
-  "item.simpeladdmod.elytra_chest_iron" : "Iron Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_gold" : "Gold Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_diamon" : "Diamond Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_netherite" : "Netherite Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_obsidian" : "Obsidian Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_obsidirite" : "Obsidirite Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_unobtainnetherite" : "Unobtan Netherite Elytra ChestPlate",
-  "item.simpeladdmod.elytra_chest_unobtainobsidirite" : "Unobtan Obsidirite Elytra ChestPlate",
 
   "block.simpeladdmod.deepslate_debri_ore" : "Deepslate Debri Ore",
   "block.simpeladdmod.unobtanium_ore" : "Unobtanium Ore",
@@ -101,8 +96,18 @@
   "block.simpeladdmod.chiller_block": "Chilling Block",
   "block.simpeladdmod.netherite_crafter_block": "Netherite Crafting Block",
   "block.simpeladdmod.upgraded_furnace": "Upgraded Furnace",
+  "block.simpeladdmod.grind_factory_block": "Grind Factory",
+
 
   "creativetab.simpel_tab": "Simpel add Tab",
+
+  "simpeladdmod.jei.chilling.snowball": "inside of the Chiller this will give you 1 chilling",
+  "simpeladdmod.jei.chilling.snowblock": "inside of the Chiller this will give you 4 chilling",
+  "simpeladdmod.jei.chilling.ice": "inside of the Chiller this will give you 8 chilling",
+  "simpeladdmod.jei.chilling.packedice": "inside of the Chiller this will give you 10 chilling",
+  "simpeladdmod.jei.chilling.blueice": "inside of the Chiller this will give you 12 chilling",
+  "simpeladdmod.jei.waterbucket": "inside of the Chiller this will give you 10x ice.",
+  "simpeladdmod.jei.lavabucket": "inside of the Block Factory will give you 4x Obsidian",
 
   "gui.simpeladdmod.grinder_gui.Grindables": "Any Item with the Tag Grindable",
   "gui.simpeladdmod.chiller_block_gui.Chilling": "Any Item With The Tage Chilling",
@@ -114,6 +119,7 @@
   "gui.simpeladdmod.upgrade_furnace_gui.xp_stored": "XP:",
   "gui.simpeladdmod.blockfactory.label1": "Block",
   "gui.simpeladdmod.blockfactory.label2": "Factory",
+  "gui.simpeladdmod.blockfactory.button.tooltip": "OutPut Slot",
   "gui.simpeladdmod.chiller_block_gui.label": "Chiller",
   "gui.simpeladdmod.netherite_crafter_gui": "Netherite Auto Crafting",
 
@@ -121,6 +127,8 @@
   "advancements.simpeladdmod.title.descrip" : "Simpel Add Mod was Loaded",
   "advancements.simpeladdmod.automation.title" : "Simpel Add Mod Automation",
   "advancements.simpeladdmod.automation.title.descrip" : "Making crafts better",
+  "advancements.simpeladdmod.automationupgrades.title" : "Automation Upgrades",
+  "advancements.simpeladdmod.automationupgrades.title.descrip" : "Making crafts faster and more",
   "advancements.simpeladdmod.coolcraft.title" : "Simpel Add Mod useful Crafts",
   "advancements.simpeladdmod.coolcraft.descrip" : "hard to get items made easier",
   "advancements.simpeladdmod.manual.title" : "Simpel Add Mod manual crafting",
@@ -160,6 +168,10 @@
   "advancements.simpeladdmod.upgraded_furnace_block.descrip" : "lets not waste coal, auto splitting with XP Bottles and Upgradable",
   "advancements.simpeladdmod.grinder_block_up.title" : "Lets Make this even faster",
   "advancements.simpeladdmod.grinder_block_up.descrip" : "More slots auto splitting and upgradable for speed and efficiency",
+  "advancements.simpeladdmod.grind_factory.title" : "Lets Grind and Smelt",
+  "advancements.simpeladdmod.grind_factory.descrip" : "adds xp for grind and auto smelting",
+  "advancements.simpeladdmod.grind_factory_block.title" : "Lets Make this more automated",
+  "advancements.simpeladdmod.grind_factory_block.descrip" : "Grinding gets XP, and it Smelts Them aswell?",
   "advancements.simpeladdmod.netherite_crafter_block.title" : "Lets Make Ingots Even better",
   "advancements.simpeladdmod.netherite_crafter_block.descrip" : "One Scrap, One Gold, some heat from a blaze rod and off we go!!!",
   "advancements.simpeladdmod.blockfactory_block.title" : "Cobble works",
@@ -176,5 +188,12 @@
   "advancements.simpeladdmod.simpel_elitra_half.title" : "WHAT STILL NOT DONE?!?!?!",
   "advancements.simpeladdmod.simpel_elitra_half.descrip" : "maybe if i do that again i can finally finish it",
   "advancements.simpeladdmod.simpel_elitra.title" : "There we go Off to the races",
-  "advancements.simpeladdmod.simpel_elitra.descrip" : "Not to bad for ealry flight"
+  "advancements.simpeladdmod.simpel_elitra.descrip" : "Not to bad for ealry flight",
+
+  "advancements.simpeladdmod.speedupgrade.title" : "Run Faster",
+  "advancements.simpeladdmod.speedupgrade.descrip" : "Lets run some machines 1.5/2.5/6 times faster",
+  "advancements.simpeladdmod.effupgrade.title" : "Run More Efficiently",
+  "advancements.simpeladdmod.effupgrade.descrip" : "Lets run grinding blocks more efficiently",
+  "advancements.simpeladdmod.xpupgrade.title" : "Get More Xp",
+  "advancements.simpeladdmod.xpupgrade.descrip" : "Lets you run smelting blocks in my my mod and get 4x the XP"
 }

@@ -102,7 +102,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
         this.progress4 = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_furnace_progress4");
         this.fuelLevel = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_furnace_fuel_left");
         this.storedXP = $$0.getInt(SimpelAddMod.MODCUSTOM +"upgraded_furnace_stored_xp");
-       }
+    }
 
     @Override
     protected void saveAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
@@ -194,7 +194,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
 
     @Override
     protected void setItems(NonNullList<ItemStack> nonNullList) {
-            this.stacks = nonNullList;
+        this.stacks = nonNullList;
     }
 
     @Override
@@ -227,12 +227,33 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return this.saveWithFullMetadata(pRegistries);
     }
-//Processing
+    //Processing
     public void upFurnaceTick(Level pLevel, BlockPos pPos, BlockState pState) {
         makeXPBottle();
         addFuel();
         splitStack();
         resetCheck();
+        setUpGrades();
+        pState = pState.setValue(Abst_FurnaceBlock_Up.WORKING, Boolean.valueOf(isWorking()));
+        pLevel.setBlock(pPos, pState, 3);
+        if(fuelLevel > 0){
+            for (int i = 0; i < 4; i ++) {
+                int slot = INPUTSLOT1 + i;
+                RecipeHolder<? extends AbstractCookingRecipe> irecipe = this.getRecipeNonCached(this.stacks.get(slot));
+                if (hasRecipe(irecipe, slot)) {
+                    incresseProgress(slot);
+                    if (hasProgressFinished(slot)) {
+                        useFuel();
+                        craftItem(irecipe, slot);
+                        this.storedXP += Math.round(irecipe.value().getExperience() * xpBoost);
+                        resetProgress(slot);
+                    }
+                }
+            }
+        }
+    }
+
+    private void setUpGrades(){
         if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_1)) {
             this.maxProgress = 20;
         }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_2)) {
@@ -246,51 +267,8 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
         }if (!this.stacks.get(XPBOOSTSLOT).isEmpty()){
             this.xpBoost = 4;
         }
-        pState = pState.setValue(Abst_FurnaceBlock_Up.WORKING, Boolean.valueOf(isWorking()));
-        pLevel.setBlock(pPos, pState, 3);
-        if(fuelLevel > 0){
-            RecipeHolder<? extends AbstractCookingRecipe> irecipe1 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT1));
-            RecipeHolder<? extends AbstractCookingRecipe> irecipe2 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT2));
-            RecipeHolder<? extends AbstractCookingRecipe> irecipe3 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT3));
-            RecipeHolder<? extends AbstractCookingRecipe> irecipe4 = this.getRecipeNonCached(this.stacks.get(INPUTSLOT4));
-            if(hasRecipe(irecipe1, INPUTSLOT1)){
-                incresseProgress(INPUTSLOT1);
-                if(hasProgressFinished(INPUTSLOT1)){
-                    useFuel();
-                    craftItem(irecipe1, INPUTSLOT1);
-                    this.storedXP += Math.round(irecipe1.value().getExperience() * xpBoost);
-                    resetProgress(INPUTSLOT1);
-                }
-            }
-            if(hasRecipe(irecipe2, INPUTSLOT2)){
-                incresseProgress(INPUTSLOT2);
-                if(hasProgressFinished(INPUTSLOT2)){
-                    useFuel();
-                    craftItem(irecipe2, INPUTSLOT2);
-                    this.storedXP += Math.round(irecipe2.value().getExperience()* xpBoost);
-                    resetProgress(INPUTSLOT2);
-                }
-            }
-            if(hasRecipe(irecipe3, INPUTSLOT3)){
-                incresseProgress(INPUTSLOT3);
-                if(hasProgressFinished(INPUTSLOT3)){
-                    useFuel();
-                    craftItem(irecipe3, INPUTSLOT3);
-                    this.storedXP += Math.round(irecipe3.value().getExperience()* xpBoost);
-                    resetProgress(INPUTSLOT3);
-                }
-            }
-            if(hasRecipe(irecipe4, INPUTSLOT4)){
-                incresseProgress(INPUTSLOT4);
-                if(hasProgressFinished(INPUTSLOT4)){
-                    useFuel();
-                    craftItem(irecipe4, INPUTSLOT4);
-                    this.storedXP += Math.round(irecipe4.value().getExperience() * xpBoost);
-                    resetProgress(INPUTSLOT4);
-                }
-            }
-        }
     }
+
     private boolean isblockEmpty(){
         return isSlotEmpty(INPUTSLOT1) && isSlotEmpty(INPUTSLOT2) && isSlotEmpty(INPUTSLOT3) && isSlotEmpty(INPUTSLOT4) ;
     }
@@ -326,17 +304,11 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     }
 
     private void resetCheck(){
-        if(isSlotEmpty(INPUTSLOT1)){
-            resetProgress(INPUTSLOT1);
-        }
-        if(isSlotEmpty(INPUTSLOT2)){
-            resetProgress(INPUTSLOT2);
-        }
-        if(isSlotEmpty(INPUTSLOT3)){
-            resetProgress(INPUTSLOT3);
-        }
-        if(isSlotEmpty(INPUTSLOT4)){
-            resetProgress(INPUTSLOT4);
+        for (int i = 0; i < 4; i ++) {
+            int slot = INPUTSLOT1 + i;
+            if (isSlotEmpty(slot) || fuelLevel == 0) {
+                resetProgress(slot);
+            }
         }
         if(fuelLevel < 0){
             fuelLevel = 0;
@@ -466,7 +438,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
                 itemstack2.grow(itemstack1.getCount());
             }
             itemstack.shrink(1);
-        } 
+        }
     }
 
     public  boolean hasRecipe(@Nullable RecipeHolder<?> recipe, int slot){

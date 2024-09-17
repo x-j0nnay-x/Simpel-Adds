@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "simpeladdmod:grinder_block"
+    },
+    "title": {
+      "translate": "advancements.simpeladdmod.coolcraft.title"
+    },
+    "description": {
+      "translate": "advancements.simpeladdmod.coolcraft.descrip"
+    },
+    "frame": "goal",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "advancment_simpeladdmodcoolcrafts": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "parent": "simpeladdmod:advancment_simpeladdmod"
+}

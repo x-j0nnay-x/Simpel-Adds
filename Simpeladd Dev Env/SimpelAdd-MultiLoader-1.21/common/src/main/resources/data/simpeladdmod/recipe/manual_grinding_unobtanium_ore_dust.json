@@ -1,23 +1,14 @@
 {
   "type": "simpeladdmod:manualgrind",
   "category": "misc",
-  "pattern": [
-    "x",
-    "z"
-  ],
-
-  "key":
-  {
-    "z":
+  "ingredients": [
     {
       "item": "simpeladdmod:unobtanium_ore"
     },
-    "x":
     {
       "tag": "simpeladdmod:grinders"
     }
-
-  },
+  ],
   "result":
   {
     "id": "simpeladdmod:unobtaniumdust",

@@ -1,23 +1,14 @@
 {
   "type": "simpeladdmod:manualgrind",
   "category": "misc",
-  "pattern": [
-    "x",
-    "z"
-  ],
-
-  "key":
-  {
-    "z":
+  "ingredients": [
     {
       "tag": "simpeladdmod:raw_gold_droper"
     },
-    "x":
     {
       "tag": "simpeladdmod:grinders"
     }
-
-  },
+  ],
   "result":
   {
     "id": "minecraft:raw_gold",

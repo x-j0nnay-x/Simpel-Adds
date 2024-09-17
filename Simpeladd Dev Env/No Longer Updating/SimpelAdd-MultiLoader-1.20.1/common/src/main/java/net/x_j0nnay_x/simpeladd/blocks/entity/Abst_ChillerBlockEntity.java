@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -22,12 +21,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_ChillerBlock;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_FurnaceBlock_Up;
+import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
-
     public static int CHILLINGSLOT = 0;
     public static int WATERSLOT = 1;
     public static int OUTPUTSLOT = 2;
@@ -85,6 +84,7 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         this.progress = $$0.getShort(SimpelAddMod.MODCUSTOM + "chiller_progress");
         this.snowLevel = $$0.getShort(SimpelAddMod.MODCUSTOM + "chiller_snow");
         this.waterUese = $$0.getShort(SimpelAddMod.MODCUSTOM + "chiller_wateruse");
+        this.waterLevel = $$0.getInt(SimpelAddMod.MODCUSTOM + "chiller_waterlevel");
     }
 
     @Override
@@ -93,20 +93,39 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         $$0.putShort(SimpelAddMod.MODCUSTOM + "chiller_progress", (short) this.progress);
         $$0.putShort(SimpelAddMod.MODCUSTOM + "chiller_snow", (short) this.snowLevel);
         $$0.putShort(SimpelAddMod.MODCUSTOM + "chiller_wateruse", (short) this.waterUese);
+        $$0.putInt(SimpelAddMod.MODCUSTOM + "chiller_waterlevel",  this.waterLevel);
         ContainerHelper.saveAllItems($$0, this.stacks);
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return ((direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH) &&
-                (index == CHILLINGSLOT) ||
-                direction == Direction.UP && (index == WATERSLOT));
+        if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
+            if(index == CHILLINGSLOT && stack.is(ModTags.Items.CHILLING)){
+                return true;
+            }
+            return false;
+        }
+        if(direction == Direction.UP){
+            if(index == WATERSLOT && stack.is(Items.WATER_BUCKET)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        return (direction == Direction.DOWN && (index == OUTPUTSLOT ||
-                index == WATERSLOT && var2.is(Items.BUCKET)));
+        if(direction == Direction.DOWN){
+            if(index == OUTPUTSLOT){
+                return true;
+            }
+            if(index == WATERSLOT && var2.is(Items.BUCKET)){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
@@ -183,7 +202,6 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
 
     public void sendUpdate() {
         setChanged();
-
         if (this.level != null)
             this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
@@ -197,9 +215,7 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
     public CompoundTag getUpdateTag() {
         return this.saveWithFullMetadata();
     }
-
 //Processing
-
     public void chillerTick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (canFillWater()) {
             fillWater();
@@ -228,13 +244,16 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         }
 
     }
+
     private boolean isWorking(){
         return hasSnow() && hasWater() && hasSpace();
     }
+
     private void  useContent(){
         this.waterUese --;
         this.snowLevel --;
     }
+
     public void  fillSnow(){
         if (canFillSnow()){
             if (snowLevel < 20) {
@@ -269,6 +288,7 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
             }
         }
     }
+
     public void  fillWater(){
         if(this.stacks.get(WATERSLOT).getItem() == (Items.WATER_BUCKET)){
             this.removeItem(WATERSLOT, 1);
@@ -276,22 +296,26 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
             waterLevel += bucketValue;
         }
     }
+
     public boolean canFillWater() {
         return this.waterLevel < bucketValue * 10;
     }
+
     private boolean canFillSnow() {
         return this.snowLevel < 20;
     }
+
     public void setWaterUese(){
         if(this.waterLevel > 0){
             this.waterLevel -= bucketValue;
             this.waterUese = 10;
         }
-
     }
+
     private void resetProgress() {
         progress = 0;
     }
+
     private void increaseCraftingProgress() {
         progress++;
     }
@@ -299,21 +323,22 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
     private boolean hasProgressFinished() {
         return progress >= maxProgress;
     }
+
     private void craftItem() {
         ItemStack result = new ItemStack(Items.ICE, 1);
         this.stacks.set(OUTPUTSLOT, new ItemStack(result.getItem(),
                 this.stacks.get(OUTPUTSLOT).getCount() + result.getCount()));
     }
+
     private boolean hasSpace(){
         return this.stacks.get(OUTPUTSLOT).getCount() < 64;
     }
+
     private boolean hasSnow() {
         return this.snowLevel >0;
     }
+
     public boolean hasWater() {
         return this.waterLevel >0 || this.waterUese > 0;
     }
-
-
-
 }

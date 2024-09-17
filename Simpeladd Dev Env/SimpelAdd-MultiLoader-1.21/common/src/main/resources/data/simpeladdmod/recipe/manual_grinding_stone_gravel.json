@@ -1,24 +1,35 @@
 {
   "type": "simpeladdmod:manualgrind",
   "category": "misc",
-  "pattern": [
-    "zzz",
-    "zxz",
-    "zzz"
-  ],
-
-  "key":
-  {
-    "z":
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:grinders"
+    },
     {
       "item": "minecraft:cobblestone"
     },
-    "x":
     {
-      "tag": "simpeladdmod:grinders"
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:cobblestone"
     }
-
-  },
+  ],
   "result":
   {
     "id": "minecraft:gravel",

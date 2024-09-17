@@ -21,14 +21,22 @@ public class ModBlockRegFabric {
 
     public static final Block BLOCK_FACTORY = registerBlock("blockfactory_block",
             new FabricBlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
     public static final Block CHILLER = registerBlock("chiller_block",
             new FabricChillerBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
     public static final Block GRINDER_BLOCK = registerBlock("grinder_block",
             new FabricGrinderBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
     public static final Block GRINDER_BLOCK_UP = registerBlock("grinder_block_up",
             new FabricGrinderBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
+    public static final Block GRIND_FACTORY_BLOCK = registerBlock("grind_factory_block",
+            new FabricGrindFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
     public static final Block NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
             new FabricNetheriteCraftingBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
     public static final Block UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
             new FabricFurnaceBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
 
