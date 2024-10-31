@@ -1,0 +1,17 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:clay"
+    },
+    {
+      "tag": "simpeladdmod:grinders"
+    }
+  ],
+  "result":
+  {
+    "id": "minecraft:clay_ball",
+    "count":5
+  }
+}

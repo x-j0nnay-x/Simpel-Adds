@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":
+  [
+    "x x",
+    "xxx",
+    "xxx"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "simpeladdmod:obsidianingot"
+    }
+
+
+  },
+  "result":
+  {
+    "id": "simpeladdmod:obsidianchest",
+    "count": 1
+  }
+}

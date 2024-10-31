@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "simpeladdmod:unobtanium_scrap"
+    },
+    "title": {
+      "translate": "advancements.simpeladdmod.unobtanium_scrap.title"
+    },
+    "description": {
+      "translate": "advancements.simpeladdmod.unobtanium_scrap.descrip"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "advancment_unobtaniumscrap": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simpeladdmod:unobtanium_scrap"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simpeladdmod:advancment_unobtanium"
+}

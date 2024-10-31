@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:raw_gold_droper"
+    }
+  ],
+  "output": {
+    "count": 6,
+    "item": "simpeladdmod:golddust"
+  }
+}
