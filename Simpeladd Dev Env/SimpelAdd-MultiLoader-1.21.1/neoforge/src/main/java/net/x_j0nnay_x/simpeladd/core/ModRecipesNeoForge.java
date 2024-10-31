@@ -18,14 +18,9 @@ public class ModRecipesNeoForge {
             DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, SimpelAddModNeoForge.MODID);
 
     public static final Supplier<RecipeSerializer<GrinderRecipe>> GRINDER_RECIPE_SERIALIZER =
-            SERIALIZERS.register(GrinderRecipe.Serializer.ID, () -> GrinderRecipe.Serializer.INSTANCE);
+            SERIALIZERS.register(GrinderRecipe.GrinderSerializer.ID, () -> GrinderRecipe.GrinderSerializer.INSTANCE);
     public static final Supplier<RecipeType<GrinderRecipe>> GRINDER_RECIPE_TYPE=
-            TYPE.register(GrinderRecipe.Type.ID, () -> GrinderRecipe.Type.INSTANCE);
-
-    public static final Supplier<RecipeSerializer<GrindFactoryRecipe>> GRINDFACTORY_RECIPE_SERIALIZER =
-            SERIALIZERS.register(GrindFactoryRecipe.Serializer.ID, () -> GrindFactoryRecipe.Serializer.INSTANCE);
-    public static final Supplier<RecipeType<GrindFactoryRecipe>> GRINDFACTORY_RECIPE_TYPE =
-            TYPE.register(GrindFactoryRecipe.Type.ID, () -> GrindFactoryRecipe.Type.INSTANCE);
+            TYPE.register(GrinderRecipe.GrinderType.ID, () -> GrinderRecipe.GrinderType.INSTANCE);
 
     public static final Supplier<RecipeSerializer<ManualGrind>> MANUAL_GRINDER_RECIPE_SERIALIZER =
             SERIALIZERS.register(ManualGrind.Serializer.ID, () -> ManualGrind.Serializer.INSTANCE);

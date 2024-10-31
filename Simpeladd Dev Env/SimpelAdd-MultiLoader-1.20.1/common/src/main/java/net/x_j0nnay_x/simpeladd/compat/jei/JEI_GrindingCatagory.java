@@ -35,7 +35,7 @@ public class JEI_GrindingCatagory implements IRecipeCategory<GrinderRecipe> {
 
     public static final ResourceLocation TEXTURE = new ResourceLocation(SimpelAddMod.MOD_ID, "textures/screens/grinding_jei.png");
 
-    public static final RecipeType<GrinderRecipe> GRINDER_RECIPE_RECIPE_TYPE = RecipeType.create(SimpelAddMod.MOD_ID, "grinding", GrinderRecipe.class);
+    public static final RecipeType<GrinderRecipe> GRINDER_RECIPE_RECIPE_TYPE = RecipeType.create(SimpelAddMod.MOD_ID, GrinderRecipe.GrinderType.IDNAME, GrinderRecipe.class);
 
     public JEI_GrindingCatagory(IGuiHelper helper) {
         this.title = Component.translatable("simpeladdmod.jei.grinder");
