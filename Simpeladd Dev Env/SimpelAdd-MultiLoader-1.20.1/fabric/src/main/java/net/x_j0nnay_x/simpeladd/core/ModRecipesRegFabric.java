@@ -11,10 +11,10 @@ public class ModRecipesRegFabric {
 
     public static void registerRecipes() {
         Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, GrinderRecipe.GrinderSerializer.ID, GrinderRecipe.GrinderSerializer.INSTANCE);
-        Registry.register(BuiltInRegistries.RECIPE_TYPE,  GrinderRecipe.GrinderType.IDNAME, GrinderRecipe.GrinderType.INSTANCE);
+        Registry.register(BuiltInRegistries.RECIPE_TYPE,  GrinderRecipe.GrinderType.ID, GrinderRecipe.GrinderType.INSTANCE);
 
         Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, ManualGrind.ManualGrindSerializer.ID, ManualGrind.ManualGrindSerializer.INSTANCE);
-        Registry.register(BuiltInRegistries.RECIPE_TYPE,  ManualGrind.ManualGrindType.IDNAME, ManualGrind.ManualGrindType.INSTANCE);
+        Registry.register(BuiltInRegistries.RECIPE_TYPE,  ManualGrind.ManualGrindType.ID, ManualGrind.ManualGrindType.INSTANCE);
 
         Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, SimpelCraftingRepair.ID, new SimpleCraftingRecipeSerializer<>(SimpelCraftingRepair::new));
     }
