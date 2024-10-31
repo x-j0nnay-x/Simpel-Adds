@@ -71,7 +71,6 @@ subprojects {
                 "license": mod_license,
                 "description": project.description,
                 "jei_version": jei_version,
-                "jei_version_range": jei_version_range,
         ]
 
         filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/neoforge.mods.toml', 'META-INF/mods.toml', '*.mixins.json']) {

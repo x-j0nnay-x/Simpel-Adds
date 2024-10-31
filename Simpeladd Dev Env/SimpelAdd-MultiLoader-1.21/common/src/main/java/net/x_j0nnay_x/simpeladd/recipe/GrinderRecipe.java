@@ -4,6 +4,7 @@ package net.x_j0nnay_x.simpeladd.recipe;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -54,30 +55,35 @@ public class GrinderRecipe implements Recipe<SingleRecipeInput> {
         return output.copy();
     }
 
+
+    public Ingredient getRecipeItems() {
+        return recipeItems;
+    }
+
     @Override
     public  RecipeSerializer<?> getSerializer() {
-        return Serializer.INSTANCE;
+        return GrinderSerializer.INSTANCE;
     }
 
     @Override
     public  RecipeType<?> getType() {
-        return Type.INSTANCE;
+        return GrinderType.INSTANCE;
     }
 
-    public static class Type implements RecipeType<GrinderRecipe> {
+    public static class GrinderType implements RecipeType<GrinderRecipe> {
 
-        private Type() {}
+        private GrinderType() {}
 
-        public static final Type INSTANCE = new Type();
+        public static final GrinderType INSTANCE = new GrinderType();
 
         public static final String ID = "grinder";
     }
 
-    public static class Serializer implements RecipeSerializer<GrinderRecipe> {
+    public static class GrinderSerializer implements RecipeSerializer<GrinderRecipe> {
 
-        private Serializer() {}
+        private GrinderSerializer() {}
 
-        public static final Serializer INSTANCE = new Serializer();
+        public static final GrinderSerializer INSTANCE = new GrinderSerializer();
 
         public static final String ID = "grinder";
 
@@ -95,8 +101,8 @@ public class GrinderRecipe implements Recipe<SingleRecipeInput> {
         ).apply(instance, GrinderRecipe::new));
 
         private static final StreamCodec<RegistryFriendlyByteBuf, GrinderRecipe> STREAM_CODEC = StreamCodec.of(
-                Serializer::toNetwork,
-                Serializer::fromNetwork
+                GrinderSerializer::toNetwork,
+                GrinderSerializer::fromNetwork
         );
 
         @Override

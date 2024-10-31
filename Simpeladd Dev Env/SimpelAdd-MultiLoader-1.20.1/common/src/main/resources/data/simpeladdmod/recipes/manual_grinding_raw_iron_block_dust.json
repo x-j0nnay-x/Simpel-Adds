@@ -1,0 +1,19 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:grinders"
+    },
+    {
+      "item": "minecraft:raw_iron_block"
+    }
+  ],
+
+
+  "result":
+  {
+    "item": "simpeladdmod:irondust",
+    "count":18
+  }
+}

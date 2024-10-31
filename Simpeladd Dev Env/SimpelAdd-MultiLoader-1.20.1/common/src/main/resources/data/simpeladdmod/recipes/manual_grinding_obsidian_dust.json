@@ -1,0 +1,18 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:grinders"
+    },
+    {
+      "item": "minecraft:obsidian"
+    }
+  ],
+
+  "result":
+  {
+    "item": "simpeladdmod:obsidiandust",
+    "count":2
+  }
+}

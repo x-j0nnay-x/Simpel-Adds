@@ -44,7 +44,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     protected Abst_GrinderBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
-        this.recipeCheckGrinder = RecipeManager.createCheck(GrinderRecipe.Type.INSTANCE);
+        this.recipeCheckGrinder = RecipeManager.createCheck(GrinderRecipe.GrinderType.INSTANCE);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {

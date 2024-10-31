@@ -50,11 +50,11 @@ dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
     compileOnly project(":common")
 //JEI
-    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    testCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    compileOnly("mezz.jei:jei-${minecraft_version}-lib:${jei_version}")
-    testCompileOnly("mezz.jei:jei-${minecraft_version}-lib:${jei_version}")
+    // compile against the JEI API but do not include it at runtime
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    // at runtime, use the full JEI jar for NeoForge
     runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+
 }
 
 // NeoGradle compiles the game, but we don't want to add our common code to the game's code

@@ -1,0 +1,18 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:grinders"
+    },
+    {
+      "tag": "minecraft:logs"
+    }
+  ],
+
+  "result":
+  {
+    "item": "simpeladdmod:woodfiber",
+    "count":8
+  }
+}

@@ -6,7 +6,7 @@
     }
   ],
   "output": {
-    "count": 3,
-    "item": "minecraft:raw_iron"
+    "count": 6,
+    "item": "simpeladdmod:irondust"
   }
 }

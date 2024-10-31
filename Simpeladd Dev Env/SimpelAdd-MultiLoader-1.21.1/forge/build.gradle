@@ -66,11 +66,10 @@ dependencies {
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
     //temporary necessary:
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
-    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    testCompileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    compileOnly "mezz.jei:jei-${minecraft_version}-lib:${jei_version}"
-    testCompileOnly "mezz.jei:jei-${minecraft_version}-lib:${jei_version}"
-    runtimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+    // compile against the JEI API but do not include it at runtime
+    compileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
+    // at runtime, use the full JEI jar for Forge
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
 }
 

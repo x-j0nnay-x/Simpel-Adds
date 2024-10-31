@@ -2,10 +2,8 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -16,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,7 +21,6 @@ import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_GrindFactoryBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
-import net.x_j0nnay_x.simpeladd.recipe.GrindFactoryRecipe;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
 import static net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity.getFuel;
@@ -33,7 +29,6 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
 
     private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends AbstractCookingRecipe> recipeCheckSmelting;
     private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends GrinderRecipe> recipeCheckGrinding;
-    private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends GrindFactoryRecipe> recipeCheckGrindFactory;
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(18, ItemStack.EMPTY);
     public static int FUELSLOT = 0;
     public static int GRINDERSLOT = 1;
@@ -78,9 +73,8 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
 
     protected Abst_GrindFactoryBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
-        this.recipeCheckGrinding = RecipeManager.createCheck(GrinderRecipe.Type.INSTANCE);
+        this.recipeCheckGrinding = RecipeManager.createCheck(GrinderRecipe.GrinderType.INSTANCE);
         this.recipeCheckSmelting = RecipeManager.createCheck(RecipeType.SMELTING);
-        this.recipeCheckGrindFactory = RecipeManager.createCheck(GrindFactoryRecipe.Type.INSTANCE);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -343,20 +337,14 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         for (int i = 0; i < 4; i ++) {
             int slot = GRINDERINSLOT1 + i;
             RecipeHolder<? extends GrinderRecipe> irecipeGrind = this.getGrindRecipeNonCached(this.stacks.get(slot));
-            RecipeHolder<? extends GrindFactoryRecipe> irecipeGrindF = this.getGrindFactoryRecipeNonCached(this.stacks.get(slot));
             if(grindsleft > 0) {
-                if (hasGrindRecipe(irecipeGrind, slot) || hasGrindFactoryRecipe(irecipeGrindF, slot)) {
+                if (hasGrindRecipe(irecipeGrind, slot)) {
                     incresseProgress(slot);
                     if (hasProgressFinished(slot)) {
                         useGrind();
                         this.storedXP += this.grindXP * xpBoost;
-                        if (!isOreBlock(slot)) {
-                            craftGrindItem(irecipeGrind, slot);
-                        }
-                        if (isOreBlock(slot)) {
-                            craftGrindFactoryItem(irecipeGrindF, slot);
-                        }
-                     resetProgress(slot);
+                        craftGrindItem(irecipeGrind, slot);
+                        resetProgress(slot);
                     }
                 }
             }
@@ -491,12 +479,6 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         return  this.stacks.get(slot).isEmpty();
     }
 
-    private boolean isOreBlock(int slot){
-        if(this.getItem(slot).is(ModTags.Items.OREBLOCKGRIND)){
-            return true;
-        }
-        return false;
-    }
 
     private boolean hasEnoughtToMove(int slot, int count){
         return this.stacks.get(slot).getCount() >= count;
@@ -680,39 +662,6 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     }
 
     public  boolean hasGrindRecipe(@Nullable RecipeHolder<?> recipe, int slot){
-        int outputslot = slot + 4;
-        if(!this.getItem(slot).isEmpty() && recipe != null){
-            ItemStack recipeOutput = recipe.value().getResultItem(RegistryAccess.EMPTY);
-            if (!recipeOutput.isEmpty()){
-                ItemStack output = this.getItem(outputslot);
-                if (output.isEmpty()) return true;
-                else if (!ItemStack.isSameItemSameComponents(output, recipeOutput)) return false;
-                else return output.getCount() + recipeOutput.getCount() <= output.getMaxStackSize();
-            }
-        }
-        return false;
-    }
-
-    private RecipeHolder<? extends GrindFactoryRecipe> getGrindFactoryRecipeNonCached(ItemStack itemStack) {
-        return this.recipeCheckGrindFactory.getRecipeFor(new SingleRecipeInput(itemStack), this.level).orElse(null);
-    }
-
-    private  void craftGrindFactoryItem(@Nullable RecipeHolder<?> recipe, int slot){
-        int outputSlot = slot + 4;
-        if (recipe != null && this.hasGrindFactoryRecipe(recipe, slot)) {
-            ItemStack itemstack = this.getItem(slot);
-            ItemStack itemstack1 = recipe.value().getResultItem(RegistryAccess.EMPTY);
-            ItemStack itemstack2 = this.getItem(outputSlot);
-            if (itemstack2.isEmpty()) {
-                this.setItem(outputSlot, itemstack1.copy());
-            } else if (itemstack2.getItem() == itemstack1.getItem()) {
-                itemstack2.grow(itemstack1.getCount());
-            }
-            itemstack.shrink(1);
-        }
-    }
-
-    public  boolean hasGrindFactoryRecipe(@Nullable RecipeHolder<?> recipe, int slot){
         int outputslot = slot + 4;
         if(!this.getItem(slot).isEmpty() && recipe != null){
             ItemStack recipeOutput = recipe.value().getResultItem(RegistryAccess.EMPTY);

@@ -108,6 +108,7 @@
   "simpeladdmod.jei.chilling.blueice": "inside of the Chiller this will give you 12 chilling",
   "simpeladdmod.jei.waterbucket": "inside of the Chiller this will give you 10x ice.",
   "simpeladdmod.jei.lavabucket": "inside of the Block Factory will give you 4x Obsidian",
+  "simpeladdmod.jei.grinder": "Grinding Recipes",
 
   "gui.simpeladdmod.grinder_gui.Grindables": "Any Item with the Tag Grindable",
   "gui.simpeladdmod.chiller_block_gui.Chilling": "Any Item With The Tage Chilling",

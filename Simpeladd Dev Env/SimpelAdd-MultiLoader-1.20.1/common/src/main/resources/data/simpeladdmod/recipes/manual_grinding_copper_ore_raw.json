@@ -1,0 +1,18 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:grinders"
+    },
+    {
+      "tag": "minecraft:copper_ores"
+    }
+  ],
+
+  "result":
+  {
+    "item": "minecraft:raw_copper",
+    "count":3
+  }
+}
