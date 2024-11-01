@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladd.compat.jei;
 
+
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
