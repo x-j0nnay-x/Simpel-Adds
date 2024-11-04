@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladd.compat.jei;
 
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JEI_GrindingCatagory implements IRecipeCategory<GrinderRecipe> {
+public class JEI_GrindingCatagory_Fabric implements IRecipeCategory<GrinderRecipe> {
 
     //this is for arraylist
     ItemStack Grinder = ModItems.GRINDERHEAD.getDefaultInstance();
@@ -36,10 +37,10 @@ public class JEI_GrindingCatagory implements IRecipeCategory<GrinderRecipe> {
 
     public static final RecipeType<GrinderRecipe> GRINDER_RECIPE_RECIPE_TYPE = RecipeType.create(SimpelAddMod.MOD_ID, GrinderRecipe.GrinderType.IDNAME, GrinderRecipe.class);
 
-    public JEI_GrindingCatagory(IGuiHelper helper) {
+    public JEI_GrindingCatagory_Fabric(IGuiHelper helper) {
         this.title = Component.translatable("simpeladdmod.jei.grinder");
         this.background = helper.createDrawable(TEXTURE, 0, 0, width, height);
-        this.icon = helper.createDrawableItemStack(new ItemStack(ModItems.GRINDERHEAD));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModItems.GRINDERHEAD));
     }
 
     @Override

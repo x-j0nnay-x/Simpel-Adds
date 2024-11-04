@@ -1,13 +1,12 @@
 {
-  "item.simpeladdmod.simpel_elitra_half": "Simpel Wing Half",
-  "item.simpeladdmod.simpel_elitra_part1": "Simpel Wings Base",
-  "item.simpeladdmod.simpel_elitra_part2": "Simpel Wings Support",
+  "item.simpeladdmod.simpel_elitra_half": "Simple Wing Half",
+  "item.simpeladdmod.simpel_elitra_part1": "Simple Wing Base",
+  "item.simpeladdmod.simpel_elitra_part2": "Simple Wing Support",
 
   "item.simpeladdmod.grinderhead" : "Grinder Head",
   "item.simpeladdmod.grinderhead_netherite" : "Netherite Grinder Head",
   "item.simpeladdmod.grinderhead_unobtanium" : "Unobtanium Grinder Head",
 
-  "item.simpeladdmod.goldstick" : "Gold Stick",
   "item.simpeladdmod.woodfiber" : "Wood Fiber",
   "item.simpeladdmod.flesh" : "Flesh",
   "item.simpeladdmod.netherite_shard" : "Ancient Shards",
@@ -17,6 +16,7 @@
   "item.simpeladdmod.repairtool": "Repair Tool",
   "item.simpeladdmod.fireprooftool": "Fire Proof Tool",
   "item.simpeladdmod.feedingtool": "Feeding Tool",
+  "item.simpeladdmod.growstaff" : "Grow Staff",
 
   "item.simpeladdmod.unobtaniumdust" : "Unobtanium Dust",
   "item.simpeladdmod.netherite_shard_dust" : "Ancient Shards Dust",
@@ -26,11 +26,11 @@
   "item.simpeladdmod.netheritedust" : "Netherite Scrap Dust",
   "item.simpeladdmod.obsidiandust": "Obsidian Dust",
 
-  "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1.5x",
-  "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2.5x",
-  "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 6x",
-  "item.simpeladdmod.boostupgrade" : "Grinder Efficiency",
-  "item.simpeladdmod.xpboostupgrade" : "Xp Boost 4x",
+  "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1",
+  "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2",
+  "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 3",
+  "item.simpeladdmod.boostupgrade" : "Efficiency Upgrade",
+  "item.simpeladdmod.xpboostupgrade" : "Xp Boost Upgrade",
 
 
   "item.simpeladdmod.sandwich_beef" : "Beef Sandwich",
@@ -43,8 +43,8 @@
 
   "item.simpeladdmod.blankupgrade_raw" : "Unset Blank Upgrade",
   "item.simpeladdmod.blankupgrade" : "Blank Upgrade",
-  "item.simpeladdmod.obsidian_upgrade_smithing" : "Obsidian Smithing Template",
-  "item.simpeladdmod.unobtanium_upgrade_smithing" : "Unobtanium Smithing Template",
+  "item.simpeladdmod.obsidian_upgrade_smithing" : "Obsidian Smiting Template",
+  "item.simpeladdmod.unobtanium_upgrade_smithing" : "Unobtanium Smiting Template",
 
   "item.simpeladdmod.obsidianaxe": "Obsidian Axe",
   "item.simpeladdmod.obsidianpickaxe" : "Obsidian Pickaxe",
@@ -96,6 +96,7 @@
   "block.simpeladdmod.netherite_crafter_block": "Netherite Crafting Block",
   "block.simpeladdmod.upgraded_furnace": "Upgraded Furnace",
   "block.simpeladdmod.grind_factory_block": "Grind Factory",
+  "block.simpeladdmod.simpel_farmland": "Simple Farmland",
 
   "creativetab.simpel_tab": "Simpel add Tab",
 

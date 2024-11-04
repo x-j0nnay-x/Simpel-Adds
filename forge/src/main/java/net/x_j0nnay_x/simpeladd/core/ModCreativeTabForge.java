@@ -32,6 +32,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.REPAIRTOOL.get());
                         entries.accept(ModItemRegForge.FIREPROOFTOOL.get());
                         entries.accept(ModItemRegForge.FEEDINGTOOL.get());
+                        entries.accept(ModItemRegForge.GROWSTAFF.get());
                         //items upgrade
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_2.get());
@@ -113,6 +114,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModBlockRegForge.UPGRADED_FURNACE.get());
                         entries.accept(ModBlockRegForge.NETHERITE_CRAFTER.get());
                         entries.accept(ModBlockRegForge.GRIND_FACTORY_BLOCK.get());
+                        entries.accept(ModBlockRegForge.SIMPEL_FARM_LAND.get());
                     })
                     .build());
 

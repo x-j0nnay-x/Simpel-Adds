@@ -19,6 +19,8 @@ public class ModBlockRegFabric {
 
     public static final Block UNOBTANIUM_ORE = registerBlock("unobtanium_ore", ModBlocks.UNOBTANIUM_ORE);
 
+    public static final Block SIMPEL_FARM_LAND = registerBlock("simpel_farmland", ModBlocks.SIMPELFARMLAND);
+
     public static final Block BLOCK_FACTORY = registerBlock("blockfactory_block",
             new FabricBlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
 

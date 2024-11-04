@@ -6,12 +6,11 @@ import net.minecraft.world.item.Items;
 
 public class GrinderHeadItem extends Item {
 
-    int Durability;
+
     public GrinderHeadItem(int maxuses) {
         super(new Item.Properties()
                 .stacksTo(1)
                 .durability(maxuses));
-        this.Durability = maxuses;
     }
 
     public static ItemStack damageItem(ItemStack itemstack) {

@@ -105,7 +105,11 @@ public class ManualGrind implements CraftingRecipe {
         for(int $$2 = 0; $$2 < $$1.size(); ++$$2) {
             Item $$3 = $$0.getItem($$2).getItem();
             if ($$3.getDefaultInstance().is(ModTags.Items.GRINDERS)) {
-                $$1.set($$2, GrinderHeadItem.damageItem(grinder));
+                if(grinder.getDamageValue() > grinder.getMaxDamage()){
+                    $$1.set($$2, ItemStack.EMPTY);
+                }else {
+                    $$1.set($$2, GrinderHeadItem.damageItem(grinder));
+                }
             }
         }
 
