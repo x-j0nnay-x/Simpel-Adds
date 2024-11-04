@@ -1,6 +1,5 @@
 {
   "type": "minecraft:blasting",
-
   "ingredient": {
     "item": "minecraft:obsidian"
   },

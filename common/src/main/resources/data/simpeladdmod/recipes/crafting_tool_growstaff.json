@@ -1,19 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
+
   "key": {
     "#": {
       "item": "minecraft:blaze_rod"
     },
     "X": {
-      "item": "simpeladdmod:obsidianingot"
+      "item": "minecraft:bone"
+    },
+    "N": {
+      "item": "minecraft:kelp"
     }
   },
   "pattern": [
-    "XXX",
-    " # ",
-    " # "
+    "  X",
+    "N#N",
+    "X  "
   ],
   "result": {
-    "item": "simpeladdmod:obsidianpickaxe"
+    "item": "simpeladdmod:growstaff"
+
   }
 }
