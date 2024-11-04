@@ -13,17 +13,20 @@ import net.minecraft.world.level.block.piston.MovingPistonBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 
+
 import static net.minecraft.world.level.block.SweetBerryBushBlock.AGE;
 
-public class SempelFarmLand extends FarmBlock {
+public class SimpelFarmLand extends FarmBlock {
 
     int counter = 0;
 
-    public SempelFarmLand() {
+    public SimpelFarmLand() {
         super(Properties.copy(Blocks.FARMLAND)
+                .randomTicks()
         );
 
     }
+
 
 
     @Override
@@ -62,7 +65,7 @@ public class SempelFarmLand extends FarmBlock {
 
     public static void growBlocks(ServerLevel level, BlockPos blockPos){
         BlockState blockState = level.getBlockState(blockPos);
-        if (blockState.getBlock() instanceof SempelFarmLand) {
+        if (blockState.getBlock() instanceof SimpelFarmLand) {
             BlockPos cropPos = blockPos.above();
             BlockState crop = level.getBlockState(cropPos);
             BlockState crop1 = null;

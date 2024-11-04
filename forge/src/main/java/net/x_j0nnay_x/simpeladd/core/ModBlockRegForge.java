@@ -23,7 +23,7 @@ public class ModBlockRegForge {
 
     public static final RegistryObject<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",() -> ModBlocks.UNOBTANIUM_ORE);
 
-    public static final RegistryObject<Block> SIMPEL_FARM_LAND = registerBlock("simpel_farmland",() -> ModBlocks.SIMPELFARMLAND);
+    public static final RegistryObject<Block> SIMPEL_FARM_LAND = registerBlock("simpel_farmland", ()-> ModBlocks.SIMPELFARMLAND);
 
     public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
             () -> new ForgeBlockFactoryBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));

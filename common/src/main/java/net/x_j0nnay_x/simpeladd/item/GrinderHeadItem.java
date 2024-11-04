@@ -16,31 +16,15 @@ public class GrinderHeadItem extends Item {
     public static ItemStack damageItem(ItemStack itemstack) {
         ItemStack grinder = itemstack.copy();
         grinder.setDamageValue(grinder.getDamageValue() + 1);
+        if(grinder.getDamageValue() >= grinder.getMaxDamage()) {
+            return ItemStack.EMPTY;
+        }
         return grinder;
     }
-
-
 
     @Override
     public boolean isValidRepairItem(ItemStack $$0, ItemStack $$1) {
         return $$1.is(Items.FLINT);
     }
 
-
-/*
-    public ItemStack getRecipeRemainder(ItemStack itemStack) {
-        if (itemStack.getDamageValue() > this.Durability) {
-            return itemStack;
-        }
-        return damageItem(itemStack);
-
-    }
-
-    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-        if (itemStack.getDamageValue() > this.Durability) {
-            return itemStack;
-        }
-        return damageItem(itemStack);
-    }
-    */
 }
