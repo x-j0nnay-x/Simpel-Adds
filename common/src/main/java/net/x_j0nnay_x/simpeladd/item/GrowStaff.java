@@ -45,6 +45,7 @@ public class GrowStaff extends Item {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
+        int blockValue;
         Level level = context.getLevel();
         if (!level.isClientSide) {
             ItemStack staf = context.getItemInHand();
@@ -66,7 +67,8 @@ public class GrowStaff extends Item {
             }
 
             if(block instanceof FarmBlock && block != ModBlocks.SIMPELFARMLAND){
-                level.setBlockAndUpdate(blockPos, FARMLAND_MAP.get(block).defaultBlockState());
+                blockValue = blockState.getValue(FarmBlock.MOISTURE);
+                level.setBlockAndUpdate(blockPos, FARMLAND_MAP.get(block).defaultBlockState().setValue(SimpelFarmLand.MOISTURE, blockValue));
                 level.playSound(context.getPlayer(), blockPos, SoundEvents.HOE_TILL, SoundSource.PLAYERS, 1.0f, 1.0f);
                 staf.setDamageValue(staf.getDamageValue() + 3);
                 return InteractionResult.SUCCESS;

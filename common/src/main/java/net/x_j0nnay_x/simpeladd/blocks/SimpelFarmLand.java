@@ -56,11 +56,12 @@ public class SimpelFarmLand extends FarmBlock {
     }
 
     public void turnToFarmLand(Level level, BlockPos blockPos){
+        int blockValue = level.getBlockState(blockPos).getValue(MOISTURE);
         Random rand = new Random();
         int outOfChance = 75;
         int chance = rand.nextInt(outOfChance);
         if(chance == 0) {
-            level.setBlockAndUpdate(blockPos, Blocks.FARMLAND.defaultBlockState());
+            level.setBlockAndUpdate(blockPos, Blocks.FARMLAND.defaultBlockState().setValue(MOISTURE, blockValue));
         }
     }
 
