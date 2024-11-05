@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "v c",
+    "vzc",
+    "v c"
+  ],
+
+  "key": {
+    "v":
+    {
+      "item": "minecraft:gravel"
+    },
+    "c":
+    {
+      "item": "minecraft:sand"
+    },
+    "z":
+    {
+       "item": "minecraft:water_bucket"
+    }
+  },
+  "result":
+  {
+    "item": "minecraft:clay",
+    "count":8
+  }
+}

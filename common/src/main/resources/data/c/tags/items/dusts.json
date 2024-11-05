@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values":
+  [
+    "#c:dusts/copperdust",
+    "#c:dusts/golddust",
+    "#c:dusts/irondust",
+    "#c:dusts/netherite_shard_dust",
+    "#c:dusts/netheritedust",
+    "#c:dusts/obsidiandust",
+    "#c:dusts/unobtaniumdust"
+  ]
+}

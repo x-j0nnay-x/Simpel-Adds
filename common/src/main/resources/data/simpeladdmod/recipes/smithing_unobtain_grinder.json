@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "simpeladdmod:unobtanium_scrap"
+    },
+    "base": {
+        "item": "simpeladdmod:grinderhead"
+    },
+    "result": {
+        "item": "simpeladdmod:grinderhead_unobtanium"
+    },
+    "template": {
+        "item": "simpeladdmod:unobtanium_upgrade_smithing"
+    }
+}

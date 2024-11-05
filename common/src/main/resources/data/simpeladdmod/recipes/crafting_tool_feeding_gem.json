@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern": [
+    "xvx",
+    "vav",
+    "xvx"
+  ],
+
+  "key":
+  {
+    "a":
+    {
+      "item": "simpeladdmod:sandwich_meet_love_veg"
+    },
+    "v":
+    {
+      "item": "minecraft:experience_bottle"
+    },
+    "x":
+    {
+      "item": "simpeladdmod:unobtanium_scrap"
+    }
+
+  },
+  "result":
+  {
+    "item": "simpeladdmod:feedingtool",
+    "count":1
+  }
+}
