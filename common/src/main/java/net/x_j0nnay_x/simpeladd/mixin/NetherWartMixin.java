@@ -16,10 +16,7 @@ public class NetherWartMixin {
 
     @Inject(method = "mayPlaceOn", at = @At("HEAD"), cancellable = true)
     protected void mayPlaceOn(BlockState $$0, BlockGetter $$1, BlockPos $$2, CallbackInfoReturnable<Boolean> cir) {
-//        if($$0.is(ModBlocks.SIMPELFARMLAND)){
-//            cir.setReturnValue(true);
-//        }
-        if ($$0.getBlock() instanceof SimpelFarmLand){
+        if($$0.is(ModBlocks.SIMPELFARMLAND)){
             cir.setReturnValue(true);
         }
     }
