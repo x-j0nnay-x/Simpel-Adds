@@ -8,20 +8,7 @@
     "minecraft:carrots",
 
     "minecraft:potatoes",
-
-    "minecraft:melon_stem",
-    "minecraft:attached_melon_stem",
-
-    "minecraft:pumpkin_stem",
-    "minecraft:attached_pumpkin_stem",
-
-    "minecraft:bamboo_sapling",
-    "minecraft:bamboo",
-
-    "minecraft:sugar_cane",
-
-    "minecraft:cactus",
-
+    
     "minecraft:nether_wart"
   ]
 }
