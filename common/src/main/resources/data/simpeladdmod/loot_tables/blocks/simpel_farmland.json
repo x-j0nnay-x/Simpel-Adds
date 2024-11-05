@@ -11,13 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:copy_name",
-              "source": "block_entity"
-            }
-          ],
-          "name": "simpeladdmod:unobtanium_ore"
+          "name": "minecraft:dirt"
         }
       ],
       "rolls": 1.0
