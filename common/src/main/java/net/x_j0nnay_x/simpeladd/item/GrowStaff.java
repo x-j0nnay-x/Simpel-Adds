@@ -64,14 +64,13 @@ public class GrowStaff extends Item {
                 staf.setDamageValue(staf.getDamageValue() + 1);
                 return InteractionResult.SUCCESS;
             }
-/*
+
             if(block instanceof FarmBlock && block != ModBlocks.SIMPELFARMLAND){
                 level.setBlockAndUpdate(blockPos, FARMLAND_MAP.get(block).defaultBlockState());
                 level.playSound(context.getPlayer(), blockPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0f, 1.0f);
                 staf.setDamageValue(staf.getDamageValue() + 1);
                 return InteractionResult.SUCCESS;
             }
-*/
 
         }
         return InteractionResult.PASS;

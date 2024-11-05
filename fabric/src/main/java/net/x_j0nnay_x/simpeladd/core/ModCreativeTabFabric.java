@@ -116,7 +116,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.UPGRADED_FURNACE);
                         entries.accept(ModBlockRegFabric.NETHERITE_CRAFTER);
                         entries.accept(ModBlockRegFabric.GRIND_FACTORY_BLOCK);
-                  //      entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
+                        entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
                 }).build());
     }
 
