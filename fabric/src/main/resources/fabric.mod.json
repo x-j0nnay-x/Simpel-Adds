@@ -20,6 +20,9 @@
         ],
         "client": [
             "net.x_j0nnay_x.simpeladd.SimpelAddModFabric"
+        ],
+        "jei_mod_plugin": [
+            "net.x_j0nnay_x.simpeladd.compat.jei.JEI_PluginSimpeladd_Fabric"
         ]
     },
     "mixins": [

@@ -28,6 +28,7 @@ public class ModItemRegNeoForge {
     public static final Supplier<Item> REPAIRTOOL = ITEMS.register("repairtool", ()-> ModItems.REPAIRTOOL);
     public static final Supplier<Item> FIREPROOFTOOL = ITEMS.register("fireprooftool", ()-> ModItems.FIREPROOFTOOL);
     public static final Supplier<Item> FEEDINGTOOL = ITEMS.register("feedingtool", ()-> ModItems.FEEDINGTOOL);
+    public static final Supplier<Item> GROWSTAFF = ITEMS.register("growstaff", ()-> ModItems.GROWSTAFF);
 //upgrades
     public static final Supplier<Item> SPEEDUPGRADE_1 = ITEMS.register("speedupgrade_1", () -> ModItems.SPEEDUPGRADE_1);
     public static final Supplier<Item> SPEEDUPGRADE_2 = ITEMS.register("speedupgrade_2", () -> ModItems.SPEEDUPGRADE_2);

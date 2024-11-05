@@ -34,6 +34,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.REPAIRTOOL);
                         entries.accept(ModItemRegFabric.FIREPROOFTOOL);
                         entries.accept(ModItemRegFabric.FEEDINGTOOL);
+                        entries.accept(ModItemRegFabric.GROWSTAFF);
                 //items upgrade
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_1);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_2);
@@ -115,6 +116,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.UPGRADED_FURNACE);
                         entries.accept(ModBlockRegFabric.NETHERITE_CRAFTER);
                         entries.accept(ModBlockRegFabric.GRIND_FACTORY_BLOCK);
+                        entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
                     }).build());
     }
 
