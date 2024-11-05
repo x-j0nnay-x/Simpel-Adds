@@ -29,6 +29,7 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> REPAIRTOOL = ITEMS.register("repairtool", ()-> ModItems.REPAIRTOOL);
     public static final RegistryObject<Item> FIREPROOFTOOL = ITEMS.register("fireprooftool", ()-> ModItems.FIREPROOFTOOL);
     public static final RegistryObject<Item> FEEDINGTOOL = ITEMS.register("feedingtool", ()-> ModItems.FEEDINGTOOL);
+    public static final RegistryObject<Item> GROWSTAFF = ITEMS.register("growstaff", ()-> ModItems.GROWSTAFF);
 //upgrades
     public static final RegistryObject<Item> SPEEDUPGRADE_1 = ITEMS.register("speedupgrade_1", () -> ModItems.SPEEDUPGRADE_1);
     public static final RegistryObject<Item> SPEEDUPGRADE_2 = ITEMS.register("speedupgrade_2", () -> ModItems.SPEEDUPGRADE_2);

@@ -13,17 +13,14 @@ public class GrinderHeadItem extends Item{
     }
 
     public static ItemStack brakeItem(ItemStack itemstack) {
-        ItemStack retval = itemstack.copy();
-        retval.setDamageValue(retval.getDamageValue() + 1);
-        if (retval.getDamageValue() >= retval.getMaxDamage()) {
+        ItemStack grinder = itemstack.copy();
+        grinder.setDamageValue(grinder.getDamageValue() + 1);
+        if (grinder.getDamageValue() >= grinder.getMaxDamage()) {
             return ItemStack.EMPTY;
         }
-        return retval;
+        return grinder;
     }
 
-    public static ItemStack getRemainderItem(ItemStack itemStack) {
-        return  brakeItem(itemStack);
-    }
 
     @Override
     public boolean isValidRepairItem(ItemStack $$0, ItemStack $$1) {
