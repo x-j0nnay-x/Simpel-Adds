@@ -11,6 +11,7 @@ public class ModTags {
 
     public static class Blocks {
         public static final TagKey<Block> OBSIDIANTOOL = tag("needs_obsidiantool");
+        public static final TagKey<Block> PLANTABLECROPS = tag("plantablecrops");
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
         }

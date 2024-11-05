@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "key": {
+    "#": {
+      "item": "minecraft:blaze_rod"
+    },
+    "X": {
+      "item": "minecraft:bone"
+    },
+    "N": {
+      "item": "minecraft:kelp"
+    }
+  },
+  "pattern": [
+    "  X",
+    "N#N",
+    "X  "
+  ],
+  "result": {
+    "id": "simpeladdmod:growstaff"
+
+  }
+}

@@ -25,6 +25,7 @@ public class ModItemRegFabric {
     public static final Item REPAIRTOOL = registerItem("repairtool", ModItems.REPAIRTOOL);
     public static final Item FIREPROOFTOOL = registerItem("fireprooftool", ModItems.FIREPROOFTOOL);
     public static final Item FEEDINGTOOL = registerItem("feedingtool", ModItems.FEEDINGTOOL);
+    public static final Item GROWSTAFF = registerItem("growstaff", ModItems.GROWSTAFF);
 //upgrades
     public static final Item SPEEDUPGRADE_1 = registerItem("speedupgrade_1", ModItems.SPEEDUPGRADE_1);
     public static final Item SPEEDUPGRADE_2 = registerItem("speedupgrade_2", ModItems.SPEEDUPGRADE_2);

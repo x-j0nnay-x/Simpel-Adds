@@ -21,6 +21,8 @@ public class ModBlockRegNeoForge {
 
     public static final DeferredBlock<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",() -> ModBlocks.UNOBTANIUM_ORE);
 
+    public static final DeferredBlock<Block> SIMPEL_FARM_LAND = registerBlock("simpel_farmland",() -> ModBlocks.SIMPELFARMLAND);
+
     public static final DeferredBlock<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
             () -> new NeoForgeBlockFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
