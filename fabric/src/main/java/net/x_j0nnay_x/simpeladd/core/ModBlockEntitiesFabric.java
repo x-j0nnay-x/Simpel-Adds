@@ -13,31 +13,31 @@ import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 public class ModBlockEntitiesFabric {
 
 	public static final BlockEntityType<FabricBlockFactoryBlockEntity> BLOCK_FACTORY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			new ResourceLocation(SimpelAddModFabric.MODID, "block_factory"),
+			new ResourceLocation(SimpelAddModFabric.MODID, ModNames.Blocks.BLOCKFACTORY),
 			FabricBlockEntityTypeBuilder.create(FabricBlockFactoryBlockEntity::new, ModBlockRegFabric.BLOCK_FACTORY).build());
 
 	public static final BlockEntityType<FabricChillerBlockEntity> CHILLER = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			new ResourceLocation(SimpelAddModFabric.MODID, "chiller"),
+			new ResourceLocation(SimpelAddModFabric.MODID, ModNames.Blocks.CHILLER),
 			FabricBlockEntityTypeBuilder.create(FabricChillerBlockEntity::new, ModBlockRegFabric.CHILLER).build());
 
 	public static final BlockEntityType<FabricGrinderBlockEntity> GRINDER = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			new ResourceLocation(SimpelAddModFabric.MODID, "grinder"),
+			new ResourceLocation(SimpelAddModFabric.MODID, ModNames.Blocks.GRINDER),
 			FabricBlockEntityTypeBuilder.create(FabricGrinderBlockEntity::new, ModBlockRegFabric.GRINDER_BLOCK).build());
 
 	public static final BlockEntityType<FabricGrinderBlockEntity_Up> GRINDER_UP = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			new ResourceLocation(SimpelAddModFabric.MODID, "grinder_up"),
+			new ResourceLocation(SimpelAddModFabric.MODID, ModNames.Blocks.GRINDER_UP),
 			FabricBlockEntityTypeBuilder.create(FabricGrinderBlockEntity_Up::new, ModBlockRegFabric.GRINDER_BLOCK_UP).build());
 
 	public static final BlockEntityType<FabricGrindFactoryBlockEntity> GRINDFACTORY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			new ResourceLocation(SimpelAddModFabric.MODID, "grinder_factory"),
+			new ResourceLocation(SimpelAddModFabric.MODID, ModNames.Blocks.GRINDFACTORY),
 			FabricBlockEntityTypeBuilder.create(FabricGrindFactoryBlockEntity::new, ModBlockRegFabric.GRIND_FACTORY_BLOCK).build());
 
 	public static final BlockEntityType<FabricNetheriteCrafterBlockEntity> NETHERITE_CRAFTER = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			new ResourceLocation(SimpelAddModFabric.MODID, "netherite_crafter"),
+			new ResourceLocation(SimpelAddModFabric.MODID, ModNames.Blocks.NETHERITE_CRAFTER),
 			FabricBlockEntityTypeBuilder.create(FabricNetheriteCrafterBlockEntity::new, ModBlockRegFabric.NETHERITE_CRAFTER).build());
 
 	public static final BlockEntityType<FabricFurnaceBlockEntity_Up> UPGRADED_FURNACE = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
-			new ResourceLocation(SimpelAddModFabric.MODID, "upgraded_furnace"),
+			new ResourceLocation(SimpelAddModFabric.MODID, ModNames.Blocks.UPGRADED_FURNACE),
 			FabricBlockEntityTypeBuilder.create(FabricFurnaceBlockEntity_Up::new, ModBlockRegFabric.UPGRADED_FURNACE).build());
 
 

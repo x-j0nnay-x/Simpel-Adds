@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricFurnaceBlockEntity_Up;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
+import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.NotNull;
@@ -21,11 +22,11 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
     private final ContainerData data;
 
     public FabricFurnaceMenu_up(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(11));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(7));
     }
     public FabricFurnaceMenu_up(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, pContainerID);
-        checkContainerSize(inv, 11);
+        checkContainerSize(inv, 12);
         blockEntity = ((FabricFurnaceBlockEntity_Up) entity);
         this.level = inv.player.level();
         this.inventory = ((Container) entity);
@@ -115,7 +116,16 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
                     return 1;
                 }
             });
-
+            this.addSlot(new Slot(this.inventory, FabricFurnaceBlockEntity_Up.XPBOOSTSLOT, 144, 28){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(ModItemRegFabric.XPBOOSTUPGRADE);
+                }
+                @Override
+                public int getMaxStackSize() {
+                    return 1;
+                }
+            });
 
         addDataSlots(data);
     }
@@ -166,9 +176,6 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
         return fuelLeft;
     }
 
-
-
-
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
@@ -199,7 +206,7 @@ public class FabricFurnaceMenu_up extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 11;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 12;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

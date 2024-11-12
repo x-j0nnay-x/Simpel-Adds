@@ -272,6 +272,8 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
             this.maxProgress = 12;
         }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
             this.maxProgress = 5;
+        }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_4)) {
+            this.maxProgress = 2;
         }if (this.stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
         }if (this.stacks.get(XPBOOSTSLOT).isEmpty()){

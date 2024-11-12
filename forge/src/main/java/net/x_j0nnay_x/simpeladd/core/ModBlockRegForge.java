@@ -19,31 +19,31 @@ public class ModBlockRegForge {
             DeferredRegister.create(ForgeRegistries.BLOCKS, SimpelAddModForge.MODID);
 
 
-    public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",() -> ModBlocks.DEEPSLATE_DEBRI_ORE);
+    public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock(ModNames.Blocks.DEEPSLATE_DEBRI_ORE, () -> ModBlocks.DEEPSLATE_DEBRI_ORE);
 
-    public static final RegistryObject<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",() -> ModBlocks.UNOBTANIUM_ORE);
+    public static final RegistryObject<Block> UNOBTANIUM_ORE = registerBlock(ModNames.Blocks.UNOBTANIUM_ORE, () -> ModBlocks.UNOBTANIUM_ORE);
 
-    public static final RegistryObject<Block> SIMPEL_FARM_LAND = registerBlock("simpel_farmland", ()-> ModBlocks.SIMPELFARMLAND);
+    public static final RegistryObject<Block> SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND, ()-> ModBlocks.SIMPELFARMLAND);
 
-    public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
+    public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY),
             () -> new ForgeBlockFactoryBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> CHILLER = registerBlock("chiller_block",
+    public static final RegistryObject<Block> CHILLER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CHILLER),
             () -> new ForgeChillerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock("grinder_block",
+    public static final RegistryObject<Block> GRINDER_BLOCK = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDER),
             () -> new ForgeGrinderBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> GRINDER_BLOCK_UP = registerBlock("grinder_block_up",
+    public static final RegistryObject<Block> GRINDER_BLOCK_UP = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDER_UP),
             () -> new ForgeGrinderBlock_Up(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> GRIND_FACTORY_BLOCK = registerBlock("grind_factory_block",
+    public static final RegistryObject<Block> GRIND_FACTORY_BLOCK = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDFACTORY),
             () -> new ForgeGrindFactoryBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
+    public static final RegistryObject<Block> NETHERITE_CRAFTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.NETHERITE_CRAFTER),
             () -> new ForgeNetheriteCraftingBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
+    public static final RegistryObject<Block> UPGRADED_FURNACE = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.UPGRADED_FURNACE),
             () -> new ForgeFurnaceBlock_Up(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
     private static  <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){

@@ -16,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
+import net.x_j0nnay_x.simpeladd.core.ModNames;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 
@@ -123,7 +124,7 @@ public class ManualGrind implements CraftingRecipe {
 
         public static final ManualGrindType INSTANCE = new ManualGrindType();
 
-        public static final String IDNAME = "manualgrind";
+        public static final String IDNAME = ModNames.Recipe.MANUALGRIND;
         public static final ResourceLocation ID = new ResourceLocation(SimpelAddMod.MOD_ID,  IDNAME);
     }
     public static class ManualGrindSerializer implements RecipeSerializer<ManualGrind> {
@@ -131,7 +132,7 @@ public class ManualGrind implements CraftingRecipe {
 
         public static final ManualGrindSerializer INSTANCE = new ManualGrindSerializer();
 
-        public static final String IDNAME = "manualgrind";
+        public static final String IDNAME = ModNames.Recipe.MANUALGRIND;
         public static final ResourceLocation ID = new ResourceLocation(SimpelAddMod.MOD_ID, IDNAME);
 
 

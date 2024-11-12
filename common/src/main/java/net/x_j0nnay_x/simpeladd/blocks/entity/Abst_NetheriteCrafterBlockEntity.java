@@ -244,6 +244,8 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
             this.maxProgress = 36;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
             this.maxProgress = 15;
+        }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_4)) {
+            this.maxProgress = 5;
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 90;
         }

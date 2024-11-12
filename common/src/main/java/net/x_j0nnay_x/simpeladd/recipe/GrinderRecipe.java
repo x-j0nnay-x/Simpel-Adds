@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
+import net.x_j0nnay_x.simpeladd.core.ModNames;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -83,14 +84,14 @@ public class GrinderRecipe implements Recipe<SimpleContainer> {
     public static class GrinderType implements RecipeType<GrinderRecipe> {
         private GrinderType(){}
         public static final GrinderType INSTANCE = new GrinderType();
-        public static final String IDNAME = "grinder";
+        public static final String IDNAME = ModNames.Recipe.GRINDER;
         public static final ResourceLocation ID = new ResourceLocation(SimpelAddMod.MOD_ID,  IDNAME);
     }
 
     public static class GrinderSerializer implements RecipeSerializer<GrinderRecipe> {
         private GrinderSerializer(){}
         public static final GrinderSerializer INSTANCE = new GrinderSerializer();
-        public static final String IDNAME = "grinder";
+        public static final String IDNAME = ModNames.Recipe.GRINDER;
         public static final ResourceLocation ID = new ResourceLocation(SimpelAddMod.MOD_ID, IDNAME);
 
         @Override

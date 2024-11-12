@@ -46,8 +46,9 @@ public class ForgeBlockFactoryBlock extends Abst_BlockFactoryBlock {
                         ((ForgeBlockFactoryBlockEntity) entity).fillWater();
                         pPlayer.getMainHandItem().getCraftingRemainingItem();
                     }
+                }else {
+                    NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ForgeBlockFactoryBlockEntity) entity, pPos);
                 }
-                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (ForgeBlockFactoryBlockEntity)entity, pPos);
             }else {
                 throw  new IllegalStateException("Block Factory Container Provider is missing");
             }

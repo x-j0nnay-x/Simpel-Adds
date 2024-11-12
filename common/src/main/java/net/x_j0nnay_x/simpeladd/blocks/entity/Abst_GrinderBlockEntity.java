@@ -250,6 +250,8 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             this.maxProgress = 24;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
             this.maxProgress = 10;
+        }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_4)) {
+            this.maxProgress = 5;
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 60;
         }
