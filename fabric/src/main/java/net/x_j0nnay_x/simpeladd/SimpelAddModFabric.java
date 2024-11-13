@@ -16,7 +16,6 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
     public static final String MODID = SimpelAddMod.MOD_ID;
     public static final Logger LOGGER = SimpelAddMod.LOG;
 
-
     @Override
     public void onInitialize() {
         ModCreativeTabFabric.registerCreativeTab();
@@ -31,21 +30,16 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
         LOGGER.info("Hello Fabric world!");
         SimpelAddMod.init();
     }
+
     public void NetworkInit(){
         PayloadTypeRegistry.playC2S().register(FabricSlotChangePacket.TYPE, FabricSlotChangePacket.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(FabricSlotChangePacket.TYPE, FabricSlotChangePacket::receive);
 
     }
-        @Override
-        public void onInitializeClient() {
 
-            MenuScreens.register(ModMenuTypeFabric.BLOCKFACTORY_MENU, FabricBlockFactoryScreen::new);
-            MenuScreens.register(ModMenuTypeFabric.Chiller_MENU, FabricChillerScreen::new);
-            MenuScreens.register(ModMenuTypeFabric.GRINDER_MENU, FabricGrinderScreen::new);
-            MenuScreens.register(ModMenuTypeFabric.GRINDER_MENU_UP, FabricGrinderScreen_up::new);
-            MenuScreens.register(ModMenuTypeFabric.Netherite_Menu, FabricNetheriteCrafterScreen::new);
-            MenuScreens.register(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, FabricFurnaceScreen_up::new);
-            MenuScreens.register(ModMenuTypeFabric.GRIND_FACTORY_MENU, FabricGrindFactoryScreen::new);
-        }
+    @Override
+    public void onInitializeClient() {
+        ModScreensFabric.registerScreens();
+    }
 }
 

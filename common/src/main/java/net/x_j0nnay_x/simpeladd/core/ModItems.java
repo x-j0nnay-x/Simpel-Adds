@@ -31,6 +31,7 @@ public class ModItems {
     public static final Item SPEEDUPGRADE_1  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_2  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_3  = new SimpelItem(new Item.Properties());
+    public static final Item SPEEDUPGRADE_4  = new SimpelItem(new Item.Properties());
     public static final Item BOOSTUPGRADE  = new SimpelItem(new Item.Properties());
     public static final Item XPBOOSTUPGRADE = new SimpelItem(new Item.Properties());
 //sandwiches

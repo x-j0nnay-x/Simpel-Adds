@@ -20,7 +20,7 @@ public class ModCreativeTabForge {
 
                     //items grind heads
                         entries.accept(ModItemRegForge.GRINDERHEAD.get());
-                        entries.accept(ModItemRegForge.GRINDERHEADNEHTERITE.get());
+                        entries.accept(ModItemRegForge.GRINDERHEADNETHERITE.get());
                         entries.accept(ModItemRegForge.GRINDERHEADUNOBTIANIUM.get());
                     //items random
                         entries.accept(ModItemRegForge.WOODFIBER.get());
@@ -37,6 +37,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_2.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_3.get());
+                        entries.accept(ModItemRegForge.SPEEDUPGRADE_4.get());
                         entries.accept(ModItemRegForge.BOOSTUPGRADE.get());
                         entries.accept(ModItemRegForge.XPBOOSTUPGRADE.get());
                     //items sandwich

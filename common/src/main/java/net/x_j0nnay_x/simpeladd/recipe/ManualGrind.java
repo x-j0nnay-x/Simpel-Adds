@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.x_j0nnay_x.simpeladd.core.ModNames;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 
@@ -107,13 +108,13 @@ public class ManualGrind implements CraftingRecipe {
 
         public static final ManualGrind.Type INSTANCE = new ManualGrind.Type();
 
-        public static final String ID = "manualgrind";
+        public static final String ID = ModNames.Recipe.MANUALGRIND;
     }
     public static class Serializer implements RecipeSerializer<ManualGrind> {
 
         public static final ManualGrind.Serializer INSTANCE = new ManualGrind.Serializer();
 
-        public static final String ID = "manualgrind";
+        public static final String ID = ModNames.Recipe.MANUALGRIND;
 
         private static final MapCodec<ManualGrind> CODEC = RecordCodecBuilder.mapCodec(($$0) -> {
             return $$0.group(Codec.STRING.optionalFieldOf("group", "").forGetter(($$0x) -> {

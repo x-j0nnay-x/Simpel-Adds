@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd;
 
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -11,7 +10,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.x_j0nnay_x.simpeladd.core.*;
 import net.x_j0nnay_x.simpeladd.network.ForgeNetworkHandler;
 import net.x_j0nnay_x.simpeladd.platform.UpdateCheckerForge;
-import net.x_j0nnay_x.simpeladd.screens.*;
 import org.slf4j.Logger;
 
 @Mod(SimpelAddMod.MOD_ID)
@@ -46,14 +44,7 @@ public class SimpelAddModForge {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("Loading GUI's for " + MODID);
-            MenuScreens.register(ModMenuTypeForge.UPGRADED_FURNACE_MENU.get(), ForgeFurnaceScreen_up::new);
-            MenuScreens.register(ModMenuTypeForge.GRINDER_MENU.get(), ForgeGrinderScreen::new);
-            MenuScreens.register(ModMenuTypeForge.GRINDER_MENU_UP.get(), ForgeGrinderScreen_up::new);
-            MenuScreens.register(ModMenuTypeForge.BLOCKFACTORY_MENU.get(), ForgeBlockFactoryScreen::new);
-            MenuScreens.register(ModMenuTypeForge.Chiller_MENU.get(), ForgeChillerScreen::new);
-            MenuScreens.register(ModMenuTypeForge.Netherite_Menu.get(), ForgeNetheriteCrafterScreen::new);
-            MenuScreens.register(ModMenuTypeForge.GRIND_FACTORY_MENU.get(), ForgeGrindFactoryScreen::new);
+            ModScreensForge.registerScreens();
         }
     }
 

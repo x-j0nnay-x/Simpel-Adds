@@ -29,6 +29,7 @@
   "item.simpeladdmod.speedupgrade_1" : "Speed Upgrade 1",
   "item.simpeladdmod.speedupgrade_2" : "Speed Upgrade 2",
   "item.simpeladdmod.speedupgrade_3" : "Speed Upgrade 3",
+  "item.simpeladdmod.speedupgrade_4" : "Speed Upgrade 4",
   "item.simpeladdmod.boostupgrade" : "Efficiency Upgrade",
   "item.simpeladdmod.xpboostupgrade" : "Xp Boost Upgrade",
 
@@ -90,7 +91,7 @@
   "block.simpeladdmod.unobtanium_ore" : "Unobtanium Ore",
   "block.simpeladdmod.upgraded_furnace_block": "Upgraded Furnace",
   "block.simpeladdmod.grinder_block": "Grinder",
-  "block.simpeladdmod.grinder_block_up": "Netherite Grinder",
+  "block.simpeladdmod.grinder_up_block": "Netherite Grinder",
   "block.simpeladdmod.blockfactory_block": "Block Factory",
   "block.simpeladdmod.chiller_block": "Chilling Block",
   "block.simpeladdmod.netherite_crafter_block": "Netherite Crafting Block",

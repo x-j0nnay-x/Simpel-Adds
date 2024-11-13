@@ -7,12 +7,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
+import net.x_j0nnay_x.simpeladd.core.ModNames;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SimpelCraftingRepair extends RepairItemRecipe {
-    public static final String ID = "simpel_crafting_repair";
+    public static final String ID = ModNames.Recipe.SimpelCraftRepair;
 
     public SimpelCraftingRepair(CraftingBookCategory category){
         super(category);

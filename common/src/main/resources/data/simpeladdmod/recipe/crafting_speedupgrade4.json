@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "x",
+    "z"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "simpeladdmod:speedupgrade_3"
+    },
+    "z":
+    {
+      "item": "simpeladdmod:unobtanium_scrap"
+    }
+  },
+  "result":
+  {
+    "item": "simpeladdmod:speedupgrade_4",
+    "count": 1
+  }
+}

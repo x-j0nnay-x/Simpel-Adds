@@ -225,7 +225,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.simpeladdmod.grinder_block_up");
+        return Component.translatable("block.simpeladdmod.grinder_up_block");
     }
 
     public void sendUpdate() {
@@ -280,6 +280,8 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             this.maxProgress = 12;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
             this.maxProgress = 5;
+        }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_4)) {
+            this.maxProgress = 2;
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
         }

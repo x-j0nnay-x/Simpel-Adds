@@ -24,6 +24,7 @@ you can craft slime balls, obsidian blocks, elytra's and manually craft cobblest
 Repair tool that will rechage 4 damage per 100 ticks. it will take damage per item repaired. A tag is called for items that can not be repaired.
 Feeding Tool this will give you food when your health is less than max. it works every 500 ticks.
 Fireproof Tool this will keep you from dieing in lava or in the flams, it will try its best to keep you alive.
+Grow Staff Bone Meal on crazy, also is used to make Better and Faster Farm land.
 
 
 ### Template Information
