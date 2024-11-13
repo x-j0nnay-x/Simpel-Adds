@@ -14,23 +14,7 @@ public class ModNames {
         public static final String SIMPEL_FARM_LAND = "simpel_farmland";
 
         public static String getBlockNameForEntity(String name) {
-            switch (name) {
-                case BLOCKFACTORY:
-                    return BLOCKFACTORY + "_block";
-                case CHILLER:
-                    return CHILLER + "_block";
-                case GRINDER:
-                    return GRINDER + "_block";
-                case GRINDER_UP:
-                    return GRINDER_UP + "_block";
-                case GRINDFACTORY:
-                    return GRINDFACTORY + "_block";
-                case NETHERITE_CRAFTER:
-                    return NETHERITE_CRAFTER + "_block";
-                case UPGRADED_FURNACE:
-                    return UPGRADED_FURNACE + "_block";
-            }
-            return name;
+            return name + "_block";
         }
     }
     public static class Items {
@@ -101,95 +85,8 @@ public class ModNames {
         public static final String BOOTS = "boots";
 
 
-        public static String getToolNames(String name, String type) {
-            switch (name) {
-                case OBSIDIAN:
-                    switch (type){
-                        case SWORD:
-                            return OBSIDIAN + SWORD;
-                        case PICKAXE:
-                            return OBSIDIAN + PICKAXE;
-                        case AXE:
-                            return OBSIDIAN + AXE;
-                        case SHOVEL:
-                            return OBSIDIAN + SHOVEL;
-                        case HOE:
-                            return OBSIDIAN + HOE;
-                        case HELMET:
-                            return OBSIDIAN + HELMET;
-                        case CHESTPLATE:
-                            return OBSIDIAN + CHESTPLATE;
-                        case LEGGINGS:
-                            return OBSIDIAN + LEGGINGS;
-                        case BOOTS:
-                            return OBSIDIAN + BOOTS;
-                    }
-                case OBSIDIRITE:
-                    switch (type){
-                        case SWORD:
-                            return OBSIDIRITE + SWORD;
-                        case PICKAXE:
-                            return OBSIDIRITE + PICKAXE;
-                        case AXE:
-                            return OBSIDIRITE + AXE;
-                        case SHOVEL:
-                            return OBSIDIRITE + SHOVEL;
-                        case HOE:
-                            return OBSIDIRITE + HOE;
-                        case HELMET:
-                            return OBSIDIRITE + HELMET;
-                        case CHESTPLATE:
-                            return OBSIDIRITE + CHESTPLATE;
-                        case LEGGINGS:
-                            return OBSIDIRITE + LEGGINGS;
-                        case BOOTS:
-                            return OBSIDIRITE + BOOTS;
-                    }
-                case UNOBTIANNETHERITE:
-                    switch (type){
-                        case SWORD:
-                            return UNOBTIANNETHERITE + SWORD;
-                        case PICKAXE:
-                            return UNOBTIANNETHERITE + PICKAXE;
-                        case AXE:
-                            return UNOBTIANNETHERITE + AXE;
-                        case SHOVEL:
-                            return UNOBTIANNETHERITE + SHOVEL;
-                        case HOE:
-                            return UNOBTIANNETHERITE + HOE;
-                        case HELMET:
-                            return UNOBTIANNETHERITE + HELMET;
-                        case CHESTPLATE:
-                            return UNOBTIANNETHERITE + CHESTPLATE;
-                        case LEGGINGS:
-                            return UNOBTIANNETHERITE + LEGGINGS;
-                        case BOOTS:
-                            return UNOBTIANNETHERITE + BOOTS;
-                    }
-                case UNOBTIANOBSIDIRITE:
-                    switch (type){
-                        case SWORD:
-                            return UNOBTIANOBSIDIRITE + SWORD;
-                        case PICKAXE:
-                            return UNOBTIANOBSIDIRITE + PICKAXE;
-                        case AXE:
-                            return UNOBTIANOBSIDIRITE + AXE;
-                        case SHOVEL:
-                            return UNOBTIANOBSIDIRITE + SHOVEL;
-                        case HOE:
-                            return UNOBTIANOBSIDIRITE + HOE;
-                        case HELMET:
-                            return UNOBTIANOBSIDIRITE + HELMET;
-                        case CHESTPLATE:
-                            return UNOBTIANOBSIDIRITE + CHESTPLATE;
-                        case LEGGINGS:
-                            return UNOBTIANOBSIDIRITE + LEGGINGS;
-                        case BOOTS:
-                            return UNOBTIANOBSIDIRITE + BOOTS;
-                    }
-
-            }
-            return name;
+        public static String getToolNames(String tier, String tool) {
+            return tier + tool;
         }
     }
 
