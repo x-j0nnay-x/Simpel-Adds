@@ -20,6 +20,7 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
     // variables for added readability
     Item flintItem = Items.FLINT;
     Item scrapItem = ModItems.UNOBTIANIUMSCRAP;
+    Item boneItem = Items.BONE;
 
 
     @Override
@@ -38,6 +39,9 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
                 if (stackInQuestion.is(scrapItem)) {
                     repairItem.add(stackInQuestion);
                 }
+                if (stackInQuestion.is(boneItem)) {
+                    repairItem.add(stackInQuestion);
+                }
             }
         }
         return toolRepairing != null && !repairItem.isEmpty();
@@ -47,6 +51,7 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
     public ItemStack assemble(CraftingInput input, HolderLookup.Provider access) {
         List<Item> flintList = new ArrayList<>();
         List<Item> scrapList = new ArrayList<>();
+        List<Item> boneList = new ArrayList<>();
         ItemStack toolItems = null;
         for (int i = 0; i < input.size(); ++i) {
             ItemStack itemstack = input.getItem(i);
@@ -64,6 +69,9 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
                 if (itemstack.is(scrapItem)) {
                     scrapList.add(itemstack.getItem());
                 }
+                if (itemstack.is(boneItem)) {
+                    boneList.add(itemstack.getItem());
+                }
             }
         }
         if (toolItems != null && toolItems.isDamaged()) {
@@ -73,6 +81,8 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
             ItemStack newRepairTool = ModItems.REPAIRTOOL.getDefaultInstance();
             ItemStack newFireProofTool = ModItems.FIREPROOFTOOL.getDefaultInstance();
             ItemStack newFeedingTool = ModItems.FEEDINGTOOL.getDefaultInstance();
+            ItemStack newGrowStaff = ModItems.GROWSTAFF.getDefaultInstance();
+
             if(!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEAD)) {
                 newGrinder.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
                 return newGrinder;
@@ -96,6 +106,10 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
             if(!scrapList.isEmpty() && toolItems.is(ModItems.FEEDINGTOOL)) {
                 newFeedingTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
                 return newFeedingTool;
+            }
+            if(!boneList.isEmpty() && toolItems.is(ModItems.GROWSTAFF)) {
+                newGrowStaff.setDamageValue(toolItems.getDamageValue() - (boneList.size() * 18));
+                return newGrowStaff;
             }
             }
         return ItemStack.EMPTY;
