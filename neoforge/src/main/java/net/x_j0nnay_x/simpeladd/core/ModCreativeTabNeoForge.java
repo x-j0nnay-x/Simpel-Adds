@@ -19,7 +19,7 @@ public class ModCreativeTabNeoForge {
                     .displayItems((pParameters, entries) -> {
                     //items grind head
                         entries.accept(ModItemRegNeoForge.GRINDERHEAD.get());
-                        entries.accept(ModItemRegNeoForge.GRINDERHEADNEHTERITE.get());
+                        entries.accept(ModItemRegNeoForge.GRINDERHEADNETHERITE.get());
                         entries.accept(ModItemRegNeoForge.GRINDERHEADUNOBTIANIUM.get());
                     //items random
                         entries.accept(ModItemRegNeoForge.WOODFIBER.get());
@@ -36,6 +36,7 @@ public class ModCreativeTabNeoForge {
                         entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_2.get());
                         entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_3.get());
+                        entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_4.get());
                         entries.accept(ModItemRegNeoForge.BOOSTUPGRADE.get());
                         entries.accept(ModItemRegNeoForge.XPBOOSTUPGRADE.get());
                     //items sandwich

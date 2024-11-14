@@ -1,5 +1,5 @@
 {
-  "parent": "simpeladdmod:block/grinder_block_up",
+  "parent": "simpeladdmod:block/grinder_up_block",
   "display": {
     "thirdperson": {
       "rotation": [

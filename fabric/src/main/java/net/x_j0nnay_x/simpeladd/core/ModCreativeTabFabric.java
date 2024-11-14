@@ -39,6 +39,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_1);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_2);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_3);
+                        entries.accept(ModItemRegFabric.SPEEDUPGRADE_4);
                         entries.accept(ModItemRegFabric.BOOSTUPGRADE);
                         entries.accept(ModItemRegFabric.XPBOOSTUPGRADE);
                 //items sandwich

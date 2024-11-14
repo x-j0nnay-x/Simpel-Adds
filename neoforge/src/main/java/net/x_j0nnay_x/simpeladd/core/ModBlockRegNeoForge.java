@@ -17,31 +17,31 @@ public class ModBlockRegNeoForge {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(SimpelAddModNeoForge.MODID);
 
-    public static final DeferredBlock<Block> DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore",() -> ModBlocks.DEEPSLATE_DEBRI_ORE);
+    public static final DeferredBlock<Block> DEEPSLATE_DEBRI_ORE = registerBlock(ModNames.Blocks.DEEPSLATE_DEBRI_ORE,() -> ModBlocks.DEEPSLATE_DEBRI_ORE);
 
-    public static final DeferredBlock<Block> UNOBTANIUM_ORE = registerBlock("unobtanium_ore",() -> ModBlocks.UNOBTANIUM_ORE);
+    public static final DeferredBlock<Block> UNOBTANIUM_ORE = registerBlock(ModNames.Blocks.UNOBTANIUM_ORE,() -> ModBlocks.UNOBTANIUM_ORE);
 
-    public static final DeferredBlock<Block> SIMPEL_FARM_LAND = registerBlock("simpel_farmland",() -> ModBlocks.SIMPELFARMLAND);
+    public static final DeferredBlock<Block> SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND,() -> ModBlocks.SIMPELFARMLAND);
 
-    public static final DeferredBlock<Block> BLOCK_FACTORY = registerBlock("blockfactory_block",
+    public static final DeferredBlock<Block> BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY),
             () -> new NeoForgeBlockFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> CHILLER = registerBlock("chiller_block",
+    public static final DeferredBlock<Block> CHILLER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CHILLER),
             () -> new NeoForgeChillerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> GRINDER_BLOCK = registerBlock("grinder_block",
+    public static final DeferredBlock<Block> GRINDER_BLOCK = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDER),
             () -> new NeoForgeGrinderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> GRINDER_BLOCK_UP = registerBlock("grinder_block_up",
+    public static final DeferredBlock<Block> GRINDER_BLOCK_UP = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDER_UP),
             () -> new NeoForgeGrinderBlock_Up(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> GRIND_FACTORY_BLOCK = registerBlock("grind_factory_block",
+    public static final DeferredBlock<Block> GRIND_FACTORY_BLOCK = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDFACTORY),
             () -> new NeoForgeGrindFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
+    public static final DeferredBlock<Block> NETHERITE_CRAFTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.NETHERITE_CRAFTER),
             () -> new NeoForgeNetheriteCraftingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
-    public static final DeferredBlock<Block> UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
+    public static final DeferredBlock<Block> UPGRADED_FURNACE = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.UPGRADED_FURNACE),
             () -> new NeoForgeFurnaceBlock_Up(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
