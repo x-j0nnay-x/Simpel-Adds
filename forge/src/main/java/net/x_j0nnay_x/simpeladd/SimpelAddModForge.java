@@ -46,14 +46,7 @@ public class SimpelAddModForge {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("Loading GUI's for " + MODID);
-            MenuScreens.register(ModMenuTypeForge.UPGRADED_FURNACE_MENU.get(), ForgeFurnaceScreen_up::new);
-            MenuScreens.register(ModMenuTypeForge.GRINDER_MENU.get(), ForgeGrinderScreen::new);
-            MenuScreens.register(ModMenuTypeForge.GRINDER_MENU_UP.get(), ForgeGrinderScreen_up::new);
-            MenuScreens.register(ModMenuTypeForge.BLOCKFACTORY_MENU.get(), ForgeBlockFactoryScreen::new);
-            MenuScreens.register(ModMenuTypeForge.Chiller_MENU.get(), ForgeChillerScreen::new);
-            MenuScreens.register(ModMenuTypeForge.Netherite_Menu.get(), ForgeNetheriteCrafterScreen::new);
-            MenuScreens.register(ModMenuTypeForge.GRIND_FACTORY_MENU.get(), ForgeGrindFactoryScreen::new);
+           ModScreensForge.registerScreens();
         }
     }
 

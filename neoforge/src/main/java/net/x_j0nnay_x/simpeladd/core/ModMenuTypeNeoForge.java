@@ -17,24 +17,25 @@ public class ModMenuTypeNeoForge {
             DeferredRegister.create(Registries.MENU, SimpelAddModNeoForge.MODID);
 
     public static final Supplier<MenuType<NeoForgeBlockFactoryMenu>> BLOCKFACTORY_MENU =
-            registerMenuType("blockfactorymenu",NeoForgeBlockFactoryMenu::new) ;
+            registerMenuType(ModNames.Menu.BLOCKFACTORYMENU,  NeoForgeBlockFactoryMenu::new) ;
 
     public static final  Supplier<MenuType<NeoForgeGrinderMenu>> GRINDER_MENU =
-            registerMenuType("grindermenu", NeoForgeGrinderMenu::new);
+            registerMenuType(ModNames.Menu.GRINDERMENU, NeoForgeGrinderMenu::new);
 
     public static final  Supplier<MenuType<NeoForgeGrinderMenu_up>> GRINDER_MENU_UP =
-            registerMenuType("grindermenu_up", NeoForgeGrinderMenu_up::new);
+            registerMenuType(ModNames.Menu.GRINDERMENU_UP, NeoForgeGrinderMenu_up::new);
 
     public static final  Supplier<MenuType<NeoForgeGrindFactoryMenu>> GRIND_FACTORY_MENU =
-            registerMenuType("grind_factory_menu", NeoForgeGrindFactoryMenu::new);
+            registerMenuType(ModNames.Menu.GRIND_FACTORY_MENU, NeoForgeGrindFactoryMenu::new);
 
     public static final  Supplier<MenuType<NeoForgeFurnaceMenu_up>> UPGRADED_FURNACE_MENU =
-            registerMenuType("furnacemenu_up", NeoForgeFurnaceMenu_up::new);
+            registerMenuType(ModNames.Menu.UPGRADED_FURNACE_MENU, NeoForgeFurnaceMenu_up::new);
 
     public static final  Supplier<MenuType<NeoForgeChillerMenu>> Chiller_MENU =
-            registerMenuType("chillermenu", NeoForgeChillerMenu::new);
+            registerMenuType(ModNames.Menu.CHILLER_MENU, NeoForgeChillerMenu::new);
+
     public static final  Supplier<MenuType<NeoForgeNetheriteCrafterMenu>> Netherite_Menu =
-            registerMenuType("netheritemenu", NeoForgeNetheriteCrafterMenu::new);
+            registerMenuType(ModNames.Menu.NETHERITE_MENU, NeoForgeNetheriteCrafterMenu::new);
 
     private static <T extends AbstractContainerMenu>Supplier<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

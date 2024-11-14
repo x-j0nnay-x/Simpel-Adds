@@ -8,12 +8,10 @@
     {
       "item": "minecraft:clay"
     }
-
-  ],
-
+    ],
   "result":
   {
     "id": "minecraft:clay_ball",
-    "count":5
+    "count":6
   }
 }
