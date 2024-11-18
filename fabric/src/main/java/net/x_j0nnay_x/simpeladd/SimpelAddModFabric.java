@@ -4,6 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.x_j0nnay_x.simpeladd.core.*;
 import net.x_j0nnay_x.simpeladd.network.FabricSlotChangePacket;
@@ -13,28 +14,23 @@ import org.slf4j.Logger;
 
 public class SimpelAddModFabric implements ModInitializer, ClientModInitializer {
 
-    public static final String MODID = SimpelAddMod.MOD_ID;
-    public static final Logger LOGGER = SimpelAddMod.LOG;
-
     @Override
     public void onInitialize() {
-        ModCreativeTabFabric.registerCreativeTab();
+        ModBlockRegFabric.registerBlocks();
+        ModItemRegFabric.registerItems();
         ModCreativeTabFabric.registerTab();
-        ModItemRegFabric.registerModItems();
-        ModBlockRegFabric.registerModBlocks();
         ModBlockEntitiesFabric.registerBlockEntities();
         ModWorldGenerationFabric.generateModWorldGen();
         ModMenuTypeFabric.registerScreenHandlers();
         ModRecipesRegFabric.registerRecipes();
         NetworkInit();
-        LOGGER.info("Hello Fabric world!");
+        FuelRegistry.INSTANCE.add(ModItemRegFabric.FULECHUNKS, 200);
         SimpelAddMod.init();
     }
 
     public void NetworkInit(){
         PayloadTypeRegistry.playC2S().register(FabricSlotChangePacket.TYPE, FabricSlotChangePacket.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(FabricSlotChangePacket.TYPE, FabricSlotChangePacket::receive);
-
     }
 
     @Override

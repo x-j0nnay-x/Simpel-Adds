@@ -9,6 +9,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.data.OutPutSlotChange;
 import net.x_j0nnay_x.simpeladd.menu.ForgeBlockFactoryMenu;
@@ -16,7 +17,7 @@ import net.x_j0nnay_x.simpeladd.network.ForgeNetworkMessage;
 
 public class ForgeBlockFactoryScreen extends AbstractContainerScreen<ForgeBlockFactoryMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModForge.MODID, "textures/screens/blockfactory_gui.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/blockfactory_gui.png");
     private int ButtonY = 166;
     private int ButtonSize = 12;
     private int buttonPosX = 56;

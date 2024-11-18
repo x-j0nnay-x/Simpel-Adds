@@ -5,12 +5,13 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 
 public class ModItemRegForge {
 
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, SimpelAddModForge.MODID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, SimpelAddMod.MOD_ID);
     //wings
     public static final RegistryObject<Item> SIMPEL_ELITRA_HALF = ITEMS.register(ModNames.Items.SIMPEL_ELITRA_HALF, () -> ModItems.SIMPEL_ELITRA_HALF);
     public static final RegistryObject<Item> SIMPEL_ELITRA_PART1 = ITEMS.register(ModNames.Items.SIMPEL_ELITRA_PART1, () -> ModItems.SIMPEL_ELITRA_PART1);
@@ -30,6 +31,7 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> FIREPROOFTOOL = ITEMS.register(ModNames.Items.FIREPROOFTOOL, () -> ModItems.FIREPROOFTOOL);
     public static final RegistryObject<Item> FEEDINGTOOL = ITEMS.register(ModNames.Items.FEEDINGTOOL, () -> ModItems.FEEDINGTOOL);
     public static final RegistryObject<Item> GROWSTAFF = ITEMS.register(ModNames.Items.GROWSTAFF, () -> ModItems.GROWSTAFF);
+    public static final RegistryObject<Item> FULECHUNKS = ITEMS.register(ModNames.Items.FULECHUNKS, () -> ModItems.FULECHUNKS);
     //upgrades
     public static final RegistryObject<Item> SPEEDUPGRADE_1 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_1, () -> ModItems.SPEEDUPGRADE_1);
     public static final RegistryObject<Item> SPEEDUPGRADE_2 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_2, () -> ModItems.SPEEDUPGRADE_2);
@@ -100,10 +102,8 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> UNOBTIANOBSIDIRITEBOOTS = ITEMS.register(ModNames.Tools.getToolNames(ModNames.Tools.UNOBTIANOBSIDIRITE, ModNames.Tools.BOOTS), () -> ModItems.UNOBTIANOBSIDIRITEBOOTS);
 
     public static void register(IEventBus eventBus) {
+        SimpelAddMod.modItemRegText();
         ITEMS.register(eventBus);
     }
 
-    public static void registerModItems(){
-        SimpelAddModForge.LOGGER.info("Registering Mod Items for " + SimpelAddModForge.MODID);
-    }
 }

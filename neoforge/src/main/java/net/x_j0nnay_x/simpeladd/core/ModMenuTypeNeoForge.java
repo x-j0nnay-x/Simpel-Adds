@@ -7,6 +7,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.menu.*;
 import java.util.function.Supplier;
@@ -14,7 +15,7 @@ import java.util.function.Supplier;
 public class ModMenuTypeNeoForge {
 
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(Registries.MENU, SimpelAddModNeoForge.MODID);
+            DeferredRegister.create(Registries.MENU, SimpelAddMod.MOD_ID);
 
     public static final Supplier<MenuType<NeoForgeBlockFactoryMenu>> BLOCKFACTORY_MENU =
             registerMenuType(ModNames.Menu.BLOCKFACTORYMENU, NeoForgeBlockFactoryMenu::new) ;
@@ -42,9 +43,8 @@ public class ModMenuTypeNeoForge {
     }
 
     public static void  register(IEventBus eventBus){
+        SimpelAddMod.modMenuRegText();
         MENUS.register(eventBus);
     }
-    public static void registerScreenHandlers() {
-        SimpelAddModNeoForge.LOGGER.info("Registering Screen Handlers for " + SimpelAddModNeoForge.MODID);
-    }
+
 }
