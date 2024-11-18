@@ -22,6 +22,7 @@ import java.util.Map;
 
 public class GrowStaff extends Item {
 
+
     private static final Map<Block, Block> FARMLAND_MAP =
             Map.of(
                     Blocks.FARMLAND, ModBlocks.SIMPELFARMLAND

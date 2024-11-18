@@ -5,11 +5,12 @@ import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.blocks.entity.*;
 
 public class ModBlockEntitiesForge {
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SimpelAddModForge.MODID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SimpelAddMod.MOD_ID);
 
 	public static final RegistryObject<BlockEntityType<ForgeBlockFactoryBlockEntity>> BLOCK_FACTORY = BLOCK_ENTITY.register(ModNames.Blocks.BLOCKFACTORY, () ->
 			BlockEntityType.Builder.of(ForgeBlockFactoryBlockEntity::new, ModBlockRegForge.BLOCK_FACTORY.get()).build(null));
@@ -33,10 +34,8 @@ public class ModBlockEntitiesForge {
 			BlockEntityType.Builder.of(ForgeFurnaceBlockEntity_Up::new, ModBlockRegForge.UPGRADED_FURNACE.get()).build(null));
 
 	public static void register(IEventBus eventBus) {
+		SimpelAddMod.modBlockEntRegText();
 		BLOCK_ENTITY.register(eventBus);
 	}
 
-	public static void registerModBlockEntities(){
-		SimpelAddModForge.LOGGER.info("Registering Mod Blocks Entities for " + SimpelAddModForge.MODID);
-	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 
 public class ModBiomeModifiersNeoForge {
@@ -34,6 +35,6 @@ public class ModBiomeModifiersNeoForge {
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
-        return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS,  ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, name));
+        return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS,  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
     }
 }

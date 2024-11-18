@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.menu.NeoForgeBlockFactoryMenu;
 import net.x_j0nnay_x.simpeladd.network.NeoForgeMessageSlotChange;
@@ -17,7 +18,7 @@ import net.x_j0nnay_x.simpeladd.network.NeoForgeNetworkMessage;
 
 public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForgeBlockFactoryMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, "textures/screens/blockfactory_gui.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/blockfactory_gui.png");
     private int ButtonY = 166;
     private int ButtonSize = 12;
     private int buttonPosX = 56;

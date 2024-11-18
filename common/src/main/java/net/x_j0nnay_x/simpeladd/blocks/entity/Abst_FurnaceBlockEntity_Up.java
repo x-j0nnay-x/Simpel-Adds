@@ -293,14 +293,15 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     }
 
     private void addFuel() {
-        if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
-            fuelLevel +=  (this.getFuelTime(this.stacks.get(FUELSLOT)) / 200);
-            if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
-                this.removeItem(FUELSLOT, 1);
-                this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
-            }
-            else {
-                this.removeItem(FUELSLOT, 1);
+        if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)) {
+            if (this.getFuelTime(this.stacks.get(FUELSLOT)) >= 200) {
+                fuelLevel += (this.getFuelTime(this.stacks.get(FUELSLOT)) / 200);
+                if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
+                    this.removeItem(FUELSLOT, 1);
+                    this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
+                } else {
+                    this.removeItem(FUELSLOT, 1);
+                }
             }
         }
     }

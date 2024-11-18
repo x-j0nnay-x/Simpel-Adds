@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.compat.jei;
 
-
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -21,13 +20,29 @@ import org.jetbrains.annotations.NotNull;
 
 @JeiPlugin
 public class JEI_PluginSimpeladd_Fabric implements IModPlugin {
-
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IGuiHelper helper = registration.getJeiHelpers().getGuiHelper();
         registration.addRecipeCategories(
                 new JEI_GrindingCatagory_Fabric(helper)
         );
+    }
+
+    @Override
+    public void registerRecipes(IRecipeRegistration registration) {
+        registration.addRecipes(JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE, JEI_GrindingCatagory_Fabric.getAllRecipes());
+        registration.addItemStackInfo(new ItemStack(Items.WATER_BUCKET), Component.translatable("simpeladdmod.jei.waterbucket"));
+        registration.addItemStackInfo(new ItemStack(Items.LAVA_BUCKET), Component.translatable("simpeladdmod.jei.lavabucket"));
+        registration.addItemStackInfo(new ItemStack(Items.SNOWBALL), Component.translatable("simpeladdmod.jei.chilling.snowball"));
+        registration.addItemStackInfo(new ItemStack(Items.SNOW_BLOCK), Component.translatable("simpeladdmod.jei.chilling.snowblock"));
+        registration.addItemStackInfo(new ItemStack(Items.ICE), Component.translatable("simpeladdmod.jei.chilling.ice"));
+        registration.addItemStackInfo(new ItemStack(Items.PACKED_ICE), Component.translatable("simpeladdmod.jei.chilling.packedice"));
+        registration.addItemStackInfo(new ItemStack(Items.BLUE_ICE), Component.translatable("simpeladdmod.jei.chilling.blueice"));
+    }
+
+    @Override
+    public @NotNull ResourceLocation getPluginUid() {
+        return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "_jei_plugin");
     }
 
     @Override
@@ -46,23 +61,6 @@ public class JEI_PluginSimpeladd_Fabric implements IModPlugin {
         registration.addRecipeClickArea(FabricGrindFactoryScreen.class, 42, 29, 72, 4,
                 JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE);
 
-    }
-
-    @Override
-    public void registerRecipes(IRecipeRegistration registration) {
-        registration.addRecipes(JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE, JEI_GrindingCatagory_Fabric.getAllRecipes());
-        registration.addItemStackInfo(new ItemStack(Items.WATER_BUCKET), Component.translatable("simpeladdmod.jei.waterbucket"));
-        registration.addItemStackInfo(new ItemStack(Items.LAVA_BUCKET), Component.translatable("simpeladdmod.jei.lavabucket"));
-        registration.addItemStackInfo(new ItemStack(Items.SNOWBALL), Component.translatable("simpeladdmod.jei.chilling.snowball"));
-        registration.addItemStackInfo(new ItemStack(Items.SNOW_BLOCK), Component.translatable("simpeladdmod.jei.chilling.snowblock"));
-        registration.addItemStackInfo(new ItemStack(Items.ICE), Component.translatable("simpeladdmod.jei.chilling.ice"));
-        registration.addItemStackInfo(new ItemStack(Items.PACKED_ICE), Component.translatable("simpeladdmod.jei.chilling.packedice"));
-        registration.addItemStackInfo(new ItemStack(Items.BLUE_ICE), Component.translatable("simpeladdmod.jei.chilling.blueice"));
-    }
-
-    @Override
-    public @NotNull ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "_jei_plugin");
     }
 
 }

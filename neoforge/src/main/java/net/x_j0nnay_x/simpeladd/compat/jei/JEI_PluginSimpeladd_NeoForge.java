@@ -1,5 +1,6 @@
 package net.x_j0nnay_x.simpeladd.compat.jei;
 
+
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -30,22 +31,6 @@ public class JEI_PluginSimpeladd_NeoForge implements IModPlugin {
     }
 
     @Override
-    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(ModBlockRegNeoForge.GRINDER_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(ModBlockRegNeoForge.GRINDER_BLOCK_UP.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
-    }
-    @Override
-    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(NeoForgeGrinderScreen.class, 58, 42, 55,23,
-                JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeClickArea(NeoForgeGrinderScreen_up.class, 42, 34, 71,13,
-                JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeClickArea(NeoForgeGrindFactoryScreen.class, 42, 29, 72, 4,
-                JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
-    }
-
-    @Override
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE, JEI_GrindingCatagory_NeoForge.getAllRecipes());
         registration.addItemStackInfo(new ItemStack(Items.WATER_BUCKET), Component.translatable("simpeladdmod.jei.waterbucket"));
@@ -61,5 +46,23 @@ public class JEI_PluginSimpeladd_NeoForge implements IModPlugin {
     public @NotNull ResourceLocation getPluginUid() {
         return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "_jei_plugin");
     }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(ModBlockRegNeoForge.GRINDER_BLOCK.asItem().getDefaultInstance(), JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(ModBlockRegNeoForge.GRINDER_BLOCK_UP.asItem().getDefaultInstance(), JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.asItem().getDefaultInstance(), JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addRecipeClickArea(NeoForgeGrinderScreen.class, 58, 42, 55,23,
+                JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(NeoForgeGrinderScreen_up.class, 42, 34, 71,13,
+                JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(NeoForgeGrindFactoryScreen.class, 42, 29, 72, 4,
+                JEI_GrindingCatagory_NeoForge.GRINDER_RECIPE_RECIPE_TYPE);
+    }
+
 
 }

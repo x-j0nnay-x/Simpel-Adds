@@ -3,6 +3,9 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesNeoForge;
@@ -17,6 +20,18 @@ public class NeoForgeGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntit
     @Override
     protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
         return new NeoForgeGrindFactoryMenu(i, inventory, this, this.data);
+    }
+    public static boolean isFuel(ItemStack itemStack) {
+        return itemStack.getBurnTime(RecipeType.SMELTING) > 0;
+    }
+
+    protected int getFuelTime(ItemStack fuel) {
+        if (fuel.isEmpty()) {
+            return 0;
+        } else {
+            Item item = fuel.getItem();
+            return (int)fuel.getBurnTime(RecipeType.SMELTING);
+        }
     }
 
     @Override

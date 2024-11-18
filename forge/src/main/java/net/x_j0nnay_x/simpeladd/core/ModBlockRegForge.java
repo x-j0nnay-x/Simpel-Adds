@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.*;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import java.util.function.Supplier;
@@ -16,7 +17,7 @@ import java.util.function.Supplier;
 public class ModBlockRegForge {
 
     public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, SimpelAddModForge.MODID);
+            DeferredRegister.create(ForgeRegistries.BLOCKS, SimpelAddMod.MOD_ID);
 
     public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock(ModNames.Blocks.DEEPSLATE_DEBRI_ORE, () -> ModBlocks.DEEPSLATE_DEBRI_ORE);
 
@@ -55,11 +56,9 @@ public class ModBlockRegForge {
         return ModItemRegForge.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static void registerModBlocks(){
-        SimpelAddModForge.LOGGER.info("Registering Mod Blocks for " + SimpelAddModForge.MODID);
-    }
 
     public static void register(IEventBus eventBus){
+        SimpelAddMod.modBlockRegText();
         BLOCKS.register(eventBus);
     }
 }

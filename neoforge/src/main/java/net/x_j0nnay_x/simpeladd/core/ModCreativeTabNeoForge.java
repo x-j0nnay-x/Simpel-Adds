@@ -5,15 +5,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import java.util.function.Supplier;
 
 public class ModCreativeTabNeoForge {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SimpelAddModNeoForge.MODID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SimpelAddMod.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> SIMPEL_TAB = CREATIVE_MODE_TABS.register("simpel_tab",
+    public static final Supplier<CreativeModeTab> SIMPEL_TAB = CREATIVE_MODE_TABS.register(ModNames.CREATIVETAB,
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItemRegNeoForge.GRINDERHEAD.get()))
                     .title(Component.translatable("creativetab.simpel_tab"))
                     .displayItems((pParameters, entries) -> {
@@ -32,6 +34,7 @@ public class ModCreativeTabNeoForge {
                         entries.accept(ModItemRegNeoForge.FIREPROOFTOOL.get());
                         entries.accept(ModItemRegNeoForge.FEEDINGTOOL.get());
                         entries.accept(ModItemRegNeoForge.GROWSTAFF.get());
+                        entries.accept(ModItemRegNeoForge.FULECHUNKS.get());
                     //items upgrade
                         entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_2.get());
@@ -118,10 +121,8 @@ public class ModCreativeTabNeoForge {
                     }).build());
 
     public static void register(IEventBus eventBus) {
+        SimpelAddMod.modtabRegText();
         CREATIVE_MODE_TABS.register(eventBus);
     }
 
-    public static void registerCreativeTab(){
-        SimpelAddModNeoForge.LOGGER.info("Registering Creative Tab For " + SimpelAddModNeoForge.MODID);
-    }
 }
