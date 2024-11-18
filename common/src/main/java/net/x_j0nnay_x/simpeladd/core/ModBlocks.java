@@ -1,13 +1,9 @@
 package net.x_j0nnay_x.simpeladd.core;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.blocks.*;
 
 

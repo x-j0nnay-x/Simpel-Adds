@@ -38,11 +38,9 @@ public class SimpelAddModForge {
         ModCreativeTabForge.registerCreativeTab();
         ModCreativeTabForge.register(modEventBus);
 
-        LOGGER.info("Hello Forge world!");
         SimpelAddMod.init();
         MinecraftForge.EVENT_BUS.register(this);
 
-        
     }
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {

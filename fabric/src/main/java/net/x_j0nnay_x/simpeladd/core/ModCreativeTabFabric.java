@@ -35,6 +35,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.FIREPROOFTOOL);
                         entries.accept(ModItemRegFabric.FEEDINGTOOL);
                         entries.accept(ModItemRegFabric.GROWSTAFF);
+                        entries.accept(ModItemRegFabric.FULECHUNKS);
                 //items upgrade
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_1);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_2);

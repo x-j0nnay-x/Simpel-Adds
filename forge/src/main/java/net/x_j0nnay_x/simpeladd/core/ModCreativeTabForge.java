@@ -33,6 +33,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.FIREPROOFTOOL.get());
                         entries.accept(ModItemRegForge.FEEDINGTOOL.get());
                         entries.accept(ModItemRegForge.GROWSTAFF.get());
+                        entries.accept(ModItemRegForge.FUELCHUNKS.get());
                         //items upgrade
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_2.get());

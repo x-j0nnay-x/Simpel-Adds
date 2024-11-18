@@ -27,6 +27,7 @@ public class ModItemRegFabric {
     public static final Item FIREPROOFTOOL = registerItem(ModNames.Items.FIREPROOFTOOL, ModItems.FIREPROOFTOOL);
     public static final Item FEEDINGTOOL = registerItem(ModNames.Items.FEEDINGTOOL, ModItems.FEEDINGTOOL);
     public static final Item GROWSTAFF = registerItem(ModNames.Items.GROWSTAFF, ModItems.GROWSTAFF);
+    public static final Item FULECHUNKS = registerItem(ModNames.Items.FULECHUNKS, ModItems.FULECHUNKS);
     //upgrades
     public static final Item SPEEDUPGRADE_1 = registerItem(ModNames.Items.SPEEDUPGRADE_1, ModItems.SPEEDUPGRADE_1);
     public static final Item SPEEDUPGRADE_2 = registerItem(ModNames.Items.SPEEDUPGRADE_2, ModItems.SPEEDUPGRADE_2);

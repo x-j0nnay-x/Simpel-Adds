@@ -26,7 +26,7 @@ public class SimpelAddMod {
 
         if (Services.PLATFORM.isModLoaded(MOD_ID)) {
 
-           LOG.info("Hello to SimpelAdd");
+           LOG.info("Hello from SimpelAdd");
         }
     }
 }

@@ -289,6 +289,9 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public static boolean isFuel(ItemStack pStack) {
         return getFuel().containsKey(pStack.getItem());
     }
+
+
+
     protected int getFuelTime(ItemStack fuel) {
         if (fuel.isEmpty()) {
             return 0;

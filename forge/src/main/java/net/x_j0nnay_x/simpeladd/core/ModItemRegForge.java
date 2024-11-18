@@ -6,7 +6,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
-import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 
 public class ModItemRegForge {
 
@@ -31,6 +30,7 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> FIREPROOFTOOL = ITEMS.register(ModNames.Items.FIREPROOFTOOL, () -> ModItems.FIREPROOFTOOL);
     public static final RegistryObject<Item> FEEDINGTOOL = ITEMS.register(ModNames.Items.FEEDINGTOOL, () -> ModItems.FEEDINGTOOL);
     public static final RegistryObject<Item> GROWSTAFF = ITEMS.register(ModNames.Items.GROWSTAFF, () -> ModItems.GROWSTAFF);
+    public static final RegistryObject<Item> FUELCHUNKS = ITEMS.register(ModNames.Items.FULECHUNKS, () -> ModItems.FULECHUNKS);
     //upgrades
     public static final RegistryObject<Item> SPEEDUPGRADE_1 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_1, () -> ModItems.SPEEDUPGRADE_1);
     public static final RegistryObject<Item> SPEEDUPGRADE_2 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_2, () -> ModItems.SPEEDUPGRADE_2);

@@ -3,6 +3,7 @@ package net.x_j0nnay_x.simpeladd;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.x_j0nnay_x.simpeladd.core.*;
 
@@ -28,7 +29,7 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
         ModWorldGenerationFabric.generateModWorldGen();
         ModMenuTypeFabric.registerScreenHandlers();
         ModRecipesRegFabric.registerRecipes();
-        LOGGER.info("Hello Fabric world!");
+        FuelRegistry.INSTANCE.add(ModItemRegFabric.FULECHUNKS, 50);
         SimpelAddMod.init();
     }
         @Override
