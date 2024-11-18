@@ -8,13 +8,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
 public class ModCreativeTabFabric {
 
     public static void registerTab()
     {
-        ResourceKey<CreativeModeTab> tab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "simpel_tab"));
+        SimpelAddMod.modtabRegText();
+
+        ResourceKey<CreativeModeTab> tab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.CREATIVETAB));
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, tab, FabricItemGroup.builder()
                 .icon(ModItemRegFabric.GRINDERHEAD::getDefaultInstance)
                 .title(Component.translatable("creativetab.simpel_tab"))
@@ -35,6 +38,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.FIREPROOFTOOL);
                         entries.accept(ModItemRegFabric.FEEDINGTOOL);
                         entries.accept(ModItemRegFabric.GROWSTAFF);
+                        entries.accept(ModItemRegFabric.FULECHUNKS);
                 //items upgrade
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_1);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_2);
@@ -121,7 +125,5 @@ public class ModCreativeTabFabric {
                     }).build());
     }
 
-    public static void registerCreativeTab(){
-        SimpelAddModFabric.LOGGER.info("Registering Creative Tab For " + SimpelAddModFabric.MODID);
-    }
+
 }

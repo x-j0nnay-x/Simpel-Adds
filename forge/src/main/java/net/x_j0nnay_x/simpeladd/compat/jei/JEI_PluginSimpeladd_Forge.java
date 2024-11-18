@@ -30,22 +30,6 @@ public class JEI_PluginSimpeladd_Forge implements IModPlugin {
     }
 
     @Override
-    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(ModBlockRegForge.GRINDER_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(ModBlockRegForge.GRINDER_BLOCK_UP.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(ModBlockRegForge.GRIND_FACTORY_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
-    }
-    @Override
-    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(ForgeGrinderScreen.class, 58, 42, 55,23,
-                JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeClickArea(ForgeGrinderScreen_up.class, 42, 34, 71,13,
-                JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
-        registration.addRecipeClickArea(ForgeGrindFactoryScreen.class, 42, 29, 72, 4,
-                JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
-    }
-
-    @Override
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE, JEI_GrindingCatagory_Forge.getAllRecipes());
         registration.addItemStackInfo(new ItemStack(Items.WATER_BUCKET), Component.translatable("simpeladdmod.jei.waterbucket"));
@@ -60,6 +44,23 @@ public class JEI_PluginSimpeladd_Forge implements IModPlugin {
     @Override
     public @NotNull ResourceLocation getPluginUid() {
         return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "_jei_plugin");
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(ModBlockRegForge.GRINDER_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(ModBlockRegForge.GRINDER_BLOCK_UP.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(ModBlockRegForge.GRIND_FACTORY_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addRecipeClickArea(ForgeGrinderScreen.class, 58, 42, 55,23,
+                JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(ForgeGrinderScreen_up.class, 42, 34, 71,13,
+                JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(ForgeGrindFactoryScreen.class, 42, 29, 72, 4,
+                JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
     }
 
 }

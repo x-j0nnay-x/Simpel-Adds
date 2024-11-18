@@ -1,6 +1,11 @@
 package net.x_j0nnay_x.simpeladd.core;
 
 public class ModNames {
+
+    public static final String CREATIVETAB = "simpel_tab";
+    public static final String MOD_ID = "simpeladdmod";
+    public static final String MOD_NAME = "SimpelAdd";
+
     public static class Blocks {
         public static final String BLOCKFACTORY = "blockfactory";
         public static final String CHILLER = "chiller";
@@ -37,6 +42,7 @@ public class ModNames {
         public static final String FIREPROOFTOOL = "fireprooftool";
         public static final String FEEDINGTOOL = "feedingtool";
         public static final String GROWSTAFF = "growstaff";
+        public static final String FULECHUNKS = "fuelchunk";
         //upgrades
         public static final String SPEEDUPGRADE_1 = "speedupgrade_1";
         public static final String SPEEDUPGRADE_2 = "speedupgrade_2";

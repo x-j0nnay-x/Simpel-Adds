@@ -452,17 +452,17 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     }
 
     private void addFuel() {
-        if(isFuel(this.stacks.get(FUELSLOT))){
-            if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
-                fuelLevel += (int) (this.getFuelTime(this.stacks.get(FUELSLOT)) * 1.5 / 200);
-                if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
-                    this.removeItem(FUELSLOT, 1);
-                    this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
+            if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)) {
+                if (this.getFuelTime(this.stacks.get(FUELSLOT)) >= 200) {
+                    fuelLevel += (int) (this.getFuelTime(this.stacks.get(FUELSLOT)) * 1.5 / 200);
+                    if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
+                        this.removeItem(FUELSLOT, 1);
+                        this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
+                    } else {
+                        this.removeItem(FUELSLOT, 1);
+                    }
                 }
-                else {
-                    this.removeItem(FUELSLOT, 1);
-                }
-            }}
+            }
     }
 
     private boolean canMakeBottleXP(){

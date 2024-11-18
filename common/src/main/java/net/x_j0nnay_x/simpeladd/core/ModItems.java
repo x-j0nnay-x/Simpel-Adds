@@ -27,6 +27,7 @@ public class ModItems {
     public static final Item FIREPROOFTOOL = new SimpelFireProofTool(600);
     public static final Item FEEDINGTOOL = new SimpelFeedingTool(450);
     public static final Item GROWSTAFF = new GrowStaff(380);
+    public static final Item FULECHUNKS = new FuelChunks(new Item.Properties());
 //upgrades
     public static final Item SPEEDUPGRADE_1  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_2  = new SimpelItem(new Item.Properties());

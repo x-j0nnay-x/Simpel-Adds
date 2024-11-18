@@ -3,13 +3,14 @@ package net.x_j0nnay_x.simpeladd.core;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import java.util.function.Supplier;
 
 public class ModItemRegNeoForge {
 
     public static final DeferredRegister.Items ITEMS =
-            DeferredRegister.createItems(SimpelAddModNeoForge.MODID);
+            DeferredRegister.createItems(SimpelAddMod.MOD_ID);
     //wings
     public static final Supplier<Item> SIMPEL_ELITRA_HALF = ITEMS.register(ModNames.Items.SIMPEL_ELITRA_HALF, () -> ModItems.SIMPEL_ELITRA_HALF);
     public static final Supplier<Item> SIMPEL_ELITRA_PART1 = ITEMS.register(ModNames.Items.SIMPEL_ELITRA_PART1, () -> ModItems.SIMPEL_ELITRA_PART1);
@@ -29,6 +30,7 @@ public class ModItemRegNeoForge {
     public static final Supplier<Item> FIREPROOFTOOL = ITEMS.register(ModNames.Items.FIREPROOFTOOL, () -> ModItems.FIREPROOFTOOL);
     public static final Supplier<Item> FEEDINGTOOL = ITEMS.register(ModNames.Items.FEEDINGTOOL, () -> ModItems.FEEDINGTOOL);
     public static final Supplier<Item> GROWSTAFF = ITEMS.register(ModNames.Items.GROWSTAFF, () -> ModItems.GROWSTAFF);
+    public static final Supplier<Item> FULECHUNKS = ITEMS.register(ModNames.Items.FULECHUNKS, () -> ModItems.FULECHUNKS);
     //upgrades
     public static final Supplier<Item> SPEEDUPGRADE_1 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_1, () -> ModItems.SPEEDUPGRADE_1);
     public static final Supplier<Item> SPEEDUPGRADE_2 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_2, () -> ModItems.SPEEDUPGRADE_2);
@@ -99,10 +101,8 @@ public class ModItemRegNeoForge {
     public static final Supplier<Item> UNOBTIANOBSIDIRITEBOOTS = ITEMS.register(ModNames.Tools.getToolNames(ModNames.Tools.UNOBTIANOBSIDIRITE, ModNames.Tools.BOOTS), () -> ModItems.UNOBTIANOBSIDIRITEBOOTS);
 
     public static void register(IEventBus eventBus) {
+        SimpelAddMod.modItemRegText();
         ITEMS.register(eventBus);
     }
 
-    public static void registerModItems(){
-        SimpelAddModNeoForge.LOGGER.info("Registering Mod Items for " + SimpelAddModNeoForge.MODID);
-    }
 }

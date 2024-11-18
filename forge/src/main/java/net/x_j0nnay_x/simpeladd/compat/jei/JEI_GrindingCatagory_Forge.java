@@ -1,5 +1,7 @@
 package net.x_j0nnay_x.simpeladd.compat.jei;
 
+
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -40,7 +42,7 @@ public class JEI_GrindingCatagory_Forge implements IRecipeCategory<RecipeHolder<
     public JEI_GrindingCatagory_Forge(IGuiHelper helper) {
         this.title = Component.translatable("simpeladdmod.jei.grinder");
         this.background = helper.createDrawable(TEXTURE, 0, 0, width, height);
-        this.icon = helper.createDrawableItemStack(new ItemStack(ModItems.GRINDERHEAD));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModItems.GRINDERHEAD));
     }
 
     @Override

@@ -1,17 +1,18 @@
 package net.x_j0nnay_x.simpeladd.core;
 
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 import net.x_j0nnay_x.simpeladd.screens.*;
 
 public class ModScreensFabric {
 
     public static void registerScreens() {
-        SimpelAddModFabric.LOGGER.info("Loading GUI's for " + SimpelAddModFabric.MODID);
-        init();
+        SimpelAddMod.modScreenRegText();
+        screenReg();
     }
 
-    public static void init() {
+    public static void screenReg() {
 
         MenuScreens.register(ModMenuTypeFabric.BLOCKFACTORY_MENU, FabricBlockFactoryScreen::new);
         MenuScreens.register(ModMenuTypeFabric.Chiller_MENU, FabricChillerScreen::new);

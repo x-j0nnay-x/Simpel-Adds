@@ -2,8 +2,9 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.x_j0nnay_x.simpeladd.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
   "client": [
     "MixinTitleScreen"
   ],

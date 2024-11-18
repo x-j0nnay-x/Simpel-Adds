@@ -4,6 +4,7 @@ package net.x_j0nnay_x.simpeladd.recipe;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -15,10 +16,11 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.minecraft.util.ExtraCodecs;
+import net.x_j0nnay_x.simpeladd.core.ModNames;
 
 public class GrinderRecipe implements Recipe<SingleRecipeInput> {
 
-    public static final ResourceLocation ID =  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "grinder");
+
     private final ItemStack output;
     private final Ingredient recipeItems;
 
@@ -54,6 +56,7 @@ public class GrinderRecipe implements Recipe<SingleRecipeInput> {
         return output.copy();
     }
 
+
     public Ingredient getRecipeItems() {
         return recipeItems;
     }
@@ -74,7 +77,7 @@ public class GrinderRecipe implements Recipe<SingleRecipeInput> {
 
         public static final GrinderType INSTANCE = new GrinderType();
 
-        public static final String ID = "grinder";
+        public static final String ID = ModNames.Recipe.GRINDER;
     }
 
     public static class GrinderSerializer implements RecipeSerializer<GrinderRecipe> {
@@ -83,7 +86,7 @@ public class GrinderRecipe implements Recipe<SingleRecipeInput> {
 
         public static final GrinderSerializer INSTANCE = new GrinderSerializer();
 
-        public static final String ID = "grinder";
+        public static final String ID = ModNames.Recipe.GRINDER;
 
         private static final MapCodec<ItemStack> RESULT_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
                 BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("item")

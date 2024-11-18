@@ -8,13 +8,14 @@ import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.menu.*;
 
 public class ModMenuTypeForge {
 
     public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.MENU_TYPES, SimpelAddModForge.MODID);
+            DeferredRegister.create(ForgeRegistries.MENU_TYPES, SimpelAddMod.MOD_ID);
 
     public static final  RegistryObject<MenuType<ForgeBlockFactoryMenu>> BLOCKFACTORY_MENU =
             registerMenuType(ModNames.Menu.BLOCKFACTORYMENU, ForgeBlockFactoryMenu::new);
@@ -42,10 +43,9 @@ public class ModMenuTypeForge {
     }
 
     public static void  register(IEventBus eventBus){
+        SimpelAddMod.modMenuRegText();
         MENUS.register(eventBus);
     }
 
-    public static void registerModMenus(){
-        SimpelAddModForge.LOGGER.info("Registering Mod Menus for " + SimpelAddModForge.MODID);
-    }
+
 }

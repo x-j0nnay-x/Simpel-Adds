@@ -4,6 +4,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
 public class ModItemRegFabric {
@@ -26,6 +27,7 @@ public class ModItemRegFabric {
     public static final Item FIREPROOFTOOL = registerItem(ModNames.Items.FIREPROOFTOOL, ModItems.FIREPROOFTOOL);
     public static final Item FEEDINGTOOL = registerItem(ModNames.Items.FEEDINGTOOL, ModItems.FEEDINGTOOL);
     public static final Item GROWSTAFF = registerItem(ModNames.Items.GROWSTAFF, ModItems.GROWSTAFF);
+    public static final Item FULECHUNKS = registerItem(ModNames.Items.FULECHUNKS, ModItems.FULECHUNKS);
     //upgrades
     public static final Item SPEEDUPGRADE_1 = registerItem(ModNames.Items.SPEEDUPGRADE_1, ModItems.SPEEDUPGRADE_1);
     public static final Item SPEEDUPGRADE_2 = registerItem(ModNames.Items.SPEEDUPGRADE_2, ModItems.SPEEDUPGRADE_2);
@@ -95,11 +97,11 @@ public class ModItemRegFabric {
     public static final Item UNOBTIANOBSIDIRITELEGS = registerItem(ModNames.Tools.getToolNames(ModNames.Tools.UNOBTIANOBSIDIRITE, ModNames.Tools.LEGGINGS), ModItems.UNOBTIANOBSIDIRITELEGS);
     public static final Item UNOBTIANOBSIDIRITEBOOTS = registerItem(ModNames.Tools.getToolNames(ModNames.Tools.UNOBTIANOBSIDIRITE, ModNames.Tools.BOOTS), ModItems.UNOBTIANOBSIDIRITEBOOTS);
 
-    public static void registerModItems(){
-        SimpelAddModFabric.LOGGER.info("Registrering Mod Items for " + SimpelAddModFabric.MODID);
-    }
     private static Item registerItem(String name, Item item){
-        return Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, name), item);
+        return Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name), item);
     }
 
+    public static void registerItems() {
+        SimpelAddMod.modItemRegText();
+    }
 }

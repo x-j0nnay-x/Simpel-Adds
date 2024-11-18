@@ -10,13 +10,14 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricBlockFactoryMenu;
 import net.x_j0nnay_x.simpeladd.network.FabricSlotChangePacket;
 
 public class FabricBlockFactoryScreen extends AbstractContainerScreen<FabricBlockFactoryMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "textures/screens/blockfactory_gui.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/blockfactory_gui.png");
     private Button button;
     private int ButtonY = 166;
     private int ButtonSize = 12;
