@@ -8,13 +8,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
 public class ModCreativeTabFabric {
 
     public static void registerTab()
     {
-        ResourceKey<CreativeModeTab> tab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(SimpelAddModFabric.MODID, "simpel_tab"));
+        SimpelAddMod.modtabRegText();
+        ResourceKey<CreativeModeTab> tab = ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(SimpelAddMod.MOD_ID, ModNames.CREATIVETAB));
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, tab, FabricItemGroup.builder()
                 .icon(ModItemRegFabric.GRINDERHEAD::getDefaultInstance)
                 .title(Component.translatable("creativetab.simpel_tab"))
@@ -120,9 +122,5 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.GRIND_FACTORY_BLOCK);
                         entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
                 }).build());
-    }
-
-    public static void registerCreativeTab(){
-        SimpelAddModFabric.LOGGER.info("Registering Creative Tab For " + SimpelAddModFabric.MODID);
     }
 }

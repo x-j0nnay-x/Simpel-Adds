@@ -5,12 +5,13 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 
 public class ModItemRegForge {
 
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, SimpelAddModForge.MODID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, SimpelAddMod.MOD_ID);
     //wings
     public static final RegistryObject<Item> SIMPEL_ELITRA_HALF = ITEMS.register(ModNames.Items.SIMPEL_ELITRA_HALF, () -> ModItems.SIMPEL_ELITRA_HALF);
     public static final RegistryObject<Item> SIMPEL_ELITRA_PART1 = ITEMS.register(ModNames.Items.SIMPEL_ELITRA_PART1, () -> ModItems.SIMPEL_ELITRA_PART1);
@@ -102,10 +103,8 @@ public class ModItemRegForge {
 
 
     public static void register(IEventBus eventBus) {
+        SimpelAddMod.modItemRegText();
         ITEMS.register(eventBus);
     }
 
-    public static void registerModItems(){
-        SimpelAddModForge.LOGGER.info("Registering Mod Items for " + SimpelAddModForge.MODID);
-    }
 }

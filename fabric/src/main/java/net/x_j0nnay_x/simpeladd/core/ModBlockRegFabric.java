@@ -9,6 +9,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.*;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
@@ -44,13 +45,13 @@ public class ModBlockRegFabric {
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
-        return Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(SimpelAddModFabric.MODID, name), block);
+        return Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(SimpelAddMod.MOD_ID, name), block);
     }
     private static Item registerBlockItem(String name, Block block){
-        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SimpelAddModFabric.MODID, name), new BlockItem(block, new FabricItemSettings()));
+        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SimpelAddMod.MOD_ID, name), new BlockItem(block, new FabricItemSettings()));
     }
 
     public static void registerModBlocks(){
-        SimpelAddModFabric.LOGGER.info("Registering Blocks for " + SimpelAddModFabric.MODID);
+        SimpelAddMod.modBlockRegText();
     }
 }

@@ -13,12 +13,13 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.menu.ForgeChillerMenu;
 
 
 public class ForgeChillerScreen extends AbstractContainerScreen<ForgeChillerMenu> {
-    private static final ResourceLocation texture = new ResourceLocation(SimpelAddModForge.MODID, "textures/screens/chiller_gui.png");
+    private static final ResourceLocation texture = new ResourceLocation(SimpelAddMod.MOD_ID, "textures/screens/chiller_gui.png");
     public ForgeChillerScreen(ForgeChillerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

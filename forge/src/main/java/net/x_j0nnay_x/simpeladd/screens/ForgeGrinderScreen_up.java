@@ -7,12 +7,13 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.menu.ForgeGrinderMenu_up;
 
 
 public class ForgeGrinderScreen_up extends AbstractContainerScreen<ForgeGrinderMenu_up> {
-    private static final ResourceLocation texture = new ResourceLocation(SimpelAddModForge.MODID, "textures/screens/grinder_gui_upgrade.png");
+    private static final ResourceLocation texture = new ResourceLocation(SimpelAddMod.MOD_ID, "textures/screens/grinder_gui_upgrade.png");
     public ForgeGrinderScreen_up(ForgeGrinderMenu_up pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }

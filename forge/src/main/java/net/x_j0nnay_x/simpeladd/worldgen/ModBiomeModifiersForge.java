@@ -10,6 +10,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.worldgen.ModPlacedFeatures;
 
@@ -35,6 +36,6 @@ public class ModBiomeModifiersForge {
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {
-        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(SimpelAddModForge.MODID, name));
+        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(SimpelAddMod.MOD_ID, name));
     }
 }

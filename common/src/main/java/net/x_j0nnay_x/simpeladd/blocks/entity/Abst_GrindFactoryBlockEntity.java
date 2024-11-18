@@ -69,7 +69,7 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     private int furnProg4 = 0;
     private int maxProgress;
     private int xpBoost;
-    private int fuelLevel = 0 ;
+    public int fuelLevel = 0 ;
     private int storedXP = 0;
     private int maxXP = 10000;
     private int grindsleft = 0 ;
@@ -442,17 +442,18 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         fuelLevel--;
     }
 
-    private void addFuel() {
-            if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
-                fuelLevel += (int) (this.getFuelTime(this.stacks.get(FUELSLOT)) * 1.5 / 200);
-                if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
-                    this.removeItem(FUELSLOT, 1);
-                    this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
-                }
-                else {
-                    this.removeItem(FUELSLOT, 1);
-                }
+    public void addFuel() {
+        if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
+            if (this.getFuelTime(this.stacks.get(FUELSLOT)) >= 200) {
+                    fuelLevel += this.getFuelTime(this.stacks.get(FUELSLOT)) / 200;
+                    if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
+                        this.removeItem(FUELSLOT, 1);
+                        this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
+                    } else {
+                        this.removeItem(FUELSLOT, 1);
+                    }
             }
+        }
     }
 
     private boolean canMakeBottleXP(){

@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,6 +16,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.x_j0nnay_x.simpeladd.core.ModBlockEntitiesForge;
+import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.menu.ForgeGrindFactoryMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,6 +46,7 @@ public class ForgeGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntity {
             return (int)net.minecraftforge.common.ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
         }
     }
+
 
     @Override
     public void grindFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {

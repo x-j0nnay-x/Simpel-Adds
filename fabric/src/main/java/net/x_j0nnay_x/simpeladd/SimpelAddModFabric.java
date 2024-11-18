@@ -14,14 +14,9 @@ import org.slf4j.Logger;
 
 public class SimpelAddModFabric implements ModInitializer, ClientModInitializer {
 
-    public static final String MODID = SimpelAddMod.MOD_ID;
-    public static final Logger LOGGER = SimpelAddMod.LOG;
-
-
     @Override
     public void onInitialize() {
 
-        ModCreativeTabFabric.registerCreativeTab();
         ModCreativeTabFabric.registerTab();
         ModItemRegFabric.registerModItems();
         ModBlockRegFabric.registerModBlocks();

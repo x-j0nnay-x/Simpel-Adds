@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.menu.ForgeFurnaceMenu_up;
 
@@ -15,7 +16,7 @@ import java.text.DecimalFormat;
 
 
 public class ForgeFurnaceScreen_up extends AbstractContainerScreen<ForgeFurnaceMenu_up> {
-    private static final ResourceLocation texture = new ResourceLocation(SimpelAddModForge.MODID, "textures/screens/upgrade_furnace_gui.png");
+    private static final ResourceLocation texture = new ResourceLocation(SimpelAddMod.MOD_ID, "textures/screens/upgrade_furnace_gui.png");
 
 
     public ForgeFurnaceScreen_up(ForgeFurnaceMenu_up pMenu, Inventory pPlayerInventory, Component pTitle) {

@@ -4,6 +4,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
 
@@ -98,10 +99,10 @@ public class ModItemRegFabric {
     public static final Item UNOBTIANOBSIDIRITEBOOTS = registerItem(ModNames.Tools.getToolNames(ModNames.Tools.UNOBTIANOBSIDIRITE, ModNames.Tools.BOOTS), ModItems.UNOBTIANOBSIDIRITEBOOTS);
 
     public static void registerModItems(){
-        SimpelAddModFabric.LOGGER.info("Registrering Mod Items for " + SimpelAddModFabric.MODID);
+        SimpelAddMod.modItemRegText();
     }
     private static Item registerItem(String name, Item item){
-        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SimpelAddModFabric.MODID, name), item);
+        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SimpelAddMod.MOD_ID, name), item);
     }
 
 }

@@ -1,6 +1,11 @@
 package net.x_j0nnay_x.simpeladd.core;
 
 public class ModNames {
+
+    public static final String CREATIVETAB = "simpel_tab";
+    public static final String MOD_ID = "simpeladdmod";
+    public static final String MOD_NAME = "SimpelAdd";
+
     public static class Blocks {
         public static final String BLOCKFACTORY = "blockfactory";
         public static final String CHILLER = "chiller";

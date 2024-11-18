@@ -54,7 +54,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     private int progress3 = 0;
     private int progress4 = 0;
     private int maxProgress;
-    private int fuelLevel = 0 ;
+    public int fuelLevel = 0 ;
     private int storedXP = 0;
     private int xpBoost;
 
@@ -304,14 +304,16 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
         fuelLevel--;
     }
 
-    private void addFuel() {
+    public void addFuel() {
         if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
-            fuelLevel += this.getFuelTime(this.stacks.get(FUELSLOT)) / 200;
-            if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
-                this.removeItem(FUELSLOT, 1);
-                this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
-            }else {
-                this.removeItem(FUELSLOT, 1);
+            if (this.getFuelTime(this.stacks.get(FUELSLOT)) >= 200) {
+                fuelLevel += this.getFuelTime(this.stacks.get(FUELSLOT)) / 200;
+                if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
+                    this.removeItem(FUELSLOT, 1);
+                    this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
+                } else {
+                    this.removeItem(FUELSLOT, 1);
+                }
             }
         }
     }

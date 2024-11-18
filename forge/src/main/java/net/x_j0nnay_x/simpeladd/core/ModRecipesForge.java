@@ -7,6 +7,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import net.x_j0nnay_x.simpeladd.recipe.ManualGrind;
@@ -14,9 +15,9 @@ import net.x_j0nnay_x.simpeladd.recipe.SimpelCraftingRepair;
 
 public class ModRecipesForge {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
-            DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SimpelAddModForge.MODID);
+            DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SimpelAddMod.MOD_ID);
     public static final DeferredRegister<RecipeType<?>> TYPE =
-            DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, SimpelAddModForge.MODID);
+            DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, SimpelAddMod.MOD_ID);
 
     public static final RegistryObject<RecipeSerializer<GrinderRecipe>> GRINDER_RECIPE_SERIALIZER =
             SERIALIZERS.register(GrinderRecipe.GrinderSerializer.IDNAME, () -> GrinderRecipe.GrinderSerializer.INSTANCE);
@@ -33,9 +34,9 @@ public class ModRecipesForge {
             SERIALIZERS.register(SimpelCraftingRepair.IDNAME, () -> new SimpleCraftingRecipeSerializer<>(SimpelCraftingRepair::new));
 
     public static void register(IEventBus eventBus) {
+        SimpelAddMod.modRecipeRegText();
         SERIALIZERS.register(eventBus);
+        TYPE.register(eventBus);
     }
-    public static void registerModRecipes(){
-        SimpelAddModForge.LOGGER.info("Registering Custom Recipes for " + SimpelAddModForge.MODID);
-    }
+
 }

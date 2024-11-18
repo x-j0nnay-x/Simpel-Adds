@@ -14,35 +14,19 @@ import org.slf4j.Logger;
 @Mod(SimpelAddMod.MOD_ID)
 public class SimpelAddModForge {
 
-    public static final String MODID = SimpelAddMod.MOD_ID;
-    public static final Logger LOGGER =  SimpelAddMod.LOG;
     public SimpelAddModForge() {
-
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        ModItemRegForge.registerModItems();
         ModItemRegForge.register(modEventBus);
-
-        ModBlockRegForge.registerModBlocks();
         ModBlockRegForge.register(modEventBus);
-
-        ModRecipesForge.registerModRecipes();
         ModRecipesForge.register(modEventBus);
-
-        ModBlockEntitiesForge.registerModBlockEntities();
         ModBlockEntitiesForge.register(modEventBus);
-
-        ModMenuTypeForge.registerModMenus();
         ModMenuTypeForge.register(modEventBus);
-
-        ModCreativeTabForge.registerCreativeTab();
         ModCreativeTabForge.register(modEventBus);
-
         SimpelAddMod.init();
         MinecraftForge.EVENT_BUS.register(this);
 
     }
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = SimpelAddMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
@@ -53,6 +37,6 @@ public class SimpelAddModForge {
 
     }
     private void handleClientSetup(FMLClientSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(new UpdateChecker(MODID));
+        MinecraftForge.EVENT_BUS.register(new UpdateChecker(SimpelAddMod.MOD_ID));
     }
 }

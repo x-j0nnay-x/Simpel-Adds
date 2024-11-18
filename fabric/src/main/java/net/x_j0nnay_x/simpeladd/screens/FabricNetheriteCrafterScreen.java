@@ -6,12 +6,13 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricNetheriteCrafterMenu;
 
 
 public class FabricNetheriteCrafterScreen extends AbstractContainerScreen<FabricNetheriteCrafterMenu> {
-    private static final ResourceLocation texture = new ResourceLocation(SimpelAddModFabric.MODID, "textures/screens/netheritecrafter_gui.png");
+    private static final ResourceLocation texture = new ResourceLocation(SimpelAddMod.MOD_ID, "textures/screens/netheritecrafter_gui.png");
     public FabricNetheriteCrafterScreen(FabricNetheriteCrafterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         this.title.contains(Component.translatable("gui.simpeladdmod.netherite_crafter_gui"));

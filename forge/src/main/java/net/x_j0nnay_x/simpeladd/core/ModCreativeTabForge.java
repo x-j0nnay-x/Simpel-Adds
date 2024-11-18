@@ -7,13 +7,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 
 public class ModCreativeTabForge {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SimpelAddModForge.MODID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SimpelAddMod.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> SIMPEL_TAB = CREATIVE_MODE_TABS.register("simpel_tab",
+    public static final RegistryObject<CreativeModeTab> SIMPEL_TAB = CREATIVE_MODE_TABS.register(ModNames.CREATIVETAB,
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItemRegForge.GRINDERHEAD.get()))
                     .title(Component.translatable("creativetab.simpel_tab"))
                     .displayItems((pParameters, entries) -> {
@@ -121,10 +122,9 @@ public class ModCreativeTabForge {
                     .build());
 
     public static void register(IEventBus eventBus) {
+        SimpelAddMod.modtabRegText();
         CREATIVE_MODE_TABS.register(eventBus);
     }
 
-    public static void registerCreativeTab(){
-        SimpelAddModForge.LOGGER.info("Registering Creative Tab For " + SimpelAddModForge.MODID);
-    }
+
 }
