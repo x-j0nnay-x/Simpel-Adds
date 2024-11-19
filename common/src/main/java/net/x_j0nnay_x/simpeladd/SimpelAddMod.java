@@ -20,9 +20,9 @@ public class SimpelAddMod {
     public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
 
     public static void init() {
-        LOG.info("Hello from Common init on {}! we are currently in a {} environment!", Services.PLATFORM.getPlatformName(), Services.PLATFORM.getEnvironmentName());
+        LOG.info("Hello from SimpelAdd Common init on {}! we are currently in a {} environment!", Services.PLATFORM.getPlatformName(), Services.PLATFORM.getEnvironmentName());
         if (Services.PLATFORM.isModLoaded(MOD_ID)) {
-            LOG.info("Hello from SimpelAdd");
+            LOG.info("SimpelAdd Has been loaded");
         }
     }
     public static void modBlockRegText(){

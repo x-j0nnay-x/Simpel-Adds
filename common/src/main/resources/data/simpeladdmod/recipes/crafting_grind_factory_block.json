@@ -1,6 +1,7 @@
 
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
   "ingredients": [
     {
       "item": "simpeladdmod:grinder_up_block"

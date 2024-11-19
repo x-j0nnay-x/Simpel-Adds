@@ -17,6 +17,7 @@ public class ModNames {
         public static final String DEEPSLATE_DEBRI_ORE = "deepslate_debri_ore";
         public static final String UNOBTANIUM_ORE = "unobtanium_ore";
         public static final String SIMPEL_FARM_LAND = "simpel_farmland";
+        public static final String CHUNK_TOURCH = "chunk_torch";
 
         public static String getBlockNameForEntity(String name) {
             return name + "_block";
