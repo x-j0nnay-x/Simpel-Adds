@@ -29,11 +29,6 @@ public abstract class Abst_BlockFactoryBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
-    }
-
-    @Override
     public void onRemove(BlockState $$0, Level $$1, BlockPos $$2, BlockState $$3, boolean $$4) {
         if (!$$0.is($$3.getBlock())) {
             BlockEntity $$5 = $$1.getBlockEntity($$2);

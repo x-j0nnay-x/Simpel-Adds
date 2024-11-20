@@ -12,4 +12,5 @@ public class ModBlocks {
     public static final Block DEEPSLATE_DEBRI_ORE = new SimpelXPBlock(UniformInt.of(2, 6), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE));
     public static final Block UNOBTANIUM_ORE = new SimpelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE));
     public static final FarmBlock SIMPELFARMLAND = new SimpelFarmLand();
+    public static final Block CHUNCK_TOURCH = new ChunkTourch();
 }

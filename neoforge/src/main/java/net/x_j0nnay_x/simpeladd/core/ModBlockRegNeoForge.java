@@ -24,6 +24,8 @@ public class ModBlockRegNeoForge {
 
     public static final DeferredBlock<Block> SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND,() -> ModBlocks.SIMPELFARMLAND);
 
+    public static final DeferredBlock<Block> CHUNK_TOURCH = registerBlock(ModNames.Blocks.CHUNK_TOURCH,() -> ModBlocks.CHUNCK_TOURCH);
+
     public static final DeferredBlock<Block> BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY),
             () -> new NeoForgeBlockFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 

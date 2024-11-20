@@ -118,6 +118,7 @@ public class ModCreativeTabNeoForge {
                         entries.accept(ModBlockRegNeoForge.UPGRADED_FURNACE.get());
                         entries.accept(ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get());
                         entries.accept(ModBlockRegNeoForge.SIMPEL_FARM_LAND.get());
+                        entries.accept(ModBlockRegNeoForge.CHUNK_TOURCH.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

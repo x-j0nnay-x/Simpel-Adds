@@ -118,6 +118,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModBlockRegForge.UPGRADED_FURNACE.get());
                         entries.accept(ModBlockRegForge.GRIND_FACTORY_BLOCK.get());
                         entries.accept(ModBlockRegForge.SIMPEL_FARM_LAND.get());
+                        entries.accept(ModBlockRegForge.CHUNK_TOURCH.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

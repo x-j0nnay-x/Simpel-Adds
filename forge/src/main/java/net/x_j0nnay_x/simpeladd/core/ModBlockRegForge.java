@@ -25,6 +25,8 @@ public class ModBlockRegForge {
 
     public static final RegistryObject<Block> SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND, ()-> ModBlocks.SIMPELFARMLAND);
 
+    public static final RegistryObject<Block> CHUNK_TOURCH = registerBlock(ModNames.Blocks.CHUNK_TOURCH, ()-> ModBlocks.CHUNCK_TOURCH);
+
     public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY),
             () -> new ForgeBlockFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 

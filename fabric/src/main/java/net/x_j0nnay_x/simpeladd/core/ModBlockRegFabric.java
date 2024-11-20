@@ -20,6 +20,8 @@ public class ModBlockRegFabric {
 
     public static final Block SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND, ModBlocks.SIMPELFARMLAND);
 
+    public static final Block CHUNK_TOURCH = registerBlock(ModNames.Blocks.CHUNK_TOURCH, ModBlocks.CHUNCK_TOURCH);
+
     public static final Block BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY),
             new FabricBlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
 
