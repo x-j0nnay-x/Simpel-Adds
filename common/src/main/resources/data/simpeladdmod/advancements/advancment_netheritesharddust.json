@@ -15,7 +15,7 @@
     "hidden": false
   },
   "criteria": {
-    "advancment_sharddust": {
+    "advancment_netheritesharddust": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

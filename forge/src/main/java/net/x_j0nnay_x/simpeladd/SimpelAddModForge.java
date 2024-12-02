@@ -22,6 +22,7 @@ public class SimpelAddModForge {
         ModBlockEntitiesForge.register(modEventBus);
         ModMenuTypeForge.register(modEventBus);
         ModCreativeTabForge.register(modEventBus);
+        SimpelAddMod.modWorldGenText();
         SimpelAddMod.init();
         MinecraftForge.EVENT_BUS.register(this);
 

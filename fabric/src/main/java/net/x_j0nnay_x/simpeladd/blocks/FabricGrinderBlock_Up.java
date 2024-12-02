@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.blocks;
 
 import net.minecraft.core.BlockPos;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -49,6 +50,6 @@ public class FabricGrinderBlock_Up extends Abst_GrinderBlock_Up {
             return null;
         }
         return createTickerHelper(pBlockEntityType, ModBlockEntitiesFabric.GRINDER_UP,
-                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.grinderUpTick(pLevel1, pPos, pState1)));
+                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.grinderUpTick((ServerLevel) pLevel1, pPos, pState1)));
     }
 }

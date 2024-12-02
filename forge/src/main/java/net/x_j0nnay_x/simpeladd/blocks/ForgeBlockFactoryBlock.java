@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladd.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -65,6 +66,6 @@ public class ForgeBlockFactoryBlock extends Abst_BlockFactoryBlock {
             return null;
         }
         return createTickerHelper(pBlockEntityType, ModBlockEntitiesForge.BLOCK_FACTORY.get(),
-                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.blockFactoryTick(pLevel1, pPos, pState1)));
+                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.blockFactoryTick((ServerLevel) pLevel1, pPos, pState1)));
     }
 }

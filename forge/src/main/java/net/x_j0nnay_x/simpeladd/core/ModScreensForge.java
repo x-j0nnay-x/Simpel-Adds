@@ -19,6 +19,7 @@ public class ModScreensForge {
         MenuScreens.register(ModMenuTypeForge.BLOCKFACTORY_MENU.get(), ForgeBlockFactoryScreen::new);
         MenuScreens.register(ModMenuTypeForge.Chiller_MENU.get(), ForgeChillerScreen::new);
         MenuScreens.register(ModMenuTypeForge.Netherite_Menu.get(), ForgeNetheriteCrafterScreen::new);
+        MenuScreens.register(ModMenuTypeForge.TICK_ACCELERATOR_MENU.get(), ForgeTickAcceleratorScreen::new);
     }
 
 }

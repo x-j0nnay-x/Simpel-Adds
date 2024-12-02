@@ -1,0 +1,7 @@
+{
+  "parent" : "minecraft:block/cube_all",
+  "textures": {
+    "all" : "simpeladdmod:block/ore_lapis_netherrack",
+    "particle" : "simpeladdmod:block/ore_lapis_netherrack"
+  }
+}

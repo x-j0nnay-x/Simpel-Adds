@@ -6,6 +6,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -216,7 +217,9 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         return this.saveWithFullMetadata();
     }
 //Processing
-    public void chillerTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void chillerTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
+        if(pLevel.isClientSide)
+            return;
         if (canFillWater()) {
             fillWater();
         }

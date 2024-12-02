@@ -20,14 +20,20 @@ public class ModItems {
     public static final Item WOODFIBER  = new SimpelItem(new Item.Properties());
     public static final Item FLESH  = new SimpelItem(new Item.Properties().food(ModFoods.FLESH));
     public static final Item NEHTERITE_SHARD  = new SimpelItem(new Item.Properties().fireResistant());
+    public static final Item DIAMOND_SHARD  = new SimpelItem(new Item.Properties());
+    public static final Item EMERALD_SHARD  = new SimpelItem(new Item.Properties());
     public static final Item NEHTERITE_SHARD_RAW = new SimpelItem(new Item.Properties().fireResistant());
+    public static final Item DIAMOND_SHARD_RAW = new SimpelItem(new Item.Properties());
+    public static final Item EMERALD_SHARD_RAW = new SimpelItem(new Item.Properties());
     public static final Item OBSIDAININGOT  = new SimpelItem(new Item.Properties().fireResistant());
     public static final Item UNOBTIANIUMSCRAP = new SimpelItem(new Item.Properties().fireResistant());
     public static final Item REPAIRTOOL = new SimpelRepairTool(1000);
     public static final Item FIREPROOFTOOL = new SimpelFireProofTool(600);
     public static final Item FEEDINGTOOL = new SimpelFeedingTool(450);
     public static final Item GROWSTAFF = new GrowStaff(380);
-    public static final Item FULECHUNKS = new FuelChunks(new Item.Properties());
+    public static final Item FUELCHUNKS = new FuelChunks(new Item.Properties());
+    public static final Item HOMEWAND = new HomeWand(new Item.Properties());
+    public static final Item HOMECRYSTAL = new SimpelItem(new Item.Properties());
     //upgrades
     public static final Item SPEEDUPGRADE_1  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_2  = new SimpelItem(new Item.Properties());
@@ -54,6 +60,8 @@ public class ModItems {
     public static final Item GOLDDUST = new SimpelItem(new Item.Properties());
     public static final Item NETHERITEDUST = new SimpelItem(new Item.Properties());
     public static final Item NEHTERITE_SHARD_DUST = new SimpelItem(new Item.Properties());
+    public static final Item DIAMOND_SHARD_DUST = new SimpelItem(new Item.Properties());
+    public static final Item EMERALD_SHARD_DUST = new SimpelItem(new Item.Properties());
     public static final Item OBSIDAINDUST  = new SimpelItem(new Item.Properties());
     public static final Item UNOBTIANIUMDUST = new SimpelItem(new Item.Properties());
 //obsidian tear

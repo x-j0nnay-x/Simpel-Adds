@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -40,7 +41,7 @@ public class FabricBlockFactoryBlockEntity extends Abst_BlockFactoryBlockEntity 
     }
 
     @Override
-    public void blockFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void blockFactoryTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
         super.blockFactoryTick(pLevel, pPos, pState);
     }
 

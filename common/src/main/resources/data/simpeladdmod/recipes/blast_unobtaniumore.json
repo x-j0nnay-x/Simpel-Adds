@@ -2,7 +2,7 @@
   "type": "minecraft:blasting",
 
   "ingredient": {
-    "item": "simpeladdmod:unobtanium_ore"
+    "item": "simpeladdmod:ore_unobtanium_endstone"
   },
 
   "result": "simpeladdmod:unobtanium_scrap",

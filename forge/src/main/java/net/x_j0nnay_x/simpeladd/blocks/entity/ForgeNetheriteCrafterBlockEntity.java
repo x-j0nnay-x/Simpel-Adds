@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
@@ -32,7 +33,7 @@ public class ForgeNetheriteCrafterBlockEntity extends Abst_NetheriteCrafterBlock
     }
 
     @Override
-    public void netheriteCrafterTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void netheriteCrafterTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
         super.netheriteCrafterTick(pLevel, pPos, pState);
     }
 }

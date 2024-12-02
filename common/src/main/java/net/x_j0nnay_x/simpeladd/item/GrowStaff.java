@@ -33,15 +33,7 @@ public class GrowStaff extends Item {
                 .durability(maxuses)
     );
     }
-    public static ItemStack damageItem(ItemStack itemstack) {
-        ItemStack growstaf = itemstack.copy();
-        if(growstaf.getDamageValue() > growstaf.getMaxDamage()){
-            return itemstack;
-        }else {
-            growstaf.setDamageValue(growstaf.getDamageValue() + 1);
-            return growstaf;
-        }
-    }
+
 
     @Override
     public InteractionResult useOn(UseOnContext context) {

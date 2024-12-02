@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
@@ -32,7 +33,7 @@ public class ForgeGrinderBlockEntity_Up extends Abst_GrinderBlockEntity_Up {
     }
 
     @Override
-    public void grinderUpTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void grinderUpTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
         super.grinderUpTick(pLevel, pPos, pState);
     }
 }

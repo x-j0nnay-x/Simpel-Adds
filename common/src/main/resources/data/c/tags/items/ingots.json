@@ -1,7 +1,6 @@
 {
   "value" : [
-    "#c:ingots/unobtanium_scrap",
-    "#c:ingots/netherite_shard",
-    "#c:ingots/obsidianingot"
+    "#c:ingots/simpeladdmod_unobtanium_scrap",
+    "#c:ingots/simpeladdmod_obsidian_ingot"
   ]
 }

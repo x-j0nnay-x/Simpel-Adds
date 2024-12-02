@@ -72,6 +72,9 @@ public abstract class Abst_BlockFactoryBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
+        if(!level.isClientSide) {
+            return;
+        }
         if (!blockState.getValue(WORKING).booleanValue()) {
             return;
         }

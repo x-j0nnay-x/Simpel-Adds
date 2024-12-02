@@ -1,14 +1,36 @@
 {
   "replace": false,
   "values" : [
-    "simpeladdmod:deepslate_debri_ore",
     "simpeladdmod:grinder_block",
     "simpeladdmod:grinder_up_block",
-    "simpeladdmod:grind_factory_block",
     "simpeladdmod:upgraded_furnace_block",
     "simpeladdmod:blockfactory_block",
     "simpeladdmod:chiller_block",
     "simpeladdmod:netherite_crafter_block",
-    "simpeladdmod:unobtanium_ore"
+    "simpeladdmod:grind_factory_block",
+    "simpeladdmod:tick_accelerator_block",
+
+    "simpeladdmod:ore_debri_deepslate",
+    "simpeladdmod:ore_debri_netherrack",
+    "simpeladdmod:ore_debri_endstone",
+    "simpeladdmod:ore_coal_netherrack",
+    "simpeladdmod:ore_coal_endstone",
+    "simpeladdmod:ore_copper_netherrack",
+    "simpeladdmod:ore_copper_endstone",
+    "simpeladdmod:ore_iron_netherrack",
+    "simpeladdmod:ore_iron_endstone",
+    "simpeladdmod:ore_gold_netherrack",
+    "simpeladdmod:ore_gold_endstone",
+    "simpeladdmod:ore_diamond_netherrack",
+    "simpeladdmod:ore_diamond_endstone",
+    "simpeladdmod:ore_emerald_netherrack",
+    "simpeladdmod:ore_emerald_endstone",
+    "simpeladdmod:ore_lapis_netherrack",
+    "simpeladdmod:ore_lapis_endstone",
+    "simpeladdmod:ore_redstone_netherrack",
+    "simpeladdmod:ore_redstone_endstone",
+
+
+    "simpeladdmod:ore_unobtanium_endstone"
   ]
 }

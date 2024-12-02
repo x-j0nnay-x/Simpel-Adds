@@ -49,4 +49,7 @@ public class SimpelAddMod {
     public static void modtabRegText(){
         LOG.info("Registering Mod creative Tab for " + MOD_NAME);
     }
+    public static void modWorldGenText(){
+        LOG.info("Registering Mod World Gen for " + MOD_NAME);
+    }
 }

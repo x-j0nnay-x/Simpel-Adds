@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladd.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -48,6 +49,6 @@ public class FabricNetheriteCraftingBlock extends Abst_NetheriteCrafterBlock {
             return null;
         }
         return createTickerHelper(pBlockEntityType, ModBlockEntitiesFabric.NETHERITE_CRAFTER,
-                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.netheriteCrafterTick(pLevel1, pPos, pState1)));
+                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.netheriteCrafterTick((ServerLevel) pLevel1, pPos, pState1)));
     }
 }

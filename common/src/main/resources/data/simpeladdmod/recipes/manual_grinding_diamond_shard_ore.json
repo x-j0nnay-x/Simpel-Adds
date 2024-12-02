@@ -1,0 +1,18 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "simpeladdmod:grinders"
+    },
+    {
+      "tag": "simpeladdmod:shard_diamond_dropper"
+    }
+  ],
+
+  "result":
+  {
+    "item": "simpeladdmod:diamond_shard_dust",
+    "count":6
+  }
+}

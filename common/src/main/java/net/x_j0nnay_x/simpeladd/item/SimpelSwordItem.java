@@ -13,7 +13,7 @@ public class SimpelSwordItem extends SwordItem {
 
     @Override
     public boolean hurtEnemy(ItemStack $$0, LivingEntity $$1, LivingEntity $$2) {
-        $$1.setRemainingFireTicks(10);
+        $$1.setSecondsOnFire(4);
         return super.hurtEnemy($$0, $$1, $$2);
 
     }

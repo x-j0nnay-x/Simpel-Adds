@@ -22,13 +22,19 @@ public class ModItemRegFabric {
     public static final Item FLESH = registerItem(ModNames.Items.FLESH, ModItems.FLESH);
     public static final Item OBSIDAININGOT = registerItem(ModNames.Items.OBSIDAININGOT, ModItems.OBSIDAININGOT);
     public static final Item NEHTERITE_SHARD = registerItem(ModNames.Items.NEHTERITE_SHARD, ModItems.NEHTERITE_SHARD);
+    public static final Item DIAMOND_SHARD = registerItem(ModNames.Items.DIAMOND_SHARD, ModItems.DIAMOND_SHARD);
+    public static final Item EMERALD_SHARD = registerItem(ModNames.Items.EMERALD_SHARD, ModItems.EMERALD_SHARD);
     public static final Item NEHTERITE_SHARD_RAW = registerItem(ModNames.Items.NEHTERITE_SHARD_RAW, ModItems.NEHTERITE_SHARD_RAW);
+    public static final Item DIAMOND_SHARD_RAW = registerItem(ModNames.Items.DIAMOND_SHARD_RAW, ModItems.DIAMOND_SHARD_RAW);
+    public static final Item EMERALD_SHARD_RAW = registerItem(ModNames.Items.EMERALD_SHARD_RAW, ModItems.EMERALD_SHARD_RAW);
     public static final Item UNOBTIANIUMSCRAP = registerItem(ModNames.Items.UNOBTIANIUMSCRAP, ModItems.UNOBTIANIUMSCRAP);
     public static final Item REPAIRTOOL = registerItem(ModNames.Items.REPAIRTOOL, ModItems.REPAIRTOOL);
     public static final Item FIREPROOFTOOL = registerItem(ModNames.Items.FIREPROOFTOOL, ModItems.FIREPROOFTOOL);
     public static final Item FEEDINGTOOL = registerItem(ModNames.Items.FEEDINGTOOL, ModItems.FEEDINGTOOL);
     public static final Item GROWSTAFF = registerItem(ModNames.Items.GROWSTAFF, ModItems.GROWSTAFF);
-    public static final Item FULECHUNKS = registerItem(ModNames.Items.FULECHUNKS, ModItems.FULECHUNKS);
+    public static final Item FUELCHUNKS = registerItem(ModNames.Items.FUELCHUNKS, ModItems.FUELCHUNKS);
+    public static final Item HOMEWAND = registerItem(ModNames.Items.HOMEWAND, ModItems.HOMEWAND);
+    public static final Item HOMECRYSTAL = registerItem(ModNames.Items.HOMECRYSTAL, ModItems.HOMECRYSTAL);
     //upgrades
     public static final Item SPEEDUPGRADE_1 = registerItem(ModNames.Items.SPEEDUPGRADE_1, ModItems.SPEEDUPGRADE_1);
     public static final Item SPEEDUPGRADE_2 = registerItem(ModNames.Items.SPEEDUPGRADE_2, ModItems.SPEEDUPGRADE_2);
@@ -55,6 +61,8 @@ public class ModItemRegFabric {
     public static final Item GOLDDUST = registerItem(ModNames.Items.GOLDDUST, ModItems.GOLDDUST);
     public static final Item NETHERITEDUST = registerItem(ModNames.Items.NETHERITEDUST, ModItems.NETHERITEDUST);
     public static final Item NEHTERITE_SHARD_DUST = registerItem(ModNames.Items.NEHTERITE_SHARD_DUST, ModItems.NEHTERITE_SHARD_DUST);
+    public static final Item DIAMOND_SHARD_DUST = registerItem(ModNames.Items.DIAMOND_SHARD_DUST, ModItems.DIAMOND_SHARD_DUST);
+    public static final Item EMERALD_SHARD_DUST = registerItem(ModNames.Items.EMERALD_SHARD_DUST, ModItems.EMERALD_SHARD_DUST);
     public static final Item OBSIDAINDUST = registerItem(ModNames.Items.OBSIDAINDUST, ModItems.OBSIDAINDUST);
     public static final Item UNOBTIANIUMDUST = registerItem(ModNames.Items.UNOBTIANIUMDUST, ModItems.UNOBTIANIUMDUST);
     //obsidian tear

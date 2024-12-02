@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladd.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -48,6 +49,6 @@ public class FabricBlockFactoryBlock extends Abst_BlockFactoryBlock {
             return null;
         }
         return createTickerHelper(blockEntityType, ModBlockEntitiesFabric.BLOCK_FACTORY,
-                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.blockFactoryTick(pLevel1, pPos, pState1)));
+                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.blockFactoryTick((ServerLevel) pLevel1, pPos, pState1)));
     }
 }

@@ -3,6 +3,7 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -22,7 +23,7 @@ public class FabricGrinderBlockEntity extends Abst_GrinderBlockEntity implements
         return new FabricGrinderMenu(i, inventory, this, this.data);
     }
     @Override
-    public void grinderTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void grinderTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
         super.grinderTick(pLevel, pPos, pState);
     }
 

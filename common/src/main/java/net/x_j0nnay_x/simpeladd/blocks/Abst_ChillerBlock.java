@@ -73,12 +73,15 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void animateTick(BlockState $$0, Level $$1, BlockPos $$2, RandomSource $$3) {
+    public void animateTick(BlockState $$0, Level level, BlockPos $$2, RandomSource $$3) {
+        if(!level.isClientSide) {
+            return;
+        }
         if (!$$0.getValue(WORKING).booleanValue()) {
             return;
         }
         if ($$3.nextInt(100) == 0) {
-            $$1.playLocalSound((double)$$2.getX() + 0.5, (double)$$2.getY() + 0.5, (double)$$2.getZ() + 0.5, SoundEvents.SNOW_STEP, SoundSource.BLOCKS, 0.5F, $$3.nextFloat() * 0.07F + 0.15F, false);
+            level.playLocalSound((double)$$2.getX() + 0.5, (double)$$2.getY() + 0.5, (double)$$2.getZ() + 0.5, SoundEvents.SNOW_STEP, SoundSource.BLOCKS, 0.5F, $$3.nextFloat() * 0.07F + 0.15F, false);
         }
         for(int $$4 = 0; $$4 < 4; ++$$4) {
             double $$5 = (double)$$2.getX() + $$3.nextDouble();
@@ -88,15 +91,15 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
             double $$9 = ((double)$$3.nextFloat() - 0.5) * 0.5;
             double $$10 = ((double)$$3.nextFloat() - 0.5) * 0.5;
             int $$11 = $$3.nextInt(2) * 2 - 1;
-            if (!$$1.getBlockState($$2.west()).is(this) && !$$1.getBlockState($$2.east()).is(this)) {
+            if (!level.getBlockState($$2.west()).is(this) && !level.getBlockState($$2.east()).is(this)) {
                 $$5 = (double)$$2.getX() + 0.5 + 0.25 * (double)$$11;
                 $$8 = (double)($$3.nextFloat() * 0.25F * (float)$$11);
             } else {
                 $$7 = (double)$$2.getZ() + 0.5 + 0.25 * (double)$$11;
                 $$10 = (double)($$3.nextFloat() * 0.25F * (float)$$11);
             }
-            $$1.addParticle(ParticleTypes.SNOWFLAKE, $$5, $$6, $$7, $$8, $$9, $$10);
-            $$1.addParticle(ParticleTypes.ASH, $$5, $$6, $$7, $$8, $$9, $$10);
+            level.addParticle(ParticleTypes.SNOWFLAKE, $$5, $$6, $$7, $$8, $$9, $$10);
+            level.addParticle(ParticleTypes.ASH, $$5, $$6, $$7, $$8, $$9, $$10);
         }
     }
 }

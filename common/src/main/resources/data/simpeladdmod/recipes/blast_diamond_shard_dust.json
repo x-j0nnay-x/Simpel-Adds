@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+
+  "ingredient": {
+    "item": "simpeladdmod:diamond_shard_dust"
+  },
+
+  "result": "simpeladdmod:diamond_shard",
+  "experience": 0.8,
+  "cookingtime": 50
+
+
+}

@@ -3,6 +3,7 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -27,8 +28,8 @@ public class FabricGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntity 
     @Override
     public void addFuel() {
         if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
-            if (this.getFuelTime(this.stacks.get(FUELSLOT)) >= 200 || this.stacks.get(FUELSLOT).getItem() == ModItems.FULECHUNKS) {
-                if (this.stacks.get(FUELSLOT).is(ModItems.FULECHUNKS)) {
+            if (this.getFuelTime(this.stacks.get(FUELSLOT)) >= 200 || this.stacks.get(FUELSLOT).getItem() == ModItems.FUELCHUNKS) {
+                if (this.stacks.get(FUELSLOT).is(ModItems.FUELCHUNKS)) {
                     this.fuelLevel += this.getFuelTime(this.stacks.get(FUELSLOT)) * 4 / 200;
                     this.removeItem(FUELSLOT, 1);
                 } else {
@@ -44,7 +45,7 @@ public class FabricGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntity 
         }
     }
     @Override
-    public void grindFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void grindFactoryTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
         super.grindFactoryTick(pLevel, pPos, pState);
     }
 

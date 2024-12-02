@@ -72,6 +72,9 @@ public abstract class Abst_GrindFactoryBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
+        if(!level.isClientSide) {
+            return;
+        }
         if (!blockState.getValue(WORKING).booleanValue()) {
             return;
         }

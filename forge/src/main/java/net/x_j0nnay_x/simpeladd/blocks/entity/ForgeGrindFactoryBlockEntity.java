@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.blocks.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
@@ -49,7 +50,7 @@ public class ForgeGrindFactoryBlockEntity extends Abst_GrindFactoryBlockEntity {
 
 
     @Override
-    public void grindFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void grindFactoryTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
         super.grindFactoryTick(pLevel, pPos, pState);
     }
 }

@@ -5,6 +5,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 public class ChunkTourch extends FaceAttachedHorizontalDirectionalBlock {
 
@@ -32,7 +35,7 @@ public class ChunkTourch extends FaceAttachedHorizontalDirectionalBlock {
 
 
     public ChunkTourch() {
-        super(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).lightLevel((state) -> {
+        super(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).lightLevel((state) -> {
             return 12;
         }));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(FACE, AttachFace.WALL));

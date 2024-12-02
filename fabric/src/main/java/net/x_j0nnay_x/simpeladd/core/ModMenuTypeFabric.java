@@ -38,6 +38,10 @@ public class ModMenuTypeFabric {
                 Registry.register(BuiltInRegistries.MENU, new ResourceLocation(SimpelAddMod.MOD_ID, ModNames.Menu.UPGRADED_FURNACE_MENU),
                         new ExtendedScreenHandlerType<>(FabricFurnaceMenu_up::new));
 
+        public static final ExtendedScreenHandlerType<FabricTickAcceleratorMenu> TICK_ACCELERATOR_MENU =
+                Registry.register(BuiltInRegistries.MENU, new ResourceLocation(SimpelAddMod.MOD_ID, ModNames.Menu.TICK_ACCELERATOR_MENU),
+                        new ExtendedScreenHandlerType<>(FabricTickAcceleratorMenu::new));
+
    
     public static void registerScreenHandlers() {
         SimpelAddMod.modMenuRegText();

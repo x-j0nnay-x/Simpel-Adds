@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/button",
   "textures": {
-    "texture": "minecraft:block/coal_block"
+    "texture": "minecraft:block/coal_block",
+    "particle": "minecraft:block/coal_block"
   }
 }

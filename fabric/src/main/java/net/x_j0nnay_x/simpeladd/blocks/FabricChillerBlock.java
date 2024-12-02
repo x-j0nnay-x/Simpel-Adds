@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladd.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -49,6 +50,6 @@ public class FabricChillerBlock extends Abst_ChillerBlock {
             return null;
         }
         return createTickerHelper(pBlockEntityType, ModBlockEntitiesFabric.CHILLER,
-                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.chillerTick(pLevel1, pPos, pState1)));
+                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.chillerTick((ServerLevel) pLevel1, pPos, pState1)));
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
@@ -214,7 +215,9 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         return this.saveWithFullMetadata();
     }
 //Processing
-    public void grinderTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void grinderTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
+        if(pLevel.isClientSide)
+            return;
         setUpgrades();
         pState = pState.setValue(Abst_GrinderBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);

@@ -7,6 +7,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -217,7 +218,9 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
         return this.saveWithFullMetadata();
     }
 //Processing
-    public void netheriteCrafterTick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void netheriteCrafterTick(ServerLevel pLevel, BlockPos pPos, BlockState pState) {
+        if(pLevel.isClientSide)
+            return;
         setUpgrades();
         pState = pState.setValue(Abst_NetheriteCrafterBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);

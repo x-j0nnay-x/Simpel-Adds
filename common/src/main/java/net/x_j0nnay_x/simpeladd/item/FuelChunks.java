@@ -12,4 +12,5 @@ public class FuelChunks extends Item {
     public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
         return 200;
     }
+
 }

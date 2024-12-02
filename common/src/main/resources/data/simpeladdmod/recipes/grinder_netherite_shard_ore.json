@@ -2,7 +2,7 @@
   "type": "simpeladdmod:grinder",
   "ingredients": [
     {
-      "item": "simpeladdmod:deepslate_debri_ore"
+      "tag": "simpeladdmod:shard_debri_dropper"
     }
   ],
   "output": {

@@ -2,6 +2,7 @@
   "parent": "minecraft:block/template_farmland",
   "textures": {
     "dirt": "simpeladdmod:block/simpel_farmland_side",
-    "top": "simpeladdmod:block/simpel_farmland"
+    "top": "simpeladdmod:block/simpel_farmland",
+    "particle": "simpeladdmod:block/simpel_farmland"
   }
 }

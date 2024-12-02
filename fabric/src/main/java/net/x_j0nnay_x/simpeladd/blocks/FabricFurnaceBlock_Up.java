@@ -1,6 +1,7 @@
 package net.x_j0nnay_x.simpeladd.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -47,6 +48,6 @@ public class FabricFurnaceBlock_Up extends Abst_FurnaceBlock_Up {
             return null;
         }
         return createTickerHelper(pBlockEntityType, ModBlockEntitiesFabric.UPGRADED_FURNACE,
-                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.upFurnaceTick(pLevel1, pPos, pState1)));
+                ((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.upFurnaceTick((ServerLevel) pLevel1, pPos, pState1)));
     }
 }

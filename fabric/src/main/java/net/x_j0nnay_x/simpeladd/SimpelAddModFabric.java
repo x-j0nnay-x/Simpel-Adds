@@ -24,7 +24,7 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
         ModWorldGenerationFabric.generateModWorldGen();
         ModMenuTypeFabric.registerScreenHandlers();
         ModRecipesRegFabric.registerRecipes();
-        FuelRegistry.INSTANCE.add(ModItemRegFabric.FULECHUNKS, 50);
+        FuelRegistry.INSTANCE.add(ModItemRegFabric.FUELCHUNKS, 50);
         SimpelAddMod.init();
     }
         @Override

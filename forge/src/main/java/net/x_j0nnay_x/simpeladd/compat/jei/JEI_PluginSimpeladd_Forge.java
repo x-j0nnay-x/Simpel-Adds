@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
+import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.screens.ForgeGrindFactoryrScreen;
 import net.x_j0nnay_x.simpeladd.screens.ForgeGrinderScreen;
 import net.x_j0nnay_x.simpeladd.screens.ForgeGrinderScreen_up;
@@ -39,6 +40,8 @@ public class JEI_PluginSimpeladd_Forge implements IModPlugin {
         registration.addItemStackInfo(new ItemStack(Items.ICE), Component.translatable("simpeladdmod.jei.chilling.ice"));
         registration.addItemStackInfo(new ItemStack(Items.PACKED_ICE), Component.translatable("simpeladdmod.jei.chilling.packedice"));
         registration.addItemStackInfo(new ItemStack(Items.BLUE_ICE), Component.translatable("simpeladdmod.jei.chilling.blueice"));
+        registration.addItemStackInfo(new ItemStack(ModItems.BOOSTUPGRADE), Component.translatable("simpeladdmod.jei.upgrades.boost"));
+        registration.addItemStackInfo(new ItemStack(ModBlockRegForge.TICK_ACCELERATOR.get()), Component.translatable("simpeladdmod.jei.tick_accelerator"));
     }
 
     @Override
