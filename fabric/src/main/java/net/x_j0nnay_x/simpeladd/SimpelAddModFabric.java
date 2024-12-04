@@ -5,12 +5,9 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.x_j0nnay_x.simpeladd.core.*;
 import net.x_j0nnay_x.simpeladd.network.FabricSlotChangePacket;
-import net.x_j0nnay_x.simpeladd.screens.*;
 import net.x_j0nnay_x.simpeladd.worldgen.ModWorldGenerationFabric;
-import org.slf4j.Logger;
 
 public class SimpelAddModFabric implements ModInitializer, ClientModInitializer {
 
@@ -23,8 +20,9 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
         ModWorldGenerationFabric.generateModWorldGen();
         ModMenuTypeFabric.registerScreenHandlers();
         ModRecipesRegFabric.registerRecipes();
+        ModDataComponentTypesFabric.modDataComonet();
         NetworkInit();
-        FuelRegistry.INSTANCE.add(ModItemRegFabric.FULECHUNKS, 200);
+        FuelRegistry.INSTANCE.add(ModItemRegFabric.FUELCHUNKS, 200);
         SimpelAddMod.init();
     }
 

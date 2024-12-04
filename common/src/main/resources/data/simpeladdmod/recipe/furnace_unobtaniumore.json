@@ -2,7 +2,7 @@
   "type": "minecraft:smelting",
 
   "ingredient": {
-    "item": "simpeladdmod:unobtanium_ore"
+    "item": "simpeladdmod:ore_unobtanium_endstone"
   },
 
   "result": {

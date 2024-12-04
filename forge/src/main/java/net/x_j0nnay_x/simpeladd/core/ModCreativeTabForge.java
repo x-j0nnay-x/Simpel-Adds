@@ -26,15 +26,21 @@ public class ModCreativeTabForge {
                     //items random
                         entries.accept(ModItemRegForge.WOODFIBER.get());
                         entries.accept(ModItemRegForge.FLESH.get());
-                        entries.accept(ModItemRegForge.NEHTERITE_SHARD.get());
-                        entries.accept(ModItemRegForge.NEHTERITE_SHARD_RAW.get());
                         entries.accept(ModItemRegForge.OBSIDAININGOT.get());
+                        entries.accept(ModItemRegForge.NEHTERITE_SHARD.get());
+                        entries.accept(ModItemRegForge.DIAMOND_SHARD.get());
+                        entries.accept(ModItemRegForge.EMERALD_SHARD.get());
+                        entries.accept(ModItemRegForge.NEHTERITE_SHARD_RAW.get());
+                        entries.accept(ModItemRegForge.DIAMOND_SHARD_RAW.get());
+                        entries.accept(ModItemRegForge.EMERALD_SHARD_RAW.get());
                         entries.accept(ModItemRegForge.UNOBTIANIUMSCRAP.get());
                         entries.accept(ModItemRegForge.REPAIRTOOL.get());
-                        entries.accept(ModItemRegForge.FEEDINGTOOL.get());
                         entries.accept(ModItemRegForge.FIREPROOFTOOL.get());
+                        entries.accept(ModItemRegForge.FEEDINGTOOL.get());
                         entries.accept(ModItemRegForge.GROWSTAFF.get());
-                        entries.accept(ModItemRegForge.FULECHUNKS.get());
+                        entries.accept(ModItemRegForge.FUELCHUNKS.get());
+                        entries.accept(ModItemRegForge.HOMEWAND.get());
+                        entries.accept(ModItemRegForge.HOMECRYSTAL.get());
                     //items upgrade
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_2.get());
@@ -61,8 +67,10 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.COPPERDUST.get());
                         entries.accept(ModItemRegForge.NETHERITEDUST.get());
                         entries.accept(ModItemRegForge.NEHTERITE_SHARD_DUST.get());
-                        entries.accept(ModItemRegForge.OBSIDAINDUST.get());
+                        entries.accept(ModItemRegForge.DIAMOND_SHARD_DUST.get());
+                        entries.accept(ModItemRegForge.EMERALD_SHARD_DUST.get());
                         entries.accept(ModItemRegForge.UNOBTIANIUMDUST.get());
+                        entries.accept(ModItemRegForge.OBSIDAINDUST.get());
                     //items elytra
                         entries.accept(ModItemRegForge.SIMPEL_ELITRA_HALF.get());
                         entries.accept(ModItemRegForge.SIMPEL_ELITRA_PART1.get());
@@ -108,16 +116,39 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITELEGS.get());
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITEBOOTS.get());
                     //blocks
+                        //ores
                         entries.accept(ModBlockRegForge.DEEPSLATE_DEBRI_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_DEBRI_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_COAL_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_COPPER_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_IRON_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_GOLD_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_DIAMOND_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_EMERALD_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_LAPIS_ORE.get());
+                        entries.accept(ModBlockRegForge.NETHERRACK_REDSTONE_ORE.get());
+                        entries.accept(ModBlockRegForge.END_DEBRI_ORE.get());
+                        entries.accept(ModBlockRegForge.END_COAL_ORE.get());
+                        entries.accept(ModBlockRegForge.END_COPPER_ORE.get());
+                        entries.accept(ModBlockRegForge.END_IRON_ORE.get());
+                        entries.accept(ModBlockRegForge.END_GOLD_ORE.get());
+                        entries.accept(ModBlockRegForge.END_DIAMOND_ORE.get());
+                        entries.accept(ModBlockRegForge.END_EMERALD_ORE.get());
+                        entries.accept(ModBlockRegForge.END_LAPIS_ORE.get());
+                        entries.accept(ModBlockRegForge.END_REDSTONE_ORE.get());
                         entries.accept(ModBlockRegForge.UNOBTANIUM_ORE.get());
-                        entries.accept(ModBlockRegForge.GRINDER_BLOCK.get());
-                        entries.accept(ModBlockRegForge.GRINDER_BLOCK_UP.get());
+                        //entities
                         entries.accept(ModBlockRegForge.BLOCK_FACTORY.get());
                         entries.accept(ModBlockRegForge.CHILLER.get());
-                        entries.accept(ModBlockRegForge.NETHERITE_CRAFTER.get());
+                        entries.accept(ModBlockRegForge.GRINDER_BLOCK.get());
+                        entries.accept(ModBlockRegForge.GRINDER_BLOCK_UP.get());
                         entries.accept(ModBlockRegForge.UPGRADED_FURNACE.get());
+                        entries.accept(ModBlockRegForge.NETHERITE_CRAFTER.get());
                         entries.accept(ModBlockRegForge.GRIND_FACTORY_BLOCK.get());
+                        entries.accept(ModBlockRegForge.TICK_ACCELERATOR.get());
+                        //other
                         entries.accept(ModBlockRegForge.SIMPEL_FARM_LAND.get());
+                        entries.accept(ModBlockRegForge.CHUNK_TOURCH.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

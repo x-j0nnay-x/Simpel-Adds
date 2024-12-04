@@ -24,6 +24,7 @@ public class SimpelAddModForge {
         ModMenuTypeForge.register(modEventBus);
         ModCreativeTabForge.register(modEventBus);
         modEventBus.addListener(ForgeNetworkHandler::registerNetworkHandler);
+        ModDataComponentTypesForge.register(modEventBus);
         SimpelAddMod.init();
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::handleClientSetup);

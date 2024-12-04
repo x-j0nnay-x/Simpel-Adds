@@ -7,7 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.menu.*;
-import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 import net.x_j0nnay_x.simpeladd.util.data.*;
 
 public class ModMenuTypeFabric {
@@ -46,6 +45,12 @@ public class ModMenuTypeFabric {
             Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Menu.UPGRADED_FURNACE_MENU),
                 new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
                     new FabricFurnaceMenu_up(pWindowID,pInventory), Up_furnaceData.CODEC));
+
+    public static final MenuType<FabricTickAcceleratorMenu> TICK_ACCELERATOR_MENU =
+            Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Menu.TICK_ACCELERATOR_MENU),
+                    new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
+                       new FabricTickAcceleratorMenu(pWindowID,pInventory), TickAcceleratorData.CODEC));
+
 
     public static void registerScreenHandlers() {
         SimpelAddMod.modMenuRegText();

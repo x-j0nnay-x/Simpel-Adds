@@ -21,6 +21,7 @@ public class SimpelAddModNeoForge {
     public SimpelAddModNeoForge(IEventBus modEventBus) {
         ModItemRegNeoForge.register(modEventBus);
         ModBlockRegNeoForge.register(modEventBus);
+        SimpelAddMod.modWorldGenText();
         ModRecipesNeoForge.register(modEventBus);
         modEventBus.addListener(this::registerCapabilities);
         ModBlockEntitiesNeoForge.register(modEventBus);
@@ -28,6 +29,7 @@ public class SimpelAddModNeoForge {
         ModCreativeTabNeoForge.register(modEventBus);
         NeoForgeNetworkReg.register(modEventBus);
         modEventBus.addListener(NeoForgeNetworkMessage::onRegisterPayloadHandler);
+        ModDataComponentTypesNeoForge.register(modEventBus);
         modEventBus.addListener(this::registerScreens);
         modEventBus.addListener(this::handleClientSetup);
     }
@@ -41,6 +43,7 @@ public class SimpelAddModNeoForge {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.GRIND_FACTORY.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.NETHERITE_CRAFTER.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.UPGRADED_FURNACE.get(), SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TICK_ACCELERATOR.get(), SidedInvWrapper::new);
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {
@@ -52,6 +55,7 @@ public class SimpelAddModNeoForge {
         event.register(ModMenuTypeNeoForge.Chiller_MENU.get(), NeoForgeChillerScreen::new);
         event.register(ModMenuTypeNeoForge.Netherite_Menu.get(), NeoForgeNetheriteCrafterScreen::new);
         event.register(ModMenuTypeNeoForge.GRIND_FACTORY_MENU.get(), NeoForgeGrindFactoryScreen::new);
+        event.register(ModMenuTypeNeoForge.TICK_ACCELERATOR_MENU.get(), NeoForgeTickAcceleratorScreen::new);
     }
 
     private void handleClientSetup(FMLClientSetupEvent event) {

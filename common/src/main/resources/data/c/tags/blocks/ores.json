@@ -1,7 +1,13 @@
 {
   "values":
   [
-    "#c:ores/deepslate_debri_ore",
-    "#c:ores/unobtanium_ore"
+    "#c:ores/simpeladdmod_coal_ore",
+    "#c:ores/simpeladdmod_copper_ore",
+    "#c:ores/simpeladdmod_gold_ore",
+    "#c:ores/simpeladdmod_iron_ore",
+    "#c:ores/simpeladdmod_shard_debri",
+    "#c:ores/simpeladdmod_shard_diamond",
+    "#c:ores/simpeladdmod_shard_emerald",
+    "#c:ores/simpeladdmod_unobtanium_ore"
   ]
 }

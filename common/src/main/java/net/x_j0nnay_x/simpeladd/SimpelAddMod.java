@@ -16,9 +16,9 @@ public class SimpelAddMod {
     public static final String LOG_REGISTER_PREFIX = "Register " + LOGNAME;
 
     public static void init() {
-        LOG.info("Hello from Common init on {}! we are currently in a {} environment!", Services.PLATFORM.getPlatformName(), Services.PLATFORM.getEnvironmentName());
+        LOG.info("Hello from SimpelAdd Common init on {}! we are currently in a {} environment!", Services.PLATFORM.getPlatformName(), Services.PLATFORM.getEnvironmentName());
         if (Services.PLATFORM.isModLoaded(MOD_ID)) {
-            LOG.info("Hello from SimpelAdd");
+            LOG.info("SimpelAdd Has been loaded");
         }
     }
     public static void modBlockRegText(){
@@ -45,6 +45,9 @@ public class SimpelAddMod {
     public static void modtabRegText(){
         LOG.info("Registering Mod creative Tab for " + MOD_NAME);
     }
+    public static void modWorldGenText(){LOG.info("Registering Mod World Gen for " + MOD_NAME);}
+    public static void modDataComonet(){
+        SimpelAddMod.LOG.info("Registering Mod Data Components for " + SimpelAddMod.MOD_NAME);}
 
     public static ResourceLocation id(String name) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);

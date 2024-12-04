@@ -2,9 +2,9 @@
   "replace": false,
 
   "values":[
-
     "minecraft:gold_ore",
-    "minecraft:deepslate_gold_ore"
-
-]
+    "minecraft:deepslate_gold_ore",
+    "simpeladdmod:ore_gold_netherrack",
+    "simpeladdmod:ore_gold_endstone"
+  ]
 }

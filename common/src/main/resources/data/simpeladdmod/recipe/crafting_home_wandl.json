@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "X",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "simpeladdmod:homecrystal"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "simpeladdmod:homewand"
+  }
+}

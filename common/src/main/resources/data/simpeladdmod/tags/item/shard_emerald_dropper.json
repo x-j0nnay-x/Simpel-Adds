@@ -1,0 +1,9 @@
+{
+  "replace": false,
+
+  "values":[
+    "simpeladdmod:ore_emerald_netherrack",
+    "simpeladdmod:ore_emerald_endstone"
+
+  ]
+}

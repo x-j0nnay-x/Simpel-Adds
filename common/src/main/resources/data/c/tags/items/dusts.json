@@ -1,12 +1,14 @@
 {
   "values":
   [
-    "#c:dusts/copperdust",
-    "#c:dusts/golddust",
-    "#c:dusts/irondust",
-    "#c:dusts/netherite_shard_dust",
-    "#c:dusts/netheritedust",
-    "#c:dusts/obsidiandust",
-    "#c:dusts/unobtaniumdust"
+    "#c:dusts/simpeladdmod_copper_dust",
+    "#c:dusts/simpeladdmod_gold_dust",
+    "#c:dusts/simpeladdmod_iron_dust",
+    "#c:dusts/simpeladdmod_netherite_shard_dust",
+    "#c:dusts/simpeladdmod_diamond_shard_dust",
+    "#c:dusts/simpeladdmod_emerald_shard_dust",
+    "#c:dusts/simpeladdmod_netherite_dust",
+    "#c:dusts/simpeladdmod_obsidian_dust",
+    "#c:dusts/simpeladdmod_unobtanium_dust"
   ]
 }

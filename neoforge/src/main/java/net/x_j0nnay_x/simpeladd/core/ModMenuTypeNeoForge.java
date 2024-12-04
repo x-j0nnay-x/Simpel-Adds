@@ -38,6 +38,9 @@ public class ModMenuTypeNeoForge {
     public static final  Supplier<MenuType<NeoForgeNetheriteCrafterMenu>> Netherite_Menu =
             registerMenuType(ModNames.Menu.NETHERITE_MENU, NeoForgeNetheriteCrafterMenu::new);
 
+    public static final  Supplier<MenuType<NeoForgeTickAcceleratorMenu>> TICK_ACCELERATOR_MENU =
+            registerMenuType(ModNames.Menu.TICK_ACCELERATOR_MENU, NeoForgeTickAcceleratorMenu::new);
+
     private static <T extends AbstractContainerMenu>Supplier<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }
