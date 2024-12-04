@@ -12,6 +12,7 @@ public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> OBSIDIANTOOL = tag("needs_obsidiantool");
         public static final TagKey<Block> PLANTABLECROPS = tag("plantablecrops");
+
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
         }
@@ -27,8 +28,9 @@ public class ModTags {
         public static final TagKey<Item> NOTREPAIRABLE = tag("notrepairable");
         public static final TagKey<Item> RAW_GOLD_DROPPER = tag("raw_gold_droper");
         public static final TagKey<Item> VEGGIE = tag("veggie_list");
+
         private static TagKey<Item> tag(String name) {
-            return TagKey.create(Registries.ITEM,  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
+            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
         }
     }
 }

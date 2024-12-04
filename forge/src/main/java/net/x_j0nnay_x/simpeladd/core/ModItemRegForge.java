@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
+import net.x_j0nnay_x.simpeladd.item.HomeWandForge;
 
 public class ModItemRegForge {
 
@@ -26,12 +27,18 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> OBSIDAININGOT = ITEMS.register(ModNames.Items.OBSIDAININGOT, () -> ModItems.OBSIDAININGOT);
     public static final RegistryObject<Item> NEHTERITE_SHARD = ITEMS.register(ModNames.Items.NEHTERITE_SHARD, () -> ModItems.NEHTERITE_SHARD);
     public static final RegistryObject<Item> NEHTERITE_SHARD_RAW = ITEMS.register(ModNames.Items.NEHTERITE_SHARD_RAW, () -> ModItems.NEHTERITE_SHARD_RAW);
+    public static final RegistryObject<Item> DIAMOND_SHARD = ITEMS.register(ModNames.Items.DIAMOND_SHARD, () -> ModItems.DIAMOND_SHARD);
+    public static final RegistryObject<Item> DIAMOND_SHARD_RAW = ITEMS.register(ModNames.Items.DIAMOND_SHARD_RAW, () -> ModItems.DIAMOND_SHARD_RAW);
+    public static final RegistryObject<Item> EMERALD_SHARD = ITEMS.register(ModNames.Items.EMERALD_SHARD, () -> ModItems.EMERALD_SHARD);
+    public static final RegistryObject<Item> EMERALD_SHARD_RAW = ITEMS.register(ModNames.Items.EMERALD_SHARD_RAW, () -> ModItems.EMERALD_SHARD_RAW);
     public static final RegistryObject<Item> UNOBTIANIUMSCRAP = ITEMS.register(ModNames.Items.UNOBTIANIUMSCRAP, () -> ModItems.UNOBTIANIUMSCRAP);
     public static final RegistryObject<Item> REPAIRTOOL = ITEMS.register(ModNames.Items.REPAIRTOOL, () -> ModItems.REPAIRTOOL);
     public static final RegistryObject<Item> FIREPROOFTOOL = ITEMS.register(ModNames.Items.FIREPROOFTOOL, () -> ModItems.FIREPROOFTOOL);
     public static final RegistryObject<Item> FEEDINGTOOL = ITEMS.register(ModNames.Items.FEEDINGTOOL, () -> ModItems.FEEDINGTOOL);
     public static final RegistryObject<Item> GROWSTAFF = ITEMS.register(ModNames.Items.GROWSTAFF, () -> ModItems.GROWSTAFF);
-    public static final RegistryObject<Item> FULECHUNKS = ITEMS.register(ModNames.Items.FULECHUNKS, () -> ModItems.FULECHUNKS);
+    public static final RegistryObject<Item> FUELCHUNKS = ITEMS.register(ModNames.Items.FUELCHUNKS, () -> ModItems.FUELCHUNKS);
+    public static final RegistryObject<Item> HOMEWAND = ITEMS.register(ModNames.Items.HOMEWAND, () -> new HomeWandForge(new Item.Properties()));
+    public static final RegistryObject<Item> HOMECRYSTAL = ITEMS.register(ModNames.Items.HOMECRYSTAL, () -> ModItems.HOMECRYSTAL);
     //upgrades
     public static final RegistryObject<Item> SPEEDUPGRADE_1 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_1, () -> ModItems.SPEEDUPGRADE_1);
     public static final RegistryObject<Item> SPEEDUPGRADE_2 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_2, () -> ModItems.SPEEDUPGRADE_2);
@@ -58,6 +65,8 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> GOLDDUST = ITEMS.register(ModNames.Items.GOLDDUST, () -> ModItems.GOLDDUST);
     public static final RegistryObject<Item> NETHERITEDUST = ITEMS.register(ModNames.Items.NETHERITEDUST, () -> ModItems.NETHERITEDUST);
     public static final RegistryObject<Item> NEHTERITE_SHARD_DUST = ITEMS.register(ModNames.Items.NEHTERITE_SHARD_DUST, () -> ModItems.NEHTERITE_SHARD_DUST);
+    public static final RegistryObject<Item> DIAMOND_SHARD_DUST = ITEMS.register(ModNames.Items.DIAMOND_SHARD_DUST, () -> ModItems.DIAMOND_SHARD_DUST);
+    public static final RegistryObject<Item> EMERALD_SHARD_DUST = ITEMS.register(ModNames.Items.EMERALD_SHARD_DUST, () -> ModItems.EMERALD_SHARD_DUST);
     public static final RegistryObject<Item> OBSIDAINDUST = ITEMS.register(ModNames.Items.OBSIDAINDUST, () -> ModItems.OBSIDAINDUST);
     public static final RegistryObject<Item> UNOBTIANIUMDUST = ITEMS.register(ModNames.Items.UNOBTIANIUMDUST, () -> ModItems.UNOBTIANIUMDUST);
     //obsidian tear

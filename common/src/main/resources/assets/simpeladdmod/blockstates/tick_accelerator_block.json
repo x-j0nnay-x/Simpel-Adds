@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model" : "simpeladdmod:block/tick_accelerator_block"
+    }
+  }
+}

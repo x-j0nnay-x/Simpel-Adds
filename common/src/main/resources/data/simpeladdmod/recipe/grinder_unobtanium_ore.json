@@ -2,7 +2,7 @@
   "type": "simpeladdmod:grinder",
   "ingredients": [
     {
-      "item": "simpeladdmod:unobtanium_ore"
+      "item": "simpeladdmod:ore_unobtanium_endstone"
     }
   ],
   "output": {

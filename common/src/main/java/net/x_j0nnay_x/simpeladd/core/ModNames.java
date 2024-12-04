@@ -7,6 +7,13 @@ public class ModNames {
     public static final String MOD_NAME = "SimpelAdd";
 
     public static class Blocks {
+        public static class Type {
+            public static final String NETHER = "_netherrack";
+            public static final String END = "_endstone";
+            public static final String DEEP = "_deepslate";
+        }
+
+
         public static final String BLOCKFACTORY = "blockfactory";
         public static final String CHILLER = "chiller";
         public static final String GRINDER = "grinder";
@@ -14,13 +21,25 @@ public class ModNames {
         public static final String GRINDFACTORY = "grind_factory";
         public static final String NETHERITE_CRAFTER = "netherite_crafter";
         public static final String UPGRADED_FURNACE = "upgraded_furnace";
-        public static final String DEEPSLATE_DEBRI_ORE = "deepslate_debri_ore";
-        public static final String UNOBTANIUM_ORE = "unobtanium_ore";
+        public static final String DEBRI = "debri";
+        public static final String UNOBTANIUM_ORE = "unobtanium";
         public static final String SIMPEL_FARM_LAND = "simpel_farmland";
+        public static final String CHUNK_TOURCH = "chunk_torch";
+        public static final String TICK_ACCELERATOR = "tick_accelerator";
+        public static final String REDSTONE = "redstone";
+        public static final String DIAMOND = "diamond";
+        public static final String EMERALD = "emerald";
+        public static final String LAPIS = "lapis";
+        public static final String COAL = "coal";
+        public static final String IRON = "iron";
+        public static final String GOLD = "gold";
+        public static final String COPPER = "copper";
 
         public static String getBlockNameForEntity(String name) {
             return name + "_block";
         }
+
+        public static String getBlockNameForOre(String name, String type) {return "ore_" + name + type;}
     }
     public static class Items {
         //wings
@@ -36,13 +55,19 @@ public class ModNames {
         public static final String FLESH = "flesh";
         public static final String OBSIDAININGOT = "obsidianingot";
         public static final String NEHTERITE_SHARD = "netherite_shard";
+        public static final String DIAMOND_SHARD = "diamond_shard";
+        public static final String EMERALD_SHARD = "emerald_shard";
         public static final String NEHTERITE_SHARD_RAW = "netherite_shard_raw";
+        public static final String DIAMOND_SHARD_RAW = "diamond_shard_raw";
+        public static final String EMERALD_SHARD_RAW = "emerald_shard_raw";
         public static final String UNOBTIANIUMSCRAP = "unobtanium_scrap";
         public static final String REPAIRTOOL = "repairtool";
         public static final String FIREPROOFTOOL = "fireprooftool";
         public static final String FEEDINGTOOL = "feedingtool";
         public static final String GROWSTAFF = "growstaff";
-        public static final String FULECHUNKS = "fuelchunk";
+        public static final String FUELCHUNKS = "fuelchunk";
+        public static final String HOMEWAND = "homewand";
+        public static final String HOMECRYSTAL = "homecrystal";
         //upgrades
         public static final String SPEEDUPGRADE_1 = "speedupgrade_1";
         public static final String SPEEDUPGRADE_2 = "speedupgrade_2";
@@ -69,6 +94,8 @@ public class ModNames {
         public static final String GOLDDUST = "golddust";
         public static final String NETHERITEDUST = "netheritedust";
         public static final String NEHTERITE_SHARD_DUST = "netherite_shard_dust";
+        public static final String DIAMOND_SHARD_DUST = "diamond_shard_dust";
+        public static final String EMERALD_SHARD_DUST = "emerald_shard_dust";
         public static final String OBSIDAINDUST = "obsidiandust";
         public static final String UNOBTIANIUMDUST = "unobtaniumdust";
     }
@@ -104,6 +131,7 @@ public class ModNames {
         public static final String UPGRADED_FURNACE_MENU = "furnacemenu_up";
         public static final String CHILLER_MENU = "chillermenu";
         public static final String NETHERITE_MENU = "netheritemenu";
+        public static final String TICK_ACCELERATOR_MENU = "tick_accelerator_menu";
     }
 
     public static class Recipe{
@@ -113,5 +141,8 @@ public class ModNames {
 
     }
 
+    public static class DataComponentTypes {
+        public static final String HOMEWAND_COMPNENTS = "homewand_data";
+    }
 
 }

@@ -1,0 +1,17 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": [
+    "simpeladdmod:place_end_coal_ore",
+    "simpeladdmod:place_end_copper_ore",
+    "simpeladdmod:place_end_debri_ore",
+    "simpeladdmod:place_end_diamond_ore",
+    "simpeladdmod:place_end_emerald_ore",
+    "simpeladdmod:place_end_gold_ore",
+    "simpeladdmod:place_end_iron_ore",
+    "simpeladdmod:place_end_lapis_ore",
+    "simpeladdmod:place_end_redstone_ore",
+    "simpeladdmod:place_end_unobtanium_ore"
+  ],
+  "step": "underground_ores"
+}

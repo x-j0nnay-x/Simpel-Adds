@@ -1,0 +1,14 @@
+{
+  "values":
+  [
+    "#forge:dusts/simpeladdmod_copper_dust",
+    "#forge:dusts/simpeladdmod_gold_dust",
+    "#forge:dusts/simpeladdmod_iron_dust",
+    "#forge:dusts/simpeladdmod_netherite_shard_dust",
+    "#forge:dusts/simpeladdmod_diamond_shard_dust",
+    "#forge:dusts/simpeladdmod_emerald_shard_dust",
+    "#forge:dusts/simpeladdmod_netherite_dust",
+    "#forge:dusts/simpeladdmod_obsidian_dust",
+    "#forge:dusts/simpeladdmod_unobtanium_dust"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#forge:ores/simpeladdmod_coal_ore",
+    "#forge:ores/simpeladdmod_copper_ore",
+    "#forge:ores/simpeladdmod_gold_ore",
+    "#forge:ores/simpeladdmod_iron_ore",
+    "#forge:ores/simpeladdmod_shard_debri",
+    "#forge:ores/simpeladdmod_shard_diamond",
+    "#forge:ores/simpeladdmod_shard_emerald",
+    "#forge:ores/simpeladdmod_unobtanium_ore"
+  ]
+}

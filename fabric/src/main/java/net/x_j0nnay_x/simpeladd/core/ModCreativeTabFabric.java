@@ -32,13 +32,19 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.FLESH);
                         entries.accept(ModItemRegFabric.OBSIDAININGOT);
                         entries.accept(ModItemRegFabric.NEHTERITE_SHARD);
+                        entries.accept(ModItemRegFabric.DIAMOND_SHARD);
+                        entries.accept(ModItemRegFabric.EMERALD_SHARD);
                         entries.accept(ModItemRegFabric.NEHTERITE_SHARD_RAW);
+                        entries.accept(ModItemRegFabric.DIAMOND_SHARD_RAW);
+                        entries.accept(ModItemRegFabric.EMERALD_SHARD_RAW);
                         entries.accept(ModItemRegFabric.UNOBTIANIUMSCRAP);
                         entries.accept(ModItemRegFabric.REPAIRTOOL);
                         entries.accept(ModItemRegFabric.FIREPROOFTOOL);
                         entries.accept(ModItemRegFabric.FEEDINGTOOL);
                         entries.accept(ModItemRegFabric.GROWSTAFF);
-                        entries.accept(ModItemRegFabric.FULECHUNKS);
+                        entries.accept(ModItemRegFabric.FUELCHUNKS);
+                        entries.accept(ModItemRegFabric.HOMEWAND);
+                        entries.accept(ModItemRegFabric.HOMECRYSTAL);
                 //items upgrade
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_1);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_2);
@@ -65,6 +71,8 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.COPPERDUST);
                         entries.accept(ModItemRegFabric.NETHERITEDUST);
                         entries.accept(ModItemRegFabric.NEHTERITE_SHARD_DUST);
+                        entries.accept(ModItemRegFabric.DIAMOND_SHARD_DUST);
+                        entries.accept(ModItemRegFabric.EMERALD_SHARD_DUST);
                         entries.accept(ModItemRegFabric.UNOBTIANIUMDUST);
                         entries.accept(ModItemRegFabric.OBSIDAINDUST);
                 //items elytra
@@ -112,8 +120,28 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.UNOBTIANOBSIDIRITELEGS);
                         entries.accept(ModItemRegFabric.UNOBTIANOBSIDIRITEBOOTS);
                  //blocks
+                        //ores
                         entries.accept(ModBlockRegFabric.DEEPSLATE_DEBRI_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_DEBRI_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_COAL_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_COPPER_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_IRON_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_GOLD_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_DIAMOND_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_EMERALD_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_LAPIS_ORE);
+                        entries.accept(ModBlockRegFabric.NETHERRACK_REDSTONE_ORE);
+                        entries.accept(ModBlockRegFabric.END_DEBRI_ORE);
+                        entries.accept(ModBlockRegFabric.END_COAL_ORE);
+                        entries.accept(ModBlockRegFabric.END_COPPER_ORE);
+                        entries.accept(ModBlockRegFabric.END_IRON_ORE);
+                        entries.accept(ModBlockRegFabric.END_GOLD_ORE);
+                        entries.accept(ModBlockRegFabric.END_DIAMOND_ORE);
+                        entries.accept(ModBlockRegFabric.END_EMERALD_ORE);
+                        entries.accept(ModBlockRegFabric.END_LAPIS_ORE);
+                        entries.accept(ModBlockRegFabric.END_REDSTONE_ORE);
                         entries.accept(ModBlockRegFabric.UNOBTANIUM_ORE);
+                        //entities
                         entries.accept(ModBlockRegFabric.BLOCK_FACTORY);
                         entries.accept(ModBlockRegFabric.CHILLER);
                         entries.accept(ModBlockRegFabric.GRINDER_BLOCK);
@@ -121,7 +149,10 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.UPGRADED_FURNACE);
                         entries.accept(ModBlockRegFabric.NETHERITE_CRAFTER);
                         entries.accept(ModBlockRegFabric.GRIND_FACTORY_BLOCK);
+                        entries.accept(ModBlockRegFabric.TICK_ACCELERATOR);
+                        //other
                         entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
+                        entries.accept(ModBlockRegFabric.CHUNK_TOURCH);
                     }).build());
     }
 

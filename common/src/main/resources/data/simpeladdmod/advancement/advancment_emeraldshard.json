@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "simpeladdmod:emerald_shard"
+    },
+    "title": {
+      "translate": "advancements.simpeladdmod.emeraldshard.title"
+    },
+    "description": {
+      "translate": "advancements.simpeladdmod.emeraldshard.descrip"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "advancment_emeraldshard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simpeladdmod:emerald_shard_raw"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simpeladdmod:advancment_emeraldshardraw"
+}

@@ -1,0 +1,7 @@
+{
+  "parent" : "minecraft:block/cube_all",
+  "textures": {
+    "all" : "simpeladdmod:block/ore_redstone_endstone",
+    "particle" : "simpeladdmod:block/ore_redstone_endstone"
+  }
+}

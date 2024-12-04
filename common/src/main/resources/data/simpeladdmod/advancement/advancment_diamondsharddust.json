@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "simpeladdmod:diamond_shard_dust"
+    },
+    "title": {
+      "translate": "advancements.simpeladdmod.diamondsharddust.title"
+    },
+    "description": {
+      "translate": "advancements.simpeladdmod.diamondsharddust.descrip"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "advancment_diamondsharddust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simpeladdmod:diamond_shard_dust"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simpeladdmod:advancment_diamondshardraw"
+}

@@ -39,6 +39,10 @@ public class ModBlockEntitiesFabric {
 			ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Blocks.UPGRADED_FURNACE),
 			FabricBlockEntityTypeBuilder.create(FabricFurnaceBlockEntity_Up::new, ModBlockRegFabric.UPGRADED_FURNACE).build());
 
+	public static final BlockEntityType<FabricTickAcceleratorBlockEntity> TICK_ACCELERATOR = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
+			ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Blocks.TICK_ACCELERATOR),
+			FabricBlockEntityTypeBuilder.create(FabricTickAcceleratorBlockEntity::new, ModBlockRegFabric.TICK_ACCELERATOR).build());
+
 
 	public static void registerBlockEntities() {
 		SimpelAddMod.modBlockEntRegText();

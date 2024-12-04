@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "simpeladdmod:unobtanium_ore"
+      "id": "simpeladdmod:ore_unobtanium_endstone"
     },
     "title": {
       "translate": "advancements.simpeladdmod.unobtanium_ore.title"
@@ -21,7 +21,7 @@
         "items": [
           {
             "items": [
-              "simpeladdmod:unobtanium_ore"
+              "simpeladdmod:ore_unobtanium_endstone"
             ],
             "count": {
               "min": 1,
