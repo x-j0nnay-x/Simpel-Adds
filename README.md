@@ -71,7 +71,7 @@ The Tick Acceseration block, this by defalut will tick bocks faster in a 1 block
 you can craft slime balls, obsidian blocks, elytra's and manually craft cobblestone to gravel, gravel to sand. All Smithing Templates are craftable using the blank upgrade. Blaze Rods with Gold Nuggets and Lava Bucket.
 
 ### Tools
-Repair tool that will rechage 4 damage per 100 ticks. it will take damage per item repaired. A tag is called for items that can not be repaired.
+Repair tool that will recharge  4 damage per 100 ticks. it will take damage per item repaired. A tag is called for items that can not be repaired.
 
 Feeding Tool this will give you food when your health is less than max. it works every 500 ticks.
 
