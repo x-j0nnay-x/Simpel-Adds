@@ -51,6 +51,11 @@ public class ModMenuTypeFabric {
                     new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
                        new FabricTickAcceleratorMenu(pWindowID,pInventory), TickAcceleratorData.CODEC));
 
+    public static final MenuType<FabricToolRepairMenu> TOOLREPAIR_MENU =
+            Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Menu.TOOLREPAIR_MENU),
+                    new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
+                            new FabricToolRepairMenu(pWindowID,pInventory), ToolRepairData.CODEC));
+
 
     public static void registerScreenHandlers() {
         SimpelAddMod.modMenuRegText();

@@ -146,6 +146,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModBlockRegForge.NETHERITE_CRAFTER.get());
                         entries.accept(ModBlockRegForge.GRIND_FACTORY_BLOCK.get());
                         entries.accept(ModBlockRegForge.TICK_ACCELERATOR.get());
+                        entries.accept(ModBlockRegForge.TOOLREPAIR.get());
                         //other
                         entries.accept(ModBlockRegForge.SIMPEL_FARM_LAND.get());
                         entries.accept(ModBlockRegForge.CHUNK_TOURCH.get());

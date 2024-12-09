@@ -146,6 +146,7 @@ public class ModCreativeTabNeoForge {
                         entries.accept(ModBlockRegNeoForge.NETHERITE_CRAFTER.get());
                         entries.accept(ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get());
                         entries.accept(ModBlockRegNeoForge.TICK_ACCELERATOR.get());
+                        entries.accept(ModBlockRegNeoForge.TOOLREPAIR.get());
                         //other
                         entries.accept(ModBlockRegNeoForge.SIMPEL_FARM_LAND.get());
                         entries.accept(ModBlockRegNeoForge.CHUNK_TOURCH.get());

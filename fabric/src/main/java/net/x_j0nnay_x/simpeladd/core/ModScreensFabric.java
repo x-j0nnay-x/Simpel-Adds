@@ -22,5 +22,6 @@ public class ModScreensFabric {
         MenuScreens.register(ModMenuTypeFabric.Netherite_Menu, FabricNetheriteCrafterScreen::new);
         MenuScreens.register(ModMenuTypeFabric.UPGRADED_FURNACE_MENU, FabricFurnaceScreen_up::new);
         MenuScreens.register(ModMenuTypeFabric.TICK_ACCELERATOR_MENU, FabricTickAcceleratorScreen::new);
+        MenuScreens.register(ModMenuTypeFabric.TOOLREPAIR_MENU, FabricToolRepairScreen::new);
     }
 }

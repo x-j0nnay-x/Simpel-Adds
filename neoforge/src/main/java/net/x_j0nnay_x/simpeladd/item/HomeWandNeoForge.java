@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.UseOnContext;
+
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.core.ModDataComponentTypesNeoForge;
 
@@ -22,9 +22,7 @@ public class HomeWandNeoForge extends Item {
     private int cooldown;
     private boolean oncooldown;
     private int maxcooldown = 240;
-    int X;
-    int Y;
-    int Z;
+
 
     public HomeWandNeoForge(Properties properties) {
         super(properties);
@@ -43,13 +41,6 @@ public class HomeWandNeoForge extends Item {
         super.inventoryTick($$0, $$1, $$2, $$3, $$4);
     }
 
-    @Override
-    public InteractionResult useOn(UseOnContext $$0) {
-        ItemStack itemStack = $$0.getItemInHand();
-        Player player = $$0.getPlayer();
-
-        return super.useOn($$0);
-    }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {

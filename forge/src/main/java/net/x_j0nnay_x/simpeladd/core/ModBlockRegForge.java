@@ -60,6 +60,8 @@ public class ModBlockRegForge {
             () -> new ForgeFurnaceBlock_Up(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TICK_ACCELERATOR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TICK_ACCELERATOR),
             () -> new ForgeTickAcceleratorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> TOOLREPAIR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TOOLREPAIR),
+            () -> new ForgeToolRepairBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
     private static  <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

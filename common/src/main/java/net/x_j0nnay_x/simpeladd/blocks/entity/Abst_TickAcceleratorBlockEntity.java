@@ -218,7 +218,9 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
         }
     }
 
-
+    public ItemStack getCopperOutput() {
+        return new ItemStack(Items.COPPER_INGOT, this.coperLevel);
+    }
 
     private void setCopperLevel(){
         if(this.coperLevel == maxcopper)
