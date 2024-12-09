@@ -44,6 +44,7 @@ public class SimpelAddModNeoForge {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.NETHERITE_CRAFTER.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.UPGRADED_FURNACE.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TICK_ACCELERATOR.get(), SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TOOL_REPAIR.get(), SidedInvWrapper::new);
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {
@@ -56,6 +57,7 @@ public class SimpelAddModNeoForge {
         event.register(ModMenuTypeNeoForge.Netherite_Menu.get(), NeoForgeNetheriteCrafterScreen::new);
         event.register(ModMenuTypeNeoForge.GRIND_FACTORY_MENU.get(), NeoForgeGrindFactoryScreen::new);
         event.register(ModMenuTypeNeoForge.TICK_ACCELERATOR_MENU.get(), NeoForgeTickAcceleratorScreen::new);
+        event.register(ModMenuTypeNeoForge.TOOLREPAIR_MENU.get(), NeoForgeToolRepairScreen::new);
     }
 
     private void handleClientSetup(FMLClientSetupEvent event) {

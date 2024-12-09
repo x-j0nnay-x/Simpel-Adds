@@ -58,6 +58,8 @@ public class ModBlockRegNeoForge {
             () -> new NeoForgeFurnaceBlock_Up(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> TICK_ACCELERATOR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TICK_ACCELERATOR),
             () -> new NeoForgeTickAcceleratorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> TOOLREPAIR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TOOLREPAIR),
+            () -> new NeoForgeToolRepairBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

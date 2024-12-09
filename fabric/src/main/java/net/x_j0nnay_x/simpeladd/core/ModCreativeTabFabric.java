@@ -150,6 +150,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.NETHERITE_CRAFTER);
                         entries.accept(ModBlockRegFabric.GRIND_FACTORY_BLOCK);
                         entries.accept(ModBlockRegFabric.TICK_ACCELERATOR);
+                        entries.accept(ModBlockRegFabric.TOOLREPAIR);
                         //other
                         entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
                         entries.accept(ModBlockRegFabric.CHUNK_TOURCH);
