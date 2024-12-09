@@ -2,21 +2,63 @@ package net.x_j0nnay_x.simpeladd.blocks;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.x_j0nnay_x.simpeladd.blocks.entity.Abst_TickAcceleratorBlockEntity;
+
+import javax.annotation.Nullable;
 
 
 public abstract class Abst_TickAcceleratorBlock extends BaseEntityBlock {
 
+    public static final BooleanProperty POWERED = BooleanProperty.create("powered");
+
     protected Abst_TickAcceleratorBlock(Properties $$0) {
         super($$0);
+        this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, Boolean.valueOf(false)));
     }
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext $$0) {
+        return (BlockState)this.defaultBlockState().setValue(POWERED, $$0.getLevel().hasNeighborSignal($$0.getClickedPos()));
+    }
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> $$0) {
+        $$0.add(POWERED);
+    }
+
+
+    @Override
+    public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
+        super.neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
+        BlockPos _pos = BlockPos.containing(pos.getX(), pos.getY(), pos.getZ());
+        BlockState _bs = world.getBlockState(_pos);
+
+        if (world.getBestNeighborSignal(pos) > 0 ){
+            if (Boolean.FALSE.equals(_bs.getValue(this.POWERED))) {
+
+                world.setBlock(_pos, _bs.setValue(this.POWERED, true), 3);
+            }
+        } else if (world.getBestNeighborSignal(pos) < 1 ) {
+            if (Boolean.TRUE.equals(_bs.getValue(this.POWERED))){
+
+                world.setBlock(_pos, _bs.setValue(this.POWERED, false), 6);
+            }
+
+        }
+
+
+    }
+
     @Override
     public void onRemove(BlockState $$0, Level $$1, BlockPos $$2, BlockState $$3, boolean $$4) {
         if (!$$0.is($$3.getBlock())) {
@@ -24,6 +66,7 @@ public abstract class Abst_TickAcceleratorBlock extends BaseEntityBlock {
             if ($$5 instanceof Abst_TickAcceleratorBlockEntity) {
                 if ($$1 instanceof ServerLevel) {
                     Containers.dropContents($$1, $$2, (Abst_TickAcceleratorBlockEntity)$$5);
+                    Containers.dropItemStack($$1, $$2.getX(), $$2.getY(), $$2.getZ(), ((Abst_TickAcceleratorBlockEntity)$$5).getCopperOutput());
                 }
                 $$1.updateNeighbourForOutputSignal($$2, this);
             }
@@ -39,5 +82,4 @@ public abstract class Abst_TickAcceleratorBlock extends BaseEntityBlock {
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
     }
-
 }

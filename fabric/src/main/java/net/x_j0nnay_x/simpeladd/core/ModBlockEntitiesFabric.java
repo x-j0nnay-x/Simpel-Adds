@@ -45,6 +45,10 @@ public class ModBlockEntitiesFabric {
 			new ResourceLocation(SimpelAddMod.MOD_ID, ModNames.Blocks.TICK_ACCELERATOR),
 			FabricBlockEntityTypeBuilder.create(FabricTickAcceleratorBlockEntity::new, ModBlockRegFabric.TICK_ACCELERATOR).build());
 
+	public static final BlockEntityType<FabricToolRepairBlockEntity> TOOLREPAIR = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
+			new ResourceLocation(SimpelAddMod.MOD_ID, ModNames.Blocks.TOOLREPAIR),
+			FabricBlockEntityTypeBuilder.create(FabricToolRepairBlockEntity::new, ModBlockRegFabric.TOOLREPAIR).build());
+
 	public static void registerBlockEntities() {
 		SimpelAddMod.modBlockEntRegText();
 	}

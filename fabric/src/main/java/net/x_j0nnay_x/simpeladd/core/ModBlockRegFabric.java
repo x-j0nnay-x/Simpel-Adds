@@ -9,6 +9,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.PushReaction;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.*;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
@@ -49,6 +50,7 @@ public class ModBlockRegFabric {
     public static final Block NETHERITE_CRAFTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.NETHERITE_CRAFTER), new FabricNetheriteCraftingBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block UPGRADED_FURNACE = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.UPGRADED_FURNACE), new FabricFurnaceBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block TICK_ACCELERATOR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TICK_ACCELERATOR), new FabricTickAcceleratorBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+    public static final Block TOOLREPAIR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TOOLREPAIR), new FabricToolRepairBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

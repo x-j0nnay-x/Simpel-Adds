@@ -15,19 +15,21 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
+import net.x_j0nnay_x.simpeladd.blocks.Abst_BlockFactoryBlock;
+import net.x_j0nnay_x.simpeladd.blocks.Abst_TickAcceleratorBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import org.jetbrains.annotations.Nullable;
 
 //note
 //this block was inspired by Starforcrafts Tick Accelerator Mod all code was inspired by the work in that mod. I did change things with the time and how it works.
 //I did not copy the code, but I did use it as a reference to make this block work.
-//I did use the Image used in the mod for homage to the inspiration of the block.
 
 public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
@@ -40,7 +42,7 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
     public int tickEfficiency = 0;
     public static int efficiencyUse = 3;
     public int effUse;
-    private static int tickCountMax = 60;
+    private static int tickCountMax = 3600;
     private int tickCount;
     private static final int[] SLOTS_FOR_UP = new int[]{COPPERSLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{COPPERSLOT};
@@ -190,10 +192,13 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
             return;
         setUpGrades();
         setCopperLevel();
-        int range = this.getCountBoost() + 1 ;
-        if (!hasTickableBlocksinRange(world, pos)) {
+        if(Boolean.TRUE.equals(world.getBlockState(pos).getValue(Abst_TickAcceleratorBlock.POWERED)))
             return;
-        }
+
+        int range = this.getCountBoost() + 1 ;
+        if (!hasTickableBlocksinRange(world, pos))
+            return;
+
         if (this.coperLevel > 0) {
             this.tickCount++;
             if (this.tickCount >= tickCountMax) {
@@ -217,6 +222,7 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
             }
         }
     }
+
 
 
 
@@ -264,6 +270,7 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
 
     public void accelerateTick(ServerLevel serverLevel, BlockPos blockPos) {
         BlockState blockState = serverLevel.getBlockState(blockPos);
+        Block block = blockState.getBlock();
         BlockEntity blockEntity = serverLevel.getBlockEntity(blockPos);
         if (!isTickAccelBlock(serverLevel, blockState, blockEntity))
             return;
@@ -273,9 +280,9 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
                 if (ticker != null) {
                     ticker.tick(serverLevel, blockPos, blockEntity.getBlockState(), blockEntity);
                 }
-            } else if (blockState.isRandomlyTicking()) {
-                if (serverLevel.random.nextInt(1365) == 0) {
-                    blockState.randomTick(serverLevel, blockPos, serverLevel.random);
+            } else {
+                if (block.isRandomlyTicking(blockState) && serverLevel.getRandom().nextInt(80) == 0) {
+                    block.randomTick(blockState,  serverLevel, blockPos, serverLevel.getRandom());
                 }
             }
         }
@@ -295,5 +302,9 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
             }
         }
         return true;
+    }
+
+    public ItemStack getCopperOutput() {
+        return new ItemStack(Items.COPPER_INGOT, this.coperLevel);
     }
 }
