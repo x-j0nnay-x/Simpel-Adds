@@ -8,11 +8,11 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/simpel-add-mod",
+        "sources": "https://github.com/x-j0nnay-x/Simpel-Adds/issues"
     },
     "license": "${license}",
-    "icon": "assets/simpeladdmod/icon.png",
+    "icon": "${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [

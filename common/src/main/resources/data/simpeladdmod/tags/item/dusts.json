@@ -1,15 +1,15 @@
 {
     "replace": false,
-
     "values":[
-
     "simpeladdmod:copperdust",
     "simpeladdmod:irondust",
     "simpeladdmod:golddust",
     "simpeladdmod:netheritedust",
     "simpeladdmod:obsidiandust",
     "simpeladdmod:unobtaniumdust",
-    "simpeladdmod:netherite_shard_dust"
+    "simpeladdmod:netherite_shard_dust",
+    "simpeladdmod:diamond_shard_dust",
+    "simpeladdmod:emerald_shard_dust"
 
 ]
 }

@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
+import net.x_j0nnay_x.simpeladd.blocks.Abst_TickAcceleratorBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,7 +41,7 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
     public int tickEfficiency = 0;
     public static int efficiencyUse = 3;
     public int effUse;
-    private static int tickCountMax = 60;
+    private static int tickCountMax = 3600;
     private int tickCount;
     private static final int[] SLOTS_FOR_UP = new int[]{COPPERSLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{COPPERSLOT};
@@ -190,6 +191,8 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
             return;
         setUpGrades();
         setCopperLevel();
+        if(Boolean.TRUE.equals(world.getBlockState(pos).getValue(Abst_TickAcceleratorBlock.POWERED)))
+            return;
         int range = this.getCountBoost() + 1 ;
         if (!hasTickableBlocksinRange(world, pos)) {
             return;

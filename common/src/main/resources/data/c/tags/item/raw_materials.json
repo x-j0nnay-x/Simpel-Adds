@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#c:raw_materials/simpeladdmod_raw_netherite",
+    "#c:raw_materials/simpeladdmod_raw_diamond",
+    "#c:raw_materials/simpeladdmod_raw_emerald"
+  ]
+}

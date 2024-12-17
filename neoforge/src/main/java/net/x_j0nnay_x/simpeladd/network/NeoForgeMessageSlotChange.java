@@ -16,7 +16,7 @@ import java.util.Objects;
 public record NeoForgeMessageSlotChange(int x, int y, int z, int index,  int set) implements CustomPacketPayload {
 
     public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "blockfactory_slot_packet");
-    public static final CustomPacketPayload.Type<NeoForgeMessageSlotChange> TYPE = new Type<>(ID);
+    public static final Type<NeoForgeMessageSlotChange> TYPE = new Type<>(ID);
 
     public static final StreamCodec<RegistryFriendlyByteBuf, NeoForgeMessageSlotChange> CODEC = StreamCodec.composite(
             ByteBufCodecs.INT, NeoForgeMessageSlotChange::x,

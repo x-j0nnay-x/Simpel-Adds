@@ -72,7 +72,7 @@ public class ForgeToolRepairMenu extends AbstractContainerMenu {
         return this.data.get(1);
     }
     public <string> MutableComponent getCopperName(){
-        return Component.translatable("gui.simpeladd.tick_accelerator.tooltip");
+        return Component.translatable("gui.simpeladdmod.tick_accelerator.tooltip");
     }
 
     public ForgeToolRepairBlockEntity getBlockEntity() {

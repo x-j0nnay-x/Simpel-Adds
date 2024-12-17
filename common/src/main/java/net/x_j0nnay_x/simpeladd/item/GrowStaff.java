@@ -29,7 +29,7 @@ public class GrowStaff extends Item {
             );
 
     public GrowStaff(int maxuses){
-        super(new Item.Properties()
+        super(new Properties()
                 .stacksTo(1)
                 .durability(maxuses)
     );

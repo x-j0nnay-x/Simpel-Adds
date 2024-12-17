@@ -29,6 +29,7 @@
   "item.simpeladdmod.homewand.homeclear" : "Home Cleared",
   "item.simpeladdmod.homewand.homeless" : "Home has not been set",
   "item.simpeladdmod.homewand.cooldown" : "On Cool Down",
+  "item.simpeladdmod.homewand.wrongdim" : "You are in the wrong dimension",
   "item.simpeladdmod.homecrystal" : "Home Crystal",
 
 
@@ -166,7 +167,8 @@
   "gui.simpeladdmod.chiller_block_gui.label": "Chiller",
   "gui.simpeladdmod.netherite_crafter_gui": "Netherite Auto Crafting",
   "gui.simpeladdmod.tick_accelerator_gui": "",
-  "gui.simpeladd.tick_accelerator.tooltip": "Copper Level",
+  "gui.simpeladdmod.tick_accelerator.tooltip": "Copper Level",
+  "gui.simpeladdmod.tick_accelerator.tooltip.tick": "Ticks",
 
   "advancements.simpeladdmod.title" : "Simpel Add Mod Advancements",
   "advancements.simpeladdmod.title.descrip" : "Simpel Add Mod was Loaded",

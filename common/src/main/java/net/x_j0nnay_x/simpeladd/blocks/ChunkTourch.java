@@ -40,7 +40,7 @@ public class ChunkTourch extends FaceAttachedHorizontalDirectionalBlock {
     private final int ticksToStayPressed;
 
 
-    public ChunkTourch(BlockSetType $$0, int $$1, BlockBehaviour.Properties $$2) {
+    public ChunkTourch(BlockSetType $$0, int $$1, Properties $$2) {
         super($$2);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(FACE, AttachFace.WALL));
         this.flameParticle = ParticleTypes.FLAME;
