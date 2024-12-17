@@ -42,7 +42,7 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
     public int tickEfficiency = 0;
     public static int efficiencyUse = 3;
     public int effUse;
-    private static int tickCountMax = 3600;
+    public static int tickCountMax = 3600;
     private int tickCount;
     private static final int[] SLOTS_FOR_UP = new int[]{COPPERSLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{COPPERSLOT};

@@ -61,6 +61,7 @@ public class FabricToolRepairScreen extends AbstractContainerScreen<FabricToolRe
     }
 
     private void renderBlazeUses(GuiGraphics guiGraphics, int x, int y) {
-            guiGraphics.blit(texture,  x + 110 , y + 12, 176, 0, 4, menu.getCopperLevel());
+        int posisionOffset = 35- menu.getCoperValue();
+        guiGraphics.blit(texture,  x + 110 , y + 12 - posisionOffset, 176, posisionOffset, 4, menu.getCopperLevel());
     }
 }

@@ -52,8 +52,8 @@ public class ForgeNetheriteCrafterScreen extends AbstractContainerScreen<ForgeNe
         }
     }
     private void renderBlazeUses(GuiGraphics guiGraphics, int x, int y) {
-
-            guiGraphics.blit(texture,  x + 107 , y + 34, 176, 0, 4, menu.getBlazeLevel());
+        int posisionOffset = 18 - menu.getBlazeLevel();
+            guiGraphics.blit(texture,  x + 107 , y + 34 + posisionOffset, 176, posisionOffset, 4, menu.getBlazeLevel());
 
     }
 
