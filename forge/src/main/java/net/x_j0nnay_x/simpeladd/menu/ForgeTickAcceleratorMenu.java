@@ -18,6 +18,7 @@ import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeForge;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
+import org.jetbrains.annotations.NotNull;
 
 public class ForgeTickAcceleratorMenu extends AbstractContainerMenu {
 
@@ -51,7 +52,7 @@ public class ForgeTickAcceleratorMenu extends AbstractContainerMenu {
                 }
 
                 @Override
-                public int getMaxStackSize() {
+                public int getMaxStackSize(@NotNull ItemStack stack) {
                     return 1;
                 }
             });
@@ -62,20 +63,28 @@ public class ForgeTickAcceleratorMenu extends AbstractContainerMenu {
                 }
 
                 @Override
-                public int getMaxStackSize() {
+                public int getMaxStackSize(@NotNull ItemStack stack) {
                     return 5;
                 }
+
+
             });
         });
         addDataSlots(data);
     }
-
+    public int getBunrLevel(){
+        int burnlevel = this.data.get(4);
+        int maxBurnLevel = 3600;
+        int levelSize = 35;
+        return maxBurnLevel != 0 && burnlevel != 0 ? burnlevel * levelSize / maxBurnLevel : 0;
+    }
     public int getCopperLevel(){
         int coperlevel = this.data.get(0);
         int maxCopperLevel = this.data.get(5);
         int levelSize = 37;
         return maxCopperLevel != 0 && coperlevel != 0 ? coperlevel * levelSize / maxCopperLevel : 0;
     }
+    public int getBurnValue(){return this.data.get(4);}
     public int getCoperValue(){
         return this.data.get(0);
     }
@@ -83,7 +92,10 @@ public class ForgeTickAcceleratorMenu extends AbstractContainerMenu {
         return this.data.get(5);
     }
     public <string> MutableComponent getCopperName(){
-        return Component.translatable("gui.simpeladd.tick_accelerator.tooltip");
+        return Component.translatable("gui.simpeladdmod.tick_accelerator.tooltip");
+    }
+    public <string> MutableComponent getburnName(){
+        return Component.translatable("gui.simpeladdmod.tick_accelerator.tooltip.tick");
     }
 
     public ForgeTickAcceleratorBlockEntity getBlockEntity() {

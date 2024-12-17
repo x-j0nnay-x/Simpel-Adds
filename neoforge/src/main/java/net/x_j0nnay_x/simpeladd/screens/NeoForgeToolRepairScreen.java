@@ -43,7 +43,7 @@ public class NeoForgeToolRepairScreen extends AbstractContainerScreen<NeoForgeTo
         int hoverPositionY = y - topPos;
         if (hoverPositionX > 109 && hoverPositionX < 114 && hoverPositionY > 11 && hoverPositionY < 50) {
             Component componentCopper = MutableComponent.create(this.menu.getCopperName().getContents())
-                    .append(" (%s/%s Units)".formatted(this.menu.getCoperValue(), this.menu.getMaxCopper()));
+                    .append(" (%s/%s)".formatted(this.menu.getCoperValue(), this.menu.getMaxCopper()));
             guiGraphics.renderTooltip(font, componentCopper,x ,y + 12);
         }
     }
@@ -56,11 +56,12 @@ public class NeoForgeToolRepairScreen extends AbstractContainerScreen<NeoForgeTo
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         pGuiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight);
-        renderBlazeUses(pGuiGraphics, x, y);
+        renderCopper(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
     }
 
-    private void renderBlazeUses(GuiGraphics guiGraphics, int x, int y) {
-            guiGraphics.blit(texture,  x + 110 , y + 12, 176, 0, 4, menu.getCopperLevel());
+    private void renderCopper(GuiGraphics guiGraphics, int x, int y) {
+        int posisionOffset = 37 - menu.getCopperLevel();
+        guiGraphics.blit(texture, x + 110, y + 12 + posisionOffset, 176, posisionOffset, 4, menu.getCopperLevel());
     }
 }

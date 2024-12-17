@@ -106,13 +106,13 @@ public class ManualGrind implements CraftingRecipe {
 
         private Type() {}
 
-        public static final ManualGrind.Type INSTANCE = new ManualGrind.Type();
+        public static final Type INSTANCE = new Type();
 
         public static final String ID = ModNames.Recipe.MANUALGRIND;
     }
     public static class Serializer implements RecipeSerializer<ManualGrind> {
 
-        public static final ManualGrind.Serializer INSTANCE = new ManualGrind.Serializer();
+        public static final Serializer INSTANCE = new Serializer();
 
         public static final String ID = ModNames.Recipe.MANUALGRIND;
 
@@ -143,7 +143,7 @@ public class ManualGrind implements CraftingRecipe {
             })).apply($$0, ManualGrind::new);
         });
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, ManualGrind> STREAM_CODEC = StreamCodec.of(ManualGrind.Serializer::toNetwork, ManualGrind.Serializer::fromNetwork);
+        public static final StreamCodec<RegistryFriendlyByteBuf, ManualGrind> STREAM_CODEC = StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
 
         public Serializer() {
         }

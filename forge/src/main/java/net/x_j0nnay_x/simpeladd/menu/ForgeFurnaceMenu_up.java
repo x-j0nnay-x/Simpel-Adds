@@ -43,6 +43,7 @@ public class ForgeFurnaceMenu_up extends AbstractContainerMenu {
                     }
                     return false;
                 }
+
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeFurnaceBlockEntity_Up.INPUTSLOT2, 81, 17){
                 @Override
@@ -52,6 +53,7 @@ public class ForgeFurnaceMenu_up extends AbstractContainerMenu {
                     }
                     return false;
                 }
+
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeFurnaceBlockEntity_Up.INPUTSLOT3, 99, 17){
                 @Override
@@ -61,6 +63,7 @@ public class ForgeFurnaceMenu_up extends AbstractContainerMenu {
                     }
                     return false;
                 }
+
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeFurnaceBlockEntity_Up.INPUTSLOT4, 117, 17){
                 @Override
@@ -114,7 +117,7 @@ public class ForgeFurnaceMenu_up extends AbstractContainerMenu {
                 }
 
                 @Override
-                public int getMaxStackSize() {
+                public int getMaxStackSize(@NotNull ItemStack stack) {
                     return 1;
                 }
             });
@@ -125,7 +128,7 @@ public class ForgeFurnaceMenu_up extends AbstractContainerMenu {
                 }
 
                 @Override
-                public int getMaxStackSize() {
+                public int getMaxStackSize(@NotNull ItemStack stack) {
                     return 1;
                 }
             });

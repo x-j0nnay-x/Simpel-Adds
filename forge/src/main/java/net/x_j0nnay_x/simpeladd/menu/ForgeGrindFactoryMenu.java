@@ -113,6 +113,10 @@ public class ForgeGrindFactoryMenu extends AbstractContainerMenu {
                         public boolean mayPlace(ItemStack stack) {
                             return stack.is(ModTags.Items.GRINDERS);
                         }
+                        @Override
+                        public int getMaxStackSize(@NotNull ItemStack stack) {
+                            return 1;
+                        }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FUELSLOT, 16, 43) {
                         @Override
@@ -127,7 +131,7 @@ public class ForgeGrindFactoryMenu extends AbstractContainerMenu {
                         }
 
                         @Override
-                        public int getMaxStackSize() {
+                        public int getMaxStackSize(@NotNull ItemStack stack) {
                             return 1;
                         }
                     });

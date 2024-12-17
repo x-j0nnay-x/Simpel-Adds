@@ -56,11 +56,12 @@ public class FabricToolRepairScreen extends AbstractContainerScreen<FabricToolRe
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         pGuiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight);
-        renderBlazeUses(pGuiGraphics, x, y);
+        renderCopper(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
     }
 
-    private void renderBlazeUses(GuiGraphics guiGraphics, int x, int y) {
-            guiGraphics.blit(texture,  x + 110 , y + 12, 176, 0, 4, menu.getCopperLevel());
+    private void renderCopper(GuiGraphics guiGraphics, int x, int y) {
+        int posisionOffset = 37 - menu.getCopperLevel();
+        guiGraphics.blit(texture, x + 110, y + 12 + posisionOffset, 176, posisionOffset, 4, menu.getCopperLevel());
     }
 }

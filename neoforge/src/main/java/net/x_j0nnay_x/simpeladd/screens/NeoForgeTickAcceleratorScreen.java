@@ -23,6 +23,7 @@ public class NeoForgeTickAcceleratorScreen extends AbstractContainerScreen<NeoFo
     protected void renderTooltip(GuiGraphics guiGraphics, int i, int j) {
         super.renderTooltip(guiGraphics, i, j);
         this.renderCopperToolTip(guiGraphics, i, j);
+        this.renderBurnToolTip(guiGraphics, i, j);
 
     }
 
@@ -43,7 +44,16 @@ public class NeoForgeTickAcceleratorScreen extends AbstractContainerScreen<NeoFo
         int hoverPositionY = y - topPos;
         if (hoverPositionX > 106 && hoverPositionX < 111 && hoverPositionY > 11 && hoverPositionY < 50) {
             Component componentCopper = MutableComponent.create(this.menu.getCopperName().getContents())
-                    .append(" (%s/%s Units)".formatted(this.menu.getCoperValue(), this.menu.getMaxCopper()));
+                    .append(" (%s/%s)".formatted(this.menu.getCoperValue(), this.menu.getMaxCopper()));
+            guiGraphics.renderTooltip(font, componentCopper,x ,y + 12);
+        }
+    }
+    private void renderBurnToolTip(GuiGraphics guiGraphics, int x, int y){
+        int hoverPositionX = x - leftPos;
+        int hoverPositionY = y - topPos;
+        if (hoverPositionX > 113 && hoverPositionX < 118 && hoverPositionY > 11 && hoverPositionY < 50) {
+            Component componentCopper = MutableComponent.create(this.menu.getburnName().getContents())
+                    .append(" (%s/%s)".formatted(this.menu.getBurnValue(), 3600));
             guiGraphics.renderTooltip(font, componentCopper,x ,y + 12);
         }
     }
@@ -56,11 +66,18 @@ public class NeoForgeTickAcceleratorScreen extends AbstractContainerScreen<NeoFo
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         pGuiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight);
-        renderBlazeUses(pGuiGraphics, x, y);
+        renderCopper(pGuiGraphics, x, y);
+        renderBurn(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
     }
 
-    private void renderBlazeUses(GuiGraphics guiGraphics, int x, int y) {
-            guiGraphics.blit(texture,  x + 107 , y + 12, 176, 0, 4, menu.getCopperLevel());
+    private void renderCopper(GuiGraphics guiGraphics, int x, int y) {
+        int posisionOffset = 37 - menu.getCopperLevel();
+        guiGraphics.blit(texture, x + 107, y + 12 + posisionOffset, 176, posisionOffset, 4, menu.getCopperLevel());
+    }
+
+    private void renderBurn(GuiGraphics guiGraphics, int x, int y) {
+        int posisionOffset = 35 - menu.getBunrLevel();
+        guiGraphics.blit(texture, x + 114, y + 13 + posisionOffset, 181, posisionOffset, 4, menu.getBunrLevel());
     }
 }
