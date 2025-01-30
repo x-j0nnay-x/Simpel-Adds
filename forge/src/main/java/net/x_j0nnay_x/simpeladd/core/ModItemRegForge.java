@@ -37,8 +37,9 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> FEEDINGTOOL = ITEMS.register(ModNames.Items.FEEDINGTOOL, () -> ModItems.FEEDINGTOOL);
     public static final RegistryObject<Item> GROWSTAFF = ITEMS.register(ModNames.Items.GROWSTAFF, () -> ModItems.GROWSTAFF);
     public static final RegistryObject<Item> FUELCHUNKS = ITEMS.register(ModNames.Items.FUELCHUNKS, () -> ModItems.FUELCHUNKS);
-    public static final RegistryObject<Item> HOMEWAND = ITEMS.register(ModNames.Items.HOMEWAND, () -> new HomeWandForge(new Item.Properties()));
+    public static final RegistryObject<Item> HOMEWAND = ITEMS.register(ModNames.Items.HOMEWAND, () -> new HomeWandForge(ModItems.HOMEWAND_USES));
     public static final RegistryObject<Item> HOMECRYSTAL = ITEMS.register(ModNames.Items.HOMECRYSTAL, () -> ModItems.HOMECRYSTAL);
+    public static final RegistryObject<Item> XPCRYSTAL = ITEMS.register(ModNames.Items.XPCRYSTAL, () -> ModItems.XPCRYSTAL);
     //upgrades
     public static final RegistryObject<Item> SPEEDUPGRADE_1 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_1, () -> ModItems.SPEEDUPGRADE_1);
     public static final RegistryObject<Item> SPEEDUPGRADE_2 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_2, () -> ModItems.SPEEDUPGRADE_2);

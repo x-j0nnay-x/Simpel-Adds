@@ -279,7 +279,7 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
                     ticker.tick(serverLevel, blockPos, blockEntity.getBlockState(), blockEntity);
                 }
             } else if (blockState.isRandomlyTicking()) {
-                if (serverLevel.random.nextInt(1365) == 0) {
+                if (serverLevel.random.nextInt(this.tickSpeed * 100) == 0) {
                     blockState.randomTick(serverLevel, blockPos, serverLevel.random);
                 }
             }

@@ -22,6 +22,7 @@ public class NeoForgeFurnaceBlockEntity_Up extends Abst_FurnaceBlockEntity_Up  {
         return new NeoForgeFurnaceMenu_up(i, inventory, this, this.data);
     }
 
+
     public static boolean isFuel(ItemStack itemStack) {
         return itemStack.getBurnTime(RecipeType.SMELTING) > 0;
     }

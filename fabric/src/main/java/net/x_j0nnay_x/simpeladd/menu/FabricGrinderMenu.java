@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.x_j0nnay_x.simpeladd.blocks.entity.Abst_GrinderBlockEntity;
 import net.x_j0nnay_x.simpeladd.blocks.entity.FabricGrinderBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModItemRegFabric;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeFabric;
@@ -34,8 +35,9 @@ public class FabricGrinderMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity.INPUTSLOT, 34, 44){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.CANGRIND);
+                return true;
             }
+
         });
         this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity.GRINDERSLOT, 79, 17){
             @Override

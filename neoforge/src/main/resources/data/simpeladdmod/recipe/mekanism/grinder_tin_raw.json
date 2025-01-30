@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions":
+  [
+    {
+      "type":"neoforge:mod_loaded",
+      "modid":"mekanism"
+    }
+  ],
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "item": "mekanism:raw_tin"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "mekanism:dust_tin"
+  }
+}

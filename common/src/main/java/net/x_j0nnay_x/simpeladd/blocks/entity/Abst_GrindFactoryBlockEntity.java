@@ -51,6 +51,8 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     private static final int[] SLOTS_FOR_UP = new int[]{FUELSLOT, GRINDERSLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{FUELSLOT, OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4, FURNACEINSLOT1, FURNACEINSLOT2, FURNACEINSLOT3, FURNACEINSLOT4,};
     private static final int[] SLOTS_FOR_SIDES = new int[]{XPBOTTLESLOT, GRINDERINSLOT1, GRINDERINSLOT2, GRINDERINSLOT3, GRINDERINSLOT4};
+    private static final int[] SLOTS_FOR_SPLITTINGGrind = new int[]{GRINDERINSLOT1, GRINDERINSLOT2, GRINDERINSLOT3, GRINDERINSLOT4};
+    private static final int[] SLOTS_FOR_SPLITTINGFurn = new int[]{FURNACEINSLOT1, FURNACEINSLOT2, FURNACEINSLOT3, FURNACEINSLOT4};
     protected final ContainerData data;
     private int grindProg1 = 0;
     private int grindProg2 = 0;
@@ -163,10 +165,10 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
         if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
             if(index == GRINDERINSLOT1 || index == GRINDERINSLOT2 || index == GRINDERINSLOT3 || index == GRINDERINSLOT4){
-                if(var2.is(ModTags.Items.CANGRIND)){
-                    return true;
-                }
-                return false;
+                return hasGrindRecipeforinput(var2);
+            }
+            if(index == FURNACEINSLOT1 || index == FURNACEINSLOT2 || index == FURNACEINSLOT3 || index == FURNACEINSLOT4){
+                return hasFurnRecipeforinput(var2);
             }
             return false;
         }
@@ -181,6 +183,12 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         }
         return false;
     }
+    public boolean hasGrindRecipeforinput(ItemStack stack){
+        return recipeCheckGrinding.getRecipeFor(new SingleRecipeInput(stack), level).isPresent();
+    }
+    public boolean hasFurnRecipeforinput(ItemStack stack){
+        return recipeCheckSmelting.getRecipeFor(new SingleRecipeInput(stack), level).isPresent();
+    }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
@@ -189,10 +197,7 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
                 return true;
             }
             if(index == FURNACEINSLOT1 || index == FURNACEINSLOT2 || index == FURNACEINSLOT3 || index == FURNACEINSLOT4){
-                if(!var2.is(ModTags.Items.DUST)){
-                    return true;
-                }
-                return false;
+                return !hasFurnRecipeforinput(var2);
             }
             if(index == FUELSLOT && var2.is(Items.BUCKET)){
                 return true;
@@ -294,7 +299,7 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         setUpgrades();
         makeXPBottle();
         addFuel();
-        splitStack();
+        splitStackGrind();
         if(!hasGrind()){
             resetGrinds();
         }
@@ -506,16 +511,10 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
         }
     }
 
-    private void splitStack(){
-        int slotCount = 1;
-        for (int i = 0; i < 3; i ++) {
-            if (areStacksSame(GRINDERINSLOT1 + i, GRINDERINSLOT2 + i)) {
-                slotCount++;
-            }
-        }
-        for (int i = 0; i < 3; i ++) {
-            int count = this.stacks.get(GRINDERINSLOT1 + i).getCount() / slotCount;
-            moveItem(GRINDERINSLOT1 + i, GRINDERINSLOT2 + i, count);
+    private void splitStackGrind(){
+        for (int slot : SLOTS_FOR_SPLITTINGGrind) {
+            int count = Math.round(this.stacks.get(slot).getCount() / 4);
+            moveItem(slot, slot + 1, count);
         }
     }
 

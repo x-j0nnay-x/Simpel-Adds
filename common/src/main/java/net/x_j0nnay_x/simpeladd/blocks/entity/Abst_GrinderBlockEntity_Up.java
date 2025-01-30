@@ -46,6 +46,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private static final int[] SLOTS_FOR_UP = new int[]{GRINDERSLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4};
     private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3, INPUTSLOT4};
+    public static int[] SLOTS_FOR_SPLITTING = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3};
     protected final ContainerData data;
     private int progress1 = 0;
     private int progress2 = 0;
@@ -129,10 +130,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
         if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
             if (index == INPUTSLOT1 || index == INPUTSLOT2 || index == INPUTSLOT3 || index == INPUTSLOT4){
-                if(var2.is(ModTags.Items.CANGRIND)){
-                    return true;
-                }
-                return false;
+                return hasRecipeforinput(var2);
             }
             return false;
         }
@@ -144,7 +142,9 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         }
         return false;
     }
-
+    public boolean hasRecipeforinput(ItemStack stack){
+        return recipeCheckGrinding.getRecipeFor(new SingleRecipeInput(stack), level).isPresent();
+    }
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
         if(direction == Direction.DOWN){
@@ -318,7 +318,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             }
         }
     }
-
+//Old SpitStack
     private boolean hasEnoughtToMove(int slot, int count){
         return this.stacks.get(slot).getCount() >= count;
     }
@@ -345,17 +345,10 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     }
 
     private void splitStack(){
-        int slotCount = 1;
-        for (int i = 0; i < 3; i ++) {
-            if (areStacksSame(INPUTSLOT1 + i, INPUTSLOT2 + i)) {
-                slotCount++;
-            }
+        for (int slot : SLOTS_FOR_SPLITTING) {
+            int count = Math.round(this.stacks.get(slot).getCount() / 4);
+            moveItem(slot, slot + 1, count);
         }
-        for (int i = 0; i < 3; i ++) {
-            int count = this.stacks.get(INPUTSLOT1+ i).getCount() / slotCount;
-            moveItem(INPUTSLOT1 + i, INPUTSLOT2 + i, count);
-        }
-
     }
     private boolean isblockEmpty(){
         return stacks.get(INPUTSLOT1).isEmpty() && stacks.get(INPUTSLOT2).isEmpty() && stacks.get(INPUTSLOT3).isEmpty() && stacks.get(INPUTSLOT4).isEmpty() ;

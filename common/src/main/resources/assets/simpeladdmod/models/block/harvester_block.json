@@ -1,0 +1,13 @@
+{
+  "parent" : "minecraft:block/cube",
+  "textures": {
+    "up" : "simpeladdmod:block/harvester_nonface",
+    "down": "simpeladdmod:block/harvester_nonface",
+    "north": "simpeladdmod:block/harvester",
+    "east": "simpeladdmod:block/harvester",
+    "south": "simpeladdmod:block/harvester",
+    "west": "simpeladdmod:block/harvester",
+    "particle": "simpeladdmod:block/harvester_nonface"
+
+  }
+}

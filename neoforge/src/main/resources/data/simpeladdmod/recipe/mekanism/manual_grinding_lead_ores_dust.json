@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions":
+  [
+    {
+      "type":"neoforge:mod_loaded",
+      "modid":"mekanism"
+    }
+  ],
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:ores/lead"
+    },
+    {
+      "tag": "simpeladdmod:grinders"
+    }
+  ],
+  "result":
+  {
+    "id": "mekanism:dust_lead",
+    "count":6
+  }
+}

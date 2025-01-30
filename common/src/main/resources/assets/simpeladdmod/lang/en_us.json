@@ -30,9 +30,13 @@
   "item.simpeladdmod.homewand.homeless" : "Home has not been set",
   "item.simpeladdmod.homewand.cooldown" : "On Cool Down",
   "item.simpeladdmod.homewand.wrongdim" : "You are in the wrong dimension",
-  "item.simpeladdmod.homecrystal" : "Home Crystal",
-
-
+  "item.simpeladdmod.homewand.repair" : "Repair Me To Use Again",
+  "item.simpeladdmod.homecrystal" : "Travel Crystal",
+  "item.simpeladdmod.xp_crystal" : "XP Storage Crystal",
+  "item.simpeladdmod.xp_crystal.xp" : "XP Levels:",
+  "item.simpeladdmod.xp_crystal.tooltipcrouch" : "when you right click & crouching, main hand to store all XP. off hand to take all XP.",
+  "item.simpeladdmod.xp_crystal.tooltip" : "when you right click, main hand take 10 levels. off hand to take 1 level.",
+  "item.simpeladdmod.xp_crystal.xp_progress" : "XP Progress: ",
 
   "item.simpeladdmod.unobtaniumdust" : "Unobtanium Dust",
   "item.simpeladdmod.netherite_shard_dust" : "Ancient Shards Dust",
@@ -138,6 +142,7 @@
   "block.simpeladdmod.chunk_torch": "Tinny Torch",
   "block.simpeladdmod.tick_accelerator_block": "Tick Accelerator",
   "block.simpeladdmod.toolrepair_block": "Tool Repairer",
+  "block.simpeladdmod.harvester_block": "Crop Havester",
 
   "creativetab.simpel_tab": "Simpel add Tab",
 
@@ -153,7 +158,6 @@
   "simpeladdmod.jei.upgrades.boost": "Efficiency Upgrades, inside of Machines that have a slot for them will make them run more efficiently. you can put these in the Tick Accelerator block and it will Increase the range By 1 block up to 5",
   "simpeladdmod.jei.tick_accelerator": "This Block will make other blocks run faster, Feed it some copper ingots and you are ready to speeding up blocks with a radius of 1 block. you can put speed upgrades in it to make it run faster. you can also putt Efficiency Upgrades in it +1 the range per upgrade",
 
-  "gui.simpeladdmod.grinder_gui.Grindables": "Any Item with the Tag Grindable",
   "gui.simpeladdmod.chiller_block_gui.Chilling": "Any Item With The Tage Chilling",
   "gui.simpeladdmod.grinder_gui.label": "Grinder",
   "gui.simpeladdmod.grinder_up_gui.label": "Netherite Grinder",

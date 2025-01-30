@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "simpeladdmod:obsidianchest",
+    "simpeladdmod:obsidiritechest",
+    "simpeladdmod:unobtainnetheritechest",
+    "simpeladdmod:unobtainobsidiritechest"
+  ]
+}

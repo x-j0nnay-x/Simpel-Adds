@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model" : "simpeladdmod:block/harvester_block"
+    },
+    "powered=true": {
+      "model" : "simpeladdmod:block/harvester_block_off"
+    }
+  }
+}

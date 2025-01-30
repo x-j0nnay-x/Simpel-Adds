@@ -39,6 +39,10 @@ public class ModBlockEntitiesNeoForge {
 
 	public static final Supplier<BlockEntityType<NeoForgeToolRepairBlockEntity>> TOOL_REPAIR = BLOCK_ENTITY.register(ModNames.Blocks.TOOLREPAIR, () ->
 			BlockEntityType.Builder.of(NeoForgeToolRepairBlockEntity::new, ModBlockRegNeoForge.TOOLREPAIR.get()).build(null));
+
+	public static final Supplier<BlockEntityType<NeoForgeHarvesterBlockEntity>> HARVESTER = BLOCK_ENTITY.register(ModNames.Blocks.HARVESTER, () ->
+			BlockEntityType.Builder.of(NeoForgeHarvesterBlockEntity::new, ModBlockRegNeoForge.HARVESTER.get()).build(null));
+
 	public static void register(IEventBus eventBus) {
 		SimpelAddMod.modBlockEntRegText();
 		BLOCK_ENTITY.register(eventBus);

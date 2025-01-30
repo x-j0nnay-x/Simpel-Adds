@@ -1,9 +1,14 @@
 package net.x_j0nnay_x.simpeladd.menu;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -36,6 +41,7 @@ public class NeoForgeToolRepairMenu extends AbstractContainerMenu {
         this.inventory = ((Container) entity);
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
+        addPlayerArrmor(inv);
 
             this.addSlot(new Slot(this.inventory, NeoForgeToolRepairBlockEntity.COPPERSLOT, 88, 32) {
                 @Override
@@ -91,6 +97,37 @@ public class NeoForgeToolRepairMenu extends AbstractContainerMenu {
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(playerInventory, si, 0 + 8 + si * 18, 0 + 142));
     }
+
+    private void addPlayerArrmor(Inventory playerInventory){
+        int yOff = 127;
+        this.addSlot(new Slot(playerInventory, 36 , -14, yOff){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(ItemTags.FOOT_ARMOR);
+            }
+        });
+        this.addSlot(new Slot(playerInventory, 37 , -14, yOff - 1 * 18){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(ItemTags.LEG_ARMOR);
+            }
+        });
+        this.addSlot(new Slot(playerInventory, 38 , -14, yOff - 2 * 18){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(ItemTags.CHEST_ARMOR);
+            }
+        });
+        this.addSlot(new Slot(playerInventory, 39 , -14, yOff - 3 * 18){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(ItemTags.HEAD_ARMOR);
+            }
+        });
+        this.addSlot(new Slot(playerInventory, 40, -14, yOff + 1 * 18));
+    }
+
+
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
     // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
@@ -104,7 +141,7 @@ public class NeoForgeToolRepairMenu extends AbstractContainerMenu {
     private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT + 5;
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
     @Override

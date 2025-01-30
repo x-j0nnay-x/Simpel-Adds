@@ -58,6 +58,7 @@ public class SimpelAddModNeoForge {
         event.register(ModMenuTypeNeoForge.GRIND_FACTORY_MENU.get(), NeoForgeGrindFactoryScreen::new);
         event.register(ModMenuTypeNeoForge.TICK_ACCELERATOR_MENU.get(), NeoForgeTickAcceleratorScreen::new);
         event.register(ModMenuTypeNeoForge.TOOLREPAIR_MENU.get(), NeoForgeToolRepairScreen::new);
+        event.register(ModMenuTypeNeoForge.HARVESTER_MENU.get(), NeoForgeHarvesterScreen::new);
     }
 
     private void handleClientSetup(FMLClientSetupEvent event) {

@@ -8,14 +8,23 @@ import net.x_j0nnay_x.simpeladd.item.util.ModFoods;
 import net.x_j0nnay_x.simpeladd.item.util.ModToolTiers;
 
 public class ModItems {
+    //Ints
+    public static final int FLINT_GRINDER_USES = 256;
+    public static final int NETHERITE_GRINDER_USES = 676;
+    public static final int UNOBTIANIUM_GRINDER_USES = 1596;
+    public static final int REPAIRTOOL_USES = 1000;
+    public static final int FIREPROOFTOOL_USES = 600;
+    public static final int FEEDINGTOOL_USES = 450;
+    public static final int GROWSTAFF_USES = 380;
+    public static final int HOMEWAND_USES = 256;
     //wing items
     public static final Item SIMPEL_ELITRA_HALF = new SimpelItem(new Item.Properties());
     public static final Item SIMPEL_ELITRA_PART1 = new SimpelItem(new Item.Properties());
     public static final Item SIMPEL_ELITRA_PART2 = new SimpelItem(new Item.Properties());
     //grind head
-    public static final Item GRINDERHEAD = new GrinderHeadItem(256);
-    public static final Item GRINDERHEADNEHTERITE = new GrinderHeadItem(676);
-    public static final Item GRINDERHEADUNOBTIANIUM = new GrinderHeadItem(1596);
+    public static final Item GRINDERHEAD = new GrinderHeadItem(FLINT_GRINDER_USES);
+    public static final Item GRINDERHEADNEHTERITE = new GrinderHeadItem(NETHERITE_GRINDER_USES);
+    public static final Item GRINDERHEADUNOBTIANIUM = new GrinderHeadItem(UNOBTIANIUM_GRINDER_USES);
     //random
     public static final Item WOODFIBER  = new SimpelItem(new Item.Properties());
     public static final Item FLESH  = new SimpelItem(new Item.Properties().food(ModFoods.FLESH));
@@ -27,12 +36,13 @@ public class ModItems {
     public static final Item EMERALD_SHARD_RAW = new SimpelItem(new Item.Properties());
     public static final Item OBSIDAININGOT  = new SimpelItem(new Item.Properties().fireResistant());
     public static final Item UNOBTIANIUMSCRAP = new SimpelItem(new Item.Properties().fireResistant());
-    public static final Item REPAIRTOOL = new SimpelRepairTool(1000);
-    public static final Item FIREPROOFTOOL = new SimpelFireProofTool(600);
-    public static final Item FEEDINGTOOL = new SimpelFeedingTool(450);
-    public static final Item GROWSTAFF = new GrowStaff(380);
+    public static final Item REPAIRTOOL = new SimpelRepairTool(REPAIRTOOL_USES);
+    public static final Item FIREPROOFTOOL = new SimpelFireProofTool(FIREPROOFTOOL_USES);
+    public static final Item FEEDINGTOOL = new SimpelFeedingTool(FEEDINGTOOL_USES);
+    public static final Item GROWSTAFF = new GrowStaff(GROWSTAFF_USES);
     public static final Item FUELCHUNKS = new FuelChunks(new Item.Properties());
-    public static final Item HOMECRYSTAL = new SimpelItem(new Item.Properties());
+    public static final Item HOMECRYSTAL = new TravelCristalItem();
+    public static final Item XPCRYSTAL = new xp_crystal_item();
     //upgrades
     public static final Item SPEEDUPGRADE_1  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_2  = new SimpelItem(new Item.Properties());

@@ -39,49 +39,49 @@ public class ForgeGrindFactoryMenu extends AbstractContainerMenu {
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT1, 43, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.CANGRIND);
+                            return blockEntity.hasGrindRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT2, 61, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.CANGRIND);
+                            return blockEntity.hasGrindRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT3, 79, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.CANGRIND);
+                            return blockEntity.hasGrindRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT4, 97, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.CANGRIND);
+                            return blockEntity.hasGrindRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT1, 43, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.DUST);
+                            return blockEntity.hasFurnRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT2, 61, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.DUST);
+                            return blockEntity.hasFurnRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT3, 79, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.DUST);
+                            return blockEntity.hasFurnRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT4, 97, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.is(ModTags.Items.DUST);
+                            return blockEntity.hasFurnRecipeforinput(stack);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.OUTPUTSLOT1, 43, 54) {

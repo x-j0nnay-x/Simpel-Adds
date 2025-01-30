@@ -3,12 +3,15 @@
   "values":
   [
     "#c:dusts/simpeladdmod_dust_copper",
+    "#c:dusts/copper",
     "#c:dusts/simpeladdmod_dust_iron",
+    "#c:dusts/iron",
     "#c:dusts/simpeladdmod_dust_gold",
+    "#c:dusts/gold",
     "#c:dusts/simpeladdmod_dust_netherite",
     "#c:dusts/simpeladdmod_dust_obsidian",
+    "#c:dusts/obsidian",
     "#c:dusts/simpeladdmod_dust_unobtanium",
-
     "#c:dusts/simpeladdmod_shard_dust_netherite",
     "#c:dusts/simpeladdmod_shard_dust_diamond",
     "#c:dusts/simpeladdmod_shard_dust_emerald"

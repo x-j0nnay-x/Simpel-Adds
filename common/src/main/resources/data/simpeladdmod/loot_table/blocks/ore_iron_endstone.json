@@ -13,14 +13,16 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "enchantments": [
-                      {
-                        "enchantment": "minecraft:silk_touch",
-                        "levels": {
-                          "min": 1
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
                         }
-                      }
-                    ]
+                      ]
+                    }
                   }
                 }
               ],
@@ -39,11 +41,6 @@
                   "function": "minecraft:set_count"
                 },
                 {
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops",
-                  "function": "minecraft:apply_bonus"
-                },
-                {
                   "function": "minecraft:explosion_decay"
                 }
               ],
@@ -55,5 +52,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "simpeladdmod:ore_iron_endstone"
+  "random_sequence": "simpeladdmod:blocks/ore_iron_endstone"
 }

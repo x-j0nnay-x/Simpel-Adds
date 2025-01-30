@@ -39,6 +39,9 @@ public class ModBlockEntitiesForge {
 	public static final RegistryObject<BlockEntityType<ForgeToolRepairBlockEntity>> TOOL_REPAIR = BLOCK_ENTITY.register(ModNames.Blocks.TOOLREPAIR, () ->
 			BlockEntityType.Builder.of(ForgeToolRepairBlockEntity::new, ModBlockRegForge.TOOLREPAIR.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<ForgeHarvesterBlockEntity>> HARVESTER = BLOCK_ENTITY.register(ModNames.Blocks.HARVESTER, () ->
+			BlockEntityType.Builder.of(ForgeHarvesterBlockEntity::new, ModBlockRegForge.HARVESTER.get()).build(null));
+
 	public static void register(IEventBus eventBus) {
 		SimpelAddMod.modBlockEntRegText();
 		BLOCK_ENTITY.register(eventBus);

@@ -2,7 +2,11 @@
   "parent": "item/handheld",
   "textures": {
     "layer0": "simpeladdmod:item/homewand"
-  }
+  },
+  "overrides": [
+    {"predicate": { "damage": 1, "damage" : 1}, "model": "simpeladdmod:item/brokenhomewand"}
+
+  ]
 
 
 }

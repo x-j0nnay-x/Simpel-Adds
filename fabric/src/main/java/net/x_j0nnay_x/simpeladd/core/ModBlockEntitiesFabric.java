@@ -47,6 +47,10 @@ public class ModBlockEntitiesFabric {
 			ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Blocks.TOOLREPAIR),
 			FabricBlockEntityTypeBuilder.create(FabricToolRepairBlockEntity::new, ModBlockRegFabric.TOOLREPAIR).build());
 
+	public static final BlockEntityType<FabricHarvesterBlockEntity> HARVESTER = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
+			ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Blocks.HARVESTER),
+			FabricBlockEntityTypeBuilder.create(FabricHarvesterBlockEntity::new, ModBlockRegFabric.HARVESTER).build());
+
 
 	public static void registerBlockEntities() {
 		SimpelAddMod.modBlockEntRegText();

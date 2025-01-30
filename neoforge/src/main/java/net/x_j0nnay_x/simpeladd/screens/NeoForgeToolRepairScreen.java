@@ -37,6 +37,7 @@ public class NeoForgeToolRepairScreen extends AbstractContainerScreen<NeoForgeTo
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
+
     }
     private void renderCopperToolTip(GuiGraphics guiGraphics, int x, int y){
         int hoverPositionX = x - leftPos;
@@ -56,6 +57,8 @@ public class NeoForgeToolRepairScreen extends AbstractContainerScreen<NeoForgeTo
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         pGuiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight);
+        pGuiGraphics.blit(texture, x -22, y + 68, 229, 68, 27, 98);
+
         renderCopper(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
     }
@@ -64,4 +67,5 @@ public class NeoForgeToolRepairScreen extends AbstractContainerScreen<NeoForgeTo
         int posisionOffset = 37 - menu.getCopperLevel();
         guiGraphics.blit(texture, x + 110, y + 12 + posisionOffset, 176, posisionOffset, 4, menu.getCopperLevel());
     }
+
 }
