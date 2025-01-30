@@ -31,12 +31,16 @@ public class HomeWandFabric extends Item {
     private int cooldown;
     private boolean oncooldown;
     private int maxcooldown = 240;
-    int X;
-    int Y;
-    int Z;
 
-    public HomeWandFabric(Properties properties) {
-        super(properties);
+
+    public HomeWandFabric(int maxUese) {
+        super(new Item.Properties()
+                .durability(maxUese)
+        );
+    }
+
+    public boolean isUseable(ItemStack itemstack) {
+        return itemstack.getDamageValue() < itemstack.getMaxDamage();
     }
 
     @Override
@@ -74,29 +78,36 @@ public class HomeWandFabric extends Item {
                 }
             }
             if (!this.oncooldown && !player.isCrouching()) {
-                if(itemStack.getComponents().get(ModDataComponentTypesFabric.HOMEWAND_COMPNENTS) != null && itemStack.getComponents().get(DataComponents.CUSTOM_DATA) != null) {
+                if (isUseable(itemStack)) {
+                    if (itemStack.getComponents().get(ModDataComponentTypesFabric.HOMEWAND_COMPNENTS) != null && itemStack.getComponents().get(DataComponents.CUSTOM_DATA) != null) {
 
-                    if (itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches(level.dimension().location().getPath().toString())) {
-                        tellaport(player);
-                        return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemStack);
-                    } else {
-                        if(itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches("overworld") ||
-                                itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches("the_nether") ||
-                                itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches("the_end")) {
-                            changeDim(player);
+                        if (itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches(level.dimension().location().getPath().toString())) {
+                            itemStack.setDamageValue(itemStack.getDamageValue() + 1);
+                            tellaport(player);
                             return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemStack);
-                        }else{
-                            player.displayClientMessage(Component.translatable("item.simpeladdmod.homewand.wrongdim"), true);
+                        } else {
+                            if (itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches("overworld") ||
+                                    itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches("the_nether") ||
+                                    itemStack.getComponents().get(DataComponents.CUSTOM_DATA).copyTag().getString("dim").toString().matches("the_end")) {
+                                itemStack.setDamageValue(itemStack.getDamageValue() + 1);
+                                changeDim(player);
+                                return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemStack);
+                            } else {
+                                player.displayClientMessage(Component.translatable("item.simpeladdmod.homewand.wrongdim"), true);
+                            }
+                            return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemStack);
                         }
-                        return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemStack);
-                    }
 
-                }else {
-                    player.displayClientMessage(Component.translatable("item.simpeladdmod.homewand.homeless"), true);
+                    } else {
+                        player.displayClientMessage(Component.translatable("item.simpeladdmod.homewand.homeless"), true);
+                    }
                 }
             }
             if (this.oncooldown) {
                 player.displayClientMessage(Component.translatable("item.simpeladdmod.homewand.cooldown"), true);
+            }
+            if (!isUseable(itemStack)) {
+                player.displayClientMessage(Component.translatable("item.simpeladdmod.homewand.repair"), true);
             }
         }
         return super.use(level, player, hand);
@@ -119,10 +130,11 @@ public class HomeWandFabric extends Item {
         double X = (double) itemStack.getComponents().get(ModDataComponentTypesFabric.HOMEWAND_COMPNENTS).getX() + 0.5;
         double Y = (double) itemStack.getComponents().get(ModDataComponentTypesFabric.HOMEWAND_COMPNENTS).getY();
         double Z = (double) itemStack.getComponents().get(ModDataComponentTypesFabric.HOMEWAND_COMPNENTS).getZ() + 0.5;
-        player.teleportTo( X, Y, Z);
         player.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
         player.displayClientMessage(Component.translatable("item.simpeladdmod.homewand.use"), true);
         this.oncooldown = true;
+        player.teleportTo( X, Y, Z);
+
 
     }
     private void changeDim(Player player) {

@@ -57,6 +57,7 @@ public class ForgeToolRepairScreen extends AbstractContainerScreen<ForgeToolRepa
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         pGuiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight);
+        pGuiGraphics.blit(texture, x -22, y + 68, 229, 68, 27, 98);
         renderCopper(pGuiGraphics, x, y);
         RenderSystem.disableBlend();
     }

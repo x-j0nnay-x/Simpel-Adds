@@ -47,6 +47,8 @@ public class ModBlockRegFabric {
     public static final Block UPGRADED_FURNACE = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.UPGRADED_FURNACE), new FabricFurnaceBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block TICK_ACCELERATOR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TICK_ACCELERATOR), new FabricTickAcceleratorBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block TOOLREPAIR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TOOLREPAIR), new FabricToolRepairBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+    public static final Block HARVESTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.HARVESTER), new FabricHarvesterBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
         return Registry.register(BuiltInRegistries.BLOCK,  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name), block);

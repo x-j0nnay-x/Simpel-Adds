@@ -45,6 +45,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModItemRegFabric.FUELCHUNKS);
                         entries.accept(ModItemRegFabric.HOMEWAND);
                         entries.accept(ModItemRegFabric.HOMECRYSTAL);
+                        entries.accept(ModItemRegFabric.XPCRYSTAL);
                 //items upgrade
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_1);
                         entries.accept(ModItemRegFabric.SPEEDUPGRADE_2);
@@ -151,6 +152,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.GRIND_FACTORY_BLOCK);
                         entries.accept(ModBlockRegFabric.TICK_ACCELERATOR);
                         entries.accept(ModBlockRegFabric.TOOLREPAIR);
+                        entries.accept(ModBlockRegFabric.HARVESTER);
                         //other
                         entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
                         entries.accept(ModBlockRegFabric.CHUNK_TOURCH);

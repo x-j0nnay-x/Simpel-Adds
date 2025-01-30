@@ -41,6 +41,7 @@ public class ModCreativeTabNeoForge {
                         entries.accept(ModItemRegNeoForge.FUELCHUNKS.get());
                         entries.accept(ModItemRegNeoForge.HOMEWAND.get());
                         entries.accept(ModItemRegNeoForge.HOMECRYSTAL.get());
+                        entries.accept(ModItemRegNeoForge.XPCRYSTAL.get());
                         //items upgrade
                         entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegNeoForge.SPEEDUPGRADE_2.get());
@@ -147,6 +148,7 @@ public class ModCreativeTabNeoForge {
                         entries.accept(ModBlockRegNeoForge.GRIND_FACTORY_BLOCK.get());
                         entries.accept(ModBlockRegNeoForge.TICK_ACCELERATOR.get());
                         entries.accept(ModBlockRegNeoForge.TOOLREPAIR.get());
+                        entries.accept(ModBlockRegNeoForge.HARVESTER.get());
                         //other
                         entries.accept(ModBlockRegNeoForge.SIMPEL_FARM_LAND.get());
                         entries.accept(ModBlockRegNeoForge.CHUNK_TOURCH.get());

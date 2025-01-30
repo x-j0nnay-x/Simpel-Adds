@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions":
+  [
+    {
+      "type":"neoforge:mod_loaded",
+      "modid":"ae2"
+    }
+  ],
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:gems/certus_quartz"
+    },
+    {
+      "tag": "simpeladdmod:grinders"
+    }
+  ],
+  "result":
+  {
+    "id": "ae2:certus_quartz_dust",
+    "count":1
+  }
+}

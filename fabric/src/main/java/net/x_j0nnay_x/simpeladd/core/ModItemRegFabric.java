@@ -32,8 +32,9 @@ public class ModItemRegFabric {
     public static final Item FEEDINGTOOL = registerItem(ModNames.Items.FEEDINGTOOL, ModItems.FEEDINGTOOL);
     public static final Item GROWSTAFF = registerItem(ModNames.Items.GROWSTAFF, ModItems.GROWSTAFF);
     public static final Item FUELCHUNKS = registerItem(ModNames.Items.FUELCHUNKS, ModItems.FUELCHUNKS);
-    public static final Item HOMEWAND = registerItem(ModNames.Items.HOMEWAND, new HomeWandFabric(new Item.Properties()));
+    public static final Item HOMEWAND = registerItem(ModNames.Items.HOMEWAND, new HomeWandFabric(ModItems.HOMEWAND_USES));
     public static final Item HOMECRYSTAL = registerItem(ModNames.Items.HOMECRYSTAL, ModItems.HOMECRYSTAL);
+    public static final Item XPCRYSTAL = registerItem(ModNames.Items.XPCRYSTAL, ModItems.XPCRYSTAL);
     //upgrades
     public static final Item SPEEDUPGRADE_1 = registerItem(ModNames.Items.SPEEDUPGRADE_1, ModItems.SPEEDUPGRADE_1);
     public static final Item SPEEDUPGRADE_2 = registerItem(ModNames.Items.SPEEDUPGRADE_2, ModItems.SPEEDUPGRADE_2);

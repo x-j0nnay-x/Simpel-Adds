@@ -38,49 +38,49 @@ public class NeoForgeGrindFactoryMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.GRINDERINSLOT1, 43, 12){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.CANGRIND);
+                return blockEntity.hasGrindRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.GRINDERINSLOT2, 61, 12){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.CANGRIND);
+                return blockEntity.hasGrindRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.GRINDERINSLOT3, 79, 12){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.CANGRIND);
+                return blockEntity.hasGrindRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.GRINDERINSLOT4, 97, 12){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.CANGRIND);
+                return blockEntity.hasGrindRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.FURNACEINSLOT1, 43, 33){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.DUST);
+                return blockEntity.hasFurnRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.FURNACEINSLOT2, 61, 33){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.DUST);
+                return blockEntity.hasFurnRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.FURNACEINSLOT3, 79, 33){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.DUST);
+                return blockEntity.hasFurnRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.FURNACEINSLOT4, 97, 33){
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.is(ModTags.Items.DUST);
+                return blockEntity.hasFurnRecipeforinput(stack);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrindFactoryBlockEntity.OUTPUTSLOT1, 43, 54){

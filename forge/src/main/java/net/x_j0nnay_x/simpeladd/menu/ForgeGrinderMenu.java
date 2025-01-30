@@ -38,7 +38,7 @@ public class ForgeGrinderMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity.INPUTSLOT, 34, 44){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return stack.is(ModTags.Items.CANGRIND);
+                    return blockEntity.hasRecipeforinput(stack);
                 }
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity.OUTPUTSLOT, 124, 44){

@@ -44,6 +44,9 @@ public class ModMenuTypeNeoForge {
     public static final  Supplier<MenuType<NeoForgeToolRepairMenu>> TOOLREPAIR_MENU =
             registerMenuType(ModNames.Menu.TOOLREPAIR_MENU, NeoForgeToolRepairMenu::new);
 
+    public static final  Supplier<MenuType<NeoForgeHarvesterMenu>> HARVESTER_MENU =
+            registerMenuType(ModNames.Menu.HARVESTER_MENU, NeoForgeHarvesterMenu::new);
+
     private static <T extends AbstractContainerMenu>Supplier<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }

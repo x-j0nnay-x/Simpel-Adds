@@ -41,6 +41,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.FUELCHUNKS.get());
                         entries.accept(ModItemRegForge.HOMEWAND.get());
                         entries.accept(ModItemRegForge.HOMECRYSTAL.get());
+                        entries.accept(ModItemRegForge.XPCRYSTAL.get());
                     //items upgrade
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_2.get());
@@ -147,6 +148,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModBlockRegForge.GRIND_FACTORY_BLOCK.get());
                         entries.accept(ModBlockRegForge.TICK_ACCELERATOR.get());
                         entries.accept(ModBlockRegForge.TOOLREPAIR.get());
+                        entries.accept(ModBlockRegForge.HARVESTER.get());
                         //other
                         entries.accept(ModBlockRegForge.SIMPEL_FARM_LAND.get());
                         entries.accept(ModBlockRegForge.CHUNK_TOURCH.get());

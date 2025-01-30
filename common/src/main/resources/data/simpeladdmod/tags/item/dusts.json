@@ -9,7 +9,11 @@
     "simpeladdmod:unobtaniumdust",
     "simpeladdmod:netherite_shard_dust",
     "simpeladdmod:diamond_shard_dust",
-    "simpeladdmod:emerald_shard_dust"
+    "simpeladdmod:emerald_shard_dust",
+    "mekanism:dust_lead",
+    "mekanism:dust_osmium",
+    "mekanism:dust_tin",
+    "mekanism:dust_uranium"
 
 ]
 }

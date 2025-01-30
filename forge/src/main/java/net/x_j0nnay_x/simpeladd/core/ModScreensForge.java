@@ -20,5 +20,6 @@ public class ModScreensForge {
         MenuScreens.register(ModMenuTypeForge.Netherite_Menu.get(), ForgeNetheriteCrafterScreen::new);
         MenuScreens.register(ModMenuTypeForge.TICK_ACCELERATOR_MENU.get(), ForgeTickAcceleratorScreen::new);
         MenuScreens.register(ModMenuTypeForge.TOOL_REPAIR_MENU.get(), ForgeToolRepairScreen::new);
+        MenuScreens.register(ModMenuTypeForge.HARVESTER_MENU.get(), ForgeHarvesterScreen::new);
     }
 }

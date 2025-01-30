@@ -60,6 +60,8 @@ public class ModBlockRegNeoForge {
             () -> new NeoForgeTickAcceleratorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> TOOLREPAIR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TOOLREPAIR),
             () -> new NeoForgeToolRepairBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> HARVESTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.HARVESTER),
+            () -> new NeoForgeHarvesterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

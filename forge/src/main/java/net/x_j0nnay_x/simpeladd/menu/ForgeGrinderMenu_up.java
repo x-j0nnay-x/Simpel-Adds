@@ -38,25 +38,25 @@ public class ForgeGrinderMenu_up extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity_Up.INPUTSLOT1, 43, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return stack.is(ModTags.Items.CANGRIND);
+                    return blockEntity.hasRecipeforinput(stack);
                 }
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity_Up.INPUTSLOT2, 61, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return stack.is(ModTags.Items.CANGRIND);
+                    return blockEntity.hasRecipeforinput(stack);
                 }
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity_Up.INPUTSLOT3, 79, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return stack.is(ModTags.Items.CANGRIND);
+                    return blockEntity.hasRecipeforinput(stack);
                 }
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity_Up.INPUTSLOT4, 97, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return stack.is(ModTags.Items.CANGRIND);
+                    return blockEntity.hasRecipeforinput(stack);
                 }
             });
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrinderBlockEntity_Up.OUTPUTSLOT1, 43, 53){

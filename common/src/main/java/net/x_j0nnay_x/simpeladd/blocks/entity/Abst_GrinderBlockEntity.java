@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
-    private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends GrinderRecipe> recipeCheckGrinder;
+    public final RecipeManager.CachedCheck<SingleRecipeInput, ? extends GrinderRecipe> recipeCheckGrinder;
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(5, ItemStack.EMPTY);
     public static int INPUTSLOT = 0;
     public static int GRINDERSLOT = 1;
@@ -78,6 +78,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         };
     }
 
+
     @Override
     public void loadAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.loadAdditional($$0, pRegistries);
@@ -100,8 +101,8 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
         if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
-            if(index == INPUTSLOT && var2.is(ModTags.Items.CANGRIND)){
-                return true;
+            if(index == INPUTSLOT){
+                return hasRecipeforinput(var2);
             }
             return false;
         }
@@ -112,6 +113,11 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             return false;
         }
         return false;
+    }
+
+
+    public boolean hasRecipeforinput(ItemStack stack){
+        return recipeCheckGrinder.getRecipeFor(new SingleRecipeInput(stack), level).isPresent();
     }
 
     @Override

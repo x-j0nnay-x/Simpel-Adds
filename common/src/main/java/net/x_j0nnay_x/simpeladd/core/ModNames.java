@@ -35,6 +35,7 @@ public class ModNames {
         public static final String GOLD = "gold";
         public static final String COPPER = "copper";
         public static final String TOOLREPAIR = "toolrepair";
+        public static final String HARVESTER = "harvester";
 
         public static String getBlockNameForEntity(String name) {
             return name + "_block";
@@ -69,6 +70,7 @@ public class ModNames {
         public static final String FUELCHUNKS = "fuelchunk";
         public static final String HOMEWAND = "homewand";
         public static final String HOMECRYSTAL = "homecrystal";
+        public static final String XPCRYSTAL = "xp_crystal";
         //upgrades
         public static final String SPEEDUPGRADE_1 = "speedupgrade_1";
         public static final String SPEEDUPGRADE_2 = "speedupgrade_2";
@@ -134,6 +136,7 @@ public class ModNames {
         public static final String NETHERITE_MENU = "netheritemenu";
         public static final String TICK_ACCELERATOR_MENU = "tick_accelerator_menu";
         public static final String TOOLREPAIR_MENU = "toolrepair_menu";
+        public static final String HARVESTER_MENU = "harvester_menu";
     }
 
     public static class Recipe{

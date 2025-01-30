@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values" : [
-    "#c:ingots/simpeladdmod_ingot_obsidian"
+    "#c:ingots/simpeladdmod_ingot_obsidian",
+    "#c:ingots/obsidian"
   ]
 }

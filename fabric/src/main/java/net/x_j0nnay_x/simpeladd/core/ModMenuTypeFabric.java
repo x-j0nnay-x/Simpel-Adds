@@ -56,6 +56,11 @@ public class ModMenuTypeFabric {
                     new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
                             new FabricToolRepairMenu(pWindowID,pInventory), ToolRepairData.CODEC));
 
+    public static final MenuType<FabricHarvesterMenu> HARVESTER_MENU =
+            Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Menu.HARVESTER_MENU),
+                    new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
+                            new FabricHarvesterMenu(pWindowID,pInventory), HarvesterData.CODEC));
+
 
     public static void registerScreenHandlers() {
         SimpelAddMod.modMenuRegText();

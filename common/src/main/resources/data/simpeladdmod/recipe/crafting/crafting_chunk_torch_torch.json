@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:torch"}
+
+  ],
+  "result": {
+    "id": "simpeladdmod:chunk_torch",
+    "count": 4
+  }
+}

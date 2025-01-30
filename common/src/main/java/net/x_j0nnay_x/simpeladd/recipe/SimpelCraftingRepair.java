@@ -21,7 +21,7 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
     // variables for added readability
     Item flintItem = Items.FLINT;
     Item scrapItem = ModItems.UNOBTIANIUMSCRAP;
-    Item boneItem = Items.BONE;
+    
 
 
     @Override
@@ -38,9 +38,6 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
                     repairItem.add(stackInQuestion);
                 }
                 if (stackInQuestion.is(scrapItem)) {
-                    repairItem.add(stackInQuestion);
-                }
-                if (stackInQuestion.is(boneItem)) {
                     repairItem.add(stackInQuestion);
                 }
             }
@@ -70,9 +67,6 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
                 if (itemstack.is(scrapItem)) {
                     scrapList.add(itemstack.getItem());
                 }
-                if (itemstack.is(boneItem)) {
-                    boneList.add(itemstack.getItem());
-                }
             }
         }
         if (toolItems != null && toolItems.isDamaged()) {
@@ -82,7 +76,6 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
             ItemStack newRepairTool = ModItems.REPAIRTOOL.getDefaultInstance();
             ItemStack newFireProofTool = ModItems.FIREPROOFTOOL.getDefaultInstance();
             ItemStack newFeedingTool = ModItems.FEEDINGTOOL.getDefaultInstance();
-            ItemStack newGrowStaff = ModItems.GROWSTAFF.getDefaultInstance();
 
             if(!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEAD)) {
                 newGrinder.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
@@ -108,10 +101,7 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
                 newFeedingTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
                 return newFeedingTool;
             }
-            if(!boneList.isEmpty() && toolItems.is(ModItems.GROWSTAFF)) {
-                newGrowStaff.setDamageValue(toolItems.getDamageValue() - (boneList.size() * 18));
-                return newGrowStaff;
-            }
+
         }
         return ItemStack.EMPTY;
     }
