@@ -42,7 +42,6 @@ public class ModItems {
     public static final Item GROWSTAFF = new GrowStaff(GROWSTAFF_USES);
     public static final Item FUELCHUNKS = new FuelChunks(new Item.Properties());
     public static final Item HOMECRYSTAL = new TravelCristalItem();
-    public static final Item XPCRYSTAL = new xp_crystal_item();
     //upgrades
     public static final Item SPEEDUPGRADE_1  = new SimpelItem(new Item.Properties());
     public static final Item SPEEDUPGRADE_2  = new SimpelItem(new Item.Properties());
