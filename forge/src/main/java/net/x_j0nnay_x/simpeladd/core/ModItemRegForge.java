@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.item.HomeWandForge;
+import net.x_j0nnay_x.simpeladd.item.xp_crystal_Forge;
 
 public class ModItemRegForge {
 
@@ -39,7 +40,7 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> FUELCHUNKS = ITEMS.register(ModNames.Items.FUELCHUNKS, () -> ModItems.FUELCHUNKS);
     public static final RegistryObject<Item> HOMEWAND = ITEMS.register(ModNames.Items.HOMEWAND, () -> new HomeWandForge(ModItems.HOMEWAND_USES));
     public static final RegistryObject<Item> HOMECRYSTAL = ITEMS.register(ModNames.Items.HOMECRYSTAL, () -> ModItems.HOMECRYSTAL);
-    public static final RegistryObject<Item> XPCRYSTAL = ITEMS.register(ModNames.Items.XPCRYSTAL, () -> ModItems.XPCRYSTAL);
+    public static final RegistryObject<Item> XPCRYSTAL = ITEMS.register(ModNames.Items.XPCRYSTAL, () ->new xp_crystal_Forge());
     //upgrades
     public static final RegistryObject<Item> SPEEDUPGRADE_1 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_1, () -> ModItems.SPEEDUPGRADE_1);
     public static final RegistryObject<Item> SPEEDUPGRADE_2 = ITEMS.register(ModNames.Items.SPEEDUPGRADE_2, () -> ModItems.SPEEDUPGRADE_2);

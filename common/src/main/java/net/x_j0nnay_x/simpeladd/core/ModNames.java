@@ -148,5 +148,7 @@ public class ModNames {
 
     public static class DataComponentTypes {
         public static final String HOMEWAND_COMPNENTS = "homewand_data";
+        public static final String XP_CRYSTAL_LEVEL = "xp_crystal_level";
+        public static final String XP_CRYSTAL_PROGRESS = "xp_crystal_progress";
     }
 }

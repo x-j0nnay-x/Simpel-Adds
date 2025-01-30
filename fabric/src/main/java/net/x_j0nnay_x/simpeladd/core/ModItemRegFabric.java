@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.item.HomeWandFabric;
+import net.x_j0nnay_x.simpeladd.item.xp_crystal_Fabric;
 
 public class ModItemRegFabric {
     //wings
@@ -34,7 +35,7 @@ public class ModItemRegFabric {
     public static final Item FUELCHUNKS = registerItem(ModNames.Items.FUELCHUNKS, ModItems.FUELCHUNKS);
     public static final Item HOMEWAND = registerItem(ModNames.Items.HOMEWAND, new HomeWandFabric(ModItems.HOMEWAND_USES));
     public static final Item HOMECRYSTAL = registerItem(ModNames.Items.HOMECRYSTAL, ModItems.HOMECRYSTAL);
-    public static final Item XPCRYSTAL = registerItem(ModNames.Items.XPCRYSTAL, ModItems.XPCRYSTAL);
+    public static final Item XPCRYSTAL = registerItem(ModNames.Items.XPCRYSTAL, new xp_crystal_Fabric());
     //upgrades
     public static final Item SPEEDUPGRADE_1 = registerItem(ModNames.Items.SPEEDUPGRADE_1, ModItems.SPEEDUPGRADE_1);
     public static final Item SPEEDUPGRADE_2 = registerItem(ModNames.Items.SPEEDUPGRADE_2, ModItems.SPEEDUPGRADE_2);

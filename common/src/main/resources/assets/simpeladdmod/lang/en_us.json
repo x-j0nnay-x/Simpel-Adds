@@ -33,7 +33,7 @@
   "item.simpeladdmod.homewand.repair" : "Repair Me To Use Again",
   "item.simpeladdmod.homecrystal" : "Travel Crystal",
   "item.simpeladdmod.xp_crystal" : "XP Storage Crystal",
-  "item.simpeladdmod.xp_crystal.xp" : "XP Levels:",
+  "item.simpeladdmod.xp_crystal.xp" : "XP Levels: ",
   "item.simpeladdmod.xp_crystal.tooltipcrouch" : "when you right click & crouching, main hand to store all XP. off hand to take all XP.",
   "item.simpeladdmod.xp_crystal.tooltip" : "when you right click, main hand take 10 levels. off hand to take 1 level.",
   "item.simpeladdmod.xp_crystal.xp_progress" : "XP Progress: ",

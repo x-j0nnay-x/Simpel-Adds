@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P#P",
+    "#X#",
+    "P#P"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "X": {
+      "item": "simpeladdmod:homecrystal"
+    },
+    "P": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "id": "simpeladdmod:xp_crystal",
+    "count": 1
+  }
+}
