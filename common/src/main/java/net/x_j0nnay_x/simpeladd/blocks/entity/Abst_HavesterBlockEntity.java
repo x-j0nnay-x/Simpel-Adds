@@ -20,10 +20,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -32,6 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_HarvesterBlock;
+import net.x_j0nnay_x.simpeladd.blocks.SimpelFarmLand;
+import net.x_j0nnay_x.simpeladd.core.ModBlocks;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,9 +38,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
-    protected NonNullList<ItemStack> stacks = NonNullList.withSize(2, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
     public static int SPEEDSLOT = 0;
     public static int EFFICIENCYSLOT = 1;
+    public static int GROWSLOT = 2;
+    private static final int[] SLOTS_FOR_UP = new int[]{GROWSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{GROWSLOT};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{GROWSLOT};
     public int tickSpeed;
     public int tickCount;
     public int tickEfficiency = 0;
@@ -93,17 +96,29 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
     }
     @Override
     public int[] getSlotsForFace(Direction var1) {
-       return null;
+        if (var1 == Direction.DOWN) {
+            return SLOTS_FOR_DOWN;
+        } else {
+            return var1 == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
+        }
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int var1, ItemStack var2, @Nullable Direction var3) {
+        if(var1 == GROWSLOT) {
+            return var2.is(ModItems.GROWSTAFF);
+        }
         return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int var1, ItemStack var2, Direction var3) {
-       return false;
+       if(var1 == GROWSLOT) {
+           if(var2.isDamaged() && var2.getDamageValue() >= var2.getMaxDamage()) {
+               return true;
+           }
+        }
+        return false;
     }
 
     @Override
@@ -155,6 +170,8 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         return Container.stillValidBlockEntity(this, $$0);
     }
 
+
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -169,6 +186,9 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         if(world.isClientSide)
             return;
         setUpGrades();
+        if(isGrowStaffusable()) {
+            startFarmLandLoop(world);
+        }
         if(Boolean.TRUE.equals(world.getBlockState(pos).getValue(Abst_HarvesterBlock.POWERED)))
             return;
         if(this.tickCount >= this.tickSpeed) {
@@ -341,6 +361,36 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
             }
         }
         return false;
+    }
+//change farmland to simpelfarmland
+    private void startFarmLandLoop(ServerLevel world) {
+        BlockPos blockPos = this.getBlockPos();
+        int range = this.getCountBoost() + 1 ;
+        int cropRange = 2;
+        for (BlockPos blockPos1 : BlockPos.betweenClosed(blockPos.offset(-range, -cropRange, -range), blockPos.offset(range, cropRange, range))) {
+            turnToFarmLand(world, blockPos1);
+        }
+    }
+    private void damageGrowStaff(){
+        ItemStack growstaf = this.stacks.get(GROWSLOT);
+        if(growstaf.getDamageValue() > growstaf.getMaxDamage()){
+            return;
+        }else {
+            growstaf.setDamageValue(growstaf.getDamageValue() + 1);
+        }
+    }
+    private boolean isGrowStaffusable(){
+        return this.stacks.get(GROWSLOT).is(ModItems.GROWSTAFF) && this.stacks.get(GROWSLOT).getDamageValue() < this.stacks.get(GROWSLOT).getMaxDamage();
+    }
+
+    public void turnToFarmLand(ServerLevel level, BlockPos blockPos){
+        BlockPos farmlandPos = blockPos.below();
+        if(level.getBlockState(farmlandPos).getBlock() != Blocks.FARMLAND)
+            return;
+        int blockValue = level.getBlockState(farmlandPos).getValue(FarmBlock.MOISTURE);
+        level.setBlockAndUpdate(farmlandPos, ModBlocks.SIMPELFARMLAND.defaultBlockState().setValue(FarmBlock.MOISTURE, blockValue));
+        damageGrowStaff();
+
     }
 
 }

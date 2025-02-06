@@ -16,10 +16,18 @@ public class GrinderHeadItem extends Item{
         ItemStack grinder = itemstack.copy();
         grinder.setDamageValue(grinder.getDamageValue() + 1);
         if (grinder.getDamageValue() >= grinder.getMaxDamage()) {
-            return ItemStack.EMPTY;
+            if(grinder.is(ModItems.GRINDERHEADNEHTERITE)){
+                return GrinderHeadItem_Broken.getNewDefaultInstance(1);
+            }else if(grinder.is(ModItems.GRINDERHEADUNOBTIANIUM)){
+                return GrinderHeadItem_Broken.getNewDefaultInstance(2);
+            }else{
+                return GrinderHeadItem_Broken.getNewDefaultInstance(0);
+            }
         }
         return grinder;
     }
+
+
 
 
     @Override

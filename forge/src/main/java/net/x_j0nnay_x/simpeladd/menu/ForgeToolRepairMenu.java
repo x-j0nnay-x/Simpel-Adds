@@ -50,7 +50,7 @@ public class ForgeToolRepairMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(iItemHandler, ForgeToolRepairBlockEntity.REPAIRSLOT, 68, 13) {
                 @Override
                 public boolean mayPlace(ItemStack itemStack) {
-                    return (itemStack.isDamageableItem() && !itemStack.is(ModTags.Items.NOTREPAIRABLE));
+                    return (!itemStack.is(ModTags.Items.NOTREPAIRABLE));
                 }
 
                 @Override

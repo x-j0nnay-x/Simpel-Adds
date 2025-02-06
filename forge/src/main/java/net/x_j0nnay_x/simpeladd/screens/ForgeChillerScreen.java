@@ -10,7 +10,13 @@ import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.menu.ForgeChillerMenu;
 
+import java.text.NumberFormat;
+
 public class ForgeChillerScreen extends AbstractContainerScreen<ForgeChillerMenu> {
+    private int waterPosX = 74;
+    private int waterPosY = 11;
+    private int tankWidth = 15;
+    private int tankHeight = 58;
 
     private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/chiller_gui.png");
 
@@ -23,6 +29,7 @@ public class ForgeChillerScreen extends AbstractContainerScreen<ForgeChillerMenu
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
+        renderWaterToolOverlay(guiGraphics, mouseX, mouseY);
         if (mouseX > leftPos + 11 && mouseX < leftPos + 35 && mouseY > topPos + 48 && mouseY < topPos + 72)
             guiGraphics.renderTooltip(font, Component.translatable("gui.simpeladdmod.chiller_block_gui.Chilling"), mouseX, mouseY-16);
     }
@@ -61,6 +68,18 @@ public class ForgeChillerScreen extends AbstractContainerScreen<ForgeChillerMenu
     private void renderwater(GuiGraphics guiGraphics, int x, int y) {
         if(menu.hasWater()) {
             guiGraphics.blit(texture, x + 73, y + 69 - menu.getScalledwater() , 177, 0, 16, menu.getScalledwater());
+        }
+    }
+    public void renderWaterToolOverlay(GuiGraphics guiGraphics, int x, int y) {
+        int hoverPositionX = x - leftPos;
+        int hoverPositionY = y - topPos;
+        if (hoverPositionX > this.waterPosX
+                && hoverPositionX < this.waterPosX + this.tankWidth
+                && hoverPositionY > this.waterPosY
+                && hoverPositionY < this.waterPosY + this.tankHeight) {
+            NumberFormat format = NumberFormat.getInstance();
+            String waterLevel = format.format(this.menu.getWaterLever());
+            guiGraphics.renderTooltip(font, Component.literal(waterLevel), x ,y + 12);
         }
     }
 

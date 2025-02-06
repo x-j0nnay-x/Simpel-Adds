@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.fml.common.Mod;
 import net.x_j0nnay_x.simpeladd.blocks.entity.ForgeHarvesterBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
@@ -28,7 +29,7 @@ public class ForgeHarvesterMenu extends AbstractContainerMenu {
 
     public ForgeHarvesterMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypeForge.HARVESTER_MENU.get(), pContainerID);
-        checkContainerSize(inv, 2);
+        checkContainerSize(inv, 3);
         blockEntity = ((ForgeHarvesterBlockEntity) entity);
         level = inv.player.level();
         this.inventory = ((Container) entity);
@@ -47,7 +48,7 @@ public class ForgeHarvesterMenu extends AbstractContainerMenu {
                             return 1;
                         }
                     });
-                    this.addSlot(new Slot(this.inventory, ForgeHarvesterBlockEntity.EFFICIENCYSLOT, 69, 12) {
+                    this.addSlot(new Slot(this.inventory, ForgeHarvesterBlockEntity.EFFICIENCYSLOT, 80, 11) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return stack.is(ModItems.BOOSTUPGRADE);
@@ -56,6 +57,17 @@ public class ForgeHarvesterMenu extends AbstractContainerMenu {
                         @Override
                         public int getMaxStackSize() {
                             return 3;
+                        }
+                    });
+                    this.addSlot(new Slot(this.inventory, ForgeHarvesterBlockEntity.GROWSLOT, 80, 29) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.is(ModItems.GROWSTAFF);
+                        }
+
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
                         }
                     });
         });
@@ -93,7 +105,7 @@ public class ForgeHarvesterMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

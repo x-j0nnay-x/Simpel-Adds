@@ -19,12 +19,12 @@ public class FabricHarvesterMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public FabricHarvesterMenu(int pContainerId, Inventory inv) {
-        this(pContainerId, inv, new SimpleContainer(2), new SimpleContainerData(2));
+        this(pContainerId, inv, new SimpleContainer(3), new SimpleContainerData(2));
     }
 
     public FabricHarvesterMenu(int pContainerID, Inventory inv, Container entity, ContainerData data) {
         super(ModMenuTypeFabric.HARVESTER_MENU, pContainerID);
-        checkContainerSize(inv, 2);
+        checkContainerSize(inv, 3);
         checkContainerDataCount(data, 2);
         entity.startOpen(inv.player);
         level = inv.player.level();
@@ -52,6 +52,17 @@ public class FabricHarvesterMenu extends AbstractContainerMenu {
                 @Override
                 public int getMaxStackSize() {
                     return 3;
+                }
+            });
+            this.addSlot(new Slot(this.inventory, FabricHarvesterBlockEntity.GROWSLOT, 80, 29){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(ModItems.GROWSTAFF);
+                }
+
+                @Override
+                public int getMaxStackSize() {
+                    return 1;
                 }
             });
 
@@ -88,7 +99,7 @@ public class FabricHarvesterMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

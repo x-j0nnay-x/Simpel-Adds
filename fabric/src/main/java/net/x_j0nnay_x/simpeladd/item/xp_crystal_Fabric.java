@@ -1,6 +1,8 @@
 package net.x_j0nnay_x.simpeladd.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -9,10 +11,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.core.ModDataComponentTypesFabric;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.UUID;
 
 public class xp_crystal_Fabric extends Item {
 
@@ -22,12 +28,7 @@ public class xp_crystal_Fabric extends Item {
                 .stacksTo(1)
                 .fireResistant()
         );
-
     }
-
-
-
-
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
@@ -44,30 +45,38 @@ public class xp_crystal_Fabric extends Item {
         ItemStack crystalMain = player.getMainHandItem();
         ItemStack crystalOff = player.getOffhandItem();
         ItemStack itemStack = crystalMain.getItem() == this ? crystalMain : crystalOff;
-        if (!level.isClientSide) {
-            if (player.isCrouching()) {
-                if (crystalMain.getItem() == this) {
-                    addLevel(itemStack, player);
-                    addProgress(itemStack, player);
+        if(itemStack.get(DataComponents.CUSTOM_DATA) == null){
+            setPlayerData(player, itemStack);
+        }
+        if(player.getUUID().equals(itemStack.get(DataComponents.CUSTOM_DATA).copyTag().getUUID("PlayerUUID"))) {
+            if (!level.isClientSide) {
+                if (player.isCrouching()) {
+                    if (crystalMain.getItem() == this) {
+                        addLevel(itemStack, player);
+                        addProgress(itemStack, player);
+                    }
+                    if (crystalOff.getItem() == this) {
+                        removeAll(itemStack, player);
+                    }
                 }
-                if (crystalOff.getItem() == this) {
-                    removeAll(itemStack, player);
-                }
-            }
-            if (!player.isCrouching()) {
-                if (crystalOff.getItem() == this) {
-                    removeOneorTen(itemStack, player, 1);
-                }
-                if (crystalMain.getItem() == this) {
-                   removeOneorTen(itemStack, player, 10);
+                if (!player.isCrouching()) {
+                    if (crystalOff.getItem() == this) {
+                        removeOneorTen(itemStack, player, 1);
+                    }
+                    if (crystalMain.getItem() == this) {
+                        removeOneorTen(itemStack, player, 10);
+                    }
                 }
             }
         }
             return super.use(level, player, usedHand);
-
     }
-
-
+    private void setPlayerData(Player player,  ItemStack itemStack){
+        itemStack.set(DataComponents.CUSTOM_DATA, CustomData.of(new CompoundTag(){{
+            putUUID("PlayerUUID", player.getUUID());
+            putString("PlayerName", player.getName().getString());
+        }}));
+    }
     private void  addLevel(ItemStack itemStack, Player player){
         if(itemStack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL) != null){
             itemStack.set(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL, itemStack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL).intValue() + player.experienceLevel);
@@ -77,6 +86,7 @@ public class xp_crystal_Fabric extends Item {
             player.giveExperienceLevels(-player.experienceLevel);
         }
     }
+
     private void addProgress(ItemStack itemStack, Player player){
         if(itemStack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_PROGRESS) != null){
             itemStack.set(ModDataComponentTypesFabric.XP_CRYSTAL_PROGRESS, itemStack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_PROGRESS).floatValue() + player.experienceProgress);
@@ -97,7 +107,6 @@ public class xp_crystal_Fabric extends Item {
             player.giveExperienceLevels(itemStack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL).intValue());
             itemStack.set(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL, 0);
         }
-
     }
 
     private void removeOneorTen(ItemStack itemStack, Player player, int amount){
@@ -105,9 +114,7 @@ public class xp_crystal_Fabric extends Item {
             player.giveExperienceLevels(amount);
             itemStack.set(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL, itemStack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL).intValue() - amount);
         }
-
     }
-
 
     @Override
     public boolean isFoil(ItemStack stack) {
@@ -141,7 +148,8 @@ public class xp_crystal_Fabric extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if(stack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL) != null){
-            String xpL = String.valueOf(stack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL).intValue());
+            NumberFormat format = NumberFormat.getInstance();
+            String xpL = format.format(stack.getComponents().get(ModDataComponentTypesFabric.XP_CRYSTAL_LEVEL).intValue());
             String title = Component.translatable("item.simpeladdmod.xp_crystal.xp").getString();
             tooltipComponents.add(Component.literal(title + xpL));
         }
@@ -149,6 +157,11 @@ public class xp_crystal_Fabric extends Item {
             String xpP = String.valueOf(Math.round(stack.get(ModDataComponentTypesFabric.XP_CRYSTAL_PROGRESS).floatValue() * 100));
             String titleP = Component.translatable("item.simpeladdmod.xp_crystal.xp_progress").getString();
             tooltipComponents.add(Component.literal(titleP + xpP + "%"));
+        }
+        if(stack.get(DataComponents.CUSTOM_DATA) != null){
+            String owner = Component.translatable("item.simpeladdmod.xp_crystal.owner").getString();
+            String ownerName = stack.get(DataComponents.CUSTOM_DATA).copyTag().getString("PlayerName");
+            tooltipComponents.add(Component.literal(owner + ownerName));
         }
         tooltipComponents.add(Component.translatable("item.simpeladdmod.xp_crystal.tooltipcrouch"));
         tooltipComponents.add(Component.translatable("item.simpeladdmod.xp_crystal.tooltip"));

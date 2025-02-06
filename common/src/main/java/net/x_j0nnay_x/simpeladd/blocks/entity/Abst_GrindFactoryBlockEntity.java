@@ -21,6 +21,7 @@ import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_GrindFactoryBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
+import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
 import static net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity.getFuel;
@@ -49,7 +50,7 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     public static int XPBOTTLESLOT = 16;
     public static int XPBOOSTSLOT = 17;
     private static final int[] SLOTS_FOR_UP = new int[]{FUELSLOT, GRINDERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{FUELSLOT, OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4, FURNACEINSLOT1, FURNACEINSLOT2, FURNACEINSLOT3, FURNACEINSLOT4,};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{FUELSLOT, OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4, FURNACEINSLOT1, FURNACEINSLOT2, FURNACEINSLOT3, FURNACEINSLOT4, GRINDERSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{XPBOTTLESLOT, GRINDERINSLOT1, GRINDERINSLOT2, GRINDERINSLOT3, GRINDERINSLOT4};
     private static final int[] SLOTS_FOR_SPLITTINGGrind = new int[]{GRINDERINSLOT1, GRINDERINSLOT2, GRINDERINSLOT3, GRINDERINSLOT4};
     private static final int[] SLOTS_FOR_SPLITTINGFurn = new int[]{FURNACEINSLOT1, FURNACEINSLOT2, FURNACEINSLOT3, FURNACEINSLOT4};
@@ -202,6 +203,9 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
             if(index == FUELSLOT && var2.is(Items.BUCKET)){
                 return true;
             }
+            if(index == GRINDERSLOT && !var2.is(ModTags.Items.GRINDERS)){
+                return true;
+            }
             return false;
         }
         if(direction == Direction.WEST ||direction == Direction.EAST ||direction == Direction.SOUTH ||direction == Direction.NORTH){
@@ -279,6 +283,7 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
 
     @Override
     protected Component getDefaultName() {
@@ -428,12 +433,8 @@ public abstract class Abst_GrindFactoryBlockEntity extends RandomizableContainer
 
     private void resetGrinds() {
         if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
-            if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
-                this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
-            }else{
-                this.stacks.get(GRINDERSLOT).setDamageValue(this.stacks.get(GRINDERSLOT).getDamageValue() + 1);
-                this.grindsleft += this.maxGrinds;
-            }
+            stacks.set(GRINDERSLOT, GrinderHeadItem.brakeItem(stacks.get(GRINDERSLOT)));
+            grindsleft = maxGrinds;
         }else {
             this.grindsleft = 0;
         }

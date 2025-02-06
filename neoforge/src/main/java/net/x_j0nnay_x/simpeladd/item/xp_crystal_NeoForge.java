@@ -14,8 +14,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.core.ModDataComponentTypesNeoForge;
+import org.jetbrains.annotations.NotNull;
 
+import java.text.*;
 import java.util.List;
+import java.util.UUID;
 
 public class xp_crystal_NeoForge extends Item {
 
@@ -25,11 +28,7 @@ public class xp_crystal_NeoForge extends Item {
                 .stacksTo(1)
                 .fireResistant()
         );
-
     }
-
-
-
 
 
     @Override
@@ -47,29 +46,40 @@ public class xp_crystal_NeoForge extends Item {
         ItemStack crystalMain = player.getMainHandItem();
         ItemStack crystalOff = player.getOffhandItem();
         ItemStack itemStack = crystalMain.getItem() == this ? crystalMain : crystalOff;
-        if (!level.isClientSide) {
-            if (player.isCrouching()) {
-                if (crystalMain.getItem() == this) {
-                    addLevel(itemStack, player);
-                    addProgress(itemStack, player);
+
+        if(itemStack.get(DataComponents.CUSTOM_DATA) == null){
+            setPlayerData(player, itemStack);
+        }
+        if(player.getUUID().equals(itemStack.get(DataComponents.CUSTOM_DATA).copyTag().getUUID("PlayerUUID"))) {
+            if (!level.isClientSide) {
+                if (player.isCrouching()) {
+                    if (crystalMain.getItem() == this) {
+                        addLevel(itemStack, player);
+                        addProgress(itemStack, player);
+                    }
+                    if (crystalOff.getItem() == this) {
+                        removeAll(itemStack, player);
+                    }
                 }
-                if (crystalOff.getItem() == this) {
-                    removeAll(itemStack, player);
-                }
-            }
-            if (!player.isCrouching()) {
-                if (crystalOff.getItem() == this) {
-                    removeOneorTen(itemStack, player, 1);
-                }
-                if (crystalMain.getItem() == this) {
-                   removeOneorTen(itemStack, player, 10);
+                if (!player.isCrouching()) {
+                    if (crystalOff.getItem() == this) {
+                        removeOneorTen(itemStack, player, 1);
+                    }
+                    if (crystalMain.getItem() == this) {
+                        removeOneorTen(itemStack, player, 10);
+                    }
                 }
             }
         }
             return super.use(level, player, usedHand);
-
     }
 
+    private void setPlayerData(Player player,  ItemStack itemStack){
+       itemStack.set(DataComponents.CUSTOM_DATA, CustomData.of(new CompoundTag(){{
+           putUUID("PlayerUUID", player.getUUID());
+           putString("PlayerName", player.getName().getString());
+       }}));
+    }
 
     private void  addLevel(ItemStack itemStack, Player player){
         if(itemStack.getComponents().get(ModDataComponentTypesNeoForge.XP_CRYSTAL_LEVEL.get()) != null){
@@ -80,6 +90,7 @@ public class xp_crystal_NeoForge extends Item {
             player.giveExperienceLevels(-player.experienceLevel);
         }
     }
+
     private void addProgress(ItemStack itemStack, Player player){
         if(itemStack.getComponents().get(ModDataComponentTypesNeoForge.XP_CRYSTAL_PROGRESS.get()) != null){
             itemStack.set(ModDataComponentTypesNeoForge.XP_CRYSTAL_PROGRESS.get(), itemStack.getComponents().get(ModDataComponentTypesNeoForge.XP_CRYSTAL_PROGRESS.get()).floatValue() + player.experienceProgress);
@@ -100,7 +111,6 @@ public class xp_crystal_NeoForge extends Item {
             player.giveExperienceLevels(itemStack.getComponents().get(ModDataComponentTypesNeoForge.XP_CRYSTAL_LEVEL.get()).intValue());
             itemStack.set(ModDataComponentTypesNeoForge.XP_CRYSTAL_LEVEL.get(), 0);
         }
-
     }
 
     private void removeOneorTen(ItemStack itemStack, Player player, int amount){
@@ -110,7 +120,6 @@ public class xp_crystal_NeoForge extends Item {
         }
 
     }
-
 
     @Override
     public boolean isFoil(ItemStack stack) {
@@ -144,7 +153,8 @@ public class xp_crystal_NeoForge extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if(stack.getComponents().get(ModDataComponentTypesNeoForge.XP_CRYSTAL_LEVEL.get()) != null){
-            String xpL = String.valueOf(stack.getComponents().get(ModDataComponentTypesNeoForge.XP_CRYSTAL_LEVEL.get()).intValue());
+            NumberFormat format = NumberFormat.getInstance();
+            String xpL = format.format(stack.getComponents().get(ModDataComponentTypesNeoForge.XP_CRYSTAL_LEVEL.get()).intValue());
             String title = Component.translatable("item.simpeladdmod.xp_crystal.xp").getString();
             tooltipComponents.add(Component.literal(title + xpL));
         }
@@ -152,6 +162,11 @@ public class xp_crystal_NeoForge extends Item {
             String xpP = String.valueOf(Math.round(stack.get(ModDataComponentTypesNeoForge.XP_CRYSTAL_PROGRESS.get()).floatValue() * 100));
             String titleP = Component.translatable("item.simpeladdmod.xp_crystal.xp_progress").getString();
             tooltipComponents.add(Component.literal(titleP + xpP + "%"));
+        }
+        if(stack.get(DataComponents.CUSTOM_DATA) != null){
+            String owner = Component.translatable("item.simpeladdmod.xp_crystal.owner").getString();
+            String ownerName = stack.get(DataComponents.CUSTOM_DATA).copyTag().getString("PlayerName");
+            tooltipComponents.add(Component.literal(owner + ownerName));
         }
         tooltipComponents.add(Component.translatable("item.simpeladdmod.xp_crystal.tooltipcrouch"));
         tooltipComponents.add(Component.translatable("item.simpeladdmod.xp_crystal.tooltip"));

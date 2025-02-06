@@ -6,6 +6,10 @@
   "item.simpeladdmod.grinderhead" : "Grinder Head",
   "item.simpeladdmod.grinderhead_netherite" : "Netherite Grinder Head",
   "item.simpeladdmod.grinderhead_unobtanium" : "Unobtanium Grinder Head",
+  "item.simpeladdmod.grinderhead_broken" : "Broken Grinder Head",
+    "item.simpeladdmod.grinderhead_broken.info.default" : "Flint",
+  "item.simpeladdmod.grinderhead_broken.info.netherite" : "Netherite",
+  "item.simpeladdmod.grinderhead_broken.info.unobtanium" : "Unobtanium",
 
   "item.simpeladdmod.woodfiber" : "Wood Fiber",
   "item.simpeladdmod.flesh" : "Flesh",
@@ -37,6 +41,7 @@
   "item.simpeladdmod.xp_crystal.tooltipcrouch" : "when you right click & crouching, main hand to store all XP. off hand to take all XP.",
   "item.simpeladdmod.xp_crystal.tooltip" : "when you right click, main hand take 10 levels. off hand to take 1 level.",
   "item.simpeladdmod.xp_crystal.xp_progress" : "XP Progress: ",
+  "item.simpeladdmod.xp_crystal.owner" : "Owner: ",
 
   "item.simpeladdmod.unobtaniumdust" : "Unobtanium Dust",
   "item.simpeladdmod.netherite_shard_dust" : "Ancient Shards Dust",

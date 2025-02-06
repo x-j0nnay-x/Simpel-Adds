@@ -23,6 +23,7 @@ import net.x_j0nnay_x.simpeladd.blocks.Abst_GrinderBlock_Up;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
+import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,7 +45,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public static int UPGRADESLOT = 9;
     public static int BOOSTSLOT = 10;
     private static final int[] SLOTS_FOR_UP = new int[]{GRINDERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4, GRINDERSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3, INPUTSLOT4};
     public static int[] SLOTS_FOR_SPLITTING = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3};
     protected final ContainerData data;
@@ -151,6 +152,9 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             if(index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4){
                 return true;
             }
+           if(index == GRINDERSLOT && !var2.is(ModTags.Items.GRINDERS)){
+                return true;
+           }
             return  false;
         }
         return false;
@@ -222,6 +226,8 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
+
 
     @Override
     protected Component getDefaultName() {
@@ -307,12 +313,8 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private void resetGrinds() {
         if(grindsleft == 0) {
             if (this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)) {
-                if (this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()) {
-                    this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
-                } else {
-                    this.stacks.get(GRINDERSLOT).setDamageValue(this.stacks.get(GRINDERSLOT).getDamageValue() + 1);
-                    this.grindsleft = this.maxGrinds;
-                }
+                stacks.set(GRINDERSLOT, GrinderHeadItem.brakeItem(stacks.get(GRINDERSLOT)));
+                grindsleft = maxGrinds;
             } else {
                 this.grindsleft = 0;
             }

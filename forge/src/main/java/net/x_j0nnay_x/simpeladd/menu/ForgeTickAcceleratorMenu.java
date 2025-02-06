@@ -56,7 +56,7 @@ public class ForgeTickAcceleratorMenu extends AbstractContainerMenu {
                     return 1;
                 }
             });
-            this.addSlot(new SlotItemHandler(iItemHandler, ForgeTickAcceleratorBlockEntity.EFFICIENCYSLOT, 69, 12) {
+            this.addSlot(new SlotItemHandler(iItemHandler, ForgeTickAcceleratorBlockEntity.EFFICIENCYSLOT, 69, 11) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(ModItems.BOOSTUPGRADE);

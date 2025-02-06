@@ -213,6 +213,9 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
+    
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.upgraded_furnace");

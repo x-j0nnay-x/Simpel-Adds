@@ -90,7 +90,9 @@ public class ForgeChillerMenu extends AbstractContainerMenu {
         int tankSize = 59;
         return waterLevel != 0  ? waterLevel * tankSize / 10000 : 0;
     }
-
+    public int getWaterLever(){
+        return this.data.get(4);
+    }
     public ForgeChillerBlockEntity getBlockEntity() {
         return this.blockEntity;
     }

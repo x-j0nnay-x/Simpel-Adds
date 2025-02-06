@@ -17,6 +17,7 @@ public class ModItemRegFabric {
     public static final Item GRINDERHEAD = registerItem(ModNames.Items.GRINDERHEAD, ModItems.GRINDERHEAD);
     public static final Item GRINDERHEADNETHERITE = registerItem(ModNames.Items.GRINDERHEADNETHERITE, ModItems.GRINDERHEADNEHTERITE);
     public static final Item GRINDERHEADUNOBTIANIUM = registerItem(ModNames.Items.GRINDERHEADUNOBTIANIUM, ModItems.GRINDERHEADUNOBTIANIUM);
+    public static final Item GRINDERHEAD_BROKEN = registerItem(ModNames.Items.GRINDERHEAD_BROKEN, ModItems.GRINDERHEAD_BROKEN);
     //random
     public static final Item WOODFIBER = registerItem(ModNames.Items.WOODFIBER, ModItems.WOODFIBER);
     public static final Item FLESH = registerItem(ModNames.Items.FLESH, ModItems.FLESH);

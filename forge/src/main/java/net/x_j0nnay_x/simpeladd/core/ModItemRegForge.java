@@ -22,6 +22,7 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> GRINDERHEAD = ITEMS.register(ModNames.Items.GRINDERHEAD, () -> ModItems.GRINDERHEAD);
     public static final RegistryObject<Item> GRINDERHEADNETHERITE = ITEMS.register(ModNames.Items.GRINDERHEADNETHERITE, () -> ModItems.GRINDERHEADNEHTERITE);
     public static final RegistryObject<Item> GRINDERHEADUNOBTIANIUM = ITEMS.register(ModNames.Items.GRINDERHEADUNOBTIANIUM, () -> ModItems.GRINDERHEADUNOBTIANIUM);
+    public static final RegistryObject<Item> GRINDERHEAD_BROKEN = ITEMS.register(ModNames.Items.GRINDERHEAD_BROKEN, () -> ModItems.GRINDERHEAD_BROKEN);
     //random
     public static final RegistryObject<Item> WOODFIBER = ITEMS.register(ModNames.Items.WOODFIBER, () -> ModItems.WOODFIBER);
     public static final RegistryObject<Item> FLESH = ITEMS.register(ModNames.Items.FLESH, () -> ModItems.FLESH);
