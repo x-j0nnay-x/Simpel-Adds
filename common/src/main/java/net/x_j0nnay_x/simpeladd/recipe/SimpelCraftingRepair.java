@@ -9,6 +9,8 @@ import net.minecraft.world.level.Level;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModNames;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
+import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem_Broken;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
         for (int i = 0; i < input.size(); ++i) {
             ItemStack stackInQuestion = input.getItem(i);
             if (!stackInQuestion.isEmpty()) {
-                if (stackInQuestion.is(ModTags.Items.MANUALREPAIR) && stackInQuestion.isDamaged()) {
+                if (stackInQuestion.is(ModTags.Items.MANUALREPAIR)) {
                     toolRepairing = stackInQuestion;
                 }
                 if (stackInQuestion.is(flintItem)) {
@@ -49,7 +51,6 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
     public ItemStack assemble(CraftingInput input, HolderLookup.Provider access) {
         List<Item> flintList = new ArrayList<>();
         List<Item> scrapList = new ArrayList<>();
-        List<Item> boneList = new ArrayList<>();
         ItemStack toolItems = null;
         for (int i = 0; i < input.size(); ++i) {
             ItemStack itemstack = input.getItem(i);
@@ -69,39 +70,43 @@ public class SimpelCraftingRepair extends RepairItemRecipe {
                 }
             }
         }
-        if (toolItems != null && toolItems.isDamaged()) {
-            ItemStack newGrinder = ModItems.GRINDERHEAD.getDefaultInstance();
-            ItemStack newGrinderN = ModItems.GRINDERHEADNEHTERITE.getDefaultInstance();
-            ItemStack newGrinderU = ModItems.GRINDERHEADUNOBTIANIUM.getDefaultInstance();
-            ItemStack newRepairTool = ModItems.REPAIRTOOL.getDefaultInstance();
-            ItemStack newFireProofTool = ModItems.FIREPROOFTOOL.getDefaultInstance();
-            ItemStack newFeedingTool = ModItems.FEEDINGTOOL.getDefaultInstance();
+        if (toolItems != null) {
+            if(!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEAD_BROKEN)) {
+                return GrinderHeadItem_Broken.healItem( flintList.size() * 68, toolItems);
+            }
+            if(toolItems.isDamaged()) {
+                ItemStack newGrinder = ModItems.GRINDERHEAD.getDefaultInstance();
+                ItemStack newGrinderN = ModItems.GRINDERHEADNEHTERITE.getDefaultInstance();
+                ItemStack newGrinderU = ModItems.GRINDERHEADUNOBTIANIUM.getDefaultInstance();
+                ItemStack newRepairTool = ModItems.REPAIRTOOL.getDefaultInstance();
+                ItemStack newFireProofTool = ModItems.FIREPROOFTOOL.getDefaultInstance();
+                ItemStack newFeedingTool = ModItems.FEEDINGTOOL.getDefaultInstance();
 
-            if(!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEAD)) {
-                newGrinder.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
-                return newGrinder;
+                if (!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEAD)) {
+                    newGrinder.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
+                    return newGrinder;
+                }
+                if (!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEADNEHTERITE)) {
+                    newGrinderN.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
+                    return newGrinderN;
+                }
+                if (!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEADUNOBTIANIUM)) {
+                    newGrinderU.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
+                    return newGrinderU;
+                }
+                if (!scrapList.isEmpty() && toolItems.is(ModItems.REPAIRTOOL)) {
+                    newRepairTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
+                    return newRepairTool;
+                }
+                if (!scrapList.isEmpty() && toolItems.is(ModItems.FIREPROOFTOOL)) {
+                    newFireProofTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
+                    return newFireProofTool;
+                }
+                if (!scrapList.isEmpty() && toolItems.is(ModItems.FEEDINGTOOL)) {
+                    newFeedingTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
+                    return newFeedingTool;
+                }
             }
-            if(!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEADNEHTERITE)) {
-                newGrinderN.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
-                return newGrinderN;
-            }
-            if(!flintList.isEmpty() && toolItems.is(ModItems.GRINDERHEADUNOBTIANIUM)) {
-                newGrinderU.setDamageValue(toolItems.getDamageValue() - (flintList.size() * 68));
-                return newGrinderU;
-            }
-            if(!scrapList.isEmpty() && toolItems.is(ModItems.REPAIRTOOL)) {
-                newRepairTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
-                return newRepairTool;
-            }
-            if(!scrapList.isEmpty() && toolItems.is(ModItems.FIREPROOFTOOL)) {
-                newFireProofTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
-                return newFireProofTool;
-            }
-            if(!scrapList.isEmpty() && toolItems.is(ModItems.FEEDINGTOOL)) {
-                newFeedingTool.setDamageValue(toolItems.getDamageValue() - (scrapList.size() * 18));
-                return newFeedingTool;
-            }
-
         }
         return ItemStack.EMPTY;
     }

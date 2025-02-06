@@ -25,6 +25,7 @@ public class ModItems {
     public static final Item GRINDERHEAD = new GrinderHeadItem(FLINT_GRINDER_USES);
     public static final Item GRINDERHEADNEHTERITE = new GrinderHeadItem(NETHERITE_GRINDER_USES);
     public static final Item GRINDERHEADUNOBTIANIUM = new GrinderHeadItem(UNOBTIANIUM_GRINDER_USES);
+    public static final Item GRINDERHEAD_BROKEN = new GrinderHeadItem_Broken();
     //random
     public static final Item WOODFIBER  = new SimpelItem(new Item.Properties());
     public static final Item FLESH  = new SimpelItem(new Item.Properties().food(ModFoods.FLESH));

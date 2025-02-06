@@ -193,6 +193,8 @@ public abstract class Abst_NetheriteCrafterBlockEntity extends RandomizableConta
         return Container.stillValidBlockEntity(this, $$0);
     }
 
+
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.netherite_crafter_block");

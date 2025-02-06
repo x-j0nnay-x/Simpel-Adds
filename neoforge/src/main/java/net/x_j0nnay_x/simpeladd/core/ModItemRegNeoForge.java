@@ -21,6 +21,7 @@ public class ModItemRegNeoForge {
     public static final Supplier<Item> GRINDERHEAD = ITEMS.register(ModNames.Items.GRINDERHEAD, () -> ModItems.GRINDERHEAD);
     public static final Supplier<Item> GRINDERHEADNETHERITE = ITEMS.register(ModNames.Items.GRINDERHEADNETHERITE, () -> ModItems.GRINDERHEADNEHTERITE);
     public static final Supplier<Item> GRINDERHEADUNOBTIANIUM = ITEMS.register(ModNames.Items.GRINDERHEADUNOBTIANIUM, () -> ModItems.GRINDERHEADUNOBTIANIUM);
+    public static final Supplier<Item> GRINDERHEAD_BROKEN = ITEMS.register(ModNames.Items.GRINDERHEAD_BROKEN, () -> ModItems.GRINDERHEAD_BROKEN);
     //random
     public static final Supplier<Item> WOODFIBER = ITEMS.register(ModNames.Items.WOODFIBER, () -> ModItems.WOODFIBER);
     public static final Supplier<Item> FLESH = ITEMS.register(ModNames.Items.FLESH, () -> ModItems.FLESH);

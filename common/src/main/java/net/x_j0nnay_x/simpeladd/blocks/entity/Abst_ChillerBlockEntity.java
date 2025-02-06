@@ -29,9 +29,9 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
     public static int CHILLINGSLOT = 0;
     public static int WATERSLOT = 1;
     public static int OUTPUTSLOT = 2;
-    private static final int[] SLOTS_FOR_UP = new int[]{CHILLINGSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT};
-    private static final int[] SLOTS_FOR_SIDES = new int[]{WATERSLOT};
+    private static final int[] SLOTS_FOR_UP = new int[]{WATERSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT, WATERSLOT};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{CHILLINGSLOT};
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 60;
@@ -192,6 +192,7 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         return Container.stillValidBlockEntity(this, $$0);
     }
 
+
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.chiller_block");
@@ -286,6 +287,9 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
             this.stacks.set(WATERSLOT, new ItemStack(Items.BUCKET));
             waterLevel += bucketValue;
         }
+    }
+    public void fillWaterByHand(){
+        this.waterLevel += bucketValue;
     }
 
     public boolean canFillWater() {

@@ -45,6 +45,7 @@ public class SimpelAddModNeoForge {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.UPGRADED_FURNACE.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TICK_ACCELERATOR.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TOOL_REPAIR.get(), SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.HARVESTER.get(), SidedInvWrapper::new);
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {

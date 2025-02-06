@@ -4,7 +4,6 @@
         "item": "simpeladdmod:obsidianingot"
     },
     "base": {
-        "item": "minecraft:iron_ingot"
     },
     "result": {
         "id": "simpeladdmod:obsidian_upgrade_smithing"

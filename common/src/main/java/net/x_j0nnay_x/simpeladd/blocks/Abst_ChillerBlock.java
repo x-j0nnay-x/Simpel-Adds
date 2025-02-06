@@ -8,6 +8,11 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -16,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.x_j0nnay_x.simpeladd.blocks.entity.Abst_ChillerBlockEntity;
 
 public abstract class Abst_ChillerBlock extends BaseEntityBlock {
@@ -40,6 +46,23 @@ public abstract class Abst_ChillerBlock extends BaseEntityBlock {
             }
             super.onRemove($$0, $$1, $$2, $$3, $$4);
         }
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        if(itemStack.is(Items.WATER_BUCKET)) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof Abst_ChillerBlockEntity) {
+                Abst_ChillerBlockEntity factory = (Abst_ChillerBlockEntity) blockEntity;
+                    if(factory.canFillWater()){
+                        factory.fillWaterByHand();
+                        player.setItemInHand(hand, new ItemStack(Items.BUCKET));
+                        return ItemInteractionResult.SUCCESS;
+                    }
+            }
+        }
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 
     @Override

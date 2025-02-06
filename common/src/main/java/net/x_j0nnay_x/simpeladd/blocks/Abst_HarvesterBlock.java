@@ -40,7 +40,7 @@ public abstract class Abst_HarvesterBlock extends BaseEntityBlock {
         BlockPos _pos = BlockPos.containing(pos.getX(), pos.getY(), pos.getZ());
         BlockState _bs = world.getBlockState(_pos);
 
-        if (world.getBestNeighborSignal(pos) > 0 ){
+        if (world.hasNeighborSignal(pos)){
             if (Boolean.FALSE.equals(_bs.getValue(this.POWERED))) {
 
                 world.setBlock(_pos, _bs.setValue(this.POWERED, true), 3);
@@ -50,9 +50,9 @@ public abstract class Abst_HarvesterBlock extends BaseEntityBlock {
 
                 world.setBlock(_pos, _bs.setValue(this.POWERED, false), 6);
             }
-
         }
     }
+
 
     @Override
     public void onRemove(BlockState $$0, Level $$1, BlockPos $$2, BlockState $$3, boolean $$4) {

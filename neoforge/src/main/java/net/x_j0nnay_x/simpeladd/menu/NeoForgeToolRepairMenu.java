@@ -52,7 +52,7 @@ public class NeoForgeToolRepairMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, NeoForgeToolRepairBlockEntity.REPAIRSLOT, 68, 13) {
                 @Override
                 public boolean mayPlace(ItemStack itemStack) {
-                    return (itemStack.isDamageableItem() && !itemStack.is(ModTags.Items.NOTREPAIRABLE));
+                    return (!itemStack.is(ModTags.Items.NOTREPAIRABLE));
                 }
 
                 @Override

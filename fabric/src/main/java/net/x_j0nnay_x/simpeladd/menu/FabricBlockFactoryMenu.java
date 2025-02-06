@@ -95,6 +95,13 @@ public class FabricBlockFactoryMenu extends AbstractContainerMenu {
         return data.get(5) > 0 ;
     }
 
+    public int getWaterLever(){
+        return this.data.get(4);
+    }
+    public int getLavaLever(){
+        return this.data.get(5);
+    }
+
     public int getScalledwater(){
         int waterLevel = this.data.get(4);
         int tankSize = 61;

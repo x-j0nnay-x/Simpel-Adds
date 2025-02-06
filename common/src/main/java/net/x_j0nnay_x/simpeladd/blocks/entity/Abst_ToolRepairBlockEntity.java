@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_TickAcceleratorBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
+import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem_Broken;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -38,8 +39,8 @@ public abstract class Abst_ToolRepairBlockEntity extends RandomizableContainerBl
     private int tickCount;
     private int maxTickCount = 80;
     public int coperLevel;
-    private static final int[] SLOTS_FOR_UP = new int[]{COPPERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{COPPERSLOT};
+    private static final int[] SLOTS_FOR_UP = new int[]{COPPERSLOT, REPAIRSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{COPPERSLOT, REPAIRSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{COPPERSLOT};
     protected final ContainerData data;
 
@@ -98,11 +99,20 @@ public abstract class Abst_ToolRepairBlockEntity extends RandomizableContainerBl
         if(var1 == COPPERSLOT && var2.is(Items.COPPER_INGOT)){
             return true;
         }
+        if(var1 == REPAIRSLOT && (var2.isDamaged() || var2.is(ModItems.GRINDERHEAD_BROKEN))){
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int var1, ItemStack var2, Direction var3) {
+        if(var1 == REPAIRSLOT){
+            if(var2.isDamaged() || var2.is(ModItems.GRINDERHEAD_BROKEN)){
+                return false;
+            }
+            return true;
+        }
         return false;
     }
 
@@ -155,6 +165,8 @@ public abstract class Abst_ToolRepairBlockEntity extends RandomizableContainerBl
         return Container.stillValidBlockEntity(this, $$0);
     }
 
+
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -169,9 +181,17 @@ public abstract class Abst_ToolRepairBlockEntity extends RandomizableContainerBl
         if(world.isClientSide)
             return;
         setCopperLevel();
-        if(!this.stacks.get(REPAIRSLOT).isEmpty()){
+        if(!this.stacks.get(REPAIRSLOT).isEmpty() && coperLevel > 0){
+            if(this.stacks.get(REPAIRSLOT).is(ModItems.GRINDERHEAD_BROKEN)) {
+                    this.tickCount++;
+                    if (this.tickCount == this.maxTickCount) {
+                        world.playLocalSound(pos, SoundEvents.ANVIL_HIT, SoundSource.BLOCKS, 1.0f, 1.0f, true);
+                        this.stacks.set(REPAIRSLOT, GrinderHeadItem_Broken.healItem(20, this.stacks.get(REPAIRSLOT)));
+                        this.coperLevel -= 1;
+                        this.tickCount = 0;
+                    }
+            }
             if(this.stacks.get(REPAIRSLOT).isDamaged()) {
-                if (this.coperLevel > 0) {
                     this.tickCount++;
                     if (this.tickCount == this.maxTickCount) {
                         world.playLocalSound(pos, SoundEvents.ANVIL_HIT, SoundSource.BLOCKS, 1.0f, 1.0f, true);
@@ -179,13 +199,10 @@ public abstract class Abst_ToolRepairBlockEntity extends RandomizableContainerBl
                         this.coperLevel -= 1;
                         this.tickCount = 0;
                     }
-                }
             }
         }else {
             this.tickCount = 0;
         }
-
-
     }
 
     private void setCopperLevel(){

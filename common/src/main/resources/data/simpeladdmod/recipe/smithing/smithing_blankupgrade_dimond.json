@@ -4,7 +4,6 @@
         "item": "minecraft:diamond"
     },
     "base": {
-        "item": "minecraft:iron_ingot"
     },
     "result": {
         "id": "minecraft:netherite_upgrade_smithing_template"

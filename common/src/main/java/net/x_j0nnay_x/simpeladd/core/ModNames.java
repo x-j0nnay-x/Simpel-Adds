@@ -52,6 +52,7 @@ public class ModNames {
         public static final String GRINDERHEAD = "grinderhead";
         public static final String GRINDERHEADNETHERITE = "grinderhead_netherite";
         public static final String GRINDERHEADUNOBTIANIUM = "grinderhead_unobtanium";
+        public static final String GRINDERHEAD_BROKEN = "grinderhead_broken";
         //random
         public static final String WOODFIBER = "woodfiber";
         public static final String FLESH = "flesh";

@@ -19,6 +19,7 @@ import net.x_j0nnay_x.simpeladd.blocks.Abst_GrinderBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
+import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +33,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public  static int UPGRADESLOT = 3;
     public  static int BOOSTSLOT = 4;
     private static final int[] SLOTS_FOR_UP = new int[]{GRINDERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT, GRINDERSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT};
     protected final ContainerData data;
     private int progress = 0;
@@ -122,9 +123,15 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        if(direction == Direction.DOWN && index == OUTPUTSLOT){
+        if(direction == Direction.DOWN){
+            if(index == OUTPUTSLOT){
             return true;
+            }
+            if(index == GRINDERSLOT && !var2.is(ModTags.Items.GRINDERS)){
+                return true;
+            }
         }
+
         return false;
     }
 
@@ -193,6 +200,8 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
+
+    
 
     @Override
     protected Component getDefaultName() {
@@ -270,12 +279,8 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     private void resetGrinds() {
         if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
-            if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
-                this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
-            }else{
-                this.stacks.get(GRINDERSLOT).setDamageValue(this.stacks.get(GRINDERSLOT).getDamageValue() + 1);
-                this.grindsleft = this.maxGrinds;
-            }
+            stacks.set(GRINDERSLOT, GrinderHeadItem.brakeItem(stacks.get(GRINDERSLOT)));
+            grindsleft = maxGrinds;
         }else {
             this.grindsleft = 0;
         }
@@ -334,4 +339,5 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         }
         return false;
     }
+
 }
