@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model" : "simpeladdmod:block/raw_diamond_shard_block"
+    }
+  }
+}

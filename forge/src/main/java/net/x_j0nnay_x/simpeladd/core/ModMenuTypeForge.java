@@ -47,6 +47,9 @@ public class ModMenuTypeForge {
     public static final  RegistryObject<MenuType<ForgeHarvesterMenu>> HARVESTER_MENU =
             registerMenuType(ModNames.Menu.HARVESTER_MENU, ForgeHarvesterMenu::new);
 
+    public static final  RegistryObject<MenuType<ForgeCropGrowthMenu>> CROP_GROWTH_MENU =
+            registerMenuType(ModNames.Menu.CROP_GROWTH_MENU, ForgeCropGrowthMenu::new);
+
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }

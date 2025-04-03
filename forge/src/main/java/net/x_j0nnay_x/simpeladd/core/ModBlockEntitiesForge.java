@@ -42,6 +42,9 @@ public class ModBlockEntitiesForge {
 	public static final RegistryObject<BlockEntityType<ForgeHarvesterBlockEntity>> HARVESTER = BLOCK_ENTITY.register(ModNames.Blocks.HARVESTER, () ->
 			BlockEntityType.Builder.of(ForgeHarvesterBlockEntity::new, ModBlockRegForge.HARVESTER.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<ForgeCropGrowthBlockEntity>> CROP_GROWTH = BLOCK_ENTITY.register(ModNames.Blocks.CROP_GROWTH, () ->
+			BlockEntityType.Builder.of(ForgeCropGrowthBlockEntity::new, ModBlockRegForge.CROP_GROWTH.get()).build(null));
+
 	public static void register(IEventBus eventBus) {
 		SimpelAddMod.modBlockEntRegText();
 		BLOCK_ENTITY.register(eventBus);

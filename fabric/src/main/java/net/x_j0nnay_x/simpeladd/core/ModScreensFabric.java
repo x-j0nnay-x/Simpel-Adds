@@ -24,5 +24,6 @@ public class ModScreensFabric {
         MenuScreens.register(ModMenuTypeFabric.TICK_ACCELERATOR_MENU, FabricTickAcceleratorScreen::new);
         MenuScreens.register(ModMenuTypeFabric.TOOLREPAIR_MENU, FabricToolRepairScreen::new);
         MenuScreens.register(ModMenuTypeFabric.HARVESTER_MENU, FabricHarvesterScreen::new);
+        MenuScreens.register(ModMenuTypeFabric.CROP_GROWTH_MENU, FabricCropGrowthScreen::new);
     }
 }

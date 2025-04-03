@@ -43,4 +43,5 @@ public class ModConfiguredFeatures {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
     }
 
+
 }

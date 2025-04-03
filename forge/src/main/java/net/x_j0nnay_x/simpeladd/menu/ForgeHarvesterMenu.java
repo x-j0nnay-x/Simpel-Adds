@@ -48,7 +48,7 @@ public class ForgeHarvesterMenu extends AbstractContainerMenu {
                             return 1;
                         }
                     });
-                    this.addSlot(new Slot(this.inventory, ForgeHarvesterBlockEntity.EFFICIENCYSLOT, 80, 11) {
+                    this.addSlot(new Slot(this.inventory, ForgeHarvesterBlockEntity.EFFICIENCYSLOT, 71, 11) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return stack.is(ModItems.BOOSTUPGRADE);

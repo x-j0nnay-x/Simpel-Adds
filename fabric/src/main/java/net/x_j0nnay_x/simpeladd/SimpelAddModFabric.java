@@ -13,6 +13,7 @@ public class SimpelAddModFabric implements ModInitializer, ClientModInitializer 
 
     @Override
     public void onInitialize() {
+
         ModBlockRegFabric.registerBlocks();
         ModItemRegFabric.registerItems();
         ModCreativeTabFabric.registerTab();

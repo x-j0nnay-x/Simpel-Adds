@@ -1,0 +1,16 @@
+{
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_fungus"
+    }
+  ],
+  "soil": [
+    {
+      "item": "minecraft:netherrack"
+    }
+  ],
+  "output": {
+    "item": "minecraft:warped_stem"
+  }
+}

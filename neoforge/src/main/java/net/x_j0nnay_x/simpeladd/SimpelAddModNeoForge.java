@@ -46,6 +46,7 @@ public class SimpelAddModNeoForge {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TICK_ACCELERATOR.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TOOL_REPAIR.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.HARVESTER.get(), SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.CROP_GROWTH.get(), SidedInvWrapper::new);
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {
@@ -60,6 +61,7 @@ public class SimpelAddModNeoForge {
         event.register(ModMenuTypeNeoForge.TICK_ACCELERATOR_MENU.get(), NeoForgeTickAcceleratorScreen::new);
         event.register(ModMenuTypeNeoForge.TOOLREPAIR_MENU.get(), NeoForgeToolRepairScreen::new);
         event.register(ModMenuTypeNeoForge.HARVESTER_MENU.get(), NeoForgeHarvesterScreen::new);
+        event.register(ModMenuTypeNeoForge.CROP_GROWTH_MENU.get(), NeoForgeCropGrowthScreen::new);
     }
 
     private void handleClientSetup(FMLClientSetupEvent event) {

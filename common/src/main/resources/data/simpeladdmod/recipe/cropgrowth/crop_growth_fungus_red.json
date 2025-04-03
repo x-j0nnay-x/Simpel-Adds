@@ -1,0 +1,16 @@
+{
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "minecraft:red_mushroom"
+    }
+  ],
+  "soil": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "output": {
+    "item": "minecraft:red_mushroom"
+  }
+}

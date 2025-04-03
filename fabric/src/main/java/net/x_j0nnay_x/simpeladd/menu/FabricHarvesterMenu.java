@@ -43,7 +43,7 @@ public class FabricHarvesterMenu extends AbstractContainerMenu {
                     return 1;
                 }
             });
-            this.addSlot(new Slot(this.inventory, FabricHarvesterBlockEntity.EFFICIENCYSLOT, 69, 12) {
+            this.addSlot(new Slot(this.inventory, FabricHarvesterBlockEntity.EFFICIENCYSLOT, 71, 11) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(ModItems.BOOSTUPGRADE);

@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -209,12 +208,11 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public void clearContent() {
         this.stacks.clear();
     }
+
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
-
-    
 
     @Override
     protected Component getDefaultName() {
@@ -397,6 +395,7 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
             this.progress4 = 0;
         }
     }
+
     private void incresseProgress(int slot){
         if(slot == INPUTSLOT1){
             this.progress1 ++;

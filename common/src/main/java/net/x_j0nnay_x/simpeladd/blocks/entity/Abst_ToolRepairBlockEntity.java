@@ -37,7 +37,7 @@ public abstract class Abst_ToolRepairBlockEntity extends RandomizableContainerBl
     public static int COPPERSLOT = 1;
     public int maxcopper =  100;
     private int tickCount;
-    private int maxTickCount = 80;
+    private int maxTickCount = 40;
     public int coperLevel;
     private static final int[] SLOTS_FOR_UP = new int[]{COPPERSLOT, REPAIRSLOT};
     private static final int[] SLOTS_FOR_DOWN = new int[]{COPPERSLOT, REPAIRSLOT};

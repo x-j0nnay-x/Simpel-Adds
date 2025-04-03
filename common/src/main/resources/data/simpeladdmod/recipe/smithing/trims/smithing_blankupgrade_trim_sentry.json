@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "minecraft:stone"
+    },
+    "base": {
+        "item": "minecraft:iron_nugget"
+    },
+    "result": {
+        "id": "minecraft:sentry_armor_trim_smithing_template"
+    },
+    "template": {
+        "item": "simpeladdmod:blankupgrade"
+    }
+}

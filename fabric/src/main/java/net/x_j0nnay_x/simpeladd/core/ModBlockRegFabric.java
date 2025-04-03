@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.*;
-import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
+
 
 public class ModBlockRegFabric {
     //Ores
@@ -37,6 +37,10 @@ public class ModBlockRegFabric {
     //other
     public static final Block SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND, ModBlocks.SIMPELFARMLAND);
     public static final Block CHUNK_TOURCH = registerBlock(ModNames.Blocks.CHUNK_TOURCH, ModBlocks.CHUNKTOURCH);
+
+    public static final Block RAW_DEBRI_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DEBRI), ModBlocks.RAW_DEBRI_SHARD_BLOCK);
+    public static final Block RAW_DIAMOND_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DIAMOND), ModBlocks.RAW_DIAMOND_SHARD_BLOCK);
+    public static final Block RAW_EMERALD_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.EMERALD), ModBlocks.RAW_EMERALD_SHARD_BLOCK);
     //block entitys blocks
     public static final Block BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY), new FabricBlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block CHILLER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CHILLER), new FabricChillerBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
@@ -48,10 +52,12 @@ public class ModBlockRegFabric {
     public static final Block TICK_ACCELERATOR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TICK_ACCELERATOR), new FabricTickAcceleratorBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block TOOLREPAIR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TOOLREPAIR), new FabricToolRepairBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
     public static final Block HARVESTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.HARVESTER), new FabricHarvesterBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+    public static final Block CROP_GROWTH = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CROP_GROWTH), new FabricCropGrowthBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
 
+    
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
-        return Registry.register(BuiltInRegistries.BLOCK,  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name), block);
+        return Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name), block);
     }
 
     private static Item registerBlockItem(String name, Block block){
@@ -61,4 +67,5 @@ public class ModBlockRegFabric {
     public static void registerBlocks() {
         SimpelAddMod.modBlockRegText();
     }
+
 }

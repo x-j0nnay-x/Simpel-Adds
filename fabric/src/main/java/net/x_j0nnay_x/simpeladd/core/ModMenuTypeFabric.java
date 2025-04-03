@@ -61,6 +61,11 @@ public class ModMenuTypeFabric {
                     new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
                             new FabricHarvesterMenu(pWindowID,pInventory), HarvesterData.CODEC));
 
+    public static final MenuType<FabricCropGrowthMenu> CROP_GROWTH_MENU =
+            Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Menu.CROP_GROWTH_MENU),
+                    new ExtendedScreenHandlerType<>((pWindowID, pInventory, pData) ->
+                            new FabricCropGrowthMenu(pWindowID,pInventory), CropGrowthData.CODEC));
+
 
     public static void registerScreenHandlers() {
         SimpelAddMod.modMenuRegText();

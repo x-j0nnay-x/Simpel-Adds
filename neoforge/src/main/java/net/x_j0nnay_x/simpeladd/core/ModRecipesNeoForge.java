@@ -7,7 +7,6 @@ import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
-import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.recipe.*;
 import java.util.function.Supplier;
 
@@ -27,6 +26,11 @@ public class ModRecipesNeoForge {
             SERIALIZERS.register(ManualGrind.Serializer.ID, () -> ManualGrind.Serializer.INSTANCE);
     public static final Supplier<RecipeType<ManualGrind>> MANUAL_GRINDER_RECIPE_TYPE =
             TYPE.register(ManualGrind.Type.ID, () -> ManualGrind.Type.INSTANCE);
+
+    public static final Supplier<RecipeSerializer<CropGrowthRecipe>> CROP_GROWTH_RECIPE_SERIALIZER =
+            SERIALIZERS.register(CropGrowthRecipe.CropGrowthSerializer.ID, () -> CropGrowthRecipe.CropGrowthSerializer.INSTANCE);
+    public static final Supplier<RecipeType<CropGrowthRecipe>> CROP_GROWTH_RECIPE_TYPE =
+            TYPE.register(CropGrowthRecipe.CropGrowthType.ID, () -> CropGrowthRecipe.CropGrowthType.INSTANCE);
 
     public static final Supplier<RecipeSerializer<SimpelCraftingRepair>> SIMPEL_REPAIR_RECIPE_SERIALIZER =
             SERIALIZERS.register(SimpelCraftingRepair.ID, () -> new SimpleCraftingRecipeSerializer<>(SimpelCraftingRepair::new));

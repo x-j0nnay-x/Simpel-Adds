@@ -42,6 +42,10 @@ public class ModBlockRegNeoForge {
     public static final DeferredBlock<Block> SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND,() -> ModBlocks.SIMPELFARMLAND);
     public static final DeferredBlock<Block> CHUNK_TOURCH = registerBlock(ModNames.Blocks.CHUNK_TOURCH, ()-> ModBlocks.CHUNKTOURCH);
 
+    public static final DeferredBlock<Block> RAW_DEBRI_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DEBRI), ()-> ModBlocks.RAW_DEBRI_SHARD_BLOCK);
+    public static final DeferredBlock<Block> RAW_DIAMOND_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DIAMOND), ()-> ModBlocks.RAW_DIAMOND_SHARD_BLOCK);
+    public static final DeferredBlock<Block> RAW_EMERALD_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.EMERALD), ()-> ModBlocks.RAW_EMERALD_SHARD_BLOCK);
+
     public static final DeferredBlock<Block> BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY),
             () -> new NeoForgeBlockFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> CHILLER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CHILLER),
@@ -62,6 +66,8 @@ public class ModBlockRegNeoForge {
             () -> new NeoForgeToolRepairBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> HARVESTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.HARVESTER),
             () -> new NeoForgeHarvesterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> CROP_GROWTH = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CROP_GROWTH),
+            () -> new NeoForgeCropGrowthBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

@@ -78,6 +78,6 @@ public class ForgeTickAcceleratorScreen extends AbstractContainerScreen<ForgeTic
 
     private void renderBurn(GuiGraphics guiGraphics, int x, int y) {
         int posisionOffset = 35 - menu.getBunrLevel();
-        guiGraphics.blit(texture, x + 114, y + 13 + posisionOffset, 181, posisionOffset, 4, menu.getBunrLevel());
+        guiGraphics.blit(texture, x + 115, y + 13 + posisionOffset, 181, posisionOffset, 2, menu.getBunrLevel());
     }
 }

@@ -29,6 +29,11 @@ public class ModRecipesForge {
     public static final RegistryObject<RecipeType<ManualGrind>> MANUAL_GRINDER_RECIPE_TYPE =
             TYPE.register(ManualGrind.Type.ID, () -> ManualGrind.Type.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<CropGrowthRecipe>> CROP_GROWTH_RECIPE_SERIALIZER =
+            SERIALIZERS.register(CropGrowthRecipe.CropGrowthSerializer.ID, () -> CropGrowthRecipe.CropGrowthSerializer.INSTANCE);
+    public static final RegistryObject<RecipeType<CropGrowthRecipe>> CROP_GROWTH_RECIPE_TYPE =
+            TYPE.register(CropGrowthRecipe.CropGrowthType.ID, () -> CropGrowthRecipe.CropGrowthType.INSTANCE);
+
     public static final RegistryObject<RecipeSerializer<SimpelCraftingRepair>> SIMPEL_REPAIR_RECIPE_SERIALIZER =
             SERIALIZERS.register(SimpelCraftingRepair.ID, () -> new SimpleCraftingRecipeSerializer<>(SimpelCraftingRepair::new));
 

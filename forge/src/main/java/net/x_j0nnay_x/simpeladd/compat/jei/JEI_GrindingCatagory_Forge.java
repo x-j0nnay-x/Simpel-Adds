@@ -32,10 +32,10 @@ public class JEI_GrindingCatagory_Forge implements IRecipeCategory<RecipeHolder<
     private final IDrawable background;
     private final IDrawable icon;
 
-    public static final int width = 176;
-    public static final int height = 78;
+    public static final int width = 81;
+    public static final int height = 50;
 
-    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/grinding_jei.png");
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/simpeladd_jei.png");
 
     public static final RecipeType<RecipeHolder<GrinderRecipe>> GRINDER_RECIPE_RECIPE_TYPE = RecipeType.createFromVanilla(GrinderRecipe.GrinderType.INSTANCE);
 
@@ -71,9 +71,9 @@ public class JEI_GrindingCatagory_Forge implements IRecipeCategory<RecipeHolder<
         grindersList.add(Grinder);
         grindersList.add(GrinderN);
         grindersList.add(GrinderU);
-        builder.addSlot(RecipeIngredientRole.CATALYST, 79, 17).addItemStacks(grindersList);
-        builder.addSlot(RecipeIngredientRole.INPUT, 34, 44).addIngredients(recipe.value().getRecipeItems());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 124, 44).addItemStack(recipe.value().getOutput());
+        builder.addSlot(RecipeIngredientRole.CATALYST, 10, 7).addItemStacks(grindersList);
+        builder.addSlot(RecipeIngredientRole.INPUT, 10, 26).addIngredients(recipe.value().getRecipeItems());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 55, 17).addItemStack(recipe.value().getOutput());
     }
 
     public static List<RecipeHolder<GrinderRecipe>> getAllRecipes() {

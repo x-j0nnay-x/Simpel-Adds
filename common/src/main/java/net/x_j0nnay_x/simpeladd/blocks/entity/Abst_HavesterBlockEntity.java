@@ -29,15 +29,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_HarvesterBlock;
-import net.x_j0nnay_x.simpeladd.blocks.SimpelFarmLand;
 import net.x_j0nnay_x.simpeladd.core.ModBlocks;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
     public static int SPEEDSLOT = 0;
     public static int EFFICIENCYSLOT = 1;
@@ -48,7 +47,6 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
     public int tickSpeed;
     public int tickCount;
     public int tickEfficiency = 0;
-
     protected final ContainerData data;
 
     protected Abst_HavesterBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
@@ -94,6 +92,7 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         pTag.putInt(SimpelAddMod.MODCUSTOM +"harvester_tick_efficiency", tickEfficiency);
         ContainerHelper.saveAllItems(pTag, this.stacks, pRegistries);
     }
+
     @Override
     public int[] getSlotsForFace(Direction var1) {
         if (var1 == Direction.DOWN) {
@@ -170,8 +169,6 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         return Container.stillValidBlockEntity(this, $$0);
     }
 
-
-
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -220,9 +217,7 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         return this.stacks.get(EFFICIENCYSLOT).getCount();
     }
 
-
-
-//entyity above code
+//chest above code
     public boolean isChestabove() {
         BlockPos blockPos = this.getBlockPos();
         BlockEntity blockEntity = this.level.getBlockEntity(blockPos.above());
@@ -233,6 +228,7 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         }
         return false;
     }
+
     @Nullable
     public static Container getContainerAbove(BlockPos blockPos, Level level, BlockState state) {
         BlockPos containerPos = blockPos.above();
@@ -240,14 +236,15 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         if (container == null) {
             container = getEntityContainer(level, containerPos.getX(), containerPos.getY(), containerPos.getZ());
         }
-
         return container;
     }
+
     @Nullable
     private static Container getEntityContainer(Level level, double x, double y, double z) {
         List<Entity> list = level.getEntities((Entity)null, new AABB(x - (double)0.5F, y - (double)0.5F, z - (double)0.5F, x + (double)0.5F, y + (double)0.5F, z + (double)0.5F), EntitySelector.CONTAINER_ENTITY_SELECTOR);
         return !list.isEmpty() ? (Container)list.get(level.random.nextInt(list.size())) : null;
     }
+
     @Nullable
     private static Container getBlockContainer(Level level, BlockPos pos, BlockState state) {
         Block block = state.getBlock();
@@ -261,14 +258,13 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
                     if (container instanceof ChestBlockEntity && block instanceof ChestBlock) {
                         container = ChestBlock.getContainer((ChestBlock)block, state, level, pos, true);
                     }
-
                     return container;
                 }
             }
-
             return null;
         }
     }
+
 //Item Handleing
     private static boolean canMergeItems(ItemStack stack1, ItemStack stack2) {
         return stack1.getCount() <= stack1.getMaxStackSize() && ItemStack.isSameItemSameComponents(stack1, stack2);
@@ -280,6 +276,7 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
             pLevel.addFreshEntity(itemEntity);
         }
     }
+
     public void putDropsInChest(List<ItemStack> drops) {
         BlockPos blockPos = this.getBlockPos();
         Container container = getContainerAbove(blockPos, this.level, this.level.getBlockState(blockPos));
@@ -299,7 +296,6 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
                     }
                 }
             }
-
         }
     }
 
@@ -353,6 +349,7 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         }
         return drops;
     }
+
     public static boolean isHavestableBlock(BlockState blockState) {
         Block block = blockState.getBlock();
         if (block instanceof CropBlock) {
@@ -371,6 +368,7 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
             turnToFarmLand(world, blockPos1);
         }
     }
+
     private void damageGrowStaff(){
         ItemStack growstaf = this.stacks.get(GROWSLOT);
         if(growstaf.getDamageValue() > growstaf.getMaxDamage()){
@@ -379,6 +377,7 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
             growstaf.setDamageValue(growstaf.getDamageValue() + 1);
         }
     }
+
     private boolean isGrowStaffusable(){
         return this.stacks.get(GROWSLOT).is(ModItems.GROWSTAFF) && this.stacks.get(GROWSLOT).getDamageValue() < this.stacks.get(GROWSLOT).getMaxDamage();
     }
@@ -390,7 +389,5 @@ public abstract class Abst_HavesterBlockEntity extends RandomizableContainerBloc
         int blockValue = level.getBlockState(farmlandPos).getValue(FarmBlock.MOISTURE);
         level.setBlockAndUpdate(farmlandPos, ModBlocks.SIMPELFARMLAND.defaultBlockState().setValue(FarmBlock.MOISTURE, blockValue));
         damageGrowStaff();
-
     }
-
 }

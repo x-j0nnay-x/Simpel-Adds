@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegFabric;
+import net.x_j0nnay_x.simpeladd.screens.FabricCropGrowthScreen;
 import net.x_j0nnay_x.simpeladd.screens.FabricGrindFactoryScreen;
 import net.x_j0nnay_x.simpeladd.screens.FabricGrinderScreen;
 import net.x_j0nnay_x.simpeladd.screens.FabricGrinderScreen_up;
@@ -24,13 +25,15 @@ public class JEI_PluginSimpeladd_Fabric implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IGuiHelper helper = registration.getJeiHelpers().getGuiHelper();
         registration.addRecipeCategories(
-                new JEI_GrindingCatagory_Fabric(helper)
+                new JEI_GrindingCatagory_Fabric(helper),
+                new JEI_CropGrowthCatagory_Fabric(helper)
         );
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE, JEI_GrindingCatagory_Fabric.getAllRecipes());
+        registration.addRecipes(JEI_CropGrowthCatagory_Fabric.CROP_GROWTH_RECIPE_RECIPE_TYPE, JEI_CropGrowthCatagory_Fabric.getAllRecipes());
         registration.addItemStackInfo(new ItemStack(Items.WATER_BUCKET), Component.translatable("simpeladdmod.jei.waterbucket"));
         registration.addItemStackInfo(new ItemStack(Items.LAVA_BUCKET), Component.translatable("simpeladdmod.jei.lavabucket"));
         registration.addItemStackInfo(new ItemStack(Items.SNOWBALL), Component.translatable("simpeladdmod.jei.chilling.snowball"));
@@ -42,7 +45,7 @@ public class JEI_PluginSimpeladd_Fabric implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "_jei_plugin");
+        return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, SimpelAddMod.MOD_ID +"_jei_plugin");
     }
 
     @Override
@@ -50,6 +53,7 @@ public class JEI_PluginSimpeladd_Fabric implements IModPlugin {
         registration.addRecipeCatalyst(ModBlockRegFabric.GRINDER_BLOCK.asItem().getDefaultInstance(), JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(ModBlockRegFabric.GRINDER_BLOCK_UP.asItem().getDefaultInstance(), JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(ModBlockRegFabric.GRIND_FACTORY_BLOCK.asItem().getDefaultInstance(), JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(ModBlockRegFabric.CROP_GROWTH.asItem().getDefaultInstance(), JEI_CropGrowthCatagory_Fabric.CROP_GROWTH_RECIPE_RECIPE_TYPE);
     }
 
     @Override
@@ -60,7 +64,8 @@ public class JEI_PluginSimpeladd_Fabric implements IModPlugin {
                 JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(FabricGrindFactoryScreen.class, 42, 29, 72, 4,
                 JEI_GrindingCatagory_Fabric.GRINDER_RECIPE_RECIPE_TYPE);
-
+        registration.addRecipeClickArea(FabricCropGrowthScreen.class, 31, 25, 10, 40,
+                JEI_CropGrowthCatagory_Fabric.CROP_GROWTH_RECIPE_RECIPE_TYPE);
     }
 
 }

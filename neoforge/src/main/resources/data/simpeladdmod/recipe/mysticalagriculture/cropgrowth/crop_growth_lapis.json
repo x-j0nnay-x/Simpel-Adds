@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions":
+  [
+    {
+      "type":"neoforge:mod_loaded",
+      "modid":"mysticalagriculture"
+    }
+  ],
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "mysticalagriculture:lapis_lazuli_seeds"
+    }
+  ],
+  "soil": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "output": {
+    "item": "mysticalagriculture:lapis_lazuli_essence"
+  }
+}
