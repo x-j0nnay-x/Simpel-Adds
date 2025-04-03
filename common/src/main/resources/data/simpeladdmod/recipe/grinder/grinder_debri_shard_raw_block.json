@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "item": "simpeladdmod:raw_debri_shard_block"
+    }
+  ],
+  "output": {
+    "count": 18,
+    "item": "simpeladdmod:netherite_shard_dust"
+  }
+}

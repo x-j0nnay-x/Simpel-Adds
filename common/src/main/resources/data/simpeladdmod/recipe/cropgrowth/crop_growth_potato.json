@@ -1,0 +1,16 @@
+{
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "soil": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "output": {
+    "item": "minecraft:potato"
+  }
+}

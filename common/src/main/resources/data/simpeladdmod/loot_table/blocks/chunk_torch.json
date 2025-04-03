@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "simpeladdmod:chunk_torch"
+          "name": "simpeladdmod:fuelchunks"
         }
       ],
       "rolls": 1.0

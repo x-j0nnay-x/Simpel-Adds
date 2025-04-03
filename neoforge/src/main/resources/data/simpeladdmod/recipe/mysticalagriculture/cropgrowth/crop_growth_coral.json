@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions":
+  [
+    {
+      "type":"neoforge:mod_loaded",
+      "modid":"mysticalagriculture"
+    }
+  ],
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "mysticalagriculture:coral_seeds"
+    }
+  ],
+  "soil": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "output": {
+    "item": "mysticalagriculture:coral_essence"
+  }
+}

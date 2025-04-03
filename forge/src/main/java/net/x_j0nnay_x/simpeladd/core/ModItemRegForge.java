@@ -37,8 +37,8 @@ public class ModItemRegForge {
     public static final RegistryObject<Item> REPAIRTOOL = ITEMS.register(ModNames.Items.REPAIRTOOL, () -> ModItems.REPAIRTOOL);
     public static final RegistryObject<Item> FIREPROOFTOOL = ITEMS.register(ModNames.Items.FIREPROOFTOOL, () -> ModItems.FIREPROOFTOOL);
     public static final RegistryObject<Item> FEEDINGTOOL = ITEMS.register(ModNames.Items.FEEDINGTOOL, () -> ModItems.FEEDINGTOOL);
-    public static final RegistryObject<Item> GROWSTAFF = ITEMS.register(ModNames.Items.GROWSTAFF, () -> ModItems.GROWSTAFF);
     public static final RegistryObject<Item> FUELCHUNKS = ITEMS.register(ModNames.Items.FUELCHUNKS, () -> ModItems.FUELCHUNKS);
+    public static final RegistryObject<Item> GROWSTAFF = ITEMS.register(ModNames.Items.GROWSTAFF, () -> ModItems.GROWSTAFF);
     public static final RegistryObject<Item> HOMEWAND = ITEMS.register(ModNames.Items.HOMEWAND, () -> new HomeWandForge(ModItems.HOMEWAND_USES));
     public static final RegistryObject<Item> HOMECRYSTAL = ITEMS.register(ModNames.Items.HOMECRYSTAL, () -> ModItems.HOMECRYSTAL);
     public static final RegistryObject<Item> XPCRYSTAL = ITEMS.register(ModNames.Items.XPCRYSTAL, () ->new xp_crystal_Forge());

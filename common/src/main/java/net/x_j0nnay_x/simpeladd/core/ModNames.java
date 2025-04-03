@@ -13,7 +13,6 @@ public class ModNames {
             public static final String DEEP = "_deepslate";
         }
 
-
         public static final String BLOCKFACTORY = "blockfactory";
         public static final String CHILLER = "chiller";
         public static final String GRINDER = "grinder";
@@ -21,11 +20,15 @@ public class ModNames {
         public static final String GRINDFACTORY = "grind_factory";
         public static final String NETHERITE_CRAFTER = "netherite_crafter";
         public static final String UPGRADED_FURNACE = "upgraded_furnace";
-        public static final String DEBRI = "debri";
-        public static final String UNOBTANIUM_ORE = "unobtanium";
         public static final String SIMPEL_FARM_LAND = "simpel_farmland";
         public static final String CHUNK_TOURCH = "chunk_torch";
         public static final String TICK_ACCELERATOR = "tick_accelerator";
+        public static final String TOOLREPAIR = "toolrepair";
+        public static final String HARVESTER = "harvester";
+        public static final String CROP_GROWTH = "crop_growth";
+        //ore types
+        public static final String DEBRI = "debri";
+        public static final String UNOBTANIUM_ORE = "unobtanium";
         public static final String REDSTONE = "redstone";
         public static final String DIAMOND = "diamond";
         public static final String EMERALD = "emerald";
@@ -34,8 +37,8 @@ public class ModNames {
         public static final String IRON = "iron";
         public static final String GOLD = "gold";
         public static final String COPPER = "copper";
-        public static final String TOOLREPAIR = "toolrepair";
-        public static final String HARVESTER = "harvester";
+
+        public static  String getRawOreBlockName(String name){ return "raw_" + name + "_shard_block";}
 
         public static String getBlockNameForEntity(String name) {
             return name + "_block";
@@ -67,8 +70,8 @@ public class ModNames {
         public static final String REPAIRTOOL = "repairtool";
         public static final String FIREPROOFTOOL = "fireprooftool";
         public static final String FEEDINGTOOL = "feedingtool";
+        public static final String FUELCHUNKS = "fuelchunks";
         public static final String GROWSTAFF = "growstaff";
-        public static final String FUELCHUNKS = "fuelchunk";
         public static final String HOMEWAND = "homewand";
         public static final String HOMECRYSTAL = "homecrystal";
         public static final String XPCRYSTAL = "xp_crystal";
@@ -138,13 +141,14 @@ public class ModNames {
         public static final String TICK_ACCELERATOR_MENU = "tick_accelerator_menu";
         public static final String TOOLREPAIR_MENU = "toolrepair_menu";
         public static final String HARVESTER_MENU = "harvester_menu";
+        public static final String CROP_GROWTH_MENU = "crop_growth_menu";
     }
 
     public static class Recipe{
         public static final String GRINDER = "grinder";
         public static final String MANUALGRIND = "manualgrind";
         public static final String SimpelCraftRepair = "simpel_crafting_repair";
-
+        public static final String CropGrowth = "crop_growth";
     }
 
     public static class DataComponentTypes {

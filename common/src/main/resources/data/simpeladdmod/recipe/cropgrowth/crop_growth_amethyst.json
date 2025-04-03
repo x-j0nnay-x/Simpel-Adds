@@ -1,0 +1,16 @@
+{
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "soil": [
+    {
+      "item": "minecraft:budding_amethyst"
+    }
+  ],
+  "output": {
+    "item": "minecraft:amethyst_shard"
+  }
+}

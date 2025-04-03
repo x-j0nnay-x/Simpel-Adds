@@ -229,8 +229,6 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         this.stacks.clear();
     }
 
-
-
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
@@ -244,7 +242,6 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public ContainerData getData(int index) {
         return this.data;
     }
-
 
     @Nullable
     @Override
@@ -262,6 +259,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         saveAdditional(updateCompoundTag, pRegistries);
         return updateCompoundTag;
     }
+
     public boolean canfill(int tank) {
         if(tank == WATERSLOT && this.waterLevel < bucketValue * 6){
             return true;
@@ -271,9 +269,11 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         }
         return false;
     }
+
     public int getWATERSLOT() {
         return WATERSLOT;
     }
+
     public int getLAVASLOT() {
         return LAVASLOT;
     }
@@ -281,10 +281,10 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
 //Processing
     public void blockFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
         setBlockOuput();
-        if (canfill(waterLevel)) {
+        if (canfill(WATERSLOT)) {
             fillTank(WATERSLOT);
         }
-        if (canfill(lavaLevel)) {
+        if (canfill(LAVASLOT)) {
             fillTank(LAVASLOT);
         }
         pState = pState.setValue(Abst_BlockFactoryBlock.WORKING, Boolean.valueOf(isWorking()));
@@ -462,28 +462,13 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
             this.removeItem(tank, 1);
             this.stacks.set(tank, new ItemStack(Items.BUCKET));
         }
-        if(tank == LAVASLOT &&this.stacks.get(LAVASLOT).getItem() == (Items.LAVA_BUCKET)){
+        if(tank == LAVASLOT && this.stacks.get(LAVASLOT).getItem() == (Items.LAVA_BUCKET)){
             this.lavaLevel += bucketValue;
             this.removeItem(tank, 1);
             this.stacks.set(tank, new ItemStack(Items.BUCKET));
         }
 
     }
-//    public void fillWater() {
-//        if (this.stacks.get(WATERSLOT).getItem() == (Items.WATER_BUCKET)) {
-//            this.removeItem(WATERSLOT, 1);
-//            this.stacks.set(WATERSLOT, new ItemStack(Items.BUCKET));
-//            this.waterLevel += bucketValue;
-//        }
-//    }
-//
-//    public void fillLava() {
-//        if (this.stacks.get(LAVASLOT).getItem() == (Items.LAVA_BUCKET)) {
-//            this.removeItem(LAVASLOT, 1);
-//            this.stacks.set(LAVASLOT, new ItemStack(Items.BUCKET));
-//            lavaLevel += bucketValue;
-//        }
-//    }
 
     public OutPutSlotChange getSlotOutPut() {
         return this.SlotOutPut;

@@ -9,7 +9,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
-import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
 public class ModCreativeTabFabric {
 
@@ -123,6 +122,7 @@ public class ModCreativeTabFabric {
                  //blocks
                         //ores
                         entries.accept(ModBlockRegFabric.DEEPSLATE_DEBRI_ORE);
+
                         entries.accept(ModBlockRegFabric.NETHERRACK_DEBRI_ORE);
                         entries.accept(ModBlockRegFabric.NETHERRACK_COAL_ORE);
                         entries.accept(ModBlockRegFabric.NETHERRACK_COPPER_ORE);
@@ -132,6 +132,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.NETHERRACK_EMERALD_ORE);
                         entries.accept(ModBlockRegFabric.NETHERRACK_LAPIS_ORE);
                         entries.accept(ModBlockRegFabric.NETHERRACK_REDSTONE_ORE);
+
                         entries.accept(ModBlockRegFabric.END_DEBRI_ORE);
                         entries.accept(ModBlockRegFabric.END_COAL_ORE);
                         entries.accept(ModBlockRegFabric.END_COPPER_ORE);
@@ -141,6 +142,7 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.END_EMERALD_ORE);
                         entries.accept(ModBlockRegFabric.END_LAPIS_ORE);
                         entries.accept(ModBlockRegFabric.END_REDSTONE_ORE);
+
                         entries.accept(ModBlockRegFabric.UNOBTANIUM_ORE);
                         //entities
                         entries.accept(ModBlockRegFabric.BLOCK_FACTORY);
@@ -153,11 +155,12 @@ public class ModCreativeTabFabric {
                         entries.accept(ModBlockRegFabric.TICK_ACCELERATOR);
                         entries.accept(ModBlockRegFabric.TOOLREPAIR);
                         entries.accept(ModBlockRegFabric.HARVESTER);
+                        entries.accept(ModBlockRegFabric.CROP_GROWTH);
                         //other
                         entries.accept(ModBlockRegFabric.SIMPEL_FARM_LAND);
-                        entries.accept(ModBlockRegFabric.CHUNK_TOURCH);
+                        entries.accept(ModBlockRegFabric.RAW_DEBRI_SHARD_BLOCK);
+                        entries.accept(ModBlockRegFabric.RAW_DIAMOND_SHARD_BLOCK);
+                        entries.accept(ModBlockRegFabric.RAW_EMERALD_SHARD_BLOCK);
                     }).build());
     }
-
-
 }

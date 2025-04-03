@@ -1,25 +1,20 @@
 package net.x_j0nnay_x.simpeladd.recipe;
 
-
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.minecraft.util.ExtraCodecs;
 import net.x_j0nnay_x.simpeladd.core.ModNames;
 
 public class GrinderRecipe implements Recipe<SingleRecipeInput> {
-
 
     private final ItemStack output;
     private final Ingredient recipeItems;

@@ -31,7 +31,7 @@ public class NeoForgeHarvesterMenu extends AbstractContainerMenu {
 
     public NeoForgeHarvesterMenu(int pContainerID, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypeNeoForge.HARVESTER_MENU.get(), pContainerID);
-        checkContainerSize(inv, 2);
+        checkContainerSize(inv, 3);
         blockEntity = ((NeoForgeHarvesterBlockEntity) entity);
         level = inv.player.level();
         this.inventory = ((Container) entity);
@@ -49,7 +49,7 @@ public class NeoForgeHarvesterMenu extends AbstractContainerMenu {
                     return 1;
                 }
             });
-            this.addSlot(new Slot(this.inventory, NeoForgeHarvesterBlockEntity.EFFICIENCYSLOT, 69, 12) {
+            this.addSlot(new Slot(this.inventory, NeoForgeHarvesterBlockEntity.EFFICIENCYSLOT, 71, 11) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return stack.is(ModItems.BOOSTUPGRADE);
@@ -60,7 +60,17 @@ public class NeoForgeHarvesterMenu extends AbstractContainerMenu {
                     return 3;
                 }
             });
+            this.addSlot(new Slot(this.inventory, NeoForgeHarvesterBlockEntity.GROWSLOT, 80, 29){
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.is(ModItems.GROWSTAFF);
+                }
 
+                @Override
+                public int getMaxStackSize() {
+                    return 1;
+                }
+            });
         addDataSlots(data);
     }
 
@@ -95,7 +105,7 @@ public class NeoForgeHarvesterMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);

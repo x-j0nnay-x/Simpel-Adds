@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
+import net.x_j0nnay_x.simpeladd.screens.ForgeCropGrowthScreen;
 import net.x_j0nnay_x.simpeladd.screens.ForgeGrindFactoryScreen;
 import net.x_j0nnay_x.simpeladd.screens.ForgeGrinderScreen;
 import net.x_j0nnay_x.simpeladd.screens.ForgeGrinderScreen_up;
@@ -25,13 +26,15 @@ public class JEI_PluginSimpeladd_Forge implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IGuiHelper helper = registration.getJeiHelpers().getGuiHelper();
         registration.addRecipeCategories(
-                new JEI_GrindingCatagory_Forge(helper)
+                new JEI_GrindingCatagory_Forge(helper),
+                new JEI_CropGrowthCatagory_Forge(helper)
         );
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE, JEI_GrindingCatagory_Forge.getAllRecipes());
+        registration.addRecipes(JEI_CropGrowthCatagory_Forge.CROP_GROWTH_RECIPE_RECIPE_TYPE, JEI_CropGrowthCatagory_Forge.getAllRecipes());
         registration.addItemStackInfo(new ItemStack(Items.WATER_BUCKET), Component.translatable("simpeladdmod.jei.waterbucket"));
         registration.addItemStackInfo(new ItemStack(Items.LAVA_BUCKET), Component.translatable("simpeladdmod.jei.lavabucket"));
         registration.addItemStackInfo(new ItemStack(Items.SNOWBALL), Component.translatable("simpeladdmod.jei.chilling.snowball"));
@@ -43,7 +46,7 @@ public class JEI_PluginSimpeladd_Forge implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "_jei_plugin");
+        return ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, SimpelAddMod.MOD_ID +"_jei_plugin");
     }
 
     @Override
@@ -51,6 +54,7 @@ public class JEI_PluginSimpeladd_Forge implements IModPlugin {
         registration.addRecipeCatalyst(ModBlockRegForge.GRINDER_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(ModBlockRegForge.GRINDER_BLOCK_UP.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(ModBlockRegForge.GRIND_FACTORY_BLOCK.get().asItem().getDefaultInstance(), JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(ModBlockRegForge.CROP_GROWTH.get().asItem().getDefaultInstance(), JEI_CropGrowthCatagory_Forge.CROP_GROWTH_RECIPE_RECIPE_TYPE);
     }
 
     @Override
@@ -61,6 +65,8 @@ public class JEI_PluginSimpeladd_Forge implements IModPlugin {
                 JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(ForgeGrindFactoryScreen.class, 42, 29, 72, 4,
                 JEI_GrindingCatagory_Forge.GRINDER_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(ForgeCropGrowthScreen.class, 31, 25, 10, 40,
+                JEI_CropGrowthCatagory_Forge.CROP_GROWTH_RECIPE_RECIPE_TYPE);
     }
 
 }

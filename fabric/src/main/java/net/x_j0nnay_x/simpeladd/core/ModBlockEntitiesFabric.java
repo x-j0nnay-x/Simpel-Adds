@@ -51,6 +51,10 @@ public class ModBlockEntitiesFabric {
 			ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Blocks.HARVESTER),
 			FabricBlockEntityTypeBuilder.create(FabricHarvesterBlockEntity::new, ModBlockRegFabric.HARVESTER).build());
 
+	public static final BlockEntityType<FabricCropGrowthBlockEntity> CROP_GROWTH = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
+			ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, ModNames.Blocks.CROP_GROWTH),
+			FabricBlockEntityTypeBuilder.create(FabricCropGrowthBlockEntity::new, ModBlockRegFabric.CROP_GROWTH).build());
+
 
 	public static void registerBlockEntities() {
 		SimpelAddMod.modBlockEntRegText();

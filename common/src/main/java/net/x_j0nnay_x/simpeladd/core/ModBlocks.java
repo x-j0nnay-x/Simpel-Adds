@@ -34,4 +34,8 @@ public class ModBlocks {
     public static final Block SIMPELFARMLAND = new SimpelFarmLand();
     public static final Block CHUNKTOURCH = new ChunkTourch(BlockSetType.STONE, 0, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BUTTON).lightLevel((state) -> {return 12;}));
 
+    public static final Block RAW_DEBRI_SHARD_BLOCK = new SimpelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK));
+    public static final Block RAW_DIAMOND_SHARD_BLOCK = new SimpelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK));
+    public static final Block RAW_EMERALD_SHARD_BLOCK = new SimpelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK));
+
 }

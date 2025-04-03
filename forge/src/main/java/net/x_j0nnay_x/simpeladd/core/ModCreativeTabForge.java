@@ -3,27 +3,29 @@ package net.x_j0nnay_x.simpeladd.core;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
-import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 
 public class ModCreativeTabForge {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SimpelAddMod.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> SIMPEL_TAB = CREATIVE_MODE_TABS.register(ModNames.CREATIVETAB,
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItemRegForge.GRINDERHEAD.get()))
+            () -> CreativeModeTab.builder()
+                    .alignedRight()
+                    .icon(() -> ModItemRegForge.GRINDERHEAD.get().getDefaultInstance())
                     .title(Component.translatable("creativetab.simpel_tab"))
                     .displayItems((pParameters, entries) -> {
-
-                    //items grind heads
+                        //items grind heads
                         entries.accept(ModItemRegForge.GRINDERHEAD.get());
                         entries.accept(ModItemRegForge.GRINDERHEADNETHERITE.get());
                         entries.accept(ModItemRegForge.GRINDERHEADUNOBTIANIUM.get());
-                    //items random
+                        //items random
                         entries.accept(ModItemRegForge.WOODFIBER.get());
                         entries.accept(ModItemRegForge.FLESH.get());
                         entries.accept(ModItemRegForge.OBSIDAININGOT.get());
@@ -42,14 +44,14 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.HOMEWAND.get());
                         entries.accept(ModItemRegForge.HOMECRYSTAL.get());
                         entries.accept(ModItemRegForge.XPCRYSTAL.get());
-                    //items upgrade
+                        //items upgrade
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_1.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_2.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_3.get());
                         entries.accept(ModItemRegForge.SPEEDUPGRADE_4.get());
                         entries.accept(ModItemRegForge.BOOSTUPGRADE.get());
                         entries.accept(ModItemRegForge.XPBOOSTUPGRADE.get());
-                    //items sandwich
+                        //items sandwich
                         entries.accept(ModItemRegForge.SANDWICH_MUT.get());
                         entries.accept(ModItemRegForge.SANDWICH_BEEF.get());
                         entries.accept(ModItemRegForge.SANDWICH_PORK.get());
@@ -57,12 +59,12 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.SANDWICH_VEG.get());
                         entries.accept(ModItemRegForge.SANDWICH_MEET_LOVE.get());
                         entries.accept(ModItemRegForge.SANDWICH_MEET_LOVE_VEG.get());
-                    //items template
+                        //items template
                         entries.accept(ModItemRegForge.BLANKUPGRADE.get());
                         entries.accept(ModItemRegForge.BLANKUPGRADE_RAW.get());
                         entries.accept(ModItemRegForge.OBSIDIANUPGRADE_SMITHING.get());
                         entries.accept(ModItemRegForge.UNOBTANIUMUPGRADE_SMITHING.get());
-                    //items dust
+                        //items dust
                         entries.accept(ModItemRegForge.GOLDDUST.get());
                         entries.accept(ModItemRegForge.IRONDUST.get());
                         entries.accept(ModItemRegForge.COPPERDUST.get());
@@ -72,11 +74,11 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.EMERALD_SHARD_DUST.get());
                         entries.accept(ModItemRegForge.UNOBTIANIUMDUST.get());
                         entries.accept(ModItemRegForge.OBSIDAINDUST.get());
-                    //items elytra
+                        //items elytra
                         entries.accept(ModItemRegForge.SIMPEL_ELITRA_HALF.get());
                         entries.accept(ModItemRegForge.SIMPEL_ELITRA_PART1.get());
                         entries.accept(ModItemRegForge.SIMPEL_ELITRA_PART2.get());
-                    //items obsidian tire
+                        //items obsidian tire
                         entries.accept(ModItemRegForge.OBSIDAINAXE.get());
                         entries.accept(ModItemRegForge.OBSIDIANHOE.get());
                         entries.accept(ModItemRegForge.OBSIDIANSWORD.get());
@@ -86,7 +88,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.OBSIDIANCHEST.get());
                         entries.accept(ModItemRegForge.OBSIDIANLEGS.get());
                         entries.accept(ModItemRegForge.OBSIDIANBOOTS.get());
-                    //items Obsidirite tire
+                        //items Obsidirite tire
                         entries.accept(ModItemRegForge.OBSIDIRITEAXE.get());
                         entries.accept(ModItemRegForge.OBSIDIRITEHOE.get());
                         entries.accept(ModItemRegForge.OBSIDIRITESWORD.get());
@@ -96,7 +98,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.OBSIDIRITECHEST.get());
                         entries.accept(ModItemRegForge.OBSIDIRITELEGS.get());
                         entries.accept(ModItemRegForge.OBSIDIRITEBOOTS.get());
-                    //items Unobtiannetherite tire
+                        //items Unobtiannetherite tire
                         entries.accept(ModItemRegForge.UNOBTIANNETHERITEAXE.get());
                         entries.accept(ModItemRegForge.UNOBTIANNETHERITEHOE.get());
                         entries.accept(ModItemRegForge.UNOBTIANNETHERITESWORD.get());
@@ -106,7 +108,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.UNOBTIANNETHERITECHEST.get());
                         entries.accept(ModItemRegForge.UNOBTIANNETHERITELEGS.get());
                         entries.accept(ModItemRegForge.UNOBTIANNETHERITEBOOTS.get());
-                    //items UnObtianObsidirtie tire
+                        //items UnObtianObsidirtie tire
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITEAXE.get());
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITEHOE.get());
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITESWORD.get());
@@ -116,7 +118,7 @@ public class ModCreativeTabForge {
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITECHEST.get());
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITELEGS.get());
                         entries.accept(ModItemRegForge.UNOBTIANOBSIDIRITEBOOTS.get());
-                    //blocks
+                        //blocks
                         //ores
                         entries.accept(ModBlockRegForge.DEEPSLATE_DEBRI_ORE.get());
                         entries.accept(ModBlockRegForge.NETHERRACK_DEBRI_ORE.get());
@@ -149,14 +151,16 @@ public class ModCreativeTabForge {
                         entries.accept(ModBlockRegForge.TICK_ACCELERATOR.get());
                         entries.accept(ModBlockRegForge.TOOLREPAIR.get());
                         entries.accept(ModBlockRegForge.HARVESTER.get());
+                        entries.accept(ModBlockRegForge.CROP_GROWTH.get());
                         //other
                         entries.accept(ModBlockRegForge.SIMPEL_FARM_LAND.get());
-                        entries.accept(ModBlockRegForge.CHUNK_TOURCH.get());
+                        entries.accept(ModBlockRegForge.RAW_DEBRI_SHARD_BLOCK.get());
+                        entries.accept(ModBlockRegForge.RAW_DIAMOND_SHARD_BLOCK.get());
+                        entries.accept(ModBlockRegForge.RAW_EMERALD_SHARD_BLOCK.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {
         SimpelAddMod.modtabRegText();
         CREATIVE_MODE_TABS.register(eventBus);
     }
-
 }

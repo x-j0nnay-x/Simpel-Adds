@@ -47,6 +47,9 @@ public class ModMenuTypeNeoForge {
     public static final  Supplier<MenuType<NeoForgeHarvesterMenu>> HARVESTER_MENU =
             registerMenuType(ModNames.Menu.HARVESTER_MENU, NeoForgeHarvesterMenu::new);
 
+    public static final  Supplier<MenuType<NeoForgeCropGrowthMenu>> CROP_GROWTH_MENU =
+            registerMenuType(ModNames.Menu.CROP_GROWTH_MENU, NeoForgeCropGrowthMenu::new);
+
     private static <T extends AbstractContainerMenu>Supplier<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }

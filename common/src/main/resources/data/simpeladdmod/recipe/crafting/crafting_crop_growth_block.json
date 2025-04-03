@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":
+  [
+    "sxg",
+    "cic",
+    "dve"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "simpeladdmod:growstaff"
+    },
+    "s":
+    {
+      "item": "minecraft:soul_sand"
+    },
+    "g":
+    {
+      "item": "minecraft:gravel"
+    },
+    "c":
+    {
+      "item": "minecraft:composter"
+    },
+    "d":
+    {
+      "item": "minecraft:dirt"
+    },
+    "e":
+    {
+      "item": "minecraft:end_stone"
+    },
+    "v":
+    {
+      "tag": "c:sands"
+    },
+    "i":
+    {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result":
+  {
+    "id": "simpeladdmod:crop_growth_block",
+    "count": 1
+  }
+}

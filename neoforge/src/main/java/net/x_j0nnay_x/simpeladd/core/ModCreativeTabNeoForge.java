@@ -3,9 +3,11 @@ package net.x_j0nnay_x.simpeladd.core;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
@@ -149,9 +151,12 @@ public class ModCreativeTabNeoForge {
                         entries.accept(ModBlockRegNeoForge.TICK_ACCELERATOR.get());
                         entries.accept(ModBlockRegNeoForge.TOOLREPAIR.get());
                         entries.accept(ModBlockRegNeoForge.HARVESTER.get());
+                        entries.accept(ModBlockRegNeoForge.CROP_GROWTH.get());
                         //other
                         entries.accept(ModBlockRegNeoForge.SIMPEL_FARM_LAND.get());
-                        entries.accept(ModBlockRegNeoForge.CHUNK_TOURCH.get());
+                        entries.accept(ModBlockRegNeoForge.RAW_DEBRI_SHARD_BLOCK.get());
+                        entries.accept(ModBlockRegNeoForge.RAW_DIAMOND_SHARD_BLOCK.get());
+                        entries.accept(ModBlockRegNeoForge.RAW_EMERALD_SHARD_BLOCK.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

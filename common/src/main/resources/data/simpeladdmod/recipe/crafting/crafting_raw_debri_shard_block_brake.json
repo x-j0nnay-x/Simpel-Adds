@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "simpeladdmod:raw_debri_shard_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "simpeladdmod:netherite_shard_raw"
+  }
+}

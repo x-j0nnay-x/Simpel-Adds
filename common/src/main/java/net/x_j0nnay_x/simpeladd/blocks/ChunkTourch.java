@@ -7,7 +7,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -21,11 +27,13 @@ import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ChunkTourch extends FaceAttachedHorizontalDirectionalBlock {
 
     public static final MapCodec<ChunkTourch> CODEC = RecordCodecBuilder.mapCodec(($$0) -> $$0.group(BlockSetType.CODEC.fieldOf("block_set_type").forGetter(($$0x) -> $$0x.type), Codec.intRange(1, 1024).fieldOf("ticks_to_stay_pressed").forGetter(($$0x) -> $$0x.ticksToStayPressed), propertiesCodec()).apply($$0, ChunkTourch::new));
-
 
     protected static final VoxelShape CEILING_AABB_X;
     protected static final VoxelShape CEILING_AABB_Z;
@@ -47,6 +55,15 @@ public class ChunkTourch extends FaceAttachedHorizontalDirectionalBlock {
         this.type = $$0;
         this.ticksToStayPressed = $$1;
 
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+        return super.getStateForPlacement(context);
+    }
+
+    public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+        return 200;
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context) {
@@ -158,4 +175,5 @@ public class ChunkTourch extends FaceAttachedHorizontalDirectionalBlock {
     protected MapCodec<? extends FaceAttachedHorizontalDirectionalBlock> codec() {
         return CODEC;
     }
+
 }

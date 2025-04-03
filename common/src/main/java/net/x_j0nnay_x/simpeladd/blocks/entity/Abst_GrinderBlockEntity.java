@@ -116,7 +116,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         return false;
     }
 
-
     public boolean hasRecipeforinput(ItemStack stack){
         return recipeCheckGrinder.getRecipeFor(new SingleRecipeInput(stack), level).isPresent();
     }
@@ -131,7 +130,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
                 return true;
             }
         }
-
         return false;
     }
 
@@ -191,6 +189,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             return var1 == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
         }
     }
+
     @Override
     public void clearContent() {
         this.stacks.clear();
@@ -200,8 +199,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
-
-    
 
     @Override
     protected Component getDefaultName() {
@@ -339,5 +336,4 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         }
         return false;
     }
-
 }

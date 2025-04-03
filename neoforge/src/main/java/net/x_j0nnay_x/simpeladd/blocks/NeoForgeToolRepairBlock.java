@@ -30,7 +30,6 @@ public class NeoForgeToolRepairBlock extends Abst_ToolRepairBlock {
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new NeoForgeToolRepairBlockEntity(blockPos, blockState);
     }
-
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;

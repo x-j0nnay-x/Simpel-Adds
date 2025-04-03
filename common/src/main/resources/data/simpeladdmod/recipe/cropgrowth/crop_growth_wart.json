@@ -1,0 +1,16 @@
+{
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "minecraft:nether_wart"
+    }
+  ],
+  "soil": [
+    {
+      "item": "minecraft:soul_sand"
+    }
+  ],
+  "output": {
+    "item": "minecraft:nether_wart"
+  }
+}

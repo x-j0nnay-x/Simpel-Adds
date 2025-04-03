@@ -15,8 +15,8 @@ import net.x_j0nnay_x.simpeladd.platform.UpdateCheckerForge;
 @Mod(SimpelAddMod.MOD_ID)
 public class SimpelAddModForge {
 
-    public SimpelAddModForge() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public SimpelAddModForge(FMLJavaModLoadingContext context) {
+        IEventBus modEventBus = context.getModEventBus();
         ModItemRegForge.register(modEventBus);
         ModBlockRegForge.register(modEventBus);
         ModRecipesForge.register(modEventBus);
@@ -35,11 +35,12 @@ public class SimpelAddModForge {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+
             ModScreensForge.registerScreens();
         }
     }
 
     private void handleClientSetup(FMLClientSetupEvent event) {
-        MinecraftForge.EVENT_BUS.register(new UpdateCheckerForge(SimpelAddMod.MOD_ID));
+            MinecraftForge.EVENT_BUS.register(new UpdateCheckerForge(SimpelAddMod.MOD_ID));
     }
 }

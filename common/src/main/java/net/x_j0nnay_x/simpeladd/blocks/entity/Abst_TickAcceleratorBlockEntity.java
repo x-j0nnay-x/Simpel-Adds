@@ -176,8 +176,6 @@ public abstract class Abst_TickAcceleratorBlockEntity extends RandomizableContai
         return Container.stillValidBlockEntity(this, $$0);
     }
 
-
-
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);

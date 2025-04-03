@@ -7,7 +7,7 @@
   "item.simpeladdmod.grinderhead_netherite" : "Netherite Grinder Head",
   "item.simpeladdmod.grinderhead_unobtanium" : "Unobtanium Grinder Head",
   "item.simpeladdmod.grinderhead_broken" : "Broken Grinder Head",
-    "item.simpeladdmod.grinderhead_broken.info.default" : "Flint",
+  "item.simpeladdmod.grinderhead_broken.info.default" : "Flint",
   "item.simpeladdmod.grinderhead_broken.info.netherite" : "Netherite",
   "item.simpeladdmod.grinderhead_broken.info.unobtanium" : "Unobtanium",
 
@@ -24,8 +24,8 @@
   "item.simpeladdmod.repairtool": "Repair Tool",
   "item.simpeladdmod.fireprooftool": "Fire Proof Tool",
   "item.simpeladdmod.feedingtool": "Feeding Tool",
+  "item.simpeladdmod.fuelchunks": "Fuel Chunks",
   "item.simpeladdmod.growstaff" : "Grow Staff",
-  "item.simpeladdmod.fuelchunk" : "Fuel Chunks",
   "item.simpeladdmod.homewand" : "Home Staff",
   "item.simpeladdmod.homewand.homelocal" : "Home Location: ",
   "item.simpeladdmod.homewand.use" : "To Home You Go",
@@ -143,11 +143,18 @@
   "block.simpeladdmod.netherite_crafter_block": "Netherite Crafting Block",
   "block.simpeladdmod.upgraded_furnace": "Upgraded Furnace",
   "block.simpeladdmod.grind_factory_block": "Grind Factory",
-  "block.simpeladdmod.simpel_farmland": "Simple Farmland",
-  "block.simpeladdmod.chunk_torch": "Tinny Torch",
+  "block.simpeladdmod.chunk_torch.tooltip": "This can be used as fuel, or can be used as a torch",
   "block.simpeladdmod.tick_accelerator_block": "Tick Accelerator",
   "block.simpeladdmod.toolrepair_block": "Tool Repairer",
   "block.simpeladdmod.harvester_block": "Crop Havester",
+  "block.simpeladdmod.crop_growth_block": "Crop Growing Machine",
+
+  "block.simpeladdmod.simpel_farmland": "Simple Farmland",
+  "block.simpeladdmod.chunk_torch": "Fuel Chunk Torch",
+
+  "block.simpeladdmod.raw_debri_shard_block": "Raw Debri Shard Block",
+  "block.simpeladdmod.raw_diamond_shard_block": "Raw Diamond Shard Block",
+  "block.simpeladdmod.raw_emerald_shard_block": "Raw Emerald Shard Block",
 
   "creativetab.simpel_tab": "Simpel add Tab",
 
@@ -159,6 +166,7 @@
   "simpeladdmod.jei.waterbucket": "inside of the Chiller this will give you 10x ice.",
   "simpeladdmod.jei.lavabucket": "inside of the Block Factory will give you 4x Obsidian",
   "simpeladdmod.jei.grinder": "Grinding",
+  "simpeladdmod.jei.crop_growth": "Crop Growth Machine",
   "simpeladdmod.jei.upgrades.speed": "Speed Upgrades, inside of Machines that have a slot for them will make them run faster. you can put these in the Tick Accelerator block and it will make other blocks run faster",
   "simpeladdmod.jei.upgrades.boost": "Efficiency Upgrades, inside of Machines that have a slot for them will make them run more efficiently. you can put these in the Tick Accelerator block and it will Increase the range By 1 block up to 5",
   "simpeladdmod.jei.tick_accelerator": "This Block will make other blocks run faster, Feed it some copper ingots and you are ready to speeding up blocks with a radius of 1 block. you can put speed upgrades in it to make it run faster. you can also putt Efficiency Upgrades in it +1 the range per upgrade",

@@ -2,6 +2,7 @@ package net.x_j0nnay_x.simpeladd.core;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -11,15 +12,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.*;
-import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import java.util.function.Supplier;
 
 public class ModBlockRegForge {
 
-    public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, SimpelAddMod.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SimpelAddMod.MOD_ID);
 
     public static final RegistryObject<Block> DEEPSLATE_DEBRI_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DEBRI, ModNames.Blocks.Type.DEEP), () -> ModBlocks.DEEPSLATE_DEBRI_ORE);
+
     public static final RegistryObject<Block> NETHERRACK_DEBRI_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DEBRI, ModNames.Blocks.Type.NETHER), () -> ModBlocks.NETHERRACK_DEBRI_ORE);
     public static final RegistryObject<Block> END_DEBRI_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DEBRI, ModNames.Blocks.Type.END), () -> ModBlocks.END_DEBRI_ORE);
     public static final RegistryObject<Block> NETHERRACK_COAL_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.COAL, ModNames.Blocks.Type.NETHER), () -> ModBlocks.NETHERRACK_COAL_ORE);
@@ -44,6 +44,10 @@ public class ModBlockRegForge {
     public static final RegistryObject<Block> SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND, ()-> ModBlocks.SIMPELFARMLAND);
     public static final RegistryObject<Block> CHUNK_TOURCH = registerBlock(ModNames.Blocks.CHUNK_TOURCH, ()-> ModBlocks.CHUNKTOURCH);
 
+    public static final RegistryObject<Block> RAW_DEBRI_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DEBRI), ()-> ModBlocks.RAW_DEBRI_SHARD_BLOCK);
+    public static final RegistryObject<Block> RAW_DIAMOND_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DIAMOND), ()-> ModBlocks.RAW_DIAMOND_SHARD_BLOCK);
+    public static final RegistryObject<Block> RAW_EMERALD_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.EMERALD), ()-> ModBlocks.RAW_EMERALD_SHARD_BLOCK);
+
     public static final RegistryObject<Block> BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY),
             () -> new ForgeBlockFactoryBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CHILLER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CHILLER),
@@ -64,6 +68,8 @@ public class ModBlockRegForge {
             () -> new ForgeToolRepairBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> HARVESTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.HARVESTER),
             () -> new ForgeHarvesterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> CROP_GROWTH = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CROP_GROWTH),
+            () -> new ForgeCropGrowthBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion().requiresCorrectToolForDrops()));
 
     private static  <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -75,9 +81,11 @@ public class ModBlockRegForge {
         return ModItemRegForge.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-
     public static void register(IEventBus eventBus){
         SimpelAddMod.modBlockRegText();
         BLOCKS.register(eventBus);
+    }
+    public static ItemLike getRegistryObject(){
+        return BLOCKS.getEntries().iterator().next().get();
     }
 }

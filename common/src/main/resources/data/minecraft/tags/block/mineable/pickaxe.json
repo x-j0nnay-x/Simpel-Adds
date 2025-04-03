@@ -11,6 +11,7 @@
     "simpeladdmod:tick_accelerator_block",
     "simpeladdmod:toolrepair_block",
     "simpeladdmod:harvester_block",
+    "simpeladdmod:crop_growth_block",
 
     "simpeladdmod:ore_debri_deepslate",
     "simpeladdmod:ore_debri_netherrack",
@@ -31,8 +32,10 @@
     "simpeladdmod:ore_lapis_endstone",
     "simpeladdmod:ore_redstone_netherrack",
     "simpeladdmod:ore_redstone_endstone",
+    "simpeladdmod:ore_unobtanium_endstone",
 
-
-    "simpeladdmod:ore_unobtanium_endstone"
+    "simpeladdmod:raw_debri_shard_block",
+    "simpeladdmod:raw_diamond_shard_block",
+    "simpeladdmod:raw_emerald_shard_block"
   ]
 }

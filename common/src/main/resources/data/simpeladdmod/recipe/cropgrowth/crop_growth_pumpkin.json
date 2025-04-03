@@ -1,0 +1,11 @@
+{
+  "type": "simpeladdmod:crop_growth",
+  "ingredients": [
+    {
+      "item": "minecraft:pumpkin_seeds"
+    }
+  ],
+  "output": {
+    "item": "minecraft:pumpkin"
+  }
+}
