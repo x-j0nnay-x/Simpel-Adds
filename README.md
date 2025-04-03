@@ -20,7 +20,7 @@ Vanilla ores for the Nether and End, that way you get more places to get some me
 
 Grind Head: this is used to double your meaterals by turning them into dust. this has 3 teirs, flint/netherite/unobtanium.
 
-Fuel Chuncks: this is inspaired by Tinny coal. you get 8 of these per coal or charcoal, you can make the tinny tourches with these and a stick.
+Fuel Chuncks: this is inspaired by Tinny coal. you get 8 of these per coal or charcoal, You can also place them any where a button can be placed to place Tinny Toucrches.
 
 Sandwiches: just some bread and one pice of cocked meat or some veggies will give you a sandwich that is extremly filling.
 
@@ -72,6 +72,10 @@ The Grind Factory Block, this is an upgrade from the Upgraded Grinder Block, as 
 
 The Tick Acceleration block, this by default will tick bocks faster in a 1 block raidus. you can increase the size up to 6 using 5 efficiency upgrades. This Block Uses Copper as a fuel source.(This block is able to have upgrades in it with the Speed, and efficiency upgrades)
 
+Tool Repair Block, this uses Copper to  Repair your tools really cool right?
+
+Crop Harvester Block, This Block will Auto Harvest Your crops. if a chest is above it they will go in there if not they will drop on the ground.
+
 Crop Growth Block, this uses a soil and seeds to grow your crops.(kind of like Botany pots)
 
 ### Craftable items
@@ -84,7 +88,7 @@ Repair tool that will recharge 4 damage per 100 ticks. it will take damage per i
 
 Feeding Tool this will give you food when your health is less than max. it works every 500 ticks.
 
-Fireproof Tool this will keep you from death in lava or in the flams, it will try its best to keep you alive.
+Fireproof Tool this will keep you from dieing in lava or in the flams, it will try its best to keep you alive.
 
 Grow Staff Bone Meal on crazy, also is used to make Better and Faster Farm land.
 
