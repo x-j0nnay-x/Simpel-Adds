@@ -2,7 +2,7 @@
     "schemaVersion": 1,
     "id": "${mod_id}",
     "version": "${version}",
-    "name": "SimpelAdd",
+    "name": "SimpelAddMod",
     "description": "${description}",
     "authors": [
         "${mod_author}"
@@ -12,7 +12,7 @@
         "sources": "https://github.com/x-j0nnay-x/Simpel-Adds/issues"
     },
     "license": "${license}",
-    "icon": "${mod_id}.png",
+    "icon": "assets/simpeladdmod/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [

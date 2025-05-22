@@ -10,7 +10,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.x_j0nnay_x.simpeladd.blocks.SimpelFarmLand;
 import net.x_j0nnay_x.simpeladd.core.ModBlocks;
@@ -19,14 +22,13 @@ import java.util.Map;
 
 public class GrowStaff extends Item {
 
-
     private static final Map<Block, Block> FARMLAND_MAP =
             Map.of(
                     Blocks.FARMLAND, ModBlocks.SIMPELFARMLAND
             );
 
     public GrowStaff(int maxuses){
-        super(new Properties()
+        super(new Item.Properties()
                 .stacksTo(1)
                 .durability(maxuses)
     );
@@ -52,12 +54,6 @@ public class GrowStaff extends Item {
             Block block = blockState.getBlock();
             if(staf.getDamageValue() > staf.getMaxDamage()){
                 return InteractionResult.FAIL;
-            }
-            if(block instanceof SaplingBlock){
-                SaplingBlock saplingBlock = (SaplingBlock) block;
-                saplingBlock.performBonemeal((ServerLevel) level, level.random, blockPos, blockState);
-                staf.setDamageValue(staf.getDamageValue() + 1);
-                return InteractionResult.SUCCESS;
             }
             if (block instanceof CropBlock) {
                 CropBlock cropBlock = (CropBlock) block;

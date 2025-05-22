@@ -37,11 +37,8 @@ public class NeoForgeGrinderMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
         this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity.INPUTSLOT, 34, 44){
             @Override
-//            public boolean mayPlace(ItemStack stack) {
-//                return stack.is(ModTags.Items.CANGRIND);
-//            }
             public boolean mayPlace(ItemStack stack) {
-                return blockEntity.hasRecipeforinput(stack);
+                return stack.is(ModTags.Items.CANGRIND);
             }
         });
         this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity.GRINDERSLOT, 79, 17){

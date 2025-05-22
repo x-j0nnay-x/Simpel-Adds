@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "#2#",
+    "1#1"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "1": {
+      "item": "simpeladdmod:simpel_elitra_half"
+    },
+    "2": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "id": "minecraft:elytra"
+  }
+}

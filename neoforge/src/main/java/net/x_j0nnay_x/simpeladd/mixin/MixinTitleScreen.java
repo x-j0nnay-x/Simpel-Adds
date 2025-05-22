@@ -1,7 +1,8 @@
 package net.x_j0nnay_x.simpeladd.mixin;
 
-
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
+import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

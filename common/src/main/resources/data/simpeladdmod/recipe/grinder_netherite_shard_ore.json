@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": [
+    {
+      "item": "simpeladdmod:deepslate_debri_ore"
+    }
+  ],
+  "output": {
+    "count": 6,
+    "item": "simpeladdmod:netherite_shard_dust"
+  }
+}

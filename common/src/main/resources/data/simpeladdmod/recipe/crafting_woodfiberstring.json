@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "xx",
+    "xx"
+  ],
+
+  "key":
+  {
+
+    "x":
+    {
+      "item": "simpeladdmod:woodfiber"
+    }
+
+  },
+  "result":
+  {
+    "id": "minecraft:string",
+    "count":1
+  }
+}

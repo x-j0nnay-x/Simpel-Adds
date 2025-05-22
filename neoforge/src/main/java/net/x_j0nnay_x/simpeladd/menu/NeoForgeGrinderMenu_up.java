@@ -38,25 +38,25 @@ public class NeoForgeGrinderMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity_Up.INPUTSLOT1, 43, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return blockEntity.hasRecipeforinput(stack);
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity_Up.INPUTSLOT2, 61, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return blockEntity.hasRecipeforinput(stack);
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity_Up.INPUTSLOT3, 79, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return blockEntity.hasRecipeforinput(stack);
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity_Up.INPUTSLOT4, 97, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return blockEntity.hasRecipeforinput(stack);
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, NeoForgeGrinderBlockEntity_Up.OUTPUTSLOT1, 43, 53){

@@ -39,49 +39,49 @@ public class ForgeGrindFactoryMenu extends AbstractContainerMenu {
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT1, 43, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasGrindRecipeforinput(stack);
+                            return stack.is(ModTags.Items.CANGRIND);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT2, 61, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasGrindRecipeforinput(stack);
+                            return stack.is(ModTags.Items.CANGRIND);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT3, 79, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasGrindRecipeforinput(stack);
+                            return stack.is(ModTags.Items.CANGRIND);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.GRINDERINSLOT4, 97, 12) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasGrindRecipeforinput(stack);
+                            return stack.is(ModTags.Items.CANGRIND);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT1, 43, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasFurnRecipeforinput(stack);
+                            return stack.is(ModTags.Items.DUST);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT2, 61, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasFurnRecipeforinput(stack);
+                            return stack.is(ModTags.Items.DUST);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT3, 79, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasFurnRecipeforinput(stack);
+                            return stack.is(ModTags.Items.DUST);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FURNACEINSLOT4, 97, 33) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return blockEntity.hasFurnRecipeforinput(stack);
+                            return stack.is(ModTags.Items.DUST);
                         }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.OUTPUTSLOT1, 43, 54) {
@@ -113,10 +113,6 @@ public class ForgeGrindFactoryMenu extends AbstractContainerMenu {
                         public boolean mayPlace(ItemStack stack) {
                             return stack.is(ModTags.Items.GRINDERS);
                         }
-                        @Override
-                        public int getMaxStackSize(@NotNull ItemStack stack) {
-                            return 1;
-                        }
                     });
                     this.addSlot(new SlotItemHandler(iItemHandler, ForgeGrindFactoryBlockEntity.FUELSLOT, 16, 43) {
                         @Override
@@ -131,7 +127,7 @@ public class ForgeGrindFactoryMenu extends AbstractContainerMenu {
                         }
 
                         @Override
-                        public int getMaxStackSize(@NotNull ItemStack stack) {
+                        public int getMaxStackSize() {
                             return 1;
                         }
                     });

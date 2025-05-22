@@ -13,7 +13,6 @@ import net.x_j0nnay_x.simpeladd.blocks.entity.ForgeBlockFactoryBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeForge;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
-import org.jetbrains.annotations.NotNull;
 
 public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
 
@@ -40,29 +39,17 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ModTags.Items.GRINDERS);
             }
-            @Override
-            public int getMaxStackSize(@NotNull ItemStack stack) {
-                return 1;
-            }
         });
         this.addSlot(new Slot(this.inventory, ForgeBlockFactoryBlockEntity.LAVASLOT, 124, 53){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return Items.LAVA_BUCKET == stack.getItem();
             }
-            @Override
-            public int getMaxStackSize(@NotNull ItemStack stack) {
-                return 1;
-            }
         });
         this.addSlot(new Slot(this.inventory, ForgeBlockFactoryBlockEntity.WATERSLOT, 34, 53){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return Items.WATER_BUCKET == stack.getItem();
-            }
-            @Override
-            public int getMaxStackSize(@NotNull ItemStack stack) {
-                return 1;
             }
         });
         this.addSlot(new Slot(this.inventory, ForgeBlockFactoryBlockEntity.COBBLESLOT, 52, 35){
@@ -129,13 +116,6 @@ public class ForgeBlockFactoryMenu extends AbstractContainerMenu {
 
     public boolean hasLava( ){
         return data.get(5) > 0 ;
-    }
-
-    public int getWaterLever(){
-        return this.data.get(4);
-    }
-    public int getLavaLever(){
-        return this.data.get(5);
     }
 
     public int getScalledwater(){

@@ -6,13 +6,12 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModForge;
 import net.x_j0nnay_x.simpeladd.menu.ForgeNetheriteCrafterMenu;
 
 public class ForgeNetheriteCrafterScreen extends AbstractContainerScreen<ForgeNetheriteCrafterMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/netheritecrafter_gui.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModForge.MODID, "textures/screens/netheritecrafter_gui.png");
 
     public ForgeNetheriteCrafterScreen(ForgeNetheriteCrafterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -50,8 +49,6 @@ public class ForgeNetheriteCrafterScreen extends AbstractContainerScreen<ForgeNe
     }
 
     private void renderBlazeUses(GuiGraphics guiGraphics, int x, int y) {
-        int posisionOffset = 18 - menu.getBlazeLevel();
-        guiGraphics.blit(texture,  x + 107 , y + 34 + posisionOffset, 176, posisionOffset, 4, menu.getBlazeLevel());
-
+        guiGraphics.blit(texture,  x + 107 , y + 34, 176, 0, 4, menu.getBlazeLevel());
     }
 }

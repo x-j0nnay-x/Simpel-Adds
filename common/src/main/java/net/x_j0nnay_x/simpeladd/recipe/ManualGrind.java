@@ -13,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.x_j0nnay_x.simpeladd.core.ModNames;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 
@@ -89,9 +88,7 @@ public class ManualGrind implements CraftingRecipe {
         for(int $$2 = 0; $$2 < $$1.size(); ++$$2) {
             Item $$3 = $$0.getItem($$2).getItem();
             if ($$3.getDefaultInstance().is(ModTags.Items.GRINDERS)) {
-                if(grinder.getDamageValue() < grinder.getMaxDamage()) {
-                    $$1.set($$2, GrinderHeadItem.brakeItem(grinder));
-                }
+                $$1.set($$2, GrinderHeadItem.getRemainderItem(grinder));
             }
         }
 
@@ -108,15 +105,15 @@ public class ManualGrind implements CraftingRecipe {
 
         private Type() {}
 
-        public static final Type INSTANCE = new Type();
+        public static final ManualGrind.Type INSTANCE = new ManualGrind.Type();
 
-        public static final String ID = ModNames.Recipe.MANUALGRIND;
+        public static final String ID = "manualgrind";
     }
     public static class Serializer implements RecipeSerializer<ManualGrind> {
 
-        public static final Serializer INSTANCE = new Serializer();
+        public static final ManualGrind.Serializer INSTANCE = new ManualGrind.Serializer();
 
-        public static final String ID = ModNames.Recipe.MANUALGRIND;
+        public static final String ID = "manualgrind";
 
         private static final MapCodec<ManualGrind> CODEC = RecordCodecBuilder.mapCodec(($$0) -> {
             return $$0.group(Codec.STRING.optionalFieldOf("group", "").forGetter(($$0x) -> {
@@ -145,7 +142,7 @@ public class ManualGrind implements CraftingRecipe {
             })).apply($$0, ManualGrind::new);
         });
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, ManualGrind> STREAM_CODEC = StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+        public static final StreamCodec<RegistryFriendlyByteBuf, ManualGrind> STREAM_CODEC = StreamCodec.of(ManualGrind.Serializer::toNetwork, ManualGrind.Serializer::fromNetwork);
 
         public Serializer() {
         }

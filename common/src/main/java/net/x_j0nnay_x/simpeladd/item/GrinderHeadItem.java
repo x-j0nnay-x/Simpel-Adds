@@ -13,22 +13,17 @@ public class GrinderHeadItem extends Item{
     }
 
     public static ItemStack brakeItem(ItemStack itemstack) {
-        ItemStack grinder = itemstack.copy();
-        grinder.setDamageValue(grinder.getDamageValue() + 1);
-        if (grinder.getDamageValue() >= grinder.getMaxDamage()) {
-            if(grinder.is(ModItems.GRINDERHEADNEHTERITE)){
-                return GrinderHeadItem_Broken.getNewDefaultInstance(1);
-            }else if(grinder.is(ModItems.GRINDERHEADUNOBTIANIUM)){
-                return GrinderHeadItem_Broken.getNewDefaultInstance(2);
-            }else{
-                return GrinderHeadItem_Broken.getNewDefaultInstance(0);
-            }
+        ItemStack retval = itemstack.copy();
+        retval.setDamageValue(retval.getDamageValue() + 1);
+        if (retval.getDamageValue() >= retval.getMaxDamage()) {
+            return ItemStack.EMPTY;
         }
-        return grinder;
+        return retval;
     }
 
-
-
+    public static ItemStack getRemainderItem(ItemStack itemStack) {
+        return  brakeItem(itemStack);
+    }
 
     @Override
     public boolean isValidRepairItem(ItemStack $$0, ItemStack $$1) {

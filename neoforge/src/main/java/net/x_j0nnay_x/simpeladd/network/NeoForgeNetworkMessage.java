@@ -6,14 +6,13 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 
 public class NeoForgeNetworkMessage {
 
     @SubscribeEvent
     public static void onRegisterPayloadHandler(RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar(SimpelAddMod.MOD_ID)
+        final PayloadRegistrar registrar = event.registrar(SimpelAddModNeoForge.MODID)
                 .versioned("1.0")
                 .optional();
         registrar.playToServer(NeoForgeMessageSlotChange.TYPE, NeoForgeMessageSlotChange.CODEC, NeoForgeMessageSlotChange::handle);

@@ -28,7 +28,6 @@ import net.x_j0nnay_x.simpeladd.blocks.Abst_BlockFactoryBlock;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import net.x_j0nnay_x.simpeladd.data.OutPutSlotChange;
-import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer{
@@ -42,7 +41,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     public static int SANDSLOT = 3;
     public static int OBSIDIANSLOT = 4;
     private static final int[] SLOTS_FOR_UP = new int[]{GRINDERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{WATERSLOT, LAVASLOT, COBBLESLOT, SANDSLOT, GRAVALSLOT, OBSIDIANSLOT, GRINDERSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{WATERSLOT, LAVASLOT, COBBLESLOT, SANDSLOT, GRAVALSLOT, OBSIDIANSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{WATERSLOT, LAVASLOT};
     protected final ContainerData data;
     private int makingItem;
@@ -156,9 +155,6 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
                     return true;
                 }
             }
-            if(index == GRINDERSLOT && !var2.is(ModTags.Items.GRINDERS)){
-                return true;
-            }
             if(index == outPutSlot && this.canExtractOutput == 1){
                 return true;
             }
@@ -243,6 +239,7 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         return this.data;
     }
 
+
     @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
@@ -259,33 +256,14 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
         saveAdditional(updateCompoundTag, pRegistries);
         return updateCompoundTag;
     }
-
-    public boolean canfill(int tank) {
-        if(tank == WATERSLOT && this.waterLevel < bucketValue * 6){
-            return true;
-        }
-        if(tank == LAVASLOT && this.lavaLevel < bucketValue * 6){
-            return true;
-        }
-        return false;
-    }
-
-    public int getWATERSLOT() {
-        return WATERSLOT;
-    }
-
-    public int getLAVASLOT() {
-        return LAVASLOT;
-    }
-
 //Processing
     public void blockFactoryTick(Level pLevel, BlockPos pPos, BlockState pState) {
         setBlockOuput();
-        if (canfill(WATERSLOT)) {
-            fillTank(WATERSLOT);
+        if (canFillWater()) {
+            fillWater();
         }
-        if (canfill(LAVASLOT)) {
-            fillTank(LAVASLOT);
+        if (canFillLava()) {
+            fillLava();
         }
         pState = pState.setValue(Abst_BlockFactoryBlock.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
@@ -354,8 +332,12 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
 
     private void resetGrinds() {
         if (stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)) {
-            stacks.set(GRINDERSLOT, GrinderHeadItem.brakeItem(stacks.get(GRINDERSLOT)));
-            grindsleft = maxGrinds;
+            if (stacks.get(GRINDERSLOT).getDamageValue() >= stacks.get(GRINDERSLOT).getMaxDamage()) {
+                stacks.set(GRINDERSLOT, ItemStack.EMPTY);
+            } else {
+                stacks.get(GRINDERSLOT).setDamageValue(stacks.get(GRINDERSLOT).getDamageValue() + 1);
+                grindsleft = maxGrinds;
+            }
         } else {
             grindsleft = 0;
         }
@@ -447,27 +429,29 @@ public abstract class Abst_BlockFactoryBlockEntity extends RandomizableContainer
     private boolean ObslidanSpace() {
         return this.stacks.get(OBSIDIANSLOT).isEmpty() || this.stacks.get(OBSIDIANSLOT).getCount() < 64;
     }
-    public void fillTankByhand(int tank, ItemStack stack){
-        if(tank == WATERSLOT && stack.getItem() == (Items.WATER_BUCKET)){
+
+    public boolean canFillWater() {
+        return waterLevel < bucketValue * 6;
+    }
+
+    public boolean canFillLava() {
+        return lavaLevel < bucketValue * 6;
+    }
+
+    public void fillWater() {
+        if (this.stacks.get(WATERSLOT).getItem() == (Items.WATER_BUCKET)) {
+            this.removeItem(WATERSLOT, 1);
+            this.stacks.set(WATERSLOT, new ItemStack(Items.BUCKET));
             this.waterLevel += bucketValue;
-        }
-        if(tank == LAVASLOT &&stack.getItem() == (Items.LAVA_BUCKET)){
-            this.lavaLevel += bucketValue;
         }
     }
 
-    public void fillTank(int tank){
-        if(tank == WATERSLOT && this.stacks.get(WATERSLOT).getItem() == (Items.WATER_BUCKET)){
-            this.waterLevel += bucketValue;
-            this.removeItem(tank, 1);
-            this.stacks.set(tank, new ItemStack(Items.BUCKET));
+    public void fillLava() {
+        if (this.stacks.get(LAVASLOT).getItem() == (Items.LAVA_BUCKET)) {
+            this.removeItem(LAVASLOT, 1);
+            this.stacks.set(LAVASLOT, new ItemStack(Items.BUCKET));
+            lavaLevel += bucketValue;
         }
-        if(tank == LAVASLOT && this.stacks.get(LAVASLOT).getItem() == (Items.LAVA_BUCKET)){
-            this.lavaLevel += bucketValue;
-            this.removeItem(tank, 1);
-            this.stacks.set(tank, new ItemStack(Items.BUCKET));
-        }
-
     }
 
     public OutPutSlotChange getSlotOutPut() {

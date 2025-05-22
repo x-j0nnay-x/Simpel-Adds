@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ggg",
+    "gzg",
+    "ggg"
+  ],
+
+  "key":
+  {
+    "g":
+    {
+      "item": "minecraft:gold_nugget"
+    },
+
+    "z":
+  {
+    "item": "minecraft:lava_bucket"
+  }
+  },
+  "result":
+  {
+    "id": "minecraft:blaze_rod",
+    "count":2
+  }
+}

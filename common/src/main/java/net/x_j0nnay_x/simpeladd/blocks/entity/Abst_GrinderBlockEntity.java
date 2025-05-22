@@ -19,13 +19,12 @@ import net.x_j0nnay_x.simpeladd.blocks.Abst_GrinderBlock;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
-import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
-    public final RecipeManager.CachedCheck<SingleRecipeInput, ? extends GrinderRecipe> recipeCheckGrinder;
+    private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends GrinderRecipe> recipeCheckGrinder;
     protected NonNullList<ItemStack> stacks = NonNullList.withSize(5, ItemStack.EMPTY);
     public static int INPUTSLOT = 0;
     public static int GRINDERSLOT = 1;
@@ -33,7 +32,7 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     public  static int UPGRADESLOT = 3;
     public  static int BOOSTSLOT = 4;
     private static final int[] SLOTS_FOR_UP = new int[]{GRINDERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT, GRINDERSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT};
     private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT};
     protected final ContainerData data;
     private int progress = 0;
@@ -79,7 +78,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         };
     }
 
-
     @Override
     public void loadAdditional(CompoundTag $$0, HolderLookup.Provider pRegistries) {
         super.loadAdditional($$0, pRegistries);
@@ -102,8 +100,8 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
         if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
-            if(index == INPUTSLOT){
-                return hasRecipeforinput(var2);
+            if(index == INPUTSLOT && var2.is(ModTags.Items.CANGRIND)){
+                return true;
             }
             return false;
         }
@@ -116,19 +114,10 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
         return false;
     }
 
-    public boolean hasRecipeforinput(ItemStack stack){
-        return recipeCheckGrinder.getRecipeFor(new SingleRecipeInput(stack), level).isPresent();
-    }
-
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
-        if(direction == Direction.DOWN){
-            if(index == OUTPUTSLOT){
+        if(direction == Direction.DOWN && index == OUTPUTSLOT){
             return true;
-            }
-            if(index == GRINDERSLOT && !var2.is(ModTags.Items.GRINDERS)){
-                return true;
-            }
         }
         return false;
     }
@@ -189,7 +178,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             return var1 == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
         }
     }
-
     @Override
     public void clearContent() {
         this.stacks.clear();
@@ -250,8 +238,6 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
             this.maxProgress = 24;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
             this.maxProgress = 10;
-        }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_4)) {
-            this.maxProgress = 5;
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 60;
         }
@@ -276,8 +262,12 @@ public abstract class Abst_GrinderBlockEntity extends RandomizableContainerBlock
 
     private void resetGrinds() {
         if(this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)){
-            stacks.set(GRINDERSLOT, GrinderHeadItem.brakeItem(stacks.get(GRINDERSLOT)));
-            grindsleft = maxGrinds;
+            if(this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()){
+                this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
+            }else{
+                this.stacks.get(GRINDERSLOT).setDamageValue(this.stacks.get(GRINDERSLOT).getDamageValue() + 1);
+                this.grindsleft = this.maxGrinds;
+            }
         }else {
             this.grindsleft = 0;
         }

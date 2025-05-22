@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -208,12 +209,10 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     public void clearContent() {
         this.stacks.clear();
     }
-
     @Override
     public boolean stillValid(Player $$0) {
         return Container.stillValidBlockEntity(this, $$0);
     }
-
     @Override
     protected Component getDefaultName() {
         return Component.translatable("block.simpeladdmod.upgraded_furnace");
@@ -261,8 +260,6 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
             this.maxProgress = 12;
         }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
             this.maxProgress = 5;
-        }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_4)) {
-            this.maxProgress = 2;
         }if (this.stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
         }if (this.stacks.get(XPBOOSTSLOT).isEmpty()){
@@ -294,15 +291,14 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
     }
 
     private void addFuel() {
-        if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)) {
-            if (this.getFuelTime(this.stacks.get(FUELSLOT)) >= 200) {
-                fuelLevel += (this.getFuelTime(this.stacks.get(FUELSLOT)) / 200);
-                if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
-                    this.removeItem(FUELSLOT, 1);
-                    this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
-                } else {
-                    this.removeItem(FUELSLOT, 1);
-                }
+        if(!this.stacks.get(FUELSLOT).isEmpty() && !this.stacks.get(FUELSLOT).is(Items.BUCKET)){
+            fuelLevel +=  (this.getFuelTime(this.stacks.get(FUELSLOT)) / 200);
+            if (this.stacks.get(FUELSLOT).getItem() == (Items.LAVA_BUCKET)) {
+                this.removeItem(FUELSLOT, 1);
+                this.stacks.set(FUELSLOT, new ItemStack(Items.BUCKET));
+            }
+            else {
+                this.removeItem(FUELSLOT, 1);
             }
         }
     }
@@ -395,7 +391,6 @@ public abstract class Abst_FurnaceBlockEntity_Up extends RandomizableContainerBl
             this.progress4 = 0;
         }
     }
-
     private void incresseProgress(int slot){
         if(slot == INPUTSLOT1){
             this.progress1 ++;
