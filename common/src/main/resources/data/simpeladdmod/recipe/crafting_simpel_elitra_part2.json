@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "2#2",
+    "#22",
+    "22#"
+  ],
+  "key": {
+
+    "2": {
+      "item": "simpeladdmod:simpel_elitra_part1"
+    },
+    "#": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "result": {
+    "id": "simpeladdmod:simpel_elitra_part2",
+    "count": 2
+  }
+}

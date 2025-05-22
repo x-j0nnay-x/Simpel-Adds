@@ -1,14 +1,17 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
+
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -20,9 +23,10 @@ import net.x_j0nnay_x.simpeladd.blocks.Abst_GrinderBlock_Up;
 import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.core.ModItems;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
-import net.x_j0nnay_x.simpeladd.item.GrinderHeadItem;
 import net.x_j0nnay_x.simpeladd.recipe.GrinderRecipe;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
@@ -40,10 +44,8 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public static int UPGRADESLOT = 9;
     public static int BOOSTSLOT = 10;
     private static final int[] SLOTS_FOR_UP = new int[]{GRINDERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4, GRINDERSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT1, OUTPUTSLOT2, OUTPUTSLOT3, OUTPUTSLOT4};
     private static final int[] SLOTS_FOR_SIDES = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3, INPUTSLOT4};
-    private static  final int[] SLOTS_FOR_SPLITTING = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3};
-    private static final int[] GRINDERSLOTS = new int[]{INPUTSLOT1, INPUTSLOT2, INPUTSLOT3, INPUTSLOT4};
     protected final ContainerData data;
     private int progress1 = 0;
     private int progress2 = 0;
@@ -54,6 +56,7 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private int maxGrinds = 4;
     private int grindEff = 5;
     private int hasBoost = 0;
+
 
     protected Abst_GrinderBlockEntity_Up(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
@@ -126,7 +129,10 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     public boolean canPlaceItemThroughFace(int index, ItemStack var2, @Nullable Direction direction) {
         if(direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH || direction == Direction.NORTH){
             if (index == INPUTSLOT1 || index == INPUTSLOT2 || index == INPUTSLOT3 || index == INPUTSLOT4){
-                return hasRecipeforinput(var2);
+                if(var2.is(ModTags.Items.CANGRIND)){
+                    return true;
+                }
+                return false;
             }
             return false;
         }
@@ -139,19 +145,12 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         return false;
     }
 
-    public boolean hasRecipeforinput(ItemStack stack){
-        return recipeCheckGrinding.getRecipeFor(new SingleRecipeInput(stack), level).isPresent();
-    }
-
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack var2, Direction direction) {
         if(direction == Direction.DOWN){
             if(index == OUTPUTSLOT1 || index == OUTPUTSLOT2 || index == OUTPUTSLOT3 || index == OUTPUTSLOT4){
                 return true;
             }
-           if(index == GRINDERSLOT && !var2.is(ModTags.Items.GRINDERS)){
-                return true;
-           }
             return  false;
         }
         return false;
@@ -226,7 +225,13 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.simpeladdmod.grinder_up_block");
+        return Component.translatable("block.simpeladdmod.grinder_block_up");
+    }
+
+    public void sendUpdate() {
+        setChanged();
+        if (this.level != null)
+            this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
 
     @Override
@@ -243,21 +248,24 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         resetCheck();
         splitStack();
         setUpgrades();
+
         pState = pState.setValue(Abst_GrinderBlock_Up.WORKING, Boolean.valueOf(isWorking()));
         pLevel.setBlock(pPos, pState, 3);
-        for (int slot : GRINDERSLOTS) {
-            RecipeHolder<? extends GrinderRecipe> irecipe = this.getRecipeNonCached(this.stacks.get(slot));
-            if(grindsleft > 0){
-                if(hasRecipe(irecipe, slot)){
-                    incresseProgress(slot);
-                    setChanged(pLevel, pPos, pState);
-                    if(hasProgressFinished(slot)){
-                        useGrind();
-                        craftItem(irecipe,slot);
-                        resetProgress(slot);
+
+        for (int i = 0; i < 4; i ++) {
+            int slot = INPUTSLOT1 + i;
+                RecipeHolder<? extends GrinderRecipe> irecipe = this.getRecipeNonCached(this.stacks.get(slot));
+                if(grindsleft > 0){
+                    if(hasRecipe(irecipe, slot)){
+                        incresseProgress(slot);
+                        setChanged(pLevel, pPos, pState);
+                        if(hasProgressFinished(slot)){
+                            useGrind();
+                            craftItem(irecipe,slot);
+                            resetProgress(slot);
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -272,8 +280,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             this.maxProgress = 12;
         }if (stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_3)) {
             this.maxProgress = 5;
-        }if (this.stacks.get(UPGRADESLOT).is(ModItems.SPEEDUPGRADE_4)) {
-            this.maxProgress = 2;
         }if (stacks.get(UPGRADESLOT).isEmpty()){
             this.maxProgress = 30;
         }
@@ -299,8 +305,12 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
     private void resetGrinds() {
         if(grindsleft == 0) {
             if (this.stacks.get(GRINDERSLOT).is(ModTags.Items.GRINDERS)) {
-                stacks.set(GRINDERSLOT, GrinderHeadItem.brakeItem(stacks.get(GRINDERSLOT)));
-                grindsleft = maxGrinds;
+                if (this.stacks.get(GRINDERSLOT).getDamageValue() >= this.stacks.get(GRINDERSLOT).getMaxDamage()) {
+                    this.stacks.set(GRINDERSLOT, ItemStack.EMPTY);
+                } else {
+                    this.stacks.get(GRINDERSLOT).setDamageValue(this.stacks.get(GRINDERSLOT).getDamageValue() + 1);
+                    this.grindsleft = this.maxGrinds;
+                }
             } else {
                 this.grindsleft = 0;
             }
@@ -325,17 +335,25 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
                 if (!areStacksSplit(slotToSplit, slotToFill)) {
                     ItemStack item = this.stacks.get(slotToSplit);
                     this.removeItem(slotToSplit, count);
-                    this.stacks.set(slotToFill, new ItemStack(item.getItem(), this.stacks.get(slotToFill).getCount() + count));
+                    this.stacks.set(slotToFill, new ItemStack(item.getItem(),
+                            this.stacks.get(slotToFill).getCount() + count));
                 }
             }
         }
     }
 
     private void splitStack(){
-        for (int slot : SLOTS_FOR_SPLITTING) {
-            int count = Math.round(this.stacks.get(slot).getCount() / 4);
-            moveItem(slot, slot + 1, count);
+        int slotCount = 1;
+        for (int i = 0; i < 3; i ++) {
+            if (areStacksSame(INPUTSLOT1 + i, INPUTSLOT2 + i)) {
+                slotCount++;
+            }
         }
+        for (int i = 0; i < 3; i ++) {
+            int count = this.stacks.get(INPUTSLOT1+ i).getCount() / slotCount;
+            moveItem(INPUTSLOT1 + i, INPUTSLOT2 + i, count);
+        }
+
     }
     private boolean isblockEmpty(){
         return stacks.get(INPUTSLOT1).isEmpty() && stacks.get(INPUTSLOT2).isEmpty() && stacks.get(INPUTSLOT3).isEmpty() && stacks.get(INPUTSLOT4).isEmpty() ;
@@ -352,7 +370,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         }
         return false;
     }
-
     private void resetCheck(){
         for (int i = 0; i < 4; i ++) {
             int slot = INPUTSLOT1 + i;
@@ -365,7 +382,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
         }
         resetGrinds();
     }
-
     private void resetProgress(int slot){
         if(slot == INPUTSLOT1){
             this.progress1 = 0;
@@ -380,7 +396,6 @@ public abstract class Abst_GrinderBlockEntity_Up extends RandomizableContainerBl
             this.progress4 = 0;
         }
     }
-
     private void incresseProgress(int slot){
         if(slot == INPUTSLOT1){
             this.progress1 ++;

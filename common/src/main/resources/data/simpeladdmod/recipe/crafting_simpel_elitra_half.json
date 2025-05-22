@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "1##",
+    "12#",
+    "11#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "1": {
+      "item": "simpeladdmod:simpel_elitra_part2"
+    },
+    "2": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "result": {
+    "id": "simpeladdmod:simpel_elitra_half"
+  }
+}

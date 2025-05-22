@@ -19,7 +19,7 @@ public class ForgeNetworkHandler {
     protected static final Logger log = LogManager.getLogger(SimpelAddMod.LOGNAME);
     private static final int PROTOCOL_VERSION = 1;
     private static final SimpleChannel SIMPLE_CHANNEL =
-            ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "network"))
+            ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath(SimpelAddModForge.MODID, "network"))
                     .networkProtocolVersion(PROTOCOL_VERSION)
                     .simpleChannel();
     private static int id = 0;

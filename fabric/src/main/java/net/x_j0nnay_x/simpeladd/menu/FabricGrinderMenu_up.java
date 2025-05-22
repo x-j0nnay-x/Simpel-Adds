@@ -36,25 +36,25 @@ public class FabricGrinderMenu_up extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.INPUTSLOT1, 43, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.INPUTSLOT2, 61, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.INPUTSLOT3, 79, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.INPUTSLOT4, 97, 17){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrinderBlockEntity_Up.OUTPUTSLOT1, 43, 53){

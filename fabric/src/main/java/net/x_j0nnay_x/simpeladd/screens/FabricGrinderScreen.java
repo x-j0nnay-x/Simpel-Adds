@@ -7,13 +7,12 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricGrinderMenu;
 
 public class FabricGrinderScreen extends AbstractContainerScreen<FabricGrinderMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/grinder_gui.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "textures/screens/grinder_gui.png");
 
     public FabricGrinderScreen(FabricGrinderMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -24,6 +23,8 @@ public class FabricGrinderScreen extends AbstractContainerScreen<FabricGrinderMe
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
+        if (mouseX > leftPos + 28 && mouseX < leftPos + 52 && mouseY > topPos + 40 && mouseY < topPos + 64)
+            guiGraphics.renderTooltip(font, Component.translatable("gui.simpeladdmod.grinder_gui.Grindables"), mouseX, mouseY-16);
     }
     @Override
     public void init() {

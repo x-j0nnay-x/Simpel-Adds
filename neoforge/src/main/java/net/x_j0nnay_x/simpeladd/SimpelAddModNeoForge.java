@@ -18,24 +18,34 @@ import org.slf4j.Logger;
 @Mod(SimpelAddMod.MOD_ID)
 public class SimpelAddModNeoForge {
 
+    public static final String MODID = SimpelAddMod.MOD_ID;
+
+    public static final Logger LOGGER =  SimpelAddMod.LOG;
+
     public SimpelAddModNeoForge(IEventBus modEventBus) {
+        ModItemRegNeoForge.registerModItems();
         ModItemRegNeoForge.register(modEventBus);
+        ModBlockRegNeoForge.registerModBlocks();
         ModBlockRegNeoForge.register(modEventBus);
-        SimpelAddMod.modWorldGenText();
+        ModRecipesNeoForge.registerModRecipes();
         ModRecipesNeoForge.register(modEventBus);
+        ModBlockEntitiesNeoForge.registerModBlockEntities();
         modEventBus.addListener(this::registerCapabilities);
         ModBlockEntitiesNeoForge.register(modEventBus);
+        ModMenuTypeNeoForge.registerScreenHandlers();
         ModMenuTypeNeoForge.register(modEventBus);
+        ModCreativeTabNeoForge.registerCreativeTab();
         ModCreativeTabNeoForge.register(modEventBus);
         NeoForgeNetworkReg.register(modEventBus);
         modEventBus.addListener(NeoForgeNetworkMessage::onRegisterPayloadHandler);
-        ModDataComponentTypesNeoForge.register(modEventBus);
         modEventBus.addListener(this::registerScreens);
+        LOGGER.info("Hello NeoForge world! From " + MODID);
         modEventBus.addListener(this::handleClientSetup);
     }
 
+
+
     public void registerCapabilities(RegisterCapabilitiesEvent event) {
-        SimpelAddMod.modBlockCapablityRegText();
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.BLOCK_FACTORY.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.CHILLER.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.GRINDER.get(), SidedInvWrapper::new);
@@ -43,14 +53,9 @@ public class SimpelAddModNeoForge {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.GRIND_FACTORY.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.NETHERITE_CRAFTER.get(), SidedInvWrapper::new);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.UPGRADED_FURNACE.get(), SidedInvWrapper::new);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TICK_ACCELERATOR.get(), SidedInvWrapper::new);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.TOOL_REPAIR.get(), SidedInvWrapper::new);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.HARVESTER.get(), SidedInvWrapper::new);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntitiesNeoForge.CROP_GROWTH.get(), SidedInvWrapper::new);
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {
-        SimpelAddMod.modScreenRegText();
         event.register(ModMenuTypeNeoForge.UPGRADED_FURNACE_MENU.get(), NeoForgeFurnaceScreen_up::new);
         event.register(ModMenuTypeNeoForge.GRINDER_MENU.get(), NeoForgeGrinderScreen::new);
         event.register(ModMenuTypeNeoForge.GRINDER_MENU_UP.get(), NeoForgeGrinderScreen_up::new);
@@ -58,13 +63,9 @@ public class SimpelAddModNeoForge {
         event.register(ModMenuTypeNeoForge.Chiller_MENU.get(), NeoForgeChillerScreen::new);
         event.register(ModMenuTypeNeoForge.Netherite_Menu.get(), NeoForgeNetheriteCrafterScreen::new);
         event.register(ModMenuTypeNeoForge.GRIND_FACTORY_MENU.get(), NeoForgeGrindFactoryScreen::new);
-        event.register(ModMenuTypeNeoForge.TICK_ACCELERATOR_MENU.get(), NeoForgeTickAcceleratorScreen::new);
-        event.register(ModMenuTypeNeoForge.TOOLREPAIR_MENU.get(), NeoForgeToolRepairScreen::new);
-        event.register(ModMenuTypeNeoForge.HARVESTER_MENU.get(), NeoForgeHarvesterScreen::new);
-        event.register(ModMenuTypeNeoForge.CROP_GROWTH_MENU.get(), NeoForgeCropGrowthScreen::new);
     }
 
     private void handleClientSetup(FMLClientSetupEvent event) {
-        NeoForge.EVENT_BUS.register(new UpdateCheckerNeoForge(SimpelAddMod.MOD_ID));
+        NeoForge.EVENT_BUS.register(new UpdateCheckerNeoForge(MODID));
     }
 }

@@ -39,49 +39,49 @@ public class FabricGrindFactoryMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.GRINDERINSLOT1, 43, 12){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.GRINDERINSLOT2, 61, 12){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.GRINDERINSLOT3, 79, 12){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.GRINDERINSLOT4, 97, 12){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.CANGRIND);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.FURNACEINSLOT1, 43, 33){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                return true;
+                return stack.is(ModTags.Items.DUST);
             }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.FURNACEINSLOT2, 61, 33){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.DUST);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.FURNACEINSLOT3, 79, 33){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.DUST);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.FURNACEINSLOT4, 97, 33){
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return true;
+                    return stack.is(ModTags.Items.DUST);
                 }
             });
             this.addSlot(new Slot(this.inventory, FabricGrindFactoryBlockEntity.OUTPUTSLOT1, 43, 54){

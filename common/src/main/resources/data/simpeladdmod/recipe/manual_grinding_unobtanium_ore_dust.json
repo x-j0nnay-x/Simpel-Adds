@@ -1,0 +1,17 @@
+{
+  "type": "simpeladdmod:manualgrind",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "simpeladdmod:unobtanium_ore"
+    },
+    {
+      "tag": "simpeladdmod:grinders"
+    }
+  ],
+  "result":
+  {
+    "id": "simpeladdmod:unobtaniumdust",
+    "count":2
+  }
+}

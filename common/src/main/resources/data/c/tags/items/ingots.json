@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "value" : [
+    "#c:ingots/unobtanium_scrap",
+    "#c:ingots/netherite_shard",
+    "#c:ingots/obsidianingot"
+  ]
+}

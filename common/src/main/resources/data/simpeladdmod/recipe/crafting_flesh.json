@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":
+  [
+    "x",
+    "x"
+  ],
+
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "result":
+  {
+    "id": "simpeladdmod:flesh",
+    "count": 2
+  }
+}

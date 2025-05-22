@@ -17,6 +17,7 @@ import static net.minecraft.world.level.block.SweetBerryBushBlock.AGE;
 
 public class SimpelFarmLand extends FarmBlock {
 
+
     public SimpelFarmLand() {
         super(Properties.of()
                 .sound(SoundType.GRASS)

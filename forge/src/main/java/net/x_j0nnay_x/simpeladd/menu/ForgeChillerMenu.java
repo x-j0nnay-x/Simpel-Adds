@@ -13,7 +13,6 @@ import net.x_j0nnay_x.simpeladd.blocks.entity.ForgeChillerBlockEntity;
 import net.x_j0nnay_x.simpeladd.core.ModBlockRegForge;
 import net.x_j0nnay_x.simpeladd.core.ModMenuTypeForge;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
-import org.jetbrains.annotations.NotNull;
 
 public class ForgeChillerMenu extends AbstractContainerMenu {
 
@@ -52,10 +51,6 @@ public class ForgeChillerMenu extends AbstractContainerMenu {
             public boolean mayPlace(ItemStack stack){
                 return stack.is(Items.WATER_BUCKET);
             }
-            @Override
-            public int getMaxStackSize(@NotNull ItemStack stack) {
-                return 1;
-            }
         });
         addDataSlots(data);
     }
@@ -90,9 +85,7 @@ public class ForgeChillerMenu extends AbstractContainerMenu {
         int tankSize = 59;
         return waterLevel != 0  ? waterLevel * tankSize / 10000 : 0;
     }
-    public int getWaterLever(){
-        return this.data.get(4);
-    }
+
     public ForgeChillerBlockEntity getBlockEntity() {
         return this.blockEntity;
     }

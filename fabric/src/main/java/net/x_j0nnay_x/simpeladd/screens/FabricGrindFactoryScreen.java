@@ -7,14 +7,13 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 import net.x_j0nnay_x.simpeladd.menu.FabricGrindFactoryMenu;
 import java.text.DecimalFormat;
 
 public class FabricGrindFactoryScreen extends AbstractContainerScreen<FabricGrindFactoryMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/grinder_factory_gui.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, "textures/screens/grinder_factory_gui.png");
 
     public FabricGrindFactoryScreen(FabricGrindFactoryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);

@@ -8,31 +8,20 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
-import net.x_j0nnay_x.simpeladd.core.ModDataComponentTypesNeoForge;
 import net.x_j0nnay_x.simpeladd.menu.NeoForgeBlockFactoryMenu;
 import net.x_j0nnay_x.simpeladd.network.NeoForgeMessageSlotChange;
 import net.x_j0nnay_x.simpeladd.network.NeoForgeNetworkMessage;
 
-import java.text.NumberFormat;
-
 public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForgeBlockFactoryMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, "textures/screens/blockfactory_gui.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(SimpelAddModNeoForge.MODID, "textures/screens/blockfactory_gui.png");
     private int ButtonY = 166;
     private int ButtonSize = 12;
     private int buttonPosX = 56;
     private int buttonPosY = 57;
-    private int waterPosX = 12;
-    private int waterPosY = 11;
-    private int tankWidth = 13;
-    private int tankHeight = 61;
-    private int lavaPosX = 152;
-    private int lavaPosY = 11;
     private Button button;
     BlockPos pos = new BlockPos(this.menu.blockEntity.getBlockPos().getX(),this.menu.blockEntity.getBlockPos().getY(),this.menu.blockEntity.getBlockPos().getZ());
 
@@ -50,8 +39,6 @@ public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForge
     protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
        super.renderTooltip(guiGraphics, x, y);
        renderButtonToolTip(guiGraphics, x, y);
-       renderLavaToolOverlay(guiGraphics, x, y);
-       renderWaterToolOverlay(guiGraphics, x, y);
     }
 
     @Override
@@ -71,7 +58,7 @@ public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForge
         renderlava(pGuiGraphics, x, y);
         renderwater(pGuiGraphics, x, y);
         renderButton(pGuiGraphics, x, y);
-        pGuiGraphics.setColor(1.0f, 1.0f, 1.06f, 1.0f);
+        pGuiGraphics.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.disableBlend();
     }
 
@@ -83,31 +70,6 @@ public class NeoForgeBlockFactoryScreen extends AbstractContainerScreen<NeoForge
                 && hoverPositionY > this.buttonPosY
                 && hoverPositionY < this.buttonPosY + this.ButtonSize) {
             guiGraphics.renderTooltip(font, Component.translatable("gui.simpeladdmod.blockfactory.button.tooltip"),x ,y + 12);
-        }
-    }
-
-    public void renderWaterToolOverlay(GuiGraphics guiGraphics, int x, int y) {
-        int hoverPositionX = x - leftPos;
-        int hoverPositionY = y - topPos;
-        if (hoverPositionX > this.waterPosX
-                && hoverPositionX < this.waterPosX + this.tankWidth
-                && hoverPositionY > this.waterPosY
-                && hoverPositionY < this.waterPosY + this.tankHeight) {
-            NumberFormat format = NumberFormat.getInstance();
-            String waterLevel = format.format(this.menu.getWaterLever());
-            guiGraphics.renderTooltip(font, Component.literal(waterLevel), x ,y + 12);
-        }
-    }
-    public void renderLavaToolOverlay(GuiGraphics guiGraphics, int x, int y) {
-        int hoverPositionX = x - leftPos;
-        int hoverPositionY = y - topPos;
-        if (hoverPositionX > this.lavaPosX
-                && hoverPositionX < this.lavaPosX + this.tankWidth
-                && hoverPositionY > this.lavaPosY
-                && hoverPositionY < this.lavaPosY + this.tankHeight) {
-            NumberFormat format = NumberFormat.getInstance();
-            String waterLevel = format.format(this.menu.getLavaLever());
-            guiGraphics.renderTooltip(font, Component.literal(waterLevel), x ,y + 12);
         }
     }
 

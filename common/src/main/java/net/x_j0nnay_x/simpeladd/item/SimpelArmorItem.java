@@ -15,7 +15,7 @@ public class SimpelArmorItem extends ArmorItem {
         super(material, type, properties);
     }
 
-    public SimpelArmorItem(Holder<ArmorMaterial> material, Type armorType)
+    public SimpelArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type armorType)
     {
         this(material, armorType, new Properties().durability(armorType.getDurability(ModArmmorTier.getArmorDurabilityMultiplier(material))).fireResistant());
     }

@@ -8,64 +8,48 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.*;
-
+import net.x_j0nnay_x.simpeladd.SimpelAddModFabric;
 
 public class ModBlockRegFabric {
-    //Ores
-    public static final Block DEEPSLATE_DEBRI_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DEBRI, ModNames.Blocks.Type.DEEP), ModBlocks.DEEPSLATE_DEBRI_ORE);
-    public static final Block NETHERRACK_DEBRI_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DEBRI, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_DEBRI_ORE);
-    public static final Block END_DEBRI_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DEBRI, ModNames.Blocks.Type.END), ModBlocks.END_DEBRI_ORE);
-    public static final Block NETHERRACK_COAL_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.COAL, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_COAL_ORE);
-    public static final Block END_COAL_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.COAL, ModNames.Blocks.Type.END), ModBlocks.END_COAL_ORE);
-    public static final Block NETHERRACK_COPPER_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.COPPER, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_COPPER_ORE);
-    public static final Block END_COPPER_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.COPPER, ModNames.Blocks.Type.END), ModBlocks.END_COPPER_ORE);
-    public static final Block NETHERRACK_IRON_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.IRON, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_IRON_ORE);
-    public static final Block END_IRON_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.IRON, ModNames.Blocks.Type.END), ModBlocks.END_IRON_ORE);
-    public static final Block NETHERRACK_GOLD_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.GOLD, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_GOLD_ORE);
-    public static final Block END_GOLD_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.GOLD, ModNames.Blocks.Type.END), ModBlocks.END_GOLD_ORE);
-    public static final Block NETHERRACK_DIAMOND_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DIAMOND, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_DIAMOND_ORE);
-    public static final Block END_DIAMOND_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.DIAMOND, ModNames.Blocks.Type.END), ModBlocks.END_DIAMOND_ORE);
-    public static final Block NETHERRACK_EMERALD_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.EMERALD, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_EMERALD_ORE);
-    public static final Block END_EMERALD_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.EMERALD, ModNames.Blocks.Type.END), ModBlocks.END_EMERALD_ORE);
-    public static final Block NETHERRACK_LAPIS_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.LAPIS, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_LAPIS_ORE);
-    public static final Block END_LAPIS_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.LAPIS, ModNames.Blocks.Type.END), ModBlocks.END_LAPIS_ORE);
-    public static final Block NETHERRACK_REDSTONE_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.REDSTONE, ModNames.Blocks.Type.NETHER), ModBlocks.NETHERRACK_REDSTONE_ORE);
-    public static final Block END_REDSTONE_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.REDSTONE, ModNames.Blocks.Type.END), ModBlocks.END_REDSTONE_ORE);
-    public static final Block UNOBTANIUM_ORE = registerBlock(ModNames.Blocks.getBlockNameForOre(ModNames.Blocks.UNOBTANIUM_ORE, ModNames.Blocks.Type.END), ModBlocks.UNOBTANIUM_ORE);
-    //other
-    public static final Block SIMPEL_FARM_LAND = registerBlock(ModNames.Blocks.SIMPEL_FARM_LAND, ModBlocks.SIMPELFARMLAND);
-    public static final Block CHUNK_TOURCH = registerBlock(ModNames.Blocks.CHUNK_TOURCH, ModBlocks.CHUNKTOURCH);
 
-    public static final Block RAW_DEBRI_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DEBRI), ModBlocks.RAW_DEBRI_SHARD_BLOCK);
-    public static final Block RAW_DIAMOND_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.DIAMOND), ModBlocks.RAW_DIAMOND_SHARD_BLOCK);
-    public static final Block RAW_EMERALD_SHARD_BLOCK = registerBlock(ModNames.Blocks.getRawOreBlockName(ModNames.Blocks.EMERALD), ModBlocks.RAW_EMERALD_SHARD_BLOCK);
-    //block entitys blocks
-    public static final Block BLOCK_FACTORY = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.BLOCKFACTORY), new FabricBlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block CHILLER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CHILLER), new FabricChillerBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block GRINDER_BLOCK = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDER), new FabricGrinderBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block GRINDER_BLOCK_UP = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDER_UP), new FabricGrinderBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block GRIND_FACTORY_BLOCK = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.GRINDFACTORY), new FabricGrindFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block NETHERITE_CRAFTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.NETHERITE_CRAFTER), new FabricNetheriteCraftingBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block UPGRADED_FURNACE = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.UPGRADED_FURNACE), new FabricFurnaceBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block TICK_ACCELERATOR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TICK_ACCELERATOR), new FabricTickAcceleratorBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block TOOLREPAIR = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.TOOLREPAIR), new FabricToolRepairBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block HARVESTER = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.HARVESTER), new FabricHarvesterBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
-    public static final Block CROP_GROWTH = registerBlock(ModNames.Blocks.getBlockNameForEntity(ModNames.Blocks.CROP_GROWTH), new FabricCropGrowthBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+    public static final Block DEEPSLATE_DEBRI_ORE = registerBlock("deepslate_debri_ore", ModBlocks.DEEPSLATE_DEBRI_ORE);
 
-    
+    public static final Block UNOBTANIUM_ORE = registerBlock("unobtanium_ore", ModBlocks.UNOBTANIUM_ORE);
+
+    public static final Block SIMPEL_FARM_LAND = registerBlock("simpel_farmland", ModBlocks.SIMPELFARMLAND);
+
+    public static final Block BLOCK_FACTORY = registerBlock("blockfactory_block",
+            new FabricBlockFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
+    public static final Block CHILLER = registerBlock("chiller_block",
+            new FabricChillerBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
+    public static final Block GRINDER_BLOCK = registerBlock("grinder_block",
+            new FabricGrinderBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
+    public static final Block GRINDER_BLOCK_UP = registerBlock("grinder_block_up",
+            new FabricGrinderBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
+    public static final Block GRIND_FACTORY_BLOCK = registerBlock("grind_factory_block",
+            new FabricGrindFactoryBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
+    public static final Block NETHERITE_CRAFTER = registerBlock("netherite_crafter_block",
+            new FabricNetheriteCraftingBlock(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
+    public static final Block UPGRADED_FURNACE = registerBlock("upgraded_furnace_block",
+            new FabricFurnaceBlock_Up(FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque()));
+
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
-        return Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name), block);
+        return Registry.register(BuiltInRegistries.BLOCK,  ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, name), block);
     }
 
     private static Item registerBlockItem(String name, Block block){
-        return Registry.register(BuiltInRegistries.ITEM,  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name), new BlockItem(block, new Item.Properties()));
+        return Registry.register(BuiltInRegistries.ITEM,  ResourceLocation.fromNamespaceAndPath(SimpelAddModFabric.MODID, name), new BlockItem(block, new Item.Properties()));
     }
 
-    public static void registerBlocks() {
-        SimpelAddMod.modBlockRegText();
+    public static void registerModBlocks(){
+        SimpelAddModFabric.LOGGER.info("Registering Blocks for " + SimpelAddModFabric.MODID);
     }
-
 }

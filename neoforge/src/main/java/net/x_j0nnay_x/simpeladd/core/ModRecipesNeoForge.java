@@ -6,16 +6,16 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.x_j0nnay_x.simpeladd.SimpelAddMod;
+import net.x_j0nnay_x.simpeladd.SimpelAddModNeoForge;
 import net.x_j0nnay_x.simpeladd.recipe.*;
 import java.util.function.Supplier;
 
 public class ModRecipesNeoForge {
 
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
-            DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, SimpelAddMod.MOD_ID);
+            DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, SimpelAddModNeoForge.MODID);
     public static final DeferredRegister<RecipeType<?>> TYPE =
-            DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, SimpelAddMod.MOD_ID);
+            DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, SimpelAddModNeoForge.MODID);
 
     public static final Supplier<RecipeSerializer<GrinderRecipe>> GRINDER_RECIPE_SERIALIZER =
             SERIALIZERS.register(GrinderRecipe.GrinderSerializer.ID, () -> GrinderRecipe.GrinderSerializer.INSTANCE);
@@ -27,18 +27,15 @@ public class ModRecipesNeoForge {
     public static final Supplier<RecipeType<ManualGrind>> MANUAL_GRINDER_RECIPE_TYPE =
             TYPE.register(ManualGrind.Type.ID, () -> ManualGrind.Type.INSTANCE);
 
-    public static final Supplier<RecipeSerializer<CropGrowthRecipe>> CROP_GROWTH_RECIPE_SERIALIZER =
-            SERIALIZERS.register(CropGrowthRecipe.CropGrowthSerializer.ID, () -> CropGrowthRecipe.CropGrowthSerializer.INSTANCE);
-    public static final Supplier<RecipeType<CropGrowthRecipe>> CROP_GROWTH_RECIPE_TYPE =
-            TYPE.register(CropGrowthRecipe.CropGrowthType.ID, () -> CropGrowthRecipe.CropGrowthType.INSTANCE);
-
     public static final Supplier<RecipeSerializer<SimpelCraftingRepair>> SIMPEL_REPAIR_RECIPE_SERIALIZER =
             SERIALIZERS.register(SimpelCraftingRepair.ID, () -> new SimpleCraftingRecipeSerializer<>(SimpelCraftingRepair::new));
 
     public static void register(IEventBus eventBus) {
-        SimpelAddMod.modRecipeRegText();
         SERIALIZERS.register(eventBus);
         TYPE.register(eventBus);
     }
 
+    public static void registerModRecipes(){
+        SimpelAddModNeoForge.LOGGER.info("Registering Custom Recipes for " + SimpelAddModNeoForge.MODID);
+    }
 }

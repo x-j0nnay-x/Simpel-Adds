@@ -1,6 +1,5 @@
 package net.x_j0nnay_x.simpeladd.blocks.entity;
 
-import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -13,7 +12,6 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -24,7 +22,6 @@ import net.x_j0nnay_x.simpeladd.SimpelAddMod;
 import net.x_j0nnay_x.simpeladd.blocks.Abst_ChillerBlock;
 import net.x_j0nnay_x.simpeladd.core.ModTags;
 import org.jetbrains.annotations.Nullable;
-import java.util.Map;
 
 public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 
@@ -32,9 +29,9 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
     public static int CHILLINGSLOT = 0;
     public static int WATERSLOT = 1;
     public static int OUTPUTSLOT = 2;
-    private static final int[] SLOTS_FOR_UP = new int[]{WATERSLOT};
-    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT, WATERSLOT};
-    private static final int[] SLOTS_FOR_SIDES = new int[]{CHILLINGSLOT};
+    private static final int[] SLOTS_FOR_UP = new int[]{CHILLINGSLOT};
+    private static final int[] SLOTS_FOR_DOWN = new int[]{OUTPUTSLOT};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{WATERSLOT};
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 60;
@@ -42,7 +39,6 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
     public int waterUese = 0;
     public int waterLevel = 0;
     private int bucketValue = 1000;
-    private static volatile Map<Item, Integer> chillCache;
 
     protected Abst_ChillerBlockEntity(BlockEntityType<?> $$0, BlockPos $$1, BlockState $$2) {
         super($$0, $$1, $$2);
@@ -237,6 +233,7 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         } else {
             resetProgress();
         }
+
     }
 
     private boolean isWorking(){
@@ -248,29 +245,37 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         this.snowLevel --;
     }
 
-    public static Map<Item, Integer> getChill() {
-        Map<Item, Integer> map = chillCache;
-        if (map != null) {
-            return map;
-        } else {
-            Map<Item, Integer> map1 = Maps.newLinkedHashMap();
-            map1.put(Items.SNOWBALL, 1);
-            map1.put(Items.SNOW_BLOCK, 4);
-            map1.put(Items.ICE, 8);
-            map1.put(Items.PACKED_ICE, 12);
-            map1.put(Items.BLUE_ICE, 20);
-            chillCache = map1;
-            return map1;
-        }
-    }
-
     public void  fillSnow(){
-        Item chillitem = this.stacks.get(CHILLINGSLOT).getItem();
-            if (getChill().containsKey(chillitem)) {
-                int chillamount = getChill().get(chillitem);
-                if (canFillSnowCheck(chillamount)){
-                this.snowLevel += chillamount;
-                this.removeItem(CHILLINGSLOT, 1);
+        if (canFillSnow()){
+            if (snowLevel < 20) {
+                if (this.stacks.get(CHILLINGSLOT).is(Items.SNOWBALL)) {
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 1;
+                }
+            }
+            if(snowLevel <= 16){
+                if(this.stacks.get(CHILLINGSLOT).is(Items.SNOW_BLOCK)){
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 4;
+                }
+            }
+            if (snowLevel <= 12){
+                if(this.stacks.get(CHILLINGSLOT).is(Items.ICE)){
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 8;
+                }
+            }
+            if (snowLevel <= 8){
+                if(this.stacks.get(CHILLINGSLOT).is(Items.PACKED_ICE)){
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 12;
+                }
+            }
+            if (snowLevel <= 1){
+                if(this.stacks.get(CHILLINGSLOT).is(Items.BLUE_ICE)){
+                    this.removeItem(CHILLINGSLOT, 1);
+                    snowLevel += 19;
+                }
             }
         }
     }
@@ -282,9 +287,6 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
             waterLevel += bucketValue;
         }
     }
-    public void fillWaterByHand(){
-        this.waterLevel += bucketValue;
-    }
 
     public boolean canFillWater() {
         return this.waterLevel < bucketValue * 10;
@@ -294,15 +296,12 @@ public abstract class Abst_ChillerBlockEntity extends RandomizableContainerBlock
         return this.snowLevel < 20;
     }
 
-    private boolean canFillSnowCheck(int adding) {
-        return this.snowLevel + adding <= 20;
-    }
-
     public void setWaterUese(){
         if(this.waterLevel > 0){
             this.waterLevel -= bucketValue;
             this.waterUese = 10;
         }
+
     }
 
     private void resetProgress() {

@@ -21,7 +21,9 @@ public class NeoForgeBlockFactoryMenu extends AbstractContainerMenu {
     private final Container inventory;
     private final Level level;
     private final ContainerData data;
-
+    private int xPos ;
+    private int yPos;
+    private int zPos;
 
     public NeoForgeBlockFactoryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData){
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(10));
@@ -100,13 +102,6 @@ public class NeoForgeBlockFactoryMenu extends AbstractContainerMenu {
         return data.get(5) > 0 ;
     }
 
-    public int getWaterLever(){
-        return this.data.get(4);
-    }
-    public int getLavaLever(){
-        return this.data.get(5);
-    }
-
     public int getScalledwater(){
         int waterLevel = this.data.get(4);
         int tankSize = 61;
@@ -137,6 +132,14 @@ public class NeoForgeBlockFactoryMenu extends AbstractContainerMenu {
             return 36;
         }
         return 48;
+    }
+
+    public NeoForgeBlockFactoryBlockEntity getBlockEntity() {
+        return this.blockEntity;
+    }
+
+    public BlockPos getPos() {
+        return this.blockEntity.getBlockPos();
     }
 
     @Override

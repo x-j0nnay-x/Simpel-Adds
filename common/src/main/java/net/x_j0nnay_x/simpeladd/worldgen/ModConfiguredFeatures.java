@@ -19,29 +19,21 @@ import net.x_j0nnay_x.simpeladd.core.ModBlocks;
 public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_DEBRI_ORE_KEY = registerKey("config_deepslate_debri_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_DEBRI_ORE_KEY = registerKey("config_nether_debri_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_DEBRI_ORE_KEY = registerKey("config_end_debri_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_COAL_ORE_KEY = registerKey("config_nether_coal_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_COAL_ORE_KEY = registerKey("config_end_coal_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_COPPER_ORE_KEY = registerKey("config_nether_copper_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_COPPER_ORE_KEY = registerKey("config_end_copper_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_DIAMOND_ORE_KEY = registerKey("config_nether_diamond_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_DIAMOND_ORE_KEY = registerKey("config_end_diamond_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_EMERALD_ORE_KEY = registerKey("config_nether_emerald_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_EMERALD_ORE_KEY = registerKey("config_end_emerald_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_GOLD_ORE_KEY = registerKey("config_nether_gold_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_GOLD_ORE_KEY = registerKey("config_end_gold_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_IRON_ORE_KEY = registerKey("config_nether_iron_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_IRON_ORE_KEY = registerKey("config_end_iron_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_LAPIS_ORE_KEY = registerKey("config_nether_lapis_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_LAPIS_ORE_KEY = registerKey("config_end_lapis_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_REDSTONE_ORE_KEY = registerKey("config_nether_redstone_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_REDSTONE_ORE_KEY = registerKey("config_end_redstone_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> END_UNOBTANIUM_ORE_KEY = registerKey("config_end_unobtanium_ore");
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> UNOBTANIUM_ORE_KEY = registerKey("config_unobtanium_ore");
+
+    public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+        RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+        RuleTest endstoneReplaceables = new BlockMatchTest(Blocks.END_STONE);
+        register(context, DEEPSLATE_DEBRI_ORE_KEY, Feature.ORE, new OreConfiguration(deepslateReplaceables, ModBlocks.DEEPSLATE_DEBRI_ORE.defaultBlockState(), 6));
+        register(context, UNOBTANIUM_ORE_KEY, Feature.ORE, new OreConfiguration(endstoneReplaceables, ModBlocks.UNOBTANIUM_ORE.defaultBlockState(), 4));
     }
 
+    public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE,  ResourceLocation.fromNamespaceAndPath(SimpelAddMod.MOD_ID, name));
+    }
 
+    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
+        context.register(key, new ConfiguredFeature<>(feature, configuration));
+    }
 }

@@ -64,10 +64,6 @@ public class FabricChillerMenu extends AbstractContainerMenu {
         return data.get(3) > 0 ;
     }
 
-    public int getWaterLever(){
-        return this.data.get(4);
-    }
-
     public int getScalledProgress(){
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
