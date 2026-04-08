@@ -1,0 +1,71 @@
+{
+  "variants": {
+    "face=ceiling,facing=east": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "x": 180,
+      "y": 270
+    },
+    
+    "face=ceiling,facing=north": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "x": 180,
+      "y": 180
+    },
+    
+    "face=ceiling,facing=south": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "x": 180
+    },
+    
+    "face=ceiling,facing=west": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "x": 180,
+      "y": 90
+    },
+
+    "face=floor,facing=east": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "y": 90
+    },
+
+    "face=floor,facing=north": {
+      "model": "simpeladdmod:block/fuel_chunks"
+    },
+    "face=floor,facing=south": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "y": 180
+    },
+
+    "face=floor,facing=west": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "y": 270
+    },
+    
+    "face=wall,facing=east": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "uvlock": true,
+      "x": 90,
+      "y": 90
+    },
+
+    "face=wall,facing=north": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "uvlock": true,
+      "x": 90
+    },
+
+    "face=wall,facing=south": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "uvlock": true,
+      "x": 90,
+      "y": 180
+    },
+
+    "face=wall,facing=west": {
+      "model": "simpeladdmod:block/fuel_chunks",
+      "uvlock": true,
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model" : "simpeladdmod:block/ore_iron_netherrack"
+    }
+  }
+}

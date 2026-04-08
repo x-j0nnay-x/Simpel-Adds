@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "simpeladdmod:block/simpel_farmland"
+    },
+    "moisture=1": {
+      "model": "simpeladdmod:block/simpel_farmland"
+    },
+    "moisture=2": {
+      "model": "simpeladdmod:block/simpel_farmland"
+    },
+    "moisture=3": {
+      "model": "simpeladdmod:block/simpel_farmland"
+    },
+    "moisture=4": {
+      "model": "simpeladdmod:block/simpel_farmland"
+    },
+    "moisture=5": {
+      "model": "simpeladdmod:block/simpel_farmland"
+    },
+    "moisture=6": {
+      "model": "simpeladdmod:block/simpel_farmland"
+    },
+    "moisture=7": {
+      "model": "simpeladdmod:block/simpel_farmland_moist"
+    }
+  }
+}

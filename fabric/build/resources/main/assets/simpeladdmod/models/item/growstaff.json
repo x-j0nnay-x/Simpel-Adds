@@ -1,0 +1,11 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "simpeladdmod:item/growstaff"
+  },
+  "overrides": [
+    {"predicate": { "damage": 1, "damage" : 1}, "model": "simpeladdmod:item/brokengrowstaff"}
+
+  ]
+
+}

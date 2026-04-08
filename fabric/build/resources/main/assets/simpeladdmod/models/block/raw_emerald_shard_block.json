@@ -1,0 +1,7 @@
+{
+  "parent" : "minecraft:block/cube_all",
+  "textures": {
+    "all" : "simpeladdmod:block/raw_emerald_shard_block",
+    "particle" : "simpeladdmod:block/raw_emerald_shard_block"
+  }
+}

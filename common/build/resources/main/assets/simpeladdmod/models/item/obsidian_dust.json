@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:minecraft:item/handheld",
+  "textures": {
+    "layer0": "simpeladdmod:item/obsidian_dust"
+  }
+
+}

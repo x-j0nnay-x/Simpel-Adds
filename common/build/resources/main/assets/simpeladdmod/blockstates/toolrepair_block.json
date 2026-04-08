@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "simpeladdmod:block/toolrepair_block",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "simpeladdmod:block/toolrepair_block",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "simpeladdmod:block/toolrepair_block"
+    },
+    "facing=west": {
+      "model": "simpeladdmod:block/toolrepair_block",
+      "y": 90
+    }
+  }
+}

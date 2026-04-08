@@ -1,0 +1,28 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 35490,
+      "minecraft:walk_one_cm": 4833,
+      "minecraft:total_world_time": 23065,
+      "minecraft:leave_game": 4,
+      "minecraft:sneak_time": 80,
+      "minecraft:play_time": 17745,
+      "minecraft:jump": 11,
+      "minecraft:time_since_death": 17745,
+      "minecraft:drop": 2
+    },
+    "minecraft:picked_up": {
+      "simpeladdmod:fuel_chunks": 5
+    },
+    "minecraft:dropped": {
+      "simpeladdmod:fuel_chunks": 2
+    },
+    "minecraft:used": {
+      "minecraft:grass_block": 1,
+      "simpeladdmod:raw_diamond_shard_block": 1,
+      "simpeladdmod:fuel_chunks": 15,
+      "simpeladdmod:raw_debri_shard_block": 1
+    }
+  },
+  "DataVersion": 4788
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "simpeladdmod:item/sandwich_meat_love_veg"
+  }
+}

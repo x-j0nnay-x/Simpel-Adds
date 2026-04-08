@@ -1,0 +1,7 @@
+/give @s sim
+/give @s simpeladdmod:diamond_shard
+/give @s simpeladdmod:grinder_head_unobtanium
+/give @s simpeladdmod:raw_debri_shard_block
+/give @s simpeladdmod:fuel_chunks
+/give @s simp
+/give @s simpeladdmod:raw_diamond_shard_block

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model" : "simpeladdmod:block/ore_redstone_netherrack"
+    }
+  }
+}
