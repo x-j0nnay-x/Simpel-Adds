@@ -1,6 +1,0 @@
-{
-  "parent": "simpeladdmod:block/template_toolrepiar",
-  "textures": {
-    "top": "minecraft:block/copper_block"
-  }
-}

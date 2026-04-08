@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.x_j0nnay_x.simpeladd.mixin",
+  "package": "x_j0nnay_x.simpeladdmod.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
   "client": [

@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_end",
-  "features": "simpeladdmod:place_unobtanium_ore",
-  "step": "underground_ores"
-}

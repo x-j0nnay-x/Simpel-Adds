@@ -1,7 +1,0 @@
-{
-  "parent" : "minecraft:block/cube_all",
-  "textures": {
-    "all" : "simpeladdmod:block/ore_emerald_endstone",
-    "particle" : "simpeladdmod:block/ore_emerald_endstone"
-  }
-}
