@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/lapis",
+  "result": {
+    "id": "minecraft:lapis_lazuli",
+    "count": 4
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "minecraft:iron_nugget",
+    "z": "minecraft:experience_bottle",
+    "y": "minecraft:redstone"
+  },
+  "pattern": [
+    "xxx",
+    "xzx",
+    "yzy"
+  ],
+  "result": {
+    "id": "simpeladdmod:xp_boost_upgrade",
+    "count": 1
+  }
+}

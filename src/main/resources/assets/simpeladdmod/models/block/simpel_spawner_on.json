@@ -1,0 +1,7 @@
+{
+  "parent" : "block/cube_all_inner_faces",
+  "textures": {
+    "all" : "simpeladdmod:block/simpel_spawner_on",
+    "particle" : "simpeladdmod:block/simpel_spawner_on"
+  }
+}

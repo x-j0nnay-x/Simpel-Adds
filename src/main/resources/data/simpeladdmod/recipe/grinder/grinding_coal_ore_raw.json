@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/coal",
+  "result": {
+    "id": "minecraft:coal",
+    "count": 3
+  }
+}

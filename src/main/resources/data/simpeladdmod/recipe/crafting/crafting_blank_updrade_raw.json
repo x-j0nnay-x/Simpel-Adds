@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "minecraft:clay_ball"
+  },
+  "pattern": [
+    "x",
+    "x"
+  ],
+  "result": {
+    "id": "simpeladdmod:blank_upgrade_raw",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "minecraft:ancient_debris",
+  "result": {
+    "id": "simpeladdmod:netherite_dust",
+    "count": 2
+  }
+}

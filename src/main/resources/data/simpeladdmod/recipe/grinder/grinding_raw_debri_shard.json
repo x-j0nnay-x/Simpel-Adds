@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "simpeladdmod:netherite_shard_raw",
+  "result": {
+    "id": "simpeladdmod:netherite_shard_dust",
+    "count": 2
+  }
+}

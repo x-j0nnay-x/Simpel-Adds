@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "catagory": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "#": "simpeladdmod:travel_crystal",
+    "X":  "minecraft:stick"
+  },
+  "pattern": [
+    "#",
+    "X",
+    "X"
+  ],
+  "result": {
+    "id": "simpeladdmod:home_wand",
+    "count": 1
+  }
+}

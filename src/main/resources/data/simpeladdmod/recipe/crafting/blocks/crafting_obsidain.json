@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "z": "minecraft:lava_bucket",
+    "x": "minecraft:water_bucket"
+  },
+  "pattern": [
+    "zzz",
+    "zxz",
+    "zzz"
+  ],
+  "result": {
+    "id": "minecraft:obsidian",
+    "count":8
+  }
+}

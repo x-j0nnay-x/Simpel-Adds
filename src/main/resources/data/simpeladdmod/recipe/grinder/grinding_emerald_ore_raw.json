@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/emerald",
+   "result": {
+    "id": "minecraft:emerald",
+    "count": 3
+  }
+}

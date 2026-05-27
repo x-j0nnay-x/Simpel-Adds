@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "simpeladdmod:unobtanium_scrap",
+  "base": "simpeladdmod:obsidirite_sword",
+  "template": "simpeladdmod:unobtanium_upgrade_smithing",
+  "result": {
+    "id": "simpeladdmod:unobtain_obsidirite_sword",
+    "count": 1
+  }
+}

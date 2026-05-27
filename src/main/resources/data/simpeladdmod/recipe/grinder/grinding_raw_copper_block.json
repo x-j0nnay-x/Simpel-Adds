@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "minecraft:raw_copper_block",
+  "result": {
+    "id": "simpeladdmod:copper_dust",
+    "count": 18
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/copper",
+   "result": {
+    "id": "simpeladdmod:copper_dust",
+    "count": 6
+  }
+}

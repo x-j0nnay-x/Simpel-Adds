@@ -1,0 +1,14 @@
+{
+    "neoforge:conditions":  [
+      {
+        "type":  "neoforge:mod_loaded",
+        "modid":  "extendedae"
+      }
+    ],
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "extendedae:entro_seed",
+    "soil":  "ae2:flawless_budding_quartz",
+    "result":  {
+      "id":  "extendedae:entro_shard"
+    }
+}

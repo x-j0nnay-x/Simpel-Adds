@@ -1,0 +1,14 @@
+{
+    "neoforge:conditions":  [
+      {
+        "type":  "neoforge:mod_loaded",
+        "modid":  "mysticalagriculture"
+      }
+    ],
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "mysticalagriculture:fire_seeds",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "mysticalagriculture:fire_essence"
+    }
+}

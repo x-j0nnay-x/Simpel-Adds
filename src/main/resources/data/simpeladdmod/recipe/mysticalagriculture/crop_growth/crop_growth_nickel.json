@@ -1,0 +1,14 @@
+{
+    "neoforge:conditions":  [
+      {
+        "type":  "neoforge:mod_loaded",
+        "modid":  "mysticalagriculture"
+      }
+    ],
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "mysticalagriculture:nickel_seeds",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "mysticalagriculture:nickel_essence"
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "simpeladdmod:block/grinder_netherite_top",
+    "up": "simpeladdmod:block/grinder_netherite_top",
+    "north": "simpeladdmod:block/grinder_netherite_on",
+    "east": "simpeladdmod:block/grinder_netherite_side",
+    "south": "simpeladdmod:block/grinder_netherite_side",
+    "west": "simpeladdmod:block/grinder_netherite_side",
+    "particle": "simpeladdmod:block/grinder_netherite_top"
+  },
+  "render_type": "solid"
+}

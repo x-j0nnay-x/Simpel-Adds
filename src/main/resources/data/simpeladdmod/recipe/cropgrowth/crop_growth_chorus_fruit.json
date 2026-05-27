@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:chorus_fruit",
+    "soil":  "minecraft:end_stone",
+    "result":  {
+      "id":  "minecraft:chorus_fruit"
+    }
+}

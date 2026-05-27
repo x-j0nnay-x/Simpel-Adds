@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "#c:dusts/copper",
+    "#c:dusts/iron",
+    "#c:dusts/gold",
+    "#c:dusts/obsidian",
+    "#c:dusts/unobtanium",
+    "#c:dusts/shard_debri",
+    "#c:dusts/shard_diamond",
+    "#c:dusts/shard_emerald"
+  ]
+}

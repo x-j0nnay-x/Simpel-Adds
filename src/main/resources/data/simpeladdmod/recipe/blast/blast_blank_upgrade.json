@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredient": "simpeladdmod:blank_upgrade_raw",
+  "result":{
+    "id" :  "simpeladdmod:blank_upgrade",
+    "count": 1
+  },
+  "experience": 0.8,
+  "cookingtime": 50
+}

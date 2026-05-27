@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [{
+      "type":"neoforge:mod_loaded",
+      "modid":"extendedae"
+    }
+  ],
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "extendedae:entro_crystal",
+    "#simpeladdmod:grinders"
+  ],
+  "result": {
+    "id": "extendedae:entro_dust",
+    "count":1
+  }
+}

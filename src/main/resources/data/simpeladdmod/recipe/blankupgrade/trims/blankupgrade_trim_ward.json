@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:deepslate",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:ward_armor_trim_smithing_template"}
+}

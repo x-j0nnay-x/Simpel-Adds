@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredient":  "simpeladdmod:gold_dust",
+  "result":{
+    "id" :  "minecraft:gold_ingot",
+    "count": 1
+  },
+  "experience": 0.8,
+  "cookingtime": 50
+}

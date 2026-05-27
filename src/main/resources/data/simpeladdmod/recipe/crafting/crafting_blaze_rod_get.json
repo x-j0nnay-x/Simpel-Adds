@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "g": "minecraft:gold_nugget",
+    "z": "minecraft:lava_bucket"
+  },
+  "pattern": [
+    "ggg",
+    "gzg",
+    "ggg"
+  ],
+  "result": {
+    "id": "minecraft:blaze_rod",
+    "count":2
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:cherry_sapling",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:cherry_log"
+    }
+}

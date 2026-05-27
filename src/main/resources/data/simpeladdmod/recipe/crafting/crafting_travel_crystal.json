@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "#": "minecraft:diamond",
+    "X": "minecraft:emerald",
+    "P": "minecraft:ender_pearl"
+  },
+  "pattern": [
+    "P#P",
+    "#X#",
+    "P#P"
+  ],
+  "result": {
+    "id": "simpeladdmod:travel_crystal",
+    "count": 4
+  }
+}

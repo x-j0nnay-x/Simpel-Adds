@@ -1,0 +1,15 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:gravel",
+    "minecraft:gravel",
+    "minecraft:gravel",
+    "minecraft:gravel",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "minecraft:flint",
+    "count": 8
+  }
+}

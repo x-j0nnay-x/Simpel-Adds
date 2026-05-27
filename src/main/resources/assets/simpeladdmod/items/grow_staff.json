@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:broken",
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "simpeladdmod:item/grow_staff_broken"
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "simpeladdmod:item/grow_staff"
+    }
+  }
+}

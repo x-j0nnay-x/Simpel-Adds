@@ -1,0 +1,11 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "ingredients": [
+    "#c:ores/quartz",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "minecraft:quartz",
+    "count": 6
+  }
+}

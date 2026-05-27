@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredient": "simpeladdmod:netherite_dust",
+  "result":{
+    "id" :  "minecraft:netherite_scrap",
+    "count": 1
+  },
+  "experience": 0.8,
+  "cookingtime": 50
+}

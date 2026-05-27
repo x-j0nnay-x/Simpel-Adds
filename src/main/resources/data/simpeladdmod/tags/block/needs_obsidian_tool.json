@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:needs_stone_tool",
+    "#minecraft:needs_iron_tool",
+    "#minecraft:needs_diamond_tool",
+    "simpeladdmod:ore_unobtanium_endstone"
+  ]
+}

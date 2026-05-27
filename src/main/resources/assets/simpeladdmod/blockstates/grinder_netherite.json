@@ -1,0 +1,35 @@
+{
+
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "simpeladdmod:block/grinder_netherite"
+    },
+    "facing=east,lit=false": {
+      "model": "simpeladdmod:block/grinder_netherite",
+      "y": 90
+    },
+    "facing=south,lit=false": {
+      "model": "simpeladdmod:block/grinder_netherite",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "simpeladdmod:block/grinder_netherite",
+      "y": 270
+    },
+    "facing=north,lit=true": {
+      "model": "simpeladdmod:block/grinder_netherite_on"
+    },
+    "facing=east,lit=true": {
+      "model": "simpeladdmod:block/grinder_netherite_on",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "simpeladdmod:block/grinder_netherite_on",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "simpeladdmod:block/grinder_netherite_on",
+      "y": 270
+    }
+  }
+}

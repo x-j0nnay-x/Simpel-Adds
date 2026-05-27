@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "minecraft:raw_gold_block",
+  "result": {
+    "id": "simpeladdmod:gold_dust",
+    "count": 18
+  }
+}

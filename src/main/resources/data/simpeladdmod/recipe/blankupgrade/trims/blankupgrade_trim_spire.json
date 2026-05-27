@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition":"minecraft:purpur_block",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:spire_armor_trim_smithing_template"}
+}

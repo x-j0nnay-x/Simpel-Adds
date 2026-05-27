@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:diamond",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:netherite_upgrade_smithing_template"}
+}

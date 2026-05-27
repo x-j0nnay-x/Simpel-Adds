@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition":"simpeladdmod:unobtanium_scrap",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "simpeladdmod:unobtanium_upgrade_smithing"}
+}

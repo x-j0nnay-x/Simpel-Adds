@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredient": "simpeladdmod:emerald_shard_dust",
+  "result":{
+    "id" :  "simpeladdmod:emerald_shard",
+    "count": 1
+  },
+  "experience": 0.8,
+  "cookingtime": 50
+}

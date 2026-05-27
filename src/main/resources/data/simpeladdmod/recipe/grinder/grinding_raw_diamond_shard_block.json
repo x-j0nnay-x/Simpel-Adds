@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "simpeladdmod:raw_diamond_shard_block",
+  "result": {
+    "id": "simpeladdmod:diamond_shard_dust",
+    "count": 18
+  }
+}

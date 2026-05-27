@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "z": "simpeladdmod:speed_upgrade_1",
+    "c":  "minecraft:clock",
+    "x": "netherite_block"
+  },
+  "pattern": [
+    "zcz",
+    "cxc",
+    "zcz"
+  ],
+  "result": {
+    "id": "simpeladdmod:tick_accelerator",
+    "count":1
+  }
+}

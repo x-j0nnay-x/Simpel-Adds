@@ -1,0 +1,7 @@
+{
+  "parent" : "block/cube_all",
+  "textures": {
+    "all" : "simpeladdmod:block/simpel_spawner_off",
+    "particle" : "simpeladdmod:block/simpel_spawner_off"
+  }
+}

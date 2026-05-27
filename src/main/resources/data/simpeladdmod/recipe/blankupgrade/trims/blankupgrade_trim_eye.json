@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:end_stone",
+    "template":"simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:eye_armor_trim_smithing_template"}
+}

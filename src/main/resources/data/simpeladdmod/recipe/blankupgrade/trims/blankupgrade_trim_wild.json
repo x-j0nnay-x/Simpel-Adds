@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:mossy_cobblestone",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:wild_armor_trim_smithing_template"}
+}

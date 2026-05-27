@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "#c:ores/coal",
+    "#c:ores/copper",
+    "#c:ores/gold",
+    "#c:ores/iron",
+    "#c:ores/shard_debri",
+    "#c:ores/shard_diamond",
+    "#c:ores/shard_emerald",
+    "#c:ores/unobtanium"
+  ]
+}

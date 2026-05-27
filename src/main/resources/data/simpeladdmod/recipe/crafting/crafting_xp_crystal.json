@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "#": "minecraft:lapis_lazuli",
+    "X": "simpeladdmod:travel_crystal",
+    "P":  "minecraft:glass_bottle"
+  },
+  "pattern": [
+    "P#P",
+    "#X#",
+    "P#P"
+  ],
+  "result": {
+    "id": "simpeladdmod:xp_crystal",
+    "count": 1
+  }
+}

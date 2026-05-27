@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:cobbled_deepslate",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:silence_armor_trim_smithing_template"}
+}

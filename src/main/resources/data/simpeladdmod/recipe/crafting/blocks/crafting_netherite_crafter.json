@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "z": "minecraft:netherite_ingot",
+    "x":"minecraft:cobblestone",
+    "p": "minecraft:piston"
+  },
+  "pattern": [
+    "zxz",
+    "x x",
+    "pzp"
+  ],
+  "result": {
+    "id": "simpeladdmod:netherite_crafter",
+    "count":1
+  }
+}

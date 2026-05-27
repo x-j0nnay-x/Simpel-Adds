@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:red_mushroom",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:red_mushroom"
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model" : "simpeladdmod:block/tick_accelerator_on"
+    },
+    "powered=true": {
+      "model" : "simpeladdmod:block/tick_accelerator"
+    }
+  }
+}

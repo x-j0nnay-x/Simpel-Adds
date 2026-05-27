@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:bamboo",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:bamboo"
+    }
+}

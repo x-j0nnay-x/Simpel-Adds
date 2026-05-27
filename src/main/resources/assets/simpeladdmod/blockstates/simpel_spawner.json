@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "powered=false,lit=true": {
+      "model" : "simpeladdmod:block/simpel_spawner_on"
+    },
+    "powered=true,lit=true": {
+      "model" : "simpeladdmod:block/simpel_spawner"
+    },
+    "powered=true,lit=false": {
+      "model" : "simpeladdmod:block/simpel_spawner"
+    },
+    "powered=false,lit=false": {
+      "model" : "simpeladdmod:block/simpel_spawner"
+    }
+  }
+}

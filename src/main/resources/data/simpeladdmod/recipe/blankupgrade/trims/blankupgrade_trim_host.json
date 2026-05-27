@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:clay",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:host_armor_trim_smithing_template"}
+}

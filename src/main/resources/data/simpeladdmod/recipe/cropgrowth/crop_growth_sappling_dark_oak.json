@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:dark_oak_sapling",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:dark_oak_log"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:sea_pickle",
+    "soil":  "minecraft:water_bucket",
+    "result":  {
+      "id":  "minecraft:sea_pickle"
+    }
+}

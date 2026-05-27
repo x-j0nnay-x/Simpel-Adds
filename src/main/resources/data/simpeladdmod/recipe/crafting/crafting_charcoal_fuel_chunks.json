@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredients": [[
+    "simpeladdmod:fuel_chunks",
+    "simpeladdmod:fuel_chunks",
+    "simpeladdmod:fuel_chunks",
+    "simpeladdmod:fuel_chunks",
+    "simpeladdmod:fuel_chunks",
+    "simpeladdmod:fuel_chunks",
+    "simpeladdmod:fuel_chunks",
+    "simpeladdmod:fuel_chunks"
+  ]],
+  "result": {
+    "id": "minecraft:charcoal",
+    "count": 1
+  }
+}

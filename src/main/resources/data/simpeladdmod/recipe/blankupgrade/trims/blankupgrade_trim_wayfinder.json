@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:tuff",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:wayfinder_armor_trim_smithing_template"}
+}

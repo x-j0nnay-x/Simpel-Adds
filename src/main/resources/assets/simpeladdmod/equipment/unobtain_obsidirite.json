@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "simpeladdmod:unobtain_obsidirite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "simpeladdmod:unobtain_obsidirite"
+      }
+    ]
+  }
+}

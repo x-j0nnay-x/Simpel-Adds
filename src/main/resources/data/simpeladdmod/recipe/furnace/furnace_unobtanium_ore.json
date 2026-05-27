@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredient": "simpeladdmod:ore_unobtanium_endstone",
+  "result": {
+    "id" :   "simpeladdmod:unobtanium_scrap",
+    "count": 1
+  },
+  "experience": 0.8,
+  "cookingtime": 50
+}

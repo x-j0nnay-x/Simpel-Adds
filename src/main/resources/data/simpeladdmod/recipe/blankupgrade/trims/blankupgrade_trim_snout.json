@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:blackstone",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:snout_armor_trim_smithing_template"}
+}

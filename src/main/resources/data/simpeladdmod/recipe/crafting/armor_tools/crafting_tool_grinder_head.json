@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "z": "minecraft:flint",
+    "x": "minecraft:stick"
+  },
+  "pattern": [
+    "x",
+    "z"
+  ],
+  "result": {
+    "id": "simpeladdmod:grinder_head",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "simpeladdmod",
+  "key": {
+    "#": "minecraft:blaze_rod",
+    "X": "simpeladdmod:obsidian_ingot"
+  },
+  "pattern": [
+    "X",
+    "#",
+    "#"
+  ],
+  "result": {
+    "id": "simpeladdmod:obsidian_spade",
+    "count": 1
+  }
+}
