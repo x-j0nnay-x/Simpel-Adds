@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "minecraft:string"
+  },
+  "pattern": [
+    "x x",
+    " x ",
+    "x x"
+  ],
+  "result": {
+    "id": "minecraft:cobweb",
+    "count": 1
+  }
+}

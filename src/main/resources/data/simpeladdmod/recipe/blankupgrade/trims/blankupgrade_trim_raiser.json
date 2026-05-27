@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:terracotta",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:raiser_armor_trim_smithing_template"}
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x":"minecraft:copper_ingot",
+    "b": "minecraft:glass_bottle",
+    "z": "minecraft:anvil"
+  },
+  "pattern": [
+    "bxb",
+    "xzx",
+    "bxb"
+  ],
+  "result": {
+    "id": "simpeladdmod:tool_repair",
+    "count":1
+  }
+}

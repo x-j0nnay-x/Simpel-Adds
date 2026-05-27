@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "simpeladdmod:speed_upgrade_1",
+    "z": "minecraft:amethyst_shard"
+  },
+  "pattern":[
+    "x",
+    "z"
+  ],
+  "result": {
+    "id": "simpeladdmod:speed_upgrade_2",
+    "count": 1
+  }
+}

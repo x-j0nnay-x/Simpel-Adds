@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "simpeladdmod:ore_unobtanium_endstone",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "simpeladdmod:unobtanium_dust",
+    "count": 2
+  }
+}

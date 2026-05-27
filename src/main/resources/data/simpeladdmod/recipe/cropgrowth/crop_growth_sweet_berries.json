@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:sweet_berries",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:sweet_berries"
+    }
+}

@@ -1,0 +1,90 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_quartz"
+        },
+        "when": "minecraft:quartz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_iron"
+        },
+        "when": "minecraft:iron"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_netherite"
+        },
+        "when": "minecraft:netherite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_redstone"
+        },
+        "when": "minecraft:redstone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_copper"
+        },
+        "when": "minecraft:copper"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_gold"
+        },
+        "when": "minecraft:gold"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_emerald"
+        },
+        "when": "minecraft:emerald"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_diamond"
+        },
+        "when": "minecraft:diamond"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_lapis"
+        },
+        "when": "minecraft:lapis"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_amethyst"
+        },
+        "when": "minecraft:amethyst"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "simpeladdmod:item/unobtain_obsidirite_helmet_trim_resin"
+        },
+        "when": "minecraft:resin"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "simpeladdmod:item/unobtain_obsidirite_helmet"
+    },
+    "property": "minecraft:trim_material"
+  }
+}

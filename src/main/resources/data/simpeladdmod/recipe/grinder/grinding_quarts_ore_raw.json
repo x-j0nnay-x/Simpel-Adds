@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/quartz",
+  "result": {
+    "id": "minecraft:quartz",
+    "count": 6
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "neoforge:conditions":  [
+      {
+        "type":  "neoforge:mod_loaded",
+        "modid":  "mysticalagriculture"
+      }
+    ],
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "mysticalagriculture:refine_glowstone_seeds",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "mysticalagriculture:refine_glowstone_essence"
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "#": "minecraft:string",
+    "1": "#minecraft:wool_carpets",
+    "2": "#minecraft:wool"
+  },
+  "pattern": [
+    "12#",
+    "2#1",
+    "#12"
+  ],
+  "result": {
+    "id": "simpeladdmod:simpel_elitra_part1",
+    "count": 3
+  }
+}

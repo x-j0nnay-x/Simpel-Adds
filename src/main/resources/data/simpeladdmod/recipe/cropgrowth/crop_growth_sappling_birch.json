@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:birch_sapling",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:birch_log"
+    }
+}

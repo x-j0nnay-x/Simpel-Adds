@@ -1,0 +1,14 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:gravel",
+    "#minecraft:sand",
+    "minecraft:water_bucket",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "minecraft:clay",
+    "count": 4
+  }
+}

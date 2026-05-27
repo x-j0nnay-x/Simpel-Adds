@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients":"#minecraft:logs",
+  "result": {
+    "id": "simpeladdmod:wood_fiber",
+    "count": 8
+  }
+}

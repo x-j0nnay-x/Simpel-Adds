@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "v": "minecraft:gravel",
+    "c": "minecraft:sand",
+    "z": "minecraft:water_bucket"
+  },
+  "pattern": [
+    "v c",
+    "vzc",
+    "v c"
+  ],
+  "result": {
+    "id": "minecraft:clay",
+    "count":8
+  }
+}

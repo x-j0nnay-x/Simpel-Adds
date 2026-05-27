@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "#": "minecraft:blaze_rod",
+    "X": "minecraft:bone",
+    "N": "minecraft:kelp"
+  },
+  "pattern": [
+    "  X",
+    "N#N",
+    "X  "
+  ],
+  "result": {
+    "id": "simpeladdmod:grow_staff",
+    "count": 1
+  }
+}

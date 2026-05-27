@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group" : "simepleaddmod",
+  "key": {
+    "x": "minecraft:shears",
+    "s": "#c:seeds",
+    "i": "minecraft:iron_block"
+  },
+  "pattern": [
+    "sxs",
+    "sis",
+    "sxs"
+  ],
+  "result": {
+    "id": "simpeladdmod:harvester",
+    "count": 1
+  }
+}

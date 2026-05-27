@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredients": [
+    "minecraft:emerald"
+  ],
+  "result": {
+    "id": "simpeladdmod:emerald_shard",
+    "count": 9
+  }
+}

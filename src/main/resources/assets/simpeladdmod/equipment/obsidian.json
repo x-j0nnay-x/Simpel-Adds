@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "simpeladdmod:obsidian"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "simpeladdmod:obsidian"
+      }
+    ]
+  }
+}

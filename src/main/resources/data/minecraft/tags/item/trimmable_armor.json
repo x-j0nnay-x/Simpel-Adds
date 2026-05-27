@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "simpeladdmod:obsidian_helmet",
+    "simpeladdmod:obsidian_chest",
+    "simpeladdmod:obsidian_legs",
+    "simpeladdmod:obsidian_boots",
+    "simpeladdmod:obsidirite_helmet",
+    "simpeladdmod:obsidirite_chest",
+    "simpeladdmod:obsidirite_legs",
+    "simpeladdmod:obsidirite_boots",
+    "simpeladdmod:unobtain_obsidirite_helmet",
+    "simpeladdmod:unobtain_obsidirite_chest",
+    "simpeladdmod:unobtain_obsidirite_legs",
+    "simpeladdmod:unobtain_obsidirite_boots"
+  ]
+}

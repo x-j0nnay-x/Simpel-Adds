@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bread",
+    "minecraft:cooked_mutton"
+  ],
+  "result": {
+    "id": "simpeladdmod:sandwich_mut",
+    "count": 1
+  }
+}

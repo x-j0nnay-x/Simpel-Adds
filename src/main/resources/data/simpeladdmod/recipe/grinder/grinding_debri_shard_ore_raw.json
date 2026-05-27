@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/shard_debri",
+  "result": {
+    "id": "simpeladdmod:netherite_shard_dust",
+    "count": 6
+  }
+}

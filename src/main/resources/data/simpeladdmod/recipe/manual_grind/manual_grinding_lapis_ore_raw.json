@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "#c:ores/lapis",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "minecraft:lapis_lazuli",
+    "count": 4
+  }
+}

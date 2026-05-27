@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:sugar_cane",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:sugar_cane"
+    }
+}

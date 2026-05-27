@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "minecraft:bone",
+  "result": {
+    "id": "minecraft:bone_meal",
+    "count": 5
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:obsidian",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "simpeladdmod:obsidian_dust",
+    "count": 4
+  }
+}

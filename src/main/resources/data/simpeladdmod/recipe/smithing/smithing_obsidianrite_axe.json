@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition":"minecraft:netherite_ingot",
+  "base": "simpeladdmod:obsidian_axe",
+  "template": "simpeladdmod:obsidian_upgrade_smithing",
+  "result": {
+    "id": "simpeladdmod:obsidirite_axe",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:spruce_sapling",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:spruce_log"
+    }
+}

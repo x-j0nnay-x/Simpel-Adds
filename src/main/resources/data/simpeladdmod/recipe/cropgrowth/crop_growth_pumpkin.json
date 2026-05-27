@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:pumpkin_seeds",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:pumpkin"
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:blaze_rod",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "minecraft:blaze_powder",
+    "count": 3
+  }
+}

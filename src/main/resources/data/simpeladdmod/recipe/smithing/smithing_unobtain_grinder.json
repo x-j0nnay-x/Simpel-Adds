@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "simpeladdmod:unobtanium_scrap",
+  "base": "simpeladdmod:grinder_head",
+  "template": "simpeladdmod:unobtanium_upgrade_smithing",
+  "result": {
+    "id": "simpeladdmod:grinder_head_unobtanium",
+    "count": 1
+  }
+}

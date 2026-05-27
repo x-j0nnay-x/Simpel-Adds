@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:kelp",
+    "soil":  "minecraft:water_bucket",
+    "result":  {
+      "id":  "minecraft:kelp"
+    }
+}

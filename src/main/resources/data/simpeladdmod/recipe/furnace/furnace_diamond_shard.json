@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredient": "simpeladdmod:diamond_shard_raw",
+  "result": {
+    "id" : "simpeladdmod:diamond_shard",
+    "count": 1
+  },
+  "experience": 0.8,
+  "cookingtime": 50
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "simpeladdmod:obsidian_ingot"
+  },
+  "pattern": [
+    "xxx",
+    "x x"
+
+  ],
+  "result": {
+    "id": "simpeladdmod:obsidian_helmet",
+    "count": 1
+  }
+}

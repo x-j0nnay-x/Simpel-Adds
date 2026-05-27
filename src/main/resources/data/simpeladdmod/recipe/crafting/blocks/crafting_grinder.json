@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "z": "minecraft:cobblestone",
+    "v": "minecraft:grindstone",
+    "x": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "zxz",
+    "v v",
+    "zzz"
+  ],
+  "result": {
+    "id": "simpeladdmod:grinder",
+    "count":1
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:crimson_fungus",
+    "soil":  "minecraft:netherrack",
+    "result":  {
+      "id":  "minecraft:crimson_stem"
+    }
+}

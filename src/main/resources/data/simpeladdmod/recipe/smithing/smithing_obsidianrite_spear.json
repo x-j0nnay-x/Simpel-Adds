@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "simpeladdmod:obsidian_spear",
+  "template": "simpeladdmod:obsidian_upgrade_smithing",
+  "result": {
+    "id": "simpeladdmod:obsidirite_spear",
+    "count": 1
+  }
+}

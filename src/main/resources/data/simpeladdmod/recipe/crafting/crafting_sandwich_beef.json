@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredients": [
+    "minecraft:bread",
+    "minecraft:cooked_beef"
+  ],
+  "result": {
+    "id": "simpeladdmod:sandwich_beef",
+    "count": 1
+  }
+}

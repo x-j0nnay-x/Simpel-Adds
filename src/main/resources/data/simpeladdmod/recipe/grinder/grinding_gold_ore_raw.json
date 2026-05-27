@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#simpeladdmod:raw_gold_dropper",
+ "result": {
+    "id": "simpeladdmod:gold_dust",
+    "count": 6
+  }
+}

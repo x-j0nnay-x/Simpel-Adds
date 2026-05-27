@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "ingredients": [
+    "minecraft:netherite_scrap"
+  ],
+  "result": {
+    "id": "simpeladdmod:debri_shard",
+    "count": 9
+  }
+}

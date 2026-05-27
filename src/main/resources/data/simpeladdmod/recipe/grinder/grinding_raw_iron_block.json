@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "minecraft:raw_iron_block",
+  "result": {
+    "id": "simpeladdmod:iron_dust",
+    "count": 18
+  }
+}

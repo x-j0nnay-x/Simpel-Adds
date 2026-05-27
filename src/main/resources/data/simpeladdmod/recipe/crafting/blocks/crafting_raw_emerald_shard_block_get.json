@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "#": "simpeladdmod:emerald_shard_raw"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "simpeladdmod:raw_emerald_shard_block",
+    "count": 1
+  }
+}

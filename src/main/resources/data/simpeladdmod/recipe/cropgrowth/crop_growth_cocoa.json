@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:cocoa_beans",
+    "soil":  "#minecraft:logs",
+    "result":  {
+      "id":  "minecraft:cocoa_beans"
+    }
+}

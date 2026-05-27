@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [{
+      "type":"neoforge:mod_loaded",
+      "modid":"mekanism"
+    }
+  ],
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+     "#c:ores/osmium",
+      "#simpeladdmod:grinders"
+  ],
+  "result": {
+    "id": "mekanism:dust_osmium",
+    "count":6
+  }
+}

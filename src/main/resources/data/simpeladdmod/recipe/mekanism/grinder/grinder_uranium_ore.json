@@ -1,0 +1,13 @@
+{
+  "neoforge:conditions": [{
+      "type":"neoforge:mod_loaded",
+      "modid":"mekanism"
+    }
+  ],
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/uranium",
+  "result": {
+    "id": "mekanism:dust_uranium",
+    "count": 6
+  }
+}

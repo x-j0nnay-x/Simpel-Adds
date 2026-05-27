@@ -1,0 +1,8 @@
+{
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "minecraft:jungle_sapling",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "minecraft:jungle_log"
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "v":"simpeladdmod:tool_repair",
+    "a": "simpeladdmod:travel_crystal",
+    "x": "simpeladdmod:unobtanium_scrap"
+  },
+  "pattern": [
+    "xvx",
+    "vav",
+    "xvx"
+  ],
+  "result": {
+    "id": "simpeladdmod:repair_gem",
+    "count":1
+  }
+}

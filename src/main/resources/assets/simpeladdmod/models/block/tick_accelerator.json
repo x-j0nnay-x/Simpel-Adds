@@ -1,0 +1,7 @@
+{
+  "parent" : "minecraft:block/cube_all",
+  "textures": {
+    "all" : "simpeladdmod:block/tick_accelerator_off",
+    "particle": "simpeladdmod:block/tick_accelerator"
+  }
+}

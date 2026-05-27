@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "simpeladdmod:speed_upgrade_2",
+    "z": "minecraft:netherite_ingot"
+  },
+  "pattern": [
+    "x",
+    "z"
+  ],
+  "result": {
+    "id": "simpeladdmod:speed_upgrade_3",
+    "count": 1
+  }
+}

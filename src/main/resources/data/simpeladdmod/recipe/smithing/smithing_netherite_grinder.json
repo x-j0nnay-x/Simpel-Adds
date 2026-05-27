@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition":"minecraft:netherite_ingot",
+  "base": "simpeladdmod:grinder_head",
+  "template": "minecraft:netherite_upgrade_smithing_template",
+  "result": {
+    "id": "simpeladdmod:grinder_head_netherite",
+    "count": 1
+  }
+}

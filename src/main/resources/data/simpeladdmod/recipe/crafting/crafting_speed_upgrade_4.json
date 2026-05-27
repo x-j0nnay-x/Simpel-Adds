@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "simpeladdmod:speed_upgrade_3",
+    "z": "simpeladdmod:unobtanium_scrap"
+  },
+  "pattern": [
+    "x",
+    "z"
+  ],
+  "result": {
+    "id": "simpeladdmod:speed_upgrade_4",
+    "count": 1
+  }
+}

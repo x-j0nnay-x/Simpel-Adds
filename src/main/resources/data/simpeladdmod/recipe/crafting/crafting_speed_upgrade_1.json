@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x": "minecraft:iron_nugget",
+    "z": "minecraft:quartz",
+    "y": "minecraft:redstone"
+  },
+  "pattern": [
+    "xxx",
+    "xyx",
+    "yzy"
+  ],
+  "result": {
+    "id": "simpeladdmod:speed_upgrade_1",
+    "count": 1
+  }
+}

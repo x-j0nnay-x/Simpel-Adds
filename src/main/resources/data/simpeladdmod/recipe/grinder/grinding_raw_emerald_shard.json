@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "simpeladdmod:emerald_shard_raw",
+  "result": {
+    "id": "simpeladdmod:emerald_shard_dust",
+    "count": 2
+  }
+}

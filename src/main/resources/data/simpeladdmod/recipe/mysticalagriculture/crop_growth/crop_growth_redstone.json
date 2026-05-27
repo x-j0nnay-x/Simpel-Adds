@@ -1,0 +1,14 @@
+{
+    "neoforge:conditions":  [
+      {
+        "type":  "neoforge:mod_loaded",
+        "modid":  "mysticalagriculture"
+      }
+    ],
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "mysticalagriculture:redstone_seeds",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "mysticalagriculture:redstone_essence"
+    }
+}

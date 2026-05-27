@@ -1,0 +1,12 @@
+{
+  "type": "simpeladdmod:manual_grind",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bone",
+    "#simpeladdmod:grinder_list"
+  ],
+  "result": {
+    "id": "minecraft:bone_meal",
+    "count": 5
+  }
+}

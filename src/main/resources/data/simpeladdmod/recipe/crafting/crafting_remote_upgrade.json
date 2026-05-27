@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x":  "simpeladdmod:boost_upgrade",
+    "z": "simpeladdmod:travel_crystal"
+  },
+  "pattern": [
+    " x ",
+    "xzx",
+    " x "
+  ],
+  "result": {
+    "id": "simpeladdmod:remote_upgrade",
+    "count": 1
+  }
+}

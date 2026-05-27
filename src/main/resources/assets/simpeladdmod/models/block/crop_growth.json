@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "simpeladdmod:block/crop_growth_side",
+    "up": "simpeladdmod:block/crop_growth_top_off",
+    "north": "simpeladdmod:block/crop_growth_off",
+    "east": "simpeladdmod:block/crop_growth_side",
+    "south": "simpeladdmod:block/crop_growth_side",
+    "west": "simpeladdmod:block/crop_growth_side",
+    "particle": "simpeladdmod:block/crop_growth_top_off"
+  },
+  "render_type": "solid"
+}

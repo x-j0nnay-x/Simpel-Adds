@@ -1,0 +1,8 @@
+{
+  "type": "simpeladdmod:grinder",
+  "ingredients": "#c:ores/redstone",
+  "result": {
+    "id": "minecraft:redstone",
+    "count": 6
+  }
+}

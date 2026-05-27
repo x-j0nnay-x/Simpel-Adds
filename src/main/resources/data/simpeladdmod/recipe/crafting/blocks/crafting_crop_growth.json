@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "x":"simpeladdmod:grow_staff",
+    "s": "minecraft:soul_sand",
+    "g": "minecraft:gravel",
+    "c": "minecraft:composter",
+    "d": "minecraft:dirt",
+    "e": "minecraft:end_stone",
+    "v": "#c:sands",
+    "i": "minecraft:iron_block"
+  },
+  "pattern": [
+    "sxg",
+    "cic",
+    "dve"
+  ],
+  "result": {
+    "id": "simpeladdmod:crop_growth",
+    "count": 1
+  }
+}

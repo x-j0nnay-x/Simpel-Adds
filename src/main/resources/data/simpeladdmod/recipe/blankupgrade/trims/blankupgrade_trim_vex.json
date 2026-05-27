@@ -1,0 +1,7 @@
+{
+    "type": "simpeladdmod:blank_upgrade",
+    "addition": "minecraft:diorite",
+    "template": "simpeladdmod:blank_upgrade",
+    "result": {
+        "id": "minecraft:vex_armor_trim_smithing_template"}
+}

@@ -1,0 +1,14 @@
+{
+    "neoforge:conditions":  [
+      {
+        "type":  "neoforge:mod_loaded",
+        "modid":  "mysticalagriculture"
+      }
+    ],
+    "type":  "simpeladdmod:crop_growth",
+    "ingredients":  "mysticalagriculture:wither_skeleton_seeds",
+    "soil":  "minecraft:dirt",
+    "result":  {
+      "id":  "mysticalagriculture:wither_skeleton_essence"
+    }
+}
