@@ -25,6 +25,10 @@
   "item.simpeladdmod.fuel_chunks": "Fuel Chunks",
   "item.simpeladdmod.grow_staff" : "Grow Staff",
   "item.simpeladdmod.repair_gem" : "Repair Gem",
+  "item.simpeladdmod.flight_gem" : "Flight Gem",
+  "item.simpeladdmod.fire_gem" : "Fire Gem",
+  "item.simpeladdmod.totem_gem" : "Totem Gem",
+  "item.simpeladdmod.feeding_gem" : "Feeding Gem",
 
   "item.simpeladdmod.travel_crystal" : "Travel Crystal",
   "tooltip.simpeladdmod.travel_crystal" : "Right click a block to capture that block, or to return the Mob to it's egg",

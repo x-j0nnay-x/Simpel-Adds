@@ -17,6 +17,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
+import x_j0nnay_x.simpeladdmod.init.Mod_Config;
 import x_j0nnay_x.simpeladdmod.init.Mod_Registrys;
 
 import java.util.EnumSet;
@@ -86,6 +87,7 @@ public class Home_Wand extends Item {
                 itemStack.setDamageValue(itemStack.getDamageValue() + 1);
                 changeDim(player, itemStack);
             }
+            brakeItem(itemStack, Mod_Config.HOME_WAND_BRAKES.getAsBoolean());
             return InteractionResult.SUCCESS;
         }
 
@@ -161,6 +163,20 @@ public class Home_Wand extends Item {
 
     private Component getDimensionName(ResourceKey<Level> dimension) {
         return Component.literal(dimension.identifier().toString());
+    }
+
+    public static ItemStack brakeItem(ItemStack itemstack, boolean canBrake) {
+        if(canBrake){
+            itemstack.setDamageValue(itemstack.getDamageValue() + 1);
+        }
+        if(canUse(itemstack) && !canBrake){
+            itemstack.setDamageValue(itemstack.getDamageValue() + 1);
+        }
+        return itemstack;
+    }
+
+    public static boolean canUse(ItemStack itemstack) {
+        return itemstack.getDamageValue() < itemstack.getMaxDamage();
     }
 
     @Override

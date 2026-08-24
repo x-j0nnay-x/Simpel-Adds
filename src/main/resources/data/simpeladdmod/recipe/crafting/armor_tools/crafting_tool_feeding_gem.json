@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "m": "simpeladdmod:sandwich_meat_love",
+    "r": "simpeladdmod:travel_crystal",
+    "x": "simpeladdmod:unobtanium_scrap"
+  },
+  "pattern": [
+    "xmx",
+    "mrm",
+    "xmx"
+  ],
+  "result": {
+    "id": "simpeladdmod:feeding_gem",
+    "count": 1
+  }
+}

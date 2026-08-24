@@ -12,7 +12,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +19,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -28,7 +26,6 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
@@ -39,12 +36,11 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import org.jspecify.annotations.Nullable;
 import x_j0nnay_x.simpeladdmod.block.Harvester_Block;
+import x_j0nnay_x.simpeladdmod.init.Mod_Config;
 import x_j0nnay_x.simpeladdmod.init.Mod_Constants;
 import x_j0nnay_x.simpeladdmod.init.Mod_Registrys;
-import x_j0nnay_x.simpeladdmod.items.Grinder_Head_Item;
 import x_j0nnay_x.simpeladdmod.items.Grow_Staff_Item;
 import x_j0nnay_x.simpeladdmod.menu.Harvester_Menu;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -383,21 +379,29 @@ public class Harvester_Block_Entity extends BlockEntity implements MenuProvider 
         }
     }
 
-    private void damageGrowStaff(){
-        this.inventory.set(GROWSLOT, ItemResource.of(Grow_Staff_Item.brakeItem(this.inventory.getResource(GROWSLOT).toStack())), 1);
+    private void damageGrowStaff() {
+        if(this.inventory.getResource(this.GROWSLOT).is(Mod_Registrys.Mod_Items.GROW_STAFF.get())) {
+                ItemStack grinderStack = Grow_Staff_Item.brakeItem(this.inventory.getResource(GROWSLOT).toStack(), Mod_Config.GROW_STAFF_BRAKES_HARVESTER.getAsBoolean());
+                if (grinderStack.isEmpty()) {
+                    this.inventory.set(GROWSLOT, this.inventory.getResource(GROWSLOT), 0);
+                    return;
+                }
+                this.inventory.set(GROWSLOT, ItemResource.of(grinderStack), 1);
+        }
     }
 
+
     private boolean isGrowStaffusable(){
-        return this.inventory.getResource(GROWSLOT).is(Mod_Registrys.Mod_Items.GROW_STAFF.get()) && this.inventory.getResource(GROWSLOT).toStack().getDamageValue() < this.inventory.getResource(GROWSLOT).toStack().getMaxDamage();
+        return Grow_Staff_Item.canUse(this.inventory.getResource(GROWSLOT).toStack()) || Mod_Config.GROW_STAFF_BRAKES_HARVESTER.getAsBoolean();
     }
 
     public void turnToFarmLand(ServerLevel level, BlockPos blockPos){
-        BlockPos farmlandPos = blockPos.below();
-        if(level.getBlockState(farmlandPos).getBlock() != Blocks.FARMLAND)
-            return;
-        int blockValue = level.getBlockState(farmlandPos).getValue(FarmlandBlock.MOISTURE);
-        level.setBlockAndUpdate(farmlandPos, Mod_Registrys.Mod_Blocks.SIMPEL_FARM_LAND.get().defaultBlockState().setValue(FarmlandBlock.MOISTURE, blockValue));
-        damageGrowStaff();
+            BlockPos farmlandPos = blockPos.below();
+            if (level.getBlockState(farmlandPos).getBlock() != Blocks.FARMLAND)
+                return;
+            int blockValue = level.getBlockState(farmlandPos).getValue(FarmlandBlock.MOISTURE);
+            level.setBlockAndUpdate(farmlandPos, Mod_Registrys.Mod_Blocks.SIMPEL_FARM_LAND.get().defaultBlockState().setValue(FarmlandBlock.MOISTURE, blockValue));
+            damageGrowStaff();
     }
 
     /* BLOCK ENTITY SYNC STUFF */

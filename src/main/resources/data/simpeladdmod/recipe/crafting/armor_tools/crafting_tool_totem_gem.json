@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "t": "minecraft:totem_of_undying",
+    "g": "minecraft:enchanted_golden_apple",
+    "r": "simpeladdmod:travel_crystal",
+    "x": "simpeladdmod:unobtanium_scrap"
+  },
+  "pattern": [
+    "xtx",
+    "grg",
+    "xtx"
+  ],
+  "result": {
+    "id": "simpeladdmod:totem_gem",
+    "count": 1
+  }
+}

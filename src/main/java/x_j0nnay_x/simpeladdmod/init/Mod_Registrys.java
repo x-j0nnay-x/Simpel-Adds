@@ -173,6 +173,10 @@ public class Mod_Items {
     public static final DeferredItem<Item> WOOD_FIBER = iRegister(Mod_Constants.Items.WOOD_FIBER);
     public static final DeferredItem<Item> TRAVEL_CRYSTAL = iRegister(Mod_Constants.Items.TRAVEL_CRYSTAL, Travel_Cristal::new);
     public static final DeferredItem<Item> REPAIR_GEM = iRegister(Mod_Constants.Items.REPAIR_GEM, p -> new Repair_Gem(p.durability(Mod_Config.REPAIR_GEM_USES.getAsInt())));
+    public static final DeferredItem<Item> FLIGHT_GEM = iRegister(Mod_Constants.Items.FLIGHT_GEM, p -> new Flight_Gem(p.durability(Mod_Config.FLIGHT_GEM_USES.getAsInt()).stacksTo(1)));
+    public static final DeferredItem<Item> FIRE_GEM = iRegister(Mod_Constants.Items.FIRE_GEM, p -> new Fire_Gem(p.durability(Mod_Config.FIRE_GEM_USES.getAsInt()).stacksTo(1)));
+    public static final DeferredItem<Item> TOTEM_GEM = iRegister(Mod_Constants.Items.TOTEM_GEM, p -> new Totem_Gem(p.durability(Mod_Config.TOTEM_GEM_USES.getAsInt()).stacksTo(1)));
+    public static final DeferredItem<Item> FEEDING_GEM = iRegister(Mod_Constants.Items.FEEDING_GEM, p -> new Feeding_Gem(p.durability(Mod_Config.FEEDING_GEM_USES.getAsInt()).stacksTo(1)));
     public static final DeferredItem<Item> HOME_WAND = iRegister(Mod_Constants.Items.HOME_WAND, p -> new Home_Wand(p.durability(Mod_Config.HOME_WAND_USES.getAsInt())));
     public static final DeferredItem<Item> XP_CRYSTAL = iRegister(Mod_Constants.Items.XP_CRYSTAL,  XP_Crystal::new);
     //upgrades

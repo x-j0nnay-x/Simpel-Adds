@@ -80,6 +80,10 @@ public class Mod_Constants {
         public static final String WOOD_FIBER = "wood_fiber";
         public static final String FLESH = "flesh";
         public static final String REPAIR_GEM = "repair_gem";
+        public static final String FLIGHT_GEM = "flight_gem";
+        public static final String FIRE_GEM = "fire_gem";
+        public static final String TOTEM_GEM = "totem_gem";
+        public static final String FEEDING_GEM = "feeding_gem";
         public static final String HOME_WAND = "home_wand";
         //materials
         public static final String OBSIDIAN_INGOT = "obsidian_ingot";

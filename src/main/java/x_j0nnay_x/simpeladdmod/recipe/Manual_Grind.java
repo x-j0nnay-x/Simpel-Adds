@@ -21,6 +21,7 @@ import net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.RecipeMatcher;
+import x_j0nnay_x.simpeladdmod.init.Mod_Config;
 import x_j0nnay_x.simpeladdmod.init.Mod_Registrys;
 import x_j0nnay_x.simpeladdmod.init.Mod_Tags;
 import x_j0nnay_x.simpeladdmod.items.Grinder_Head_Item;
@@ -79,7 +80,7 @@ public class Manual_Grind implements CraftingRecipe {
     public ItemStack assemble(CraftingInput craftingInput) {
         for(ItemStack item : craftingInput.items()) {
             if (item.is(Mod_Tags.Items.GRINDERS)) {
-                if (Grinder_Head_Item.canUse(item)) {
+                if (Grinder_Head_Item.canUse(item) || Mod_Config.GRINDER_BRAKES_MANUAL_GRIND.getAsBoolean()) {
                     return this.result.create();
                 }
             }
@@ -109,9 +110,9 @@ public class Manual_Grind implements CraftingRecipe {
     public NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
         NonNullList<ItemStack> result = NonNullList.withSize(input.size(), ItemStack.EMPTY);
 
-        for(int slot = 0; slot < result.size(); ++slot) {
+        for (int slot = 0; slot < result.size(); ++slot) {
             ItemStack item = input.getItem(slot);
-            ItemStackTemplate remainder = input.getItem(slot).getCraftingRemainder();
+            ItemStackTemplate remainder = item.getItem().getCraftingRemainder(item);
             result.set(slot, remainder != null ? remainder.create() : ItemStack.EMPTY);
         }
         return result;

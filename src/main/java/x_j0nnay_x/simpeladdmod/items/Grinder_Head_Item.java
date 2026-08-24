@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import org.jspecify.annotations.Nullable;
+import x_j0nnay_x.simpeladdmod.init.Mod_Config;
 
 import java.util.function.Consumer;
 
@@ -20,25 +21,33 @@ public class Grinder_Head_Item extends Item{
                 .durability(durability)
         );
     }
-    
 
-    public static ItemStack brakeItem(ItemStack itemstack) {
-        if(canUse(itemstack)){
+    public static ItemStack brakeItem(ItemStack itemstack, boolean canBrake) {
+        if (canBrake) {
+            if (itemstack.getDamageValue() >= itemstack.getMaxDamage() - 1) {
+                return ItemStack.EMPTY;
+            }
+            itemstack.setDamageValue(itemstack.getDamageValue() + 1);
+            return itemstack;
+        }
+
+        if (canUse(itemstack)) {
             itemstack.setDamageValue(itemstack.getDamageValue() + 1);
         }
         return itemstack;
     }
+
 
     @Override
     public @Nullable ItemStackTemplate getCraftingRemainder(ItemInstance instance) {
         if (!(instance instanceof ItemStack itemStack) ) {
             return null;
         }
-        if(canUse(itemStack)){
-            ItemStack grinder = brakeItem(itemStack.copy());
-            return ItemStackTemplate.fromNonEmptyStack(grinder);
-        }
-        return ItemStackTemplate.fromNonEmptyStack(itemStack);
+            ItemStack grinder = brakeItem(itemStack.copy(), Mod_Config.GRINDER_BRAKES_MANUAL_GRIND.getAsBoolean());
+            if(!grinder.isEmpty()) {
+                return ItemStackTemplate.fromNonEmptyStack(grinder);
+            }
+           return null;
     }
     
 

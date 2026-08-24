@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "b": "minecraft:blaze_rod",
+    "m": "minecraft:magma_cream",
+    "p": {
+      "neoforge:ingredient_type": "neoforge:components",
+      "items": "minecraft:potion",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:long_fire_resistance"
+        }
+      }
+    },
+    "r": "simpeladdmod:travel_crystal",
+    "x": "simpeladdmod:unobtanium_scrap"
+  },
+  "pattern": [
+    "xbx",
+    "prp",
+    "xmx"
+  ],
+  "result": {
+    "id": "simpeladdmod:fire_gem",
+    "count": 1
+  }
+}

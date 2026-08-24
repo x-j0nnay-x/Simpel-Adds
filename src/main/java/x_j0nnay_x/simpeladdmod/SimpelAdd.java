@@ -16,7 +16,10 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import x_j0nnay_x.simpeladdmod.block.entitys.*;
+import x_j0nnay_x.simpeladdmod.events.Player_Fire_Gem_Events;
+import x_j0nnay_x.simpeladdmod.events.Player_Flight_Gem_Events;
 import x_j0nnay_x.simpeladdmod.events.Player_Interaction_Events;
+import x_j0nnay_x.simpeladdmod.events.Player_Totem_Gem_Events;
 import x_j0nnay_x.simpeladdmod.init.Mod_Registrys;
 import x_j0nnay_x.simpeladdmod.menu.screen.*;
 import x_j0nnay_x.simpeladdmod.init.Mod_Config;
@@ -31,8 +34,11 @@ public class SimpelAdd {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerCapabilities);
         Mod_Registrys.register(modEventBus);
-        NeoForge.EVENT_BUS.register(this);
+        
         NeoForge.EVENT_BUS.register(Player_Interaction_Events.class);
+        NeoForge.EVENT_BUS.register(Player_Fire_Gem_Events.class);
+        NeoForge.EVENT_BUS.register(Player_Flight_Gem_Events.class);
+        NeoForge.EVENT_BUS.register(Player_Totem_Gem_Events.class);
 
     }
 

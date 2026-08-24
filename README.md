@@ -30,7 +30,7 @@ Flesh: turn that zombie flesh into something to eat, or even leather.
 
 Dusts: all raw ores now have a dust this is used to double your ores.
 
-Upgrads: these are speed upgrade 1-4, efficiency upgrade, and xp boost upgrade.
+Upgrads: these are speed upgrade 1-4, efficiency upgrade,  and remote.
 
 Blank smithing table upgrade: just some clay and you can make any smithing template you want.
 
@@ -40,23 +40,21 @@ Home Wand: this is something you can make to take you back to a set location.
 
 ### Tool Teirs
 
-Obsidian class tools: these are a touch worse than netherite but slightly better then diamonds.
+Obsidian class tools: these are a touch worse than netherite but slightly better than diamonds.
 
-Obsidirite class tools: these are a touch Better then netherite.
+Obsidirite class tools: these are a touch Better than netherite.
 
-Unobtainobsidirite class tools: this are better then all other armmor and tools.
+Unobtainobsidirite class tools: these are better than all other armmor and tools added by my mod.
 
 ### Blocks
 
-Tinny Torches: this block is like a button in the way it can be placed it gives off slightly less light then a torch.
-
-Simpel Farmland: this block increase the grow speed of cops but randomly will turn back into farmland. you need to use the Grow Staff to change the farmland into the Simpel Farmland.
+Simpel Farmland: this block increase the growth speed of cops but randomly will turn back into farmland. you need to use the Grow Staff to change the farmland into the Simpel Farmland.
 
 ### The Block Entities
 
 The Grinder Block: will Let you get dust for your raw/ores. this removes the manual crafting using the grind head and ticks to get the job done automated. (This block is able to have upgrades in it with the Speed and efficiency upgrades)
 
-The Netherite Grinder: is like the Grinder block but you get 4 input slots and 4 output slots, this block runs a touch faster by default. (This block is able to have upgrades in it with the Speed and efficiency upgrades)
+The Netherite Grinder: is like the Grinder block, but you get 4 input slots and 4 output slots, this block runs a touch faster by default. (This block is able to have upgrades in it with the Speed and efficiency upgrades)
 
 The Netherite Crafter Block: It will turn one Scrap one gold ingot into a Netherite Ingot, this takes heat so use blaze rods(4 uses per rod). This Block can have the Speed upgrades to make it work faster.(This block is able to have upgrades in it with the Speed upgrades)
 
@@ -64,11 +62,11 @@ The Tick Acceleration block: this by default will tick bocks faster in a 1 block
 
 Tool Repair Block: this uses Copper to  Repair your tools really cool right?
 
-Crop Harvester Block: This Block will Auto Harvest Your crops. if a chest is above it they will go in there if not they will drop on the ground.
+Crop Harvester Block: This Block will Auto Harvest Your crops. if a chest is above, they will go in there if not they will drop on the ground.
 
 Crop Growth Block: this uses a soil and seeds to grow your crops.(kind of like Botany pots)
 
-Simpel Spawner Block: this is a simpel mob farm. using the travel gem to get you an egg, you can get the loot for the mobs captured.
+Simpel Spawner Block: this is a simpel mob farm. using the travel crystal to get you an egg, you can get the loot for the mobs captured.
 
 ### Craftable items
 
@@ -76,7 +74,19 @@ you can craft slime balls, obsidian blocks, elytra's and manually craft cobblest
 
 ### Tools
 
-Repair tool: that will recharge 4 damage per 100 ticks. it will take damage per item repaired. A tag is called for items that can not be repaired.
+Travel Crystal: this is uesed to make many of the cool tools in this mod. also used to make the Simpel Spawner Block. you can use this to pick up any block in the game if not on the band list.
+
+Repair Gem: that will recharge 4 damage per 100 ticks. it will take damage per item repaired. A tag is called for items that can not be repaired.
+
+Feeding Gem: this will always keep your hunger and saturation bar full, but it will take damage over time.
+
+Fireproof Gem: this will make you immune to fire and lava damage, but it will take damage over time.
+
+Flight Gem: this will give you the ability to fly, but it will take damage over time.
+
+XP Storage Crystal: you can store your experience in this crystal.
+
+Home Wand: this will let you save a location and teleport back to it. this will take damage over time.
 
 Grow Staff: Bone Meal on crazy, also is used to make Better and Faster Farm land.
 

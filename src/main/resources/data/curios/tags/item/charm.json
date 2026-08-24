@@ -1,4 +1,10 @@
 {
   "replace": false,
-  "values": ["simpeladdmod:repair_gem"]
+  "values": [
+    "simpeladdmod:repair_gem",
+    "simpeladdmod:flight_gem",
+    "simpeladdmod:fire_gem",
+    "simpeladdmod:totem_gem",
+    "simpeladdmod:feeding_gem"
+  ]
 }

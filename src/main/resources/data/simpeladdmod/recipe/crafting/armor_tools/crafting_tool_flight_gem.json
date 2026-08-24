@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "simpeladdmod",
+  "key": {
+    "w": "minecraft:phantom_membrane",
+    "e": "minecraft:elytra",
+    "r": "simpeladdmod:travel_crystal",
+    "x": "simpeladdmod:unobtanium_scrap"
+  },
+  "pattern": [
+    "xwx",
+    "ere",
+    "xwx"
+  ],
+  "result": {
+    "id": "simpeladdmod:flight_gem",
+    "count": 1
+  }
+}

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#c:dusts/ancient_debris",
     "#c:dusts/copper",
     "#c:dusts/iron",
     "#c:dusts/gold",

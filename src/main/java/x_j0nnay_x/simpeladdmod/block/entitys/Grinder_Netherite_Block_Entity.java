@@ -33,6 +33,7 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jspecify.annotations.Nullable;
 
+import x_j0nnay_x.simpeladdmod.init.Mod_Config;
 import x_j0nnay_x.simpeladdmod.init.Mod_Registrys;
 import x_j0nnay_x.simpeladdmod.init.Mod_Tags;
 import x_j0nnay_x.simpeladdmod.items.Grinder_Head_Item;
@@ -396,8 +397,14 @@ public class Grinder_Netherite_Block_Entity extends BlockEntity implements MenuP
 
     private void resetGrinds() {
         if(this.inventory.getResource(this.GRINDING_SLOT).is(Mod_Tags.Items.GRINDERS)) {
-            if(Grinder_Head_Item.canUse(this.inventory.getResource(GRINDING_SLOT).toStack())) {
-                this.inventory.set(GRINDING_SLOT, ItemResource.of(Grinder_Head_Item.brakeItem(this.inventory.getResource(GRINDING_SLOT).toStack())), 1);
+            if(Grinder_Head_Item.canUse(this.inventory.getResource(GRINDING_SLOT).toStack()) || Mod_Config.GRINDER_BRAKES_GRINDER_ITEM.getAsBoolean()) {
+                ItemStack grinderStack = Grinder_Head_Item.brakeItem(this.inventory.getResource(GRINDING_SLOT).toStack(), Mod_Config.GRINDER_BRAKES_GRINDER_ITEM.getAsBoolean());
+                if (grinderStack.isEmpty()) {
+                    this.inventory.set(GRINDING_SLOT, this.inventory.getResource(GRINDING_SLOT), 0);
+                    this.grinds_Left = 0;
+                    return;
+                }
+                this.inventory.set(GRINDING_SLOT, ItemResource.of(grinderStack), 1);
                 grinds_Left = max_Grinds;
             }
         }else {

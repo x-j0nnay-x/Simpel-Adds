@@ -30,12 +30,15 @@ public class Grow_Staff_Item extends Item {
     public Grow_Staff_Item(Properties properties){
         super(properties
                 .stacksTo(1)
-                .durability(Mod_Config.GROWSTAFF_USES.getAsInt())
+                .durability(Mod_Config.GROW_STAFF_USES.getAsInt())
     );
     }
 
-    public static ItemStack brakeItem(ItemStack itemstack) {
-        if(canUse(itemstack)){
+    public static ItemStack brakeItem(ItemStack itemstack, boolean canBrake) {
+        if(canBrake){
+            itemstack.setDamageValue(itemstack.getDamageValue() + 1);
+        }
+        if(canUse(itemstack) && !canBrake){
             itemstack.setDamageValue(itemstack.getDamageValue() + 1);
         }
         return itemstack;
@@ -62,7 +65,7 @@ public class Grow_Staff_Item extends Item {
             if(block instanceof SaplingBlock){
                 SaplingBlock saplingBlock = (SaplingBlock) block;
                 saplingBlock.performBonemeal((ServerLevel) level, level.getRandom(), blockPos, blockState);
-                brakeItem(staf);
+                brakeItem(staf, Mod_Config.GROW_STAFF_BRAKES.getAsBoolean());
                 return InteractionResult.SUCCESS;
             }
             if (block instanceof CropBlock) {
@@ -72,14 +75,14 @@ public class Grow_Staff_Item extends Item {
                 }
                 cropBlock.growCrops((ServerLevel) context.getLevel(), blockPos, blockState);
                 level.playSound(context.getPlayer(), blockPos, SoundEvents.BONE_MEAL_USE, SoundSource.PLAYERS, 1.0f, 1.0f);
-                brakeItem(staf);
+                brakeItem(staf, Mod_Config.GROW_STAFF_BRAKES.getAsBoolean());
                 return InteractionResult.SUCCESS;
             }
             if(block instanceof FarmlandBlock && block != Mod_Registrys.Mod_Blocks.SIMPEL_FARM_LAND.get()){
                 blockValue = blockState.getValue(FarmlandBlock.MOISTURE);
                 level.setBlockAndUpdate(blockPos, FARMLAND_MAP.get(block).defaultBlockState().setValue(Simpel_Farm_Land.MOISTURE, blockValue));
                 level.playSound(context.getPlayer(), blockPos, SoundEvents.HOE_TILL, SoundSource.PLAYERS, 1.0f, 1.0f);
-                brakeItem(staf);
+                brakeItem(staf, Mod_Config.GROW_STAFF_BRAKES.getAsBoolean());
                 return InteractionResult.SUCCESS;
             }
         }
