@@ -29,11 +29,13 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.RangedResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jspecify.annotations.Nullable;
 import x_j0nnay_x.simpeladdmod.block.Harvester_Block;
 import x_j0nnay_x.simpeladdmod.init.Mod_Config;
@@ -196,7 +198,10 @@ public class Harvester_Block_Entity extends BlockEntity implements MenuProvider 
 
     //chest above code
     public boolean isChestabove() {
-        return getContainerAbove(this.getBlockPos(), this.level) != null;
+        if (this.level == null) {
+            return false;
+        }
+        return hasContainerAbove(this.getBlockPos(), this.level) || hasItemHandlerAbove(this.getBlockPos(), this.level);
     }
 
     public boolean hasRemoteUpgrade() {
@@ -225,11 +230,38 @@ public class Harvester_Block_Entity extends BlockEntity implements MenuProvider 
     }
 
     @Nullable
+    private ResourceHandler<ItemResource> getRemoteItemHandler() {
+        if (this.level == null || !hasRemoteUpgrade()) {
+            return null;
+        }
+        ItemStack remoteUpgrade = this.inventory.getResource(REMOTESLOT).toStack();
+        BlockPos remotePos = remoteUpgrade.get(Mod_Registrys.Mod_Data_Componet.COORDINATES.get());
+        if (remotePos == null) {
+            return null;
+        }
+        return this.level.getCapability(Capabilities.Item.BLOCK, remotePos, null);
+    }
+
+    @Nullable
     public static Container getContainerAbove(BlockPos blockPos, Level level) {
         BlockPos containerPos = blockPos.above();
         BlockState state = level.getBlockState(containerPos);
         Container container = getBlockContainer(level, containerPos, state);
         return container != null ? container : getEntityContainer(level, containerPos.getX(), containerPos.getY(), containerPos.getZ());
+    }
+
+    public static boolean hasContainerAbove(BlockPos blockPos, Level level) {
+        return getContainerAbove(blockPos, level) != null;
+    }
+
+    public static boolean hasItemHandlerAbove(BlockPos blockPos, Level level) {
+        return getItemHandlerAbove(blockPos, level) != null;
+    }
+
+    @Nullable
+    public static ResourceHandler<ItemResource> getItemHandlerAbove(BlockPos blockPos, Level level) {
+        BlockPos containerPos = blockPos.above();
+        return level.getCapability(Capabilities.Item.BLOCK, containerPos, Direction.DOWN);
     }
 
     @Nullable
@@ -274,8 +306,31 @@ public class Harvester_Block_Entity extends BlockEntity implements MenuProvider 
             ItemStack remaining = HopperBlockEntity.addItem(null, container, drop.copy(), Direction.DOWN);
             if (!remaining.isEmpty()) {
                 remainingDrops.add(remaining);
-                break;
             }
+        }
+        return remainingDrops;
+    }
+
+    private List<ItemStack> putDropsInItemHandler(List<ItemStack> drops, ResourceHandler<ItemResource> itemHandler) {
+        if (itemHandler == null) {
+            return drops;
+        }
+        List<ItemStack> remainingDrops = new ArrayList<>();
+        try (Transaction transaction = Transaction.openRoot()) {
+            for (ItemStack drop : drops) {
+                if (drop.isEmpty()) {
+                    continue;
+                }
+                ItemResource resource = ItemResource.of(drop);
+                if (resource.isEmpty()) {
+                    continue;
+                }
+                int inserted = itemHandler.insert(resource, drop.getCount(), transaction);
+                if (inserted < drop.getCount()) {
+                    remainingDrops.add(drop.copyWithCount(drop.getCount() - inserted));
+                }
+            }
+            transaction.commit();
         }
         return remainingDrops;
     }
@@ -297,13 +352,23 @@ public class Harvester_Block_Entity extends BlockEntity implements MenuProvider 
             List<ItemStack> drops = harvestCropDrops(serverLevel, blockPos, crop);
             if (!drops.isEmpty()) {
                 Container remoteContainer = getRemoteContainer();
+                ResourceHandler<ItemResource> remoteItemHandler = getRemoteItemHandler();
+                Container aboveContainer = getContainerAbove(this.getBlockPos(), this.level);
+                ResourceHandler<ItemResource> aboveItemHandler = getItemHandlerAbove(this.getBlockPos(), this.level);
+
                 if (remoteContainer != null) {
                     drops = putDropsInChest(drops, remoteContainer);
                 }
-                if (!drops.isEmpty() && isChestabove()) {
-                    drops = putDropsInChest(drops, getContainerAbove(this.getBlockPos(), this.level));
+                if (!drops.isEmpty() && remoteContainer == null && remoteItemHandler != null) {
+                    drops = putDropsInItemHandler(drops, remoteItemHandler);
                 }
-                if (!drops.isEmpty() && !isChestabove()) {
+                if (!drops.isEmpty() && aboveContainer != null) {
+                    drops = putDropsInChest(drops, aboveContainer);
+                }
+                if (!drops.isEmpty() && aboveContainer == null && aboveItemHandler != null) {
+                    drops = putDropsInItemHandler(drops, aboveItemHandler);
+                }
+                if (!drops.isEmpty()) {
                     justDrop(serverLevel, drops, blockPos.above());
                 }
             }
@@ -312,13 +377,23 @@ public class Harvester_Block_Entity extends BlockEntity implements MenuProvider 
             if (secondState.is(crop.getBlock())) {
                 List<ItemStack> drops = harvestTallCropDrops(serverLevel, blockPos.above(), secondState);
                 Container remoteContainer = getRemoteContainer();
+                ResourceHandler<ItemResource> remoteItemHandler = getRemoteItemHandler();
+                Container aboveContainer = getContainerAbove(this.getBlockPos(), this.level);
+                ResourceHandler<ItemResource> aboveItemHandler = getItemHandlerAbove(this.getBlockPos(), this.level);
+
                 if (remoteContainer != null) {
                     drops = putDropsInChest(drops, remoteContainer);
                 }
-                if (!drops.isEmpty() && isChestabove()) {
-                    drops = putDropsInChest(drops, getContainerAbove(this.getBlockPos(), this.level));
+                if (!drops.isEmpty() && remoteContainer == null && remoteItemHandler != null) {
+                    drops = putDropsInItemHandler(drops, remoteItemHandler);
                 }
-                if (!drops.isEmpty() && !isChestabove()) {
+                if (!drops.isEmpty() && aboveContainer != null) {
+                    drops = putDropsInChest(drops, aboveContainer);
+                }
+                if (!drops.isEmpty() && aboveContainer == null && aboveItemHandler != null) {
+                    drops = putDropsInItemHandler(drops, aboveItemHandler);
+                }
+                if (!drops.isEmpty()) {
                     justDrop(serverLevel, drops, blockPos.above());
                 }
             }

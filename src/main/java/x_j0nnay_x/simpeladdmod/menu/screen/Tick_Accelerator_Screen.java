@@ -27,7 +27,7 @@ public class Tick_Accelerator_Screen extends AbstractContainerScreen<Tick_Accele
 
     @Override
     protected void extractLabels(GuiGraphicsExtractor graphics, int xm, int ym) {
-
+        graphics.text(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, -12566464, false);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
     }

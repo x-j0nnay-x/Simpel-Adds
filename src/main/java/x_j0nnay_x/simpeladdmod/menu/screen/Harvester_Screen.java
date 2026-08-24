@@ -27,9 +27,9 @@ public class Harvester_Screen extends AbstractContainerScreen<Harvester_Menu> {
 
     @Override
     protected void extractLabels(GuiGraphicsExtractor graphics, int xm, int ym) {
-//        super.extractLabels(graphics, xm, ym);
-//        int x = (width - imageWidth) / 2;
-//        int y = (height - imageHeight) / 2;
+        graphics.text(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, -12566464, false);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
     }
 
     @Override

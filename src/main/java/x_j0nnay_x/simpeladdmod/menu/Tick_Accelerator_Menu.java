@@ -92,7 +92,7 @@ public class Tick_Accelerator_Menu extends AbstractContainerMenu {
     }
     public int getCopperLevel(){
         int coperlevel = this.data.get(0);
-        int maxCopperLevel = this.data.get(5);
+        int maxCopperLevel = this.data.get(4);
         int levelSize = 37;
         return maxCopperLevel != 0 && coperlevel != 0 ? coperlevel * levelSize / maxCopperLevel : 0;
     }
@@ -102,7 +102,7 @@ public class Tick_Accelerator_Menu extends AbstractContainerMenu {
         return this.data.get(0);
     }
     public int getMaxCopper(){
-        return this.data.get(5);
+        return this.data.get(4);
     }
     public <string> MutableComponent getCopperName(){
         return Component.translatable("gui.simpeladdmod.tick_accelerator.tooltip");
